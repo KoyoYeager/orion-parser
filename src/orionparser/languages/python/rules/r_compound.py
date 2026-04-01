@@ -1,0 +1,248 @@
+"""Grammar rules for compound statements (if, for, while, def, class, etc.)."""
+
+
+# --- Compound statements ---
+
+def p_compound_stmt(p):
+    """compound_stmt : if_stmt
+                     | while_stmt
+                     | for_stmt
+                     | try_stmt
+                     | with_stmt
+                     | funcdef
+                     | classdef
+                     | decorated"""
+    p[0] = p[1]
+
+
+# --- if ---
+
+def p_if_stmt(p):
+    """if_stmt : IF expression COLON block elif_chain
+              | IF expression COLON block"""
+    if len(p) == 6:
+        p[0] = {"type": "If", "test": p[2], "body": p[4], "orelse": p[5]}
+    else:
+        p[0] = {"type": "If", "test": p[2], "body": p[4], "orelse": []}
+
+
+def p_elif_chain(p):
+    """elif_chain : ELIF expression COLON block elif_chain
+                  | ELIF expression COLON block
+                  | ELSE COLON block"""
+    if len(p) == 4:
+        # else clause
+        p[0] = p[3]
+    elif len(p) == 6:
+        p[0] = [{"type": "If", "test": p[2], "body": p[4], "orelse": p[5]}]
+    else:
+        p[0] = [{"type": "If", "test": p[2], "body": p[4], "orelse": []}]
+
+
+# --- while ---
+
+def p_while_stmt(p):
+    """while_stmt : WHILE expression COLON block
+                  | WHILE expression COLON block ELSE COLON block"""
+    if len(p) == 5:
+        p[0] = {"type": "While", "test": p[2], "body": p[4], "orelse": []}
+    else:
+        p[0] = {"type": "While", "test": p[2], "body": p[4], "orelse": p[7]}
+
+
+# --- for ---
+
+def p_for_stmt(p):
+    """for_stmt : FOR expression IN expression COLON block
+               | FOR expression IN expression COLON block ELSE COLON block"""
+    if len(p) == 7:
+        p[0] = {"type": "For", "target": p[2], "iter": p[4], "body": p[6], "orelse": []}
+    else:
+        p[0] = {"type": "For", "target": p[2], "iter": p[4], "body": p[6], "orelse": p[9]}
+
+
+# --- try ---
+
+def p_try_stmt(p):
+    """try_stmt : TRY COLON block except_clauses
+               | TRY COLON block except_clauses ELSE COLON block
+               | TRY COLON block except_clauses FINALLY COLON block
+               | TRY COLON block FINALLY COLON block"""
+    if len(p) == 5:
+        p[0] = {"type": "Try", "body": p[3], "handlers": p[4], "orelse": [], "finalbody": []}
+    elif len(p) == 8 and p[5] == "else":
+        p[0] = {"type": "Try", "body": p[3], "handlers": p[4], "orelse": p[7], "finalbody": []}
+    elif len(p) == 8 and p[5] == "finally":
+        p[0] = {"type": "Try", "body": p[3], "handlers": p[4], "orelse": [], "finalbody": p[7]}
+    elif len(p) == 7:
+        p[0] = {"type": "Try", "body": p[3], "handlers": [], "orelse": [], "finalbody": p[6]}
+
+
+def p_except_clauses(p):
+    """except_clauses : except_clauses except_clause
+                      | except_clause"""
+    if len(p) == 3:
+        p[0] = p[1] + [p[2]]
+    else:
+        p[0] = [p[1]]
+
+
+def p_except_clause(p):
+    """except_clause : EXCEPT expression AS NAME COLON block
+                     | EXCEPT expression COLON block
+                     | EXCEPT COLON block"""
+    if len(p) == 7:
+        p[0] = {"type": "ExceptHandler", "exc_type": p[2], "name": p[4], "body": p[6]}
+    elif len(p) == 5:
+        p[0] = {"type": "ExceptHandler", "exc_type": p[2], "name": None, "body": p[4]}
+    else:
+        p[0] = {"type": "ExceptHandler", "exc_type": None, "name": None, "body": p[3]}
+
+
+# --- with ---
+
+def p_with_stmt(p):
+    """with_stmt : WITH with_items COLON block"""
+    p[0] = {"type": "With", "items": p[2], "body": p[4]}
+
+
+def p_with_items(p):
+    """with_items : with_items COMMA with_item
+                  | with_item"""
+    if len(p) == 4:
+        p[0] = p[1] + [p[3]]
+    else:
+        p[0] = [p[1]]
+
+
+def p_with_item(p):
+    """with_item : expression AS expression
+                 | expression"""
+    if len(p) == 4:
+        p[0] = {"context": p[1], "alias": p[3]}
+    else:
+        p[0] = {"context": p[1], "alias": None}
+
+
+# --- block (indented suite) ---
+
+def p_block(p):
+    """block : NEWLINE INDENT statements DEDENT"""
+    p[0] = p[3]
+
+
+# --- function definition ---
+
+def p_funcdef(p):
+    """funcdef : DEF NAME LPAREN param_list RPAREN COLON block
+              | DEF NAME LPAREN RPAREN COLON block
+              | DEF NAME LPAREN param_list RPAREN ARROW expression COLON block
+              | DEF NAME LPAREN RPAREN ARROW expression COLON block"""
+    if len(p) == 8:
+        p[0] = {"type": "FunctionDef", "name": p[2], "params": p[4],
+                "returns": None, "body": p[7]}
+    elif len(p) == 7:
+        p[0] = {"type": "FunctionDef", "name": p[2], "params": [],
+                "returns": None, "body": p[6]}
+    elif len(p) == 10:
+        p[0] = {"type": "FunctionDef", "name": p[2], "params": p[4],
+                "returns": p[7], "body": p[9]}
+    else:  # len(p) == 9
+        p[0] = {"type": "FunctionDef", "name": p[2], "params": [],
+                "returns": p[6], "body": p[8]}
+
+
+def p_funcdef_async(p):
+    """funcdef : ASYNC DEF NAME LPAREN param_list RPAREN COLON block
+              | ASYNC DEF NAME LPAREN RPAREN COLON block"""
+    if len(p) == 9:
+        p[0] = {"type": "AsyncFunctionDef", "name": p[3], "params": p[5],
+                "returns": None, "body": p[8]}
+    else:
+        p[0] = {"type": "AsyncFunctionDef", "name": p[3], "params": [],
+                "returns": None, "body": p[7]}
+
+
+def p_param_list(p):
+    """param_list : param_list COMMA param
+                  | param"""
+    if len(p) == 4:
+        p[0] = p[1] + [p[3]]
+    else:
+        p[0] = [p[1]]
+
+
+def p_param(p):
+    """param : NAME
+             | NAME COLON expression
+             | NAME EQUAL expression
+             | NAME COLON expression EQUAL expression
+             | STAR NAME
+             | DOUBLESTAR NAME"""
+    if len(p) == 2:
+        p[0] = {"name": p[1], "annotation": None, "default": None}
+    elif len(p) == 4 and p[2] == ":":
+        p[0] = {"name": p[1], "annotation": p[3], "default": None}
+    elif len(p) == 4 and p[2] == "=":
+        p[0] = {"name": p[1], "annotation": None, "default": p[3]}
+    elif len(p) == 6:
+        p[0] = {"name": p[1], "annotation": p[3], "default": p[5]}
+    elif len(p) == 3 and p[1] == "*":
+        p[0] = {"name": "*" + p[2], "annotation": None, "default": None}
+    elif len(p) == 3:
+        p[0] = {"name": "**" + p[2], "annotation": None, "default": None}
+
+
+# --- class definition ---
+
+def p_classdef(p):
+    """classdef : CLASS NAME COLON block
+               | CLASS NAME LPAREN RPAREN COLON block
+               | CLASS NAME LPAREN arg_list RPAREN COLON block"""
+    if len(p) == 5:
+        p[0] = {"type": "ClassDef", "name": p[2], "bases": [], "body": p[4]}
+    elif len(p) == 7:
+        p[0] = {"type": "ClassDef", "name": p[2], "bases": [], "body": p[6]}
+    else:
+        p[0] = {"type": "ClassDef", "name": p[2], "bases": p[4], "body": p[7]}
+
+
+def p_arg_list(p):
+    """arg_list : arg_list COMMA arg_item
+               | arg_item"""
+    if len(p) == 4:
+        p[0] = p[1] + [p[3]]
+    else:
+        p[0] = [p[1]]
+
+
+def p_arg_item(p):
+    """arg_item : expression
+               | NAME EQUAL expression"""
+    if len(p) == 2:
+        p[0] = p[1]
+    else:
+        p[0] = {"type": "keyword", "arg": p[1], "value": p[3]}
+
+
+# --- decorators ---
+
+def p_decorated(p):
+    """decorated : decorators funcdef
+                 | decorators classdef"""
+    p[0] = p[2]
+    p[0]["decorators"] = p[1]
+
+
+def p_decorators(p):
+    """decorators : decorators decorator
+                  | decorator"""
+    if len(p) == 3:
+        p[0] = p[1] + [p[2]]
+    else:
+        p[0] = [p[1]]
+
+
+def p_decorator(p):
+    """decorator : AT expression NEWLINE"""
+    p[0] = p[2]

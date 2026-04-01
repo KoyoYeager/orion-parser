@@ -11,9 +11,10 @@ class PythonPipeline(BasePipeline):
     """Pipeline for Python source code analysis."""
 
     def preprocess(self, source: str) -> str:
-        # Python needs minimal preprocessing
-        # Normalize line endings
-        return source.replace("\r\n", "\n")
+        from orionparser.languages.python.preprocess import run_pipeline
+
+        processed, _logs = run_pipeline(source)
+        return processed
 
     def tokenize(self, source: str) -> list[dict[str, Any]]:
         from orionparser.languages.python.lexer import PythonLexer

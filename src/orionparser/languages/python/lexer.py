@@ -1,4 +1,12 @@
-"""Python lexer — PLY-based tokenizer with INDENT/DEDENT generation."""
+"""Python lexer — PLY-based tokenizer with INDENT/DEDENT generation.
+
+INDENT/DEDENT tokens are generated as a post-processing step over
+PLY's raw token stream, following Python's indentation rules:
+  - After a NEWLINE, measure leading whitespace
+  - If indent increases → emit INDENT
+  - If indent decreases → emit one or more DEDENT
+  - Brackets suppress NEWLINE (implicit line continuation)
+"""
 
 from __future__ import annotations
 
@@ -14,7 +22,11 @@ class PythonLexer:
 
     tokens = TOKENS
 
-    # --- Simple tokens (longest match first) ---
+    # --- Multi-char operators (longest match first) ---
+    t_DOUBLESTAREQUAL = r"\*\*="
+    t_DOUBLESLASHEQUAL = r"//="
+    t_LSHIFTEQUAL = r"<<="
+    t_RSHIFTEQUAL = r">>="
     t_DOUBLESTAR = r"\*\*"
     t_DOUBLESLASH = r"//"
     t_LSHIFT = r"<<"
@@ -30,15 +42,13 @@ class PythonLexer:
     t_MINEQUAL = r"-="
     t_STAREQUAL = r"\*="
     t_SLASHEQUAL = r"/="
-    t_DOUBLESLASHEQUAL = r"//="
     t_PERCENTEQUAL = r"%="
-    t_DOUBLESTAREQUAL = r"\*\*="
     t_AMPEREQUAL = r"&="
     t_VBAREQUAL = r"\|="
     t_CIRCUMFLEXEQUAL = r"\^="
-    t_LSHIFTEQUAL = r"<<="
-    t_RSHIFTEQUAL = r">>="
     t_ATEQUAL = r"@="
+
+    # --- Single-char operators ---
     t_PLUS = r"\+"
     t_MINUS = r"-"
     t_STAR = r"\*"
@@ -63,24 +73,23 @@ class PythonLexer:
     t_SEMI = r";"
     t_DOT = r"\."
 
+    # Ignore spaces/tabs within a line (indent handled in post-processing)
     t_ignore = " \t"
 
     def __init__(self) -> None:
-        self._indent_stack: list[int] = [0]
-        self._paren_depth: int = 0
-        self._pending_tokens: list[Any] = []
         self.lexer: lex.Lexer = lex.lex(module=self)
 
-    def t_COMMENT(self, t: lex.LexToken) -> None:
+    def t_COMMENT(self, t: lex.LexToken) -> lex.LexToken:
         r"\#[^\n]*"
-        # Keep comments as tokens (for trivia preservation)
         return t
 
     def t_STRING(self, t: lex.LexToken) -> lex.LexToken:
-        r'(f|r|b|u|rf|rb|fr|br|F|R|B|U|RF|RB|FR|BR)?"""[\s\S]*?"""|' \
-        r"(f|r|b|u|rf|rb|fr|br|F|R|B|U|RF|RB|FR|BR)?'''[\s\S]*?'''|" \
-        r'(f|r|b|u|rf|rb|fr|br|F|R|B|U|RF|RB|FR|BR)?"(?:[^"\\]|\\.)*"|' \
-        r"(f|r|b|u|rf|rb|fr|br|F|R|B|U|RF|RB|FR|BR)?'(?:[^'\\]|\\.)*'"
+        r'(?:f|r|b|u|rf|rb|fr|br|F|R|B|U|RF|RB|FR|BR)?"""[\s\S]*?"""|' \
+        r"(?:f|r|b|u|rf|rb|fr|br|F|R|B|U|RF|RB|FR|BR)?'''[\s\S]*?'''|" \
+        r'(?:f|r|b|u|rf|rb|fr|br|F|R|B|U|RF|RB|FR|BR)?"(?:[^"\\]|\\.)*"|' \
+        r"(?:f|r|b|u|rf|rb|fr|br|F|R|B|U|RF|RB|FR|BR)?'(?:[^'\\]|\\.)*'"
+        # Count newlines inside triple-quoted strings
+        t.lexer.lineno += t.value.count("\n")
         return t
 
     def t_NUMBER(self, t: lex.LexToken) -> lex.LexToken:
@@ -99,12 +108,9 @@ class PythonLexer:
         t.type = RESERVED.get(t.value, "NAME")
         return t
 
-    def t_NEWLINE(self, t: lex.LexToken) -> lex.LexToken | None:
-        r"\n+"
-        t.lexer.lineno += len(t.value)
-        if self._paren_depth > 0:
-            # Inside brackets — implicit line continuation
-            return None
+    def t_NEWLINE(self, t: lex.LexToken) -> lex.LexToken:
+        r"\n"
+        t.lexer.lineno += 1
         t.type = "NEWLINE"
         return t
 
@@ -112,21 +118,113 @@ class PythonLexer:
         t.lexer.skip(1)
 
     def tokenize(self, source: str) -> list[dict[str, Any]]:
-        """Tokenize source and return list of token dicts."""
+        """Tokenize source and return token list with INDENT/DEDENT."""
+        raw = self._collect_raw_tokens(source)
+        return self._inject_indent_dedent(raw, source)
+
+    def _collect_raw_tokens(self, source: str) -> list[dict[str, Any]]:
+        """Collect raw tokens from PLY lexer."""
         self.lexer.input(source)
-        self._indent_stack = [0]
-        self._paren_depth = 0
-
-        raw_tokens: list[dict[str, Any]] = []
+        tokens: list[dict[str, Any]] = []
         for tok in self.lexer:
-            # Track bracket depth for implicit line continuation
-            if tok.type in ("LPAREN", "LSQB", "LBRACE"):
-                self._paren_depth += 1
-            elif tok.type in ("RPAREN", "RSQB", "RBRACE"):
-                self._paren_depth = max(0, self._paren_depth - 1)
-
-            raw_tokens = raw_tokens + [
+            tokens = tokens + [
                 {"type": tok.type, "value": tok.value, "line": tok.lineno}
             ]
+        return tokens
 
-        return raw_tokens
+    def _inject_indent_dedent(
+        self, raw: list[dict[str, Any]], source: str
+    ) -> list[dict[str, Any]]:
+        """Post-process raw tokens to insert INDENT/DEDENT.
+
+        Algorithm:
+        1. Split source into lines to get indent levels
+        2. Walk tokens; after each NEWLINE, check indent of next line
+        3. Emit INDENT/DEDENT based on indent stack
+        4. Skip NEWLINE inside brackets (implicit continuation)
+        """
+        # Pre-compute indent level for each line (1-indexed)
+        lines = source.split("\n")
+        line_indent: dict[int, int] = {}
+        for i, line in enumerate(lines):
+            stripped = line.lstrip()
+            if stripped and not stripped.startswith("#"):
+                line_indent[i + 1] = len(line) - len(stripped)
+            else:
+                line_indent[i + 1] = -1  # blank or comment-only
+
+        indent_stack: list[int] = [0]
+        paren_depth = 0
+        result: list[dict[str, Any]] = []
+
+        i = 0
+        while i < len(raw):
+            tok = raw[i]
+
+            # Track bracket depth
+            if tok["type"] in ("LPAREN", "LSQB", "LBRACE"):
+                paren_depth += 1
+            elif tok["type"] in ("RPAREN", "RSQB", "RBRACE"):
+                paren_depth = max(0, paren_depth - 1)
+
+            # Inside brackets: suppress NEWLINE
+            if tok["type"] == "NEWLINE" and paren_depth > 0:
+                i += 1
+                continue
+
+            # On NEWLINE: look ahead for indent changes
+            if tok["type"] == "NEWLINE":
+                result = result + [tok]
+
+                # Find the next non-blank, non-comment line's indent
+                next_line = tok["line"] + 1
+                next_indent = -1
+                while next_line in line_indent:
+                    if line_indent[next_line] >= 0:
+                        next_indent = line_indent[next_line]
+                        break
+                    next_line += 1
+
+                if next_indent < 0:
+                    # No more code lines
+                    i += 1
+                    continue
+
+                # Skip consecutive NEWLINEs (blank lines)
+                j = i + 1
+                while j < len(raw) and raw[j]["type"] in ("NEWLINE", "COMMENT"):
+                    if raw[j]["type"] == "NEWLINE":
+                        result = result + [raw[j]]
+                    else:
+                        result = result + [raw[j]]
+                    j += 1
+                i = j
+
+                current_indent = indent_stack[-1]
+                if next_indent > current_indent:
+                    indent_stack = indent_stack + [next_indent]
+                    result = result + [
+                        {"type": "INDENT", "value": "", "line": next_line}
+                    ]
+                elif next_indent < current_indent:
+                    while indent_stack and indent_stack[-1] > next_indent:
+                        indent_stack = indent_stack[:-1]
+                        result = result + [
+                            {"type": "DEDENT", "value": "", "line": next_line}
+                        ]
+                continue
+
+            result = result + [tok]
+            i += 1
+
+        # Emit remaining DEDENT at EOF
+        while len(indent_stack) > 1:
+            indent_stack = indent_stack[:-1]
+            line = raw[-1]["line"] if raw else 1
+            result = result + [{"type": "DEDENT", "value": "", "line": line}]
+
+        # Add ENDMARKER
+        line = raw[-1]["line"] if raw else 1
+        result = result + [{"type": "ENDMARKER", "value": "", "line": line}]
+
+        return result

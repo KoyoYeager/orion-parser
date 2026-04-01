@@ -1,32 +1,106 @@
-"""Python parser — PLY-based syntax analyzer.
+"""Python parser — PLY yacc with dynamic rule binding.
 
-Produces AST dicts from Python source code.
-This is a scaffold; grammar rules will be added incrementally.
+Grammar rules are defined in separate modules under rules/
+and bound to PythonParser via _bind_rules(), following the
+reference C parser's architecture.
 """
 
 from __future__ import annotations
 
+import logging
 from typing import Any
 
+import ply.yacc as yacc
+
 from orionparser.languages.python.lexer import PythonLexer
+from orionparser.languages.python.precedence import PYTHON_PRECEDENCE
+from orionparser.languages.python.tokens import TOKENS
+
+logger = logging.getLogger(__name__)
 
 
 class PythonParser:
-    """Syntax analyzer for Python source code."""
+    """LALR(1) parser for Python source code."""
+
+    tokens = TOKENS
+    precedence = PYTHON_PRECEDENCE
 
     def __init__(self) -> None:
         self._lexer = PythonLexer()
+        self._errors: list[str] = []
+        self._parser = yacc.yacc(
+            module=self,
+            start="file_input",
+            debug=False,
+            write_tables=False,
+        )
 
     def parse(self, source: str) -> dict[str, Any] | None:
-        """Parse Python source into AST dict.
-
-        Currently returns a minimal module node with token info.
-        Full grammar rules will be added in subsequent development.
-        """
+        """Parse Python source into AST dict."""
+        self._errors = []
         tokens = self._lexer.tokenize(source)
-        # Scaffold: return module node wrapping raw tokens
-        return {
-            "type": "Module",
-            "body": [],
-            "token_count": len(tokens),
-        }
+
+        # Feed tokens to parser via an iterator-based lexer adapter
+        adapter = _TokenAdapter(tokens)
+        result = self._parser.parse(lexer=adapter)
+        return result
+
+    @property
+    def errors(self) -> list[str]:
+        return list(self._errors)
+
+
+class _TokenAdapter:
+    """Adapts a token list to PLY's lexer interface.
+
+    PLY yacc calls lexer.token() repeatedly; this wraps
+    our pre-built token list to provide that interface.
+    """
+
+    def __init__(self, tokens: list[dict[str, Any]]) -> None:
+        self._tokens = tokens
+        self._pos = 0
+
+    def token(self) -> Any:
+        if self._pos >= len(self._tokens):
+            return None
+        tok_dict = self._tokens[self._pos]
+        self._pos += 1
+        tok = yacc.YaccSymbol()
+        tok.type = tok_dict["type"]
+        tok.value = tok_dict["value"]
+        tok.lineno = tok_dict.get("line", 0)
+        tok.lexpos = 0
+        return tok
+
+
+def _bind_rules(parser_class: type) -> None:
+    """Bind p_* functions from rule modules to PythonParser.
+
+    Same pattern as the reference C parser's _bind_rules().
+    """
+    from orionparser.languages.python.rules import (
+        r_module,
+        r_statements,
+        r_imports,
+        r_compound,
+        r_expressions,
+        r_error,
+    )
+
+    modules = [
+        r_module,
+        r_statements,
+        r_imports,
+        r_compound,
+        r_expressions,
+        r_error,
+    ]
+
+    for mod in modules:
+        for name in dir(mod):
+            if name.startswith("p_"):
+                setattr(parser_class, name, staticmethod(getattr(mod, name)))
+
+
+_bind_rules(PythonParser)

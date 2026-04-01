@@ -6,6 +6,7 @@ import argparse
 import json
 import sys
 from pathlib import Path
+from typing import Any
 
 from orionparser.registry import get_pipeline, supported_extensions
 
@@ -45,6 +46,43 @@ def cmd_tokens(args: argparse.Namespace) -> None:
             print(f"{tok.get('type', '?'):20s} {tok.get('value', '')!r}")
 
 
+def cmd_analyze(args: argparse.Namespace) -> None:
+    """Analyze a file: call tree, data flow."""
+    path = Path(args.file)
+    if not path.exists():
+        print(f"Error: {path} not found", file=sys.stderr)
+        sys.exit(1)
+
+    pipeline = get_pipeline(path)
+    result = pipeline.analyze_file(path)
+    if not result.ast:
+        print("Parse failed, cannot analyze", file=sys.stderr)
+        sys.exit(1)
+
+    output: dict[str, Any] = {}
+
+    if args.call_tree or args.all:
+        from orionparser.analysis.call_tree import extract_call_tree
+        ct = extract_call_tree(result.ast)
+        output["call_tree"] = {"functions": ct["functions"], "calls": ct["calls"]}
+
+    if args.data_flow or args.all:
+        from orionparser.analysis.data_flow import extract_data_flow
+        df = extract_data_flow(result.ast)
+        output["data_flow"] = {"variables": df["variables"], "flows": df["flows"]}
+
+    if not output:
+        # Default to all
+        from orionparser.analysis.call_tree import extract_call_tree
+        from orionparser.analysis.data_flow import extract_data_flow
+        ct = extract_call_tree(result.ast)
+        df = extract_data_flow(result.ast)
+        output["call_tree"] = {"functions": ct["functions"], "calls": ct["calls"]}
+        output["data_flow"] = {"variables": df["variables"], "flows": df["flows"]}
+
+    print(json.dumps(output, indent=2, ensure_ascii=False))
+
+
 def cmd_langs(args: argparse.Namespace) -> None:
     """List supported languages."""
     for ext in supported_extensions():
@@ -80,6 +118,14 @@ def main() -> None:
     p_tokens.add_argument("file", help="Source file to tokenize")
     p_tokens.add_argument("--json", action="store_true", help="JSON output")
     p_tokens.set_defaults(func=cmd_tokens)
+
+    # analyze
+    p_analyze = sub.add_parser("analyze", help="Analyze call tree and data flow")
+    p_analyze.add_argument("file", help="Source file to analyze")
+    p_analyze.add_argument("--call-tree", action="store_true", help="Extract call tree")
+    p_analyze.add_argument("--data-flow", action="store_true", help="Extract data flow")
+    p_analyze.add_argument("--all", action="store_true", help="All analyses")
+    p_analyze.set_defaults(func=cmd_analyze)
 
     # langs
     p_langs = sub.add_parser("langs", help="List supported languages")
