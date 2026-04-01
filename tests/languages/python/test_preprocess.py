@@ -80,7 +80,7 @@ class TestMergeBackslashLines:
 class TestFullPipeline:
     def test_combined(self):
         source = "\ufeff# -*- coding: utf-8 -*-\r\nx = 1 + \\\r\n    2\r\n"
-        result, logs = run_pipeline(source)
+        result, logs, comments = run_pipeline(source)
         assert "\ufeff" not in result
         assert "coding" not in result
         assert "\r" not in result

@@ -5,17 +5,17 @@
 
 def p_expression_name(p):
     """expression : NAME"""
-    p[0] = {"type": "Name", "id": p[1]}
+    p[0] = {"type": "Name", "id": p[1], "_line": p.lineno(1)}
 
 
 def p_expression_number(p):
     """expression : NUMBER"""
-    p[0] = {"type": "Num", "value": p[1]}
+    p[0] = {"type": "Num", "value": p[1], "_line": p.lineno(1)}
 
 
 def p_expression_string(p):
     """expression : STRING"""
-    p[0] = {"type": "Str", "value": p[1]}
+    p[0] = {"type": "Str", "value": p[1], "_line": p.lineno(1)}
 
 
 def p_expression_true(p):

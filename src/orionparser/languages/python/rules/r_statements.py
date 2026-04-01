@@ -3,19 +3,27 @@
 
 # --- Simple statements ---
 
+def _expr_line(p, idx: int = 1) -> int:
+    """Get line number, falling back to expression's _line if non-terminal."""
+    line = p.lineno(idx)
+    if line == 0 and isinstance(p[idx], dict):
+        line = p[idx].get("_line", 0)
+    return line
+
+
 def p_simple_stmt_expr(p):
     """simple_stmt : expression"""
-    p[0] = {"type": "Expr", "value": p[1]}
+    p[0] = {"type": "Expr", "value": p[1], "_line": _expr_line(p, 1)}
 
 
 def p_simple_stmt_assign(p):
     """simple_stmt : expression EQUAL expression"""
-    p[0] = {"type": "Assign", "target": p[1], "value": p[3]}
+    p[0] = {"type": "Assign", "target": p[1], "value": p[3], "_line": p.lineno(2) or _expr_line(p, 1)}
 
 
 def p_simple_stmt_aug_assign(p):
     """simple_stmt : expression aug_assign expression"""
-    p[0] = {"type": "AugAssign", "target": p[1], "op": p[2], "value": p[3]}
+    p[0] = {"type": "AugAssign", "target": p[1], "op": p[2], "value": p[3], "_line": _expr_line(p, 1)}
 
 
 def p_aug_assign(p):
@@ -39,18 +47,18 @@ def p_simple_stmt_ann_assign(p):
     """simple_stmt : expression COLON expression
                    | expression COLON expression EQUAL expression"""
     if len(p) == 4:
-        p[0] = {"type": "AnnAssign", "target": p[1], "annotation": p[3], "value": None}
+        p[0] = {"type": "AnnAssign", "target": p[1], "annotation": p[3], "value": None, "_line": p.lineno(1)}
     else:
-        p[0] = {"type": "AnnAssign", "target": p[1], "annotation": p[3], "value": p[5]}
+        p[0] = {"type": "AnnAssign", "target": p[1], "annotation": p[3], "value": p[5], "_line": p.lineno(1)}
 
 
 def p_simple_stmt_return(p):
     """simple_stmt : RETURN expression
                    | RETURN"""
     if len(p) == 3:
-        p[0] = {"type": "Return", "value": p[2]}
+        p[0] = {"type": "Return", "value": p[2], "_line": p.lineno(1)}
     else:
-        p[0] = {"type": "Return", "value": None}
+        p[0] = {"type": "Return", "value": None, "_line": p.lineno(1)}
 
 
 def p_simple_stmt_raise(p):
@@ -64,7 +72,7 @@ def p_simple_stmt_raise(p):
 
 def p_simple_stmt_pass(p):
     """simple_stmt : PASS"""
-    p[0] = {"type": "Pass"}
+    p[0] = {"type": "Pass", "_line": p.lineno(1)}
 
 
 def p_simple_stmt_break(p):

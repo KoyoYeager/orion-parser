@@ -21,9 +21,9 @@ def p_if_stmt(p):
     """if_stmt : IF expression COLON block elif_chain
               | IF expression COLON block"""
     if len(p) == 6:
-        p[0] = {"type": "If", "test": p[2], "body": p[4], "orelse": p[5]}
+        p[0] = {"type": "If", "test": p[2], "body": p[4], "orelse": p[5], "_line": p.lineno(1)}
     else:
-        p[0] = {"type": "If", "test": p[2], "body": p[4], "orelse": []}
+        p[0] = {"type": "If", "test": p[2], "body": p[4], "orelse": [], "_line": p.lineno(1)}
 
 
 def p_elif_chain(p):
@@ -45,9 +45,9 @@ def p_while_stmt(p):
     """while_stmt : WHILE expression COLON block
                   | WHILE expression COLON block ELSE COLON block"""
     if len(p) == 5:
-        p[0] = {"type": "While", "test": p[2], "body": p[4], "orelse": []}
+        p[0] = {"type": "While", "test": p[2], "body": p[4], "orelse": [], "_line": p.lineno(1)}
     else:
-        p[0] = {"type": "While", "test": p[2], "body": p[4], "orelse": p[7]}
+        p[0] = {"type": "While", "test": p[2], "body": p[4], "orelse": p[7], "_line": p.lineno(1)}
 
 
 # --- for ---
@@ -56,9 +56,9 @@ def p_for_stmt(p):
     """for_stmt : FOR expression IN expression COLON block
                | FOR expression IN expression COLON block ELSE COLON block"""
     if len(p) == 7:
-        p[0] = {"type": "For", "target": p[2], "iter": p[4], "body": p[6], "orelse": []}
+        p[0] = {"type": "For", "target": p[2], "iter": p[4], "body": p[6], "orelse": [], "_line": p.lineno(1)}
     else:
-        p[0] = {"type": "For", "target": p[2], "iter": p[4], "body": p[6], "orelse": p[9]}
+        p[0] = {"type": "For", "target": p[2], "iter": p[4], "body": p[6], "orelse": p[9], "_line": p.lineno(1)}
 
 
 # --- try ---
@@ -140,16 +140,16 @@ def p_funcdef(p):
               | DEF NAME LPAREN RPAREN ARROW expression COLON block"""
     if len(p) == 8:
         p[0] = {"type": "FunctionDef", "name": p[2], "params": p[4],
-                "returns": None, "body": p[7]}
+                "returns": None, "body": p[7], "_line": p.lineno(1)}
     elif len(p) == 7:
         p[0] = {"type": "FunctionDef", "name": p[2], "params": [],
-                "returns": None, "body": p[6]}
+                "returns": None, "body": p[6], "_line": p.lineno(1)}
     elif len(p) == 10:
         p[0] = {"type": "FunctionDef", "name": p[2], "params": p[4],
-                "returns": p[7], "body": p[9]}
+                "returns": p[7], "body": p[9], "_line": p.lineno(1)}
     else:  # len(p) == 9
         p[0] = {"type": "FunctionDef", "name": p[2], "params": [],
-                "returns": p[6], "body": p[8]}
+                "returns": p[6], "body": p[8], "_line": p.lineno(1)}
 
 
 def p_funcdef_async(p):
@@ -200,11 +200,11 @@ def p_classdef(p):
                | CLASS NAME LPAREN RPAREN COLON block
                | CLASS NAME LPAREN arg_list RPAREN COLON block"""
     if len(p) == 5:
-        p[0] = {"type": "ClassDef", "name": p[2], "bases": [], "body": p[4]}
+        p[0] = {"type": "ClassDef", "name": p[2], "bases": [], "body": p[4], "_line": p.lineno(1)}
     elif len(p) == 7:
-        p[0] = {"type": "ClassDef", "name": p[2], "bases": [], "body": p[6]}
+        p[0] = {"type": "ClassDef", "name": p[2], "bases": [], "body": p[6], "_line": p.lineno(1)}
     else:
-        p[0] = {"type": "ClassDef", "name": p[2], "bases": p[4], "body": p[7]}
+        p[0] = {"type": "ClassDef", "name": p[2], "bases": p[4], "body": p[7], "_line": p.lineno(1)}
 
 
 def p_arg_list(p):

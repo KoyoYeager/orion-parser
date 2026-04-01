@@ -120,7 +120,21 @@ class PythonLexer:
     def tokenize(self, source: str) -> list[dict[str, Any]]:
         """Tokenize source and return token list with INDENT/DEDENT."""
         raw = self._collect_raw_tokens(source)
-        return self._inject_indent_dedent(raw, source)
+        tokens = self._inject_indent_dedent(raw, source)
+        return self._collapse_newlines(tokens)
+
+    @staticmethod
+    def _collapse_newlines(tokens: list[dict[str, Any]]) -> list[dict[str, Any]]:
+        """Collapse consecutive NEWLINE tokens into one.
+
+        Blank lines produce extra NEWLINEs that break `block: NEWLINE INDENT`.
+        """
+        result: list[dict[str, Any]] = []
+        for tok in tokens:
+            if tok["type"] == "NEWLINE" and result and result[-1]["type"] == "NEWLINE":
+                continue
+            result = result + [tok]
+        return result
 
     def _collect_raw_tokens(self, source: str) -> list[dict[str, Any]]:
         """Collect raw tokens from PLY lexer."""
