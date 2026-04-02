@@ -26,22 +26,30 @@ def cmd_parse(args: argparse.Namespace) -> None:
     """Parse file(s) and display the AST."""
     files = _collect_files(Path(args.path))
 
-    if args.json and len(files) > 1:
-        # Multi-file JSON: array of results
-        results = []
-        for f in files:
-            pipeline = get_pipeline(f)
-            result = pipeline.analyze_file(f)
-            results.append({
-                "file": str(f),
-                "success": result.success,
-                "ast": result.ast,
-            })
-        print(json.dumps(results, indent=2))
-    elif args.json:
-        pipeline = get_pipeline(files[0])
-        result = pipeline.analyze_file(files[0])
-        print(json.dumps(result.ast, indent=2))
+    if args.json or args.output:
+        if len(files) > 1:
+            results = []
+            for f in files:
+                pipeline = get_pipeline(f)
+                result = pipeline.analyze_file(f)
+                results.append({
+                    "file": str(f),
+                    "success": result.success,
+                    "ast": result.ast,
+                })
+            text = json.dumps(results, indent=2)
+        else:
+            pipeline = get_pipeline(files[0])
+            result = pipeline.analyze_file(files[0])
+            text = json.dumps(result.ast, indent=2)
+
+        if args.output:
+            out = Path(args.output)
+            out.parent.mkdir(parents=True, exist_ok=True)
+            out.write_text(text, encoding="utf-8")
+            print(f"Output written to {out}")
+        else:
+            print(text)
     else:
         ok = fail = 0
         for f in files:
@@ -108,10 +116,17 @@ def cmd_analyze(args: argparse.Namespace) -> None:
         all_output.append(output)
 
     if len(all_output) == 1:
-        # Single file: output without wrapping array
-        print(json.dumps(all_output[0], indent=2))
+        text = json.dumps(all_output[0], indent=2)
     else:
-        print(json.dumps(all_output, indent=2))
+        text = json.dumps(all_output, indent=2)
+
+    if args.output:
+        out = Path(args.output)
+        out.parent.mkdir(parents=True, exist_ok=True)
+        out.write_text(text, encoding="utf-8")
+        print(f"Output written to {out}")
+    else:
+        print(text)
 
 
 def cmd_langs(args: argparse.Namespace) -> None:
@@ -140,6 +155,7 @@ def main() -> None:
     p_parse = sub.add_parser("parse", help="Parse file or directory into AST")
     p_parse.add_argument("path", help="Source file or directory")
     p_parse.add_argument("--json", action="store_true", help="JSON output")
+    p_parse.add_argument("-o", "--output", help="Write JSON to file instead of stdout")
     p_parse.set_defaults(func=cmd_parse)
 
     # tokens
@@ -155,6 +171,7 @@ def main() -> None:
     p_analyze.add_argument("--data-flow", action="store_true", help="Extract data flow")
     p_analyze.add_argument("--symbols", action="store_true", help="Extract symbols")
     p_analyze.add_argument("--all", action="store_true", help="All analyses")
+    p_analyze.add_argument("-o", "--output", help="Write JSON to file instead of stdout")
     p_analyze.set_defaults(func=cmd_analyze)
 
     # langs
