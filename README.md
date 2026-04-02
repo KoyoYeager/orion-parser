@@ -30,29 +30,31 @@
 ## インストール
 
 ```bash
-pip install orion-parser
+git clone https://github.com/KoyoYeager/orion-parser.git
+cd orion-parser
+pip install -e ".[dev]"
 ```
 
 ## 使い方
 
 ```bash
 # ファイルを解析（AST出力）
-orion-parser parse example.py
+python -m orionparser parse example.py
 
 # JSON出力
-orion-parser parse --json example.py
+python -m orionparser parse --json example.py
 
 # トークン一覧
-orion-parser tokens example.py
+python -m orionparser tokens example.py
 
 # コールツリー・データフロー・シンボル解析
-orion-parser analyze example.py
-orion-parser analyze --call-tree example.py
-orion-parser analyze --data-flow example.py
-orion-parser analyze --symbols example.py
+python -m orionparser analyze example.py
+python -m orionparser analyze --call-tree example.py
+python -m orionparser analyze --data-flow example.py
+python -m orionparser analyze --symbols example.py
 
 # 対応言語一覧
-orion-parser langs
+python -m orionparser langs
 ```
 
 ## プロジェクト構成

@@ -22,7 +22,7 @@ def cmd_parse(args: argparse.Namespace) -> None:
     result = pipeline.analyze_file(path)
 
     if args.json:
-        print(json.dumps(result.ast, indent=2, ensure_ascii=False))
+        print(json.dumps(result.ast, indent=2))
     else:
         _print_result(result)
 
@@ -40,7 +40,7 @@ def cmd_tokens(args: argparse.Namespace) -> None:
     tokens = pipeline.tokenize(preprocessed)
 
     if args.json:
-        print(json.dumps(tokens, indent=2, ensure_ascii=False))
+        print(json.dumps(tokens, indent=2, ensure_ascii=True))
     else:
         for tok in tokens:
             print(f"{tok.get('type', '?'):20s} {tok.get('value', '')!r}")
@@ -88,7 +88,7 @@ def cmd_analyze(args: argparse.Namespace) -> None:
         output["data_flow"] = {"variables": df["variables"], "flows": df["flows"]}
         output["symbols"] = st.to_dict()
 
-    print(json.dumps(output, indent=2, ensure_ascii=False))
+    print(json.dumps(output, indent=2, ensure_ascii=True))
 
 
 def cmd_langs(args: argparse.Namespace) -> None:
@@ -105,7 +105,7 @@ def _print_result(result) -> None:
         for err in result.errors:
             print(f"  ERROR: {err}")
     if result.ast:
-        print(json.dumps(result.ast, indent=2, ensure_ascii=False))
+        print(json.dumps(result.ast, indent=2))
 
 
 def main() -> None:
