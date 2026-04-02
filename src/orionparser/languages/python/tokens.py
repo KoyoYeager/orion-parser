@@ -107,6 +107,8 @@ TOKEN_LIST: list[str] = [
     "MATCH_KW",
     "CASE_KW",
     "TYPE_KW",
+    # Lambda colon inside dict/set (avoids kv_pair conflict)
+    "LAMBDA_COLON",
     # Special
     "ENDMARKER",
 ] + list(RESERVED.values())

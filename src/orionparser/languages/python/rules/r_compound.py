@@ -54,12 +54,24 @@ def p_while_stmt(p):
 # --- for ---
 
 def p_for_stmt(p):
-    """for_stmt : FOR for_targets COMP_IN expression COLON block
-               | FOR for_targets COMP_IN expression COLON block ELSE COLON block"""
+    """for_stmt : FOR for_targets COMP_IN for_iter COLON block
+               | FOR for_targets COMP_IN for_iter COLON block ELSE COLON block"""
     if len(p) == 7:
         p[0] = {"type": "For", "target": p[2], "iter": p[4], "body": p[6], "orelse": [], "_line": p.lineno(1)}
     else:
         p[0] = {"type": "For", "target": p[2], "iter": p[4], "body": p[6], "orelse": p[9], "_line": p.lineno(1)}
+
+
+def p_for_iter(p):
+    """for_iter : expression
+               | expression COMMA expression_items
+               | expression COMMA"""
+    if len(p) == 2:
+        p[0] = p[1]
+    elif len(p) == 4:
+        p[0] = {"type": "Tuple", "elts": [p[1]] + p[3]}
+    else:
+        p[0] = {"type": "Tuple", "elts": [p[1]]}
 
 
 def p_for_targets(p):
@@ -103,13 +115,23 @@ def p_except_clauses(p):
 def p_except_clause(p):
     """except_clause : EXCEPT expression AS NAME COLON block
                      | EXCEPT expression COLON block
-                     | EXCEPT COLON block"""
-    if len(p) == 7:
+                     | EXCEPT COLON block
+                     | EXCEPT STAR expression AS NAME COLON block
+                     | EXCEPT STAR expression COLON block"""
+    if len(p) == 7 and p[1] == "except" and p[3] == "as":
         p[0] = {"type": "ExceptHandler", "exc_type": p[2], "name": p[4], "body": p[6]}
-    elif len(p) == 5:
+    elif len(p) == 5 and p[1] == "except":
         p[0] = {"type": "ExceptHandler", "exc_type": p[2], "name": None, "body": p[4]}
-    else:
+    elif len(p) == 4:
         p[0] = {"type": "ExceptHandler", "exc_type": None, "name": None, "body": p[3]}
+    elif len(p) == 8:
+        # except* ExcType as name
+        p[0] = {"type": "ExceptHandler", "exc_type": p[3], "name": p[5], "body": p[7], "star": True}
+    elif len(p) == 6:
+        # except* ExcType
+        p[0] = {"type": "ExceptHandler", "exc_type": p[3], "name": None, "body": p[5], "star": True}
+    else:
+        p[0] = {"type": "ExceptHandler", "exc_type": p[2], "name": None, "body": p[4]}
 
 
 # --- with ---
@@ -140,8 +162,12 @@ def p_with_item(p):
 # --- block (indented suite) ---
 
 def p_block(p):
-    """block : NEWLINE INDENT statements DEDENT"""
-    p[0] = p[3]
+    """block : NEWLINE INDENT statements DEDENT
+             | simple_stmt NEWLINE"""
+    if len(p) == 5:
+        p[0] = p[3]
+    else:
+        p[0] = [p[1]]
 
 
 # --- function definition ---
@@ -176,6 +202,20 @@ def p_funcdef_async(p):
                 "returns": None, "body": p[7]}
 
 
+# --- async with / async for ---
+
+def p_async_with(p):
+    """compound_stmt : ASYNC with_stmt"""
+    p[0] = p[2]
+    p[0]["type"] = "AsyncWith"
+
+
+def p_async_for(p):
+    """compound_stmt : ASYNC for_stmt"""
+    p[0] = p[2]
+    p[0]["type"] = "AsyncFor"
+
+
 def p_param_list(p):
     """param_list : param_list COMMA param
                   | param_list COMMA
@@ -194,9 +234,15 @@ def p_param(p):
              | NAME EQUAL expression
              | NAME COLON expression EQUAL expression
              | STAR NAME
-             | DOUBLESTAR NAME"""
+             | STAR NAME COLON expression
+             | STAR
+             | DOUBLESTAR NAME
+             | DOUBLESTAR NAME COLON expression"""
     if len(p) == 2:
-        p[0] = {"name": p[1], "annotation": None, "default": None}
+        if p[1] == "*":
+            p[0] = {"name": "*", "annotation": None, "default": None}
+        else:
+            p[0] = {"name": p[1], "annotation": None, "default": None}
     elif len(p) == 4 and p[2] == ":":
         p[0] = {"name": p[1], "annotation": p[3], "default": None}
     elif len(p) == 4 and p[2] == "=":
@@ -205,8 +251,12 @@ def p_param(p):
         p[0] = {"name": p[1], "annotation": p[3], "default": p[5]}
     elif len(p) == 3 and p[1] == "*":
         p[0] = {"name": "*" + p[2], "annotation": None, "default": None}
-    elif len(p) == 3:
+    elif len(p) == 3 and p[1] == "**":
         p[0] = {"name": "**" + p[2], "annotation": None, "default": None}
+    elif len(p) == 5 and p[1] == "*":
+        p[0] = {"name": "*" + p[2], "annotation": p[4], "default": None}
+    elif len(p) == 5 and p[1] == "**":
+        p[0] = {"name": "**" + p[2], "annotation": p[4], "default": None}
 
 
 # --- class definition ---

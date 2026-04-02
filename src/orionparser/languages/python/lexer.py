@@ -121,7 +121,148 @@ class PythonLexer:
         raw = self._collect_raw_tokens(source)
         tokens = self._inject_indent_dedent(raw, source)
         tokens = self._collapse_newlines(tokens)
+        tokens = self._merge_adjacent_strings(tokens)
+        tokens = self._strip_type_params(tokens)
+        tokens = self._convert_pos_only_slash(tokens)
+        tokens = self._convert_lambda_colon(tokens)
         return self._mark_comp_tokens(tokens)
+
+    @staticmethod
+    def _merge_adjacent_strings(tokens: list[dict[str, Any]]) -> list[dict[str, Any]]:
+        """Merge adjacent STRING tokens (implicit string concatenation).
+
+        `"a" "b"` → single STRING token `"a" "b"`.
+        """
+        result: list[dict[str, Any]] = []
+        for tok in tokens:
+            if tok["type"] == "STRING" and result and result[-1]["type"] == "STRING":
+                # Merge into previous
+                prev = result[-1]
+                result[-1] = {
+                    "type": "STRING",
+                    "value": prev["value"] + " " + tok["value"],
+                    "line": prev["line"],
+                }
+            else:
+                result = result + [tok]
+        return result
+
+    @staticmethod
+    def _strip_type_params(tokens: list[dict[str, Any]]) -> list[dict[str, Any]]:
+        """Strip PEP 695 type parameter brackets from def/class.
+
+        `def f[T](x)` → `def f(x)` (removes [T])
+        `class C[T: Bound]` → `class C` (removes [T: Bound])
+        This avoids LALR(1) conflicts with subscript expressions.
+        """
+        result: list[dict[str, Any]] = []
+        i = 0
+        while i < len(tokens):
+            tok = tokens[i]
+            # Check for DEF/CLASS NAME LSQB pattern
+            if (tok["type"] in ("DEF", "CLASS")
+                    and i + 2 < len(tokens)
+                    and tokens[i + 1]["type"] == "NAME"
+                    and tokens[i + 2]["type"] == "LSQB"):
+                # Emit DEF/CLASS and NAME
+                result = result + [tok, tokens[i + 1]]
+                # Skip everything from LSQB to matching RSQB
+                j = i + 2
+                depth = 0
+                while j < len(tokens):
+                    if tokens[j]["type"] == "LSQB":
+                        depth += 1
+                    elif tokens[j]["type"] == "RSQB":
+                        depth -= 1
+                        if depth == 0:
+                            j += 1
+                            break
+                    j += 1
+                i = j
+                continue
+            result = result + [tok]
+            i += 1
+        return result
+
+    @staticmethod
+    def _convert_pos_only_slash(tokens: list[dict[str, Any]]) -> list[dict[str, Any]]:
+        """Convert positional-only parameter `/` to a skippable token.
+
+        `def f(a, /, b)` — the `/` inside param list is not division.
+        Strategy: inside `DEF NAME LPAREN ... RPAREN`, replace bare SLASH
+        between COMMA tokens with nothing (skip it).
+        """
+        result: list[dict[str, Any]] = []
+        in_def_params = False
+        paren_depth = 0
+
+        for i, tok in enumerate(tokens):
+            if tok["type"] == "DEF":
+                in_def_params = True
+                result = result + [tok]
+                continue
+
+            if in_def_params:
+                if tok["type"] == "LPAREN":
+                    paren_depth += 1
+                elif tok["type"] == "RPAREN":
+                    paren_depth -= 1
+                    if paren_depth == 0:
+                        in_def_params = False
+
+                # Skip bare SLASH in parameter list (positional-only marker)
+                if paren_depth > 0 and tok["type"] == "SLASH":
+                    # Check context: should be between COMMA tokens
+                    prev = result[-1]["type"] if result else None
+                    if prev in ("COMMA", "LPAREN"):
+                        continue  # Skip the /
+
+            result = result + [tok]
+
+        return result
+
+    @staticmethod
+    def _convert_lambda_colon(tokens: list[dict[str, Any]]) -> list[dict[str, Any]]:
+        """Convert lambda's COLON to LAMBDA_COLON inside dict/set braces.
+
+        `{"a": lambda x: x+1}` — without this, the second `:` is parsed
+        as a kv_pair separator instead of lambda body separator.
+        """
+        result: list[dict[str, Any]] = []
+        brace_depth = 0
+        after_lambda = False
+
+        for tok in tokens:
+            t = tok["type"]
+            if t == "LBRACE":
+                brace_depth += 1
+            elif t == "RBRACE":
+                brace_depth = max(0, brace_depth - 1)
+
+            if t == "LAMBDA":
+                after_lambda = True
+                result = result + [tok]
+                continue
+
+            if after_lambda and t == "COLON":
+                after_lambda = False
+                if brace_depth > 0:
+                    result = result + [
+                        {"type": "LAMBDA_COLON", "value": tok["value"], "line": tok["line"]}
+                    ]
+                else:
+                    result = result + [tok]
+                continue
+
+            # Reset after_lambda on tokens that can't be in lambda params
+            if after_lambda and t not in ("NAME", "COMMA", "EQUAL", "STAR",
+                                           "DOUBLESTAR", "NUMBER", "STRING",
+                                           "LPAREN", "RPAREN", "LSQB", "RSQB"):
+                after_lambda = False
+
+            result = result + [tok]
+
+        return result
 
     @staticmethod
     def _mark_comp_tokens(tokens: list[dict[str, Any]]) -> list[dict[str, Any]]:
@@ -198,6 +339,14 @@ class PythonLexer:
                     continue
                 if tok["value"] == "case" and next_type not in ("EQUAL", "LPAREN", "DOT", "COMMA", "NEWLINE", None):
                     result = result + [{"type": "CASE_KW", "value": tok["value"], "line": tok["line"]}]
+                    # Convert the next IF in this case clause to COMP_IF
+                    # (guard: `case pattern if condition:`)
+                    for j in range(i + 1, len(tokens)):
+                        if tokens[j]["type"] == "IF":
+                            tokens[j] = {"type": "COMP_IF", "value": tokens[j]["value"], "line": tokens[j]["line"]}
+                            break
+                        if tokens[j]["type"] in ("COLON", "NEWLINE"):
+                            break
                     continue
                 if tok["value"] == "type" and next_type == "NAME":
                     result = result + [{"type": "TYPE_KW", "value": tok["value"], "line": tok["line"]}]

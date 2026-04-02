@@ -69,11 +69,17 @@ def p_expression_generator(p):
 
 def p_expression_items(p):
     """expression_items : expression_items COMMA expression
-                        | expression"""
+                        | expression_items COMMA STAR expression
+                        | expression
+                        | STAR expression"""
     if len(p) == 4:
         p[0] = p[1] + [p[3]]
-    else:
+    elif len(p) == 5:
+        p[0] = p[1] + [{"type": "Starred", "value": p[4]}]
+    elif len(p) == 2:
         p[0] = [p[1]]
+    else:
+        p[0] = [{"type": "Starred", "value": p[2]}]
 
 
 # --- List / List comprehension ---
@@ -284,7 +290,8 @@ def p_expression_attr(p):
 def p_expression_subscript(p):
     """expression : expression LSQB expression RSQB
                   | expression LSQB expression COMMA expression_items RSQB
-                  | expression LSQB expression COMMA RSQB"""
+                  | expression LSQB expression COMMA RSQB
+                  | expression LSQB subscript_items RSQB"""
     if len(p) == 5:
         p[0] = {"type": "Subscript", "value": p[1], "slice": p[3]}
     elif len(p) == 7:
@@ -295,23 +302,87 @@ def p_expression_subscript(p):
                 "slice": {"type": "Tuple", "elts": [p[3]]}}
 
 
+def p_subscript_items(p):
+    """subscript_items : subscript_items COMMA subscript_item
+                       | subscript_item COMMA subscript_item"""
+    if isinstance(p[1], dict) and p[1].get("type") == "Tuple":
+        p[0] = {"type": "Tuple", "elts": p[1]["elts"] + [p[3]]}
+    elif isinstance(p[1], list):
+        p[0] = {"type": "Tuple", "elts": p[1] + [p[3]]}
+    else:
+        p[0] = {"type": "Tuple", "elts": [p[1], p[3]]}
+
+
+def p_subscript_item(p):
+    """subscript_item : expression
+                      | expression COLON expression
+                      | COLON expression
+                      | expression COLON
+                      | COLON
+                      | expression COLON expression COLON expression
+                      | COLON COLON expression
+                      | expression COLON COLON expression
+                      | expression COLON COLON
+                      | COLON COLON"""
+    if len(p) == 2:
+        if p[1] == ":":
+            p[0] = {"type": "Slice", "lower": None, "upper": None}
+        else:
+            p[0] = p[1]
+    elif len(p) == 3:
+        if p[1] == ":":
+            p[0] = {"type": "Slice", "lower": None, "upper": p[2]}
+        elif p[2] == ":":
+            p[0] = {"type": "Slice", "lower": p[1], "upper": None}
+        else:
+            p[0] = {"type": "Slice", "lower": None, "upper": None, "step": p[2] if p[2] != ":" else None}
+    elif len(p) == 4:
+        p[0] = {"type": "Slice", "lower": p[1] if p[1] != ":" else None,
+                "upper": p[3] if p[3] != ":" else None}
+    else:
+        # Extended slice with step
+        parts = [x for x in list(p)[1:] if x != ":"]
+        lower = parts[0] if len(parts) > 0 else None
+        upper = parts[1] if len(parts) > 1 else None
+        step = parts[2] if len(parts) > 2 else None
+        p[0] = {"type": "Slice", "lower": lower, "upper": upper, "step": step}
+
+
 def p_expression_slice(p):
     """expression : expression LSQB expression COLON expression RSQB
                   | expression LSQB COLON expression RSQB
                   | expression LSQB expression COLON RSQB
-                  | expression LSQB COLON RSQB"""
-    if len(p) == 7:
-        p[0] = {"type": "Subscript", "value": p[1],
-                "slice": {"type": "Slice", "lower": p[3], "upper": p[5]}}
-    elif len(p) == 6 and p[3] == ":":
-        p[0] = {"type": "Subscript", "value": p[1],
-                "slice": {"type": "Slice", "lower": None, "upper": p[4]}}
-    elif len(p) == 6:
-        p[0] = {"type": "Subscript", "value": p[1],
-                "slice": {"type": "Slice", "lower": p[3], "upper": None}}
-    else:
-        p[0] = {"type": "Subscript", "value": p[1],
-                "slice": {"type": "Slice", "lower": None, "upper": None}}
+                  | expression LSQB COLON RSQB
+                  | expression LSQB expression COLON expression COLON expression RSQB
+                  | expression LSQB expression COLON expression COLON RSQB
+                  | expression LSQB expression COLON COLON expression RSQB
+                  | expression LSQB COLON expression COLON expression RSQB
+                  | expression LSQB COLON COLON expression RSQB
+                  | expression LSQB expression COLON COLON RSQB
+                  | expression LSQB COLON COLON RSQB"""
+    # Build Slice from the tokens between LSQB and RSQB
+    inner = list(p)[3:-1]  # everything between [ and ]
+    lower = upper = step = None
+    colon_count = inner.count(":")
+    if colon_count == 1:
+        ci = inner.index(":")
+        lower = inner[ci - 1] if ci > 0 and inner[ci - 1] != ":" else None
+        upper = inner[ci + 1] if ci + 1 < len(inner) and inner[ci + 1] != ":" else None
+    elif colon_count >= 2:
+        parts = []
+        current = []
+        for item in inner:
+            if item == ":":
+                parts = parts + [current]
+                current = []
+            else:
+                current = current + [item]
+        parts = parts + [current]
+        lower = parts[0][0] if parts[0] else None
+        upper = parts[1][0] if len(parts) > 1 and parts[1] else None
+        step = parts[2][0] if len(parts) > 2 and parts[2] else None
+    p[0] = {"type": "Subscript", "value": p[1],
+            "slice": {"type": "Slice", "lower": lower, "upper": upper, "step": step}}
 
 
 # --- Function call ---
@@ -362,7 +433,9 @@ def p_call_arg(p):
 
 def p_expression_lambda(p):
     """expression : LAMBDA param_list COLON expression
-                  | LAMBDA COLON expression"""
+                  | LAMBDA COLON expression
+                  | LAMBDA param_list LAMBDA_COLON expression
+                  | LAMBDA LAMBDA_COLON expression"""
     if len(p) == 5:
         p[0] = {"type": "Lambda", "params": p[2], "body": p[4]}
     else:
