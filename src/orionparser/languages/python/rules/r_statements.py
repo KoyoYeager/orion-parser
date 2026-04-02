@@ -21,6 +21,64 @@ def p_simple_stmt_assign(p):
     p[0] = {"type": "Assign", "target": p[1], "value": p[3], "_line": p.lineno(2) or _expr_line(p, 1)}
 
 
+def p_simple_stmt_multi_assign(p):
+    """simple_stmt : expression EQUAL expression EQUAL expression"""
+    # a = b = 1  →  chain assignment
+    p[0] = {"type": "Assign", "target": p[1],
+            "value": {"type": "Assign", "target": p[3], "value": p[5]},
+            "_line": p.lineno(2) or _expr_line(p, 1)}
+
+
+def p_simple_stmt_tuple_assign(p):
+    """simple_stmt : targets EQUAL rhs_tuple
+                   | targets EQUAL expression"""
+    p[0] = {"type": "Assign",
+            "target": p[1],
+            "value": p[3], "_line": p.lineno(2)}
+
+
+def p_targets(p):
+    """targets : expression COMMA target_items
+              | expression COMMA
+              | STAR expression COMMA target_items
+              | STAR expression COMMA"""
+    if len(p) == 4 and p[1] != "*":
+        p[0] = {"type": "Tuple", "elts": [p[1]] + p[3]}
+    elif len(p) == 3 and p[1] != "*":
+        p[0] = {"type": "Tuple", "elts": [p[1]]}
+    elif len(p) == 5:
+        p[0] = {"type": "Tuple", "elts": [{"type": "Starred", "value": p[2]}] + p[4]}
+    else:
+        p[0] = {"type": "Tuple", "elts": [{"type": "Starred", "value": p[2]}]}
+
+
+def p_target_items(p):
+    """target_items : target_items COMMA target_item
+                    | target_item"""
+    if len(p) == 4:
+        p[0] = p[1] + [p[3]]
+    else:
+        p[0] = [p[1]]
+
+
+def p_target_item(p):
+    """target_item : expression
+                   | STAR expression"""
+    if len(p) == 2:
+        p[0] = p[1]
+    else:
+        p[0] = {"type": "Starred", "value": p[2]}
+
+
+def p_rhs_tuple(p):
+    """rhs_tuple : expression COMMA expression_items
+                 | expression COMMA"""
+    if len(p) == 4:
+        p[0] = {"type": "Tuple", "elts": [p[1]] + p[3]}
+    else:
+        p[0] = {"type": "Tuple", "elts": [p[1]]}
+
+
 def p_simple_stmt_aug_assign(p):
     """simple_stmt : expression aug_assign expression"""
     p[0] = {"type": "AugAssign", "target": p[1], "op": p[2], "value": p[3], "_line": _expr_line(p, 1)}
@@ -63,8 +121,11 @@ def p_simple_stmt_return(p):
 
 def p_simple_stmt_raise(p):
     """simple_stmt : RAISE expression
+                   | RAISE expression FROM expression
                    | RAISE"""
-    if len(p) == 3:
+    if len(p) == 5:
+        p[0] = {"type": "Raise", "exc": p[2], "cause": p[4]}
+    elif len(p) == 3:
         p[0] = {"type": "Raise", "exc": p[2]}
     else:
         p[0] = {"type": "Raise", "exc": None}
@@ -130,3 +191,10 @@ def p_simple_stmt_yield(p):
 def p_simple_stmt_yield_from(p):
     """simple_stmt : YIELD FROM expression"""
     p[0] = {"type": "YieldFrom", "value": p[3]}
+
+
+# --- type alias (Python 3.12) using soft keyword token ---
+
+def p_simple_stmt_type_alias(p):
+    """simple_stmt : TYPE_KW NAME EQUAL expression"""
+    p[0] = {"type": "TypeAlias", "name": p[2], "value": p[4], "_line": p.lineno(1)}

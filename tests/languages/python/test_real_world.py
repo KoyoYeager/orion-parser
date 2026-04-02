@@ -11,6 +11,7 @@ Test corpus: C:/workspace/OrionParser/parser_sample/python/
 
 import logging
 import os
+import sys
 from pathlib import Path
 
 import pytest
@@ -21,6 +22,7 @@ from orionparser.languages.python.preprocess import run_pipeline
 logging.disable(logging.WARNING)
 
 SAMPLE_ROOT = Path("C:/workspace/OrionParser/parser_sample/python")
+STDLIB_ROOT = Path(sys.prefix) / "Lib"
 
 
 def _collect_files(subdir: str) -> list[Path]:
@@ -81,3 +83,26 @@ class TestFlaskBenchmark:
 
         print(f"\n  flask: {ok}/{total} ({rate}%)")
         assert rate >= 60, f"Pass rate {rate}% below 60% threshold"
+
+
+@pytest.mark.skipif(
+    not STDLIB_ROOT.exists(),
+    reason="Python stdlib not found",
+)
+class TestStdlibBenchmark:
+    """Benchmark: parse rate against Python standard library.
+
+    Target: 65%+ (stdlib uses advanced patterns: match/case,
+    type params, walrus operator in complex contexts).
+    """
+
+    def test_pass_rate(self):
+        files = sorted(STDLIB_ROOT.glob("*.py"))
+        assert len(files) > 0
+
+        ok = sum(1 for f in files if _parse_file(f))
+        total = len(files)
+        rate = ok * 100 // total
+
+        print(f"\n  stdlib: {ok}/{total} ({rate}%)")
+        assert rate >= 65, f"Pass rate {rate}% below 65% threshold"

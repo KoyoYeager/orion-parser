@@ -120,7 +120,98 @@ class PythonLexer:
         """Tokenize source and return token list with INDENT/DEDENT."""
         raw = self._collect_raw_tokens(source)
         tokens = self._inject_indent_dedent(raw, source)
-        return self._collapse_newlines(tokens)
+        tokens = self._collapse_newlines(tokens)
+        return self._mark_comp_tokens(tokens)
+
+    @staticmethod
+    def _mark_comp_tokens(tokens: list[dict[str, Any]]) -> list[dict[str, Any]]:
+        """Convert FOR/IN/IF inside brackets to COMP_FOR/COMP_IN/COMP_IF.
+
+        This resolves the LALR(1) conflict between:
+          - `expression IN expression` (comparison operator)
+          - `comp_for : COMP_FOR ... COMP_IN expression` (comprehension)
+
+        Detection: track bracket depth. When FOR appears inside
+        [ ], ( ), or { } after an expression (not at statement level),
+        convert it and subsequent IN/IF to COMP_* tokens.
+        """
+        result: list[dict[str, Any]] = []
+        bracket_depth = 0
+        # Track: are we inside a comprehension context?
+        # comp_depth[i] = True means bracket level i has seen a COMP_FOR
+        comp_depth: dict[int, bool] = {}
+
+        after_for = False
+        at_line_start = True  # For detecting match/case/type at statement start
+
+        for i, tok in enumerate(tokens):
+            t = tok["type"]
+
+            if t in ("LSQB", "LBRACE", "LPAREN"):
+                bracket_depth += 1
+                comp_depth[bracket_depth] = False
+                result = result + [tok]
+                continue
+
+            if t in ("RSQB", "RBRACE", "RPAREN"):
+                comp_depth.pop(bracket_depth, None)
+                bracket_depth = max(0, bracket_depth - 1)
+                result = result + [tok]
+                continue
+
+            # Inside brackets: FOR → COMP_FOR
+            if bracket_depth > 0 and t == "FOR":
+                comp_depth[bracket_depth] = True
+                result = result + [
+                    {"type": "COMP_FOR", "value": tok["value"], "line": tok["line"]}
+                ]
+                after_for = True
+                continue
+
+            # Inside brackets: IF in comprehension context → COMP_IF
+            if bracket_depth > 0 and comp_depth.get(bracket_depth, False) and t == "IF":
+                result = result + [
+                    {"type": "COMP_IF", "value": tok["value"], "line": tok["line"]}
+                ]
+                continue
+
+            # Statement-level FOR: mark next IN as COMP_IN
+            if bracket_depth == 0 and t == "FOR":
+                after_for = True
+                result = result + [tok]
+                continue
+
+            # First IN after any FOR → COMP_IN (avoids `v IN items` comparison)
+            if after_for and t == "IN":
+                after_for = False
+                result = result + [
+                    {"type": "COMP_IN", "value": tok["value"], "line": tok["line"]}
+                ]
+                continue
+
+            # Soft keywords: match/case/type at line start
+            if at_line_start and t == "NAME":
+                next_tok = tokens[i + 1] if i + 1 < len(tokens) else None
+                next_type = next_tok["type"] if next_tok else None
+                if tok["value"] == "match" and next_type not in ("EQUAL", "LPAREN", "DOT", "COMMA", "NEWLINE", None):
+                    result = result + [{"type": "MATCH_KW", "value": tok["value"], "line": tok["line"]}]
+                    continue
+                if tok["value"] == "case" and next_type not in ("EQUAL", "LPAREN", "DOT", "COMMA", "NEWLINE", None):
+                    result = result + [{"type": "CASE_KW", "value": tok["value"], "line": tok["line"]}]
+                    continue
+                if tok["value"] == "type" and next_type == "NAME":
+                    result = result + [{"type": "TYPE_KW", "value": tok["value"], "line": tok["line"]}]
+                    continue
+
+            # Track line start
+            if t in ("NEWLINE", "INDENT", "DEDENT"):
+                at_line_start = True
+            elif t not in ("NEWLINE", "INDENT", "DEDENT", "ENDMARKER"):
+                at_line_start = False
+
+            result = result + [tok]
+
+        return result
 
     @staticmethod
     def _collapse_newlines(tokens: list[dict[str, Any]]) -> list[dict[str, Any]]:

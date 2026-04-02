@@ -7,7 +7,7 @@ PYTHON_PRECEDENCE = (
     ("left", "OR"),
     ("left", "AND"),
     ("right", "NOT"),
-    ("nonassoc", "IN", "IS", "LESS", "GREATER", "LESSEQUAL",
+    ("left", "IN", "IS", "LESS", "GREATER", "LESSEQUAL",
      "GREATEREQUAL", "EQEQUAL", "NOTEQUAL"),
     ("left", "VBAR"),
     ("left", "CIRCUMFLEX"),

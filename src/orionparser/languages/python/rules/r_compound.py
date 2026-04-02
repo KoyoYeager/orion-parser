@@ -11,7 +11,8 @@ def p_compound_stmt(p):
                      | with_stmt
                      | funcdef
                      | classdef
-                     | decorated"""
+                     | decorated
+                     | match_stmt"""
     p[0] = p[1]
 
 
@@ -53,12 +54,24 @@ def p_while_stmt(p):
 # --- for ---
 
 def p_for_stmt(p):
-    """for_stmt : FOR expression IN expression COLON block
-               | FOR expression IN expression COLON block ELSE COLON block"""
+    """for_stmt : FOR for_targets COMP_IN expression COLON block
+               | FOR for_targets COMP_IN expression COLON block ELSE COLON block"""
     if len(p) == 7:
         p[0] = {"type": "For", "target": p[2], "iter": p[4], "body": p[6], "orelse": [], "_line": p.lineno(1)}
     else:
         p[0] = {"type": "For", "target": p[2], "iter": p[4], "body": p[6], "orelse": p[9], "_line": p.lineno(1)}
+
+
+def p_for_targets(p):
+    """for_targets : for_targets COMMA expression
+                   | expression"""
+    if len(p) == 4:
+        if isinstance(p[1], dict) and p[1].get("type") == "Tuple":
+            p[0] = {"type": "Tuple", "elts": p[1]["elts"] + [p[3]]}
+        else:
+            p[0] = {"type": "Tuple", "elts": [p[1], p[3]]}
+    else:
+        p[0] = p[1]
 
 
 # --- try ---
@@ -201,31 +214,32 @@ def p_param(p):
 def p_classdef(p):
     """classdef : CLASS NAME COLON block
                | CLASS NAME LPAREN RPAREN COLON block
-               | CLASS NAME LPAREN arg_list RPAREN COLON block"""
+               | CLASS NAME LPAREN call_args RPAREN COLON block
+               | CLASS NAME LPAREN call_args COMMA RPAREN COLON block
+               | CLASS NAME LSQB expression_items RSQB COLON block
+               | CLASS NAME LSQB expression_items RSQB LPAREN call_args RPAREN COLON block
+               | CLASS NAME LSQB expression_items RSQB LPAREN RPAREN COLON block"""
+    # CLASS NAME COLON block → 5
+    # CLASS NAME () COLON block → 7
+    # CLASS NAME (args) COLON block → 8
+    # CLASS NAME (args,) COLON block → 9
+    # CLASS NAME [params] COLON block → 8
+    # CLASS NAME [params] () COLON block → 10
+    # CLASS NAME [params] (args) COLON block → 11
     if len(p) == 5:
         p[0] = {"type": "ClassDef", "name": p[2], "bases": [], "body": p[4], "_line": p.lineno(1)}
     elif len(p) == 7:
         p[0] = {"type": "ClassDef", "name": p[2], "bases": [], "body": p[6], "_line": p.lineno(1)}
-    else:
+    elif len(p) == 8 and p[3] == "(":
         p[0] = {"type": "ClassDef", "name": p[2], "bases": p[4], "body": p[7], "_line": p.lineno(1)}
-
-
-def p_arg_list(p):
-    """arg_list : arg_list COMMA arg_item
-               | arg_item"""
-    if len(p) == 4:
-        p[0] = p[1] + [p[3]]
+    elif len(p) == 8 and p[3] == "[":
+        p[0] = {"type": "ClassDef", "name": p[2], "type_params": p[4], "bases": [], "body": p[7], "_line": p.lineno(1)}
+    elif len(p) == 9:
+        p[0] = {"type": "ClassDef", "name": p[2], "bases": p[4], "body": p[8], "_line": p.lineno(1)}
+    elif len(p) == 10:
+        p[0] = {"type": "ClassDef", "name": p[2], "type_params": p[4], "bases": [], "body": p[9], "_line": p.lineno(1)}
     else:
-        p[0] = [p[1]]
-
-
-def p_arg_item(p):
-    """arg_item : expression
-               | NAME EQUAL expression"""
-    if len(p) == 2:
-        p[0] = p[1]
-    else:
-        p[0] = {"type": "keyword", "arg": p[1], "value": p[3]}
+        p[0] = {"type": "ClassDef", "name": p[2], "type_params": p[4], "bases": p[8], "body": p[10], "_line": p.lineno(1)}
 
 
 # --- decorators ---
@@ -249,3 +263,28 @@ def p_decorators(p):
 def p_decorator(p):
     """decorator : AT expression NEWLINE"""
     p[0] = p[2]
+
+
+# --- match/case (Python 3.10+) using soft keyword tokens ---
+
+def p_match_stmt(p):
+    """match_stmt : MATCH_KW expression COLON NEWLINE INDENT case_clauses DEDENT"""
+    p[0] = {"type": "Match", "subject": p[2], "cases": p[6], "_line": p.lineno(1)}
+
+
+def p_case_clauses(p):
+    """case_clauses : case_clauses case_clause
+                    | case_clause"""
+    if len(p) == 3:
+        p[0] = p[1] + [p[2]]
+    else:
+        p[0] = [p[1]]
+
+
+def p_case_clause(p):
+    """case_clause : CASE_KW expression COLON block
+                   | CASE_KW expression COMP_IF expression COLON block"""
+    if len(p) == 5:
+        p[0] = {"type": "MatchCase", "pattern": p[2], "guard": None, "body": p[4], "_line": p.lineno(1)}
+    else:
+        p[0] = {"type": "MatchCase", "pattern": p[2], "guard": p[4], "body": p[6], "_line": p.lineno(1)}
