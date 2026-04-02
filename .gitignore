@@ -24,3 +24,4 @@ htmlcov/
 .idea/
 
 parser.out
+tests/fixtures/real_world_repos/files/

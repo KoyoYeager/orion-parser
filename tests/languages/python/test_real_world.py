@@ -23,6 +23,7 @@ logging.disable(logging.WARNING)
 
 SAMPLE_ROOT = Path("C:/workspace/OrionParser/parser_sample/python")
 STDLIB_ROOT = Path(sys.prefix) / "Lib"
+GITHUB_REPOS = Path(__file__).parent.parent.parent / "fixtures" / "real_world_repos" / "files"
 
 
 def _collect_files(subdir: str) -> list[Path]:
@@ -130,4 +131,28 @@ class TestStdlibFullBenchmark:
         rate = ok * 100 // total
 
         print(f"\n  stdlib-full: {ok}/{total} ({rate}%)")
+        assert rate >= 99, f"Pass rate {rate}% below 99% threshold"
+
+
+@pytest.mark.skipif(
+    not GITHUB_REPOS.exists(),
+    reason="GitHub repo fixtures not downloaded",
+)
+class TestGitHubReposBenchmark:
+    """Benchmark: parse rate against 56 files from popular GitHub repos.
+
+    Sources: Django, Flask, FastAPI, pandas, numpy, PyTorch, requests,
+    SQLAlchemy, pytest, mypy, pydantic, Click, Rich, Textual, etc.
+    Target: 99%+
+    """
+
+    def test_pass_rate(self):
+        files = sorted(GITHUB_REPOS.glob("*.py"))
+        assert len(files) >= 50, f"Expected 50+ files, got {len(files)}"
+
+        ok = sum(1 for f in files if _parse_file(f))
+        total = len(files)
+        rate = ok * 100 // total
+
+        print(f"\n  github-repos: {ok}/{total} ({rate}%)")
         assert rate >= 99, f"Pass rate {rate}% below 99% threshold"
