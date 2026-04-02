@@ -223,21 +223,16 @@ class PythonLexer:
 
     @staticmethod
     def _convert_lambda_colon(tokens: list[dict[str, Any]]) -> list[dict[str, Any]]:
-        """Convert lambda's COLON to LAMBDA_COLON inside dict/set braces.
+        """Convert lambda's COLON to LAMBDA_COLON everywhere.
 
-        `{"a": lambda x: x+1}` — without this, the second `:` is parsed
-        as a kv_pair separator instead of lambda body separator.
+        Avoids LALR(1) conflicts between lambda body `:` and
+        dict kv_pair `:`, annotation `:`, etc.
         """
         result: list[dict[str, Any]] = []
-        brace_depth = 0
         after_lambda = False
 
         for tok in tokens:
             t = tok["type"]
-            if t == "LBRACE":
-                brace_depth += 1
-            elif t == "RBRACE":
-                brace_depth = max(0, brace_depth - 1)
 
             if t == "LAMBDA":
                 after_lambda = True
@@ -246,12 +241,9 @@ class PythonLexer:
 
             if after_lambda and t == "COLON":
                 after_lambda = False
-                if brace_depth > 0:
-                    result = result + [
-                        {"type": "LAMBDA_COLON", "value": tok["value"], "line": tok["line"]}
-                    ]
-                else:
-                    result = result + [tok]
+                result = result + [
+                    {"type": "LAMBDA_COLON", "value": tok["value"], "line": tok["line"]}
+                ]
                 continue
 
             # Reset after_lambda on tokens that can't be in lambda params

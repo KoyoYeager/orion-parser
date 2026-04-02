@@ -51,8 +51,15 @@ def p_expression_tuple(p):
 
 
 def p_expression_tuple_multi(p):
-    """expression : LPAREN expression COMMA expression_items RPAREN"""
-    p[0] = {"type": "Tuple", "elts": [p[2]] + p[4]}
+    """expression : LPAREN expression COMMA expression_items RPAREN
+                  | LPAREN expression COMMA expression_items COMMA RPAREN
+                  | LPAREN STAR expression COMMA expression_items RPAREN
+                  | LPAREN STAR expression COMMA expression_items COMMA RPAREN"""
+    if p[2] == "*" or (isinstance(p[2], str) and p[2] == "*"):
+        first = {"type": "Starred", "value": p[3]}
+        p[0] = {"type": "Tuple", "elts": [first] + p[5]}
+    else:
+        p[0] = {"type": "Tuple", "elts": [p[2]] + p[4]}
 
 
 def p_expression_empty_tuple(p):
@@ -96,8 +103,9 @@ def p_expression_list_single(p):
 
 def p_expression_list_multi(p):
     """expression : LSQB expression COMMA expression_items RSQB
+                  | LSQB expression COMMA expression_items COMMA RSQB
                   | LSQB expression COMMA RSQB"""
-    if len(p) == 6:
+    if len(p) in (6, 7):
         p[0] = {"type": "List", "elts": [p[2]] + p[4]}
     else:
         p[0] = {"type": "List", "elts": [p[2]]}
@@ -151,11 +159,17 @@ def p_kv_pair_unpack(p):
 
 def p_expression_set_multi(p):
     """expression : LBRACE expression COMMA expression_items RBRACE
+                  | LBRACE expression COMMA expression_items COMMA RBRACE
                   | LBRACE expression COMMA RBRACE"""
-    if len(p) == 6:
+    if len(p) in (6, 7):
         p[0] = {"type": "Set", "elts": [p[2]] + p[4]}
     else:
         p[0] = {"type": "Set", "elts": [p[2]]}
+
+
+def p_expression_set_single(p):
+    """expression : LBRACE expression RBRACE"""
+    p[0] = {"type": "Set", "elts": [p[2]]}
 
 
 def p_expression_setcomp(p):
