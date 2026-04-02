@@ -76,6 +76,27 @@ class TestImports:
         stmt = result["body"][0]
         assert stmt["module"] == "os.path"
 
+    def test_relative_import_dot(self):
+        result = _parse("from . import cli\n")
+        stmt = result["body"][0]
+        assert stmt["type"] == "ImportFrom"
+        assert stmt["module"] == "."
+
+    def test_relative_import_dot_module(self):
+        result = _parse("from .ctx import AppContext\n")
+        stmt = result["body"][0]
+        assert stmt["module"] == ".ctx"
+
+    def test_relative_import_double_dot(self):
+        result = _parse("from .. import base\n")
+        stmt = result["body"][0]
+        assert stmt["module"] == ".."
+
+    def test_relative_import_triple_dot(self):
+        result = _parse("from ...pkg import mod\n")
+        stmt = result["body"][0]
+        assert stmt["module"] == "...pkg"
+
 
 class TestFunctionDef:
     def test_simple_function(self):

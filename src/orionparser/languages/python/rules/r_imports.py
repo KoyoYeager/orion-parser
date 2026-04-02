@@ -7,8 +7,8 @@ def p_simple_stmt_import(p):
 
 
 def p_simple_stmt_from_import(p):
-    """simple_stmt : FROM dotted_name IMPORT import_names
-                   | FROM dotted_name IMPORT STAR"""
+    """simple_stmt : FROM from_module IMPORT import_names
+                   | FROM from_module IMPORT STAR"""
     if len(p) == 5 and p[4] == "*":
         p[0] = {"type": "ImportFrom", "module": p[2], "names": [{"name": "*", "alias": None}], "_line": p.lineno(1)}
     else:
@@ -16,8 +16,35 @@ def p_simple_stmt_from_import(p):
 
 
 def p_simple_stmt_from_import_parens(p):
-    """simple_stmt : FROM dotted_name IMPORT LPAREN import_names RPAREN"""
+    """simple_stmt : FROM from_module IMPORT LPAREN import_names RPAREN"""
     p[0] = {"type": "ImportFrom", "module": p[2], "names": p[5], "_line": p.lineno(1)}
+
+
+# --- from_module: absolute or relative ---
+
+def p_from_module_absolute(p):
+    """from_module : dotted_name"""
+    p[0] = p[1]
+
+
+def p_from_module_relative(p):
+    """from_module : from_dots dotted_name
+                   | from_dots"""
+    if len(p) == 3:
+        p[0] = p[1] + p[2]
+    else:
+        p[0] = p[1]
+
+
+def p_from_dots(p):
+    """from_dots : DOT
+                 | ELLIPSIS
+                 | from_dots DOT
+                 | from_dots ELLIPSIS"""
+    if len(p) == 2:
+        p[0] = "." if p[1] == "." else "..."
+    else:
+        p[0] = p[1] + ("." if p[2] == "." else "...")
 
 
 def p_dotted_name_list(p):

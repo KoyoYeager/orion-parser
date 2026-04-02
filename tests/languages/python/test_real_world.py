@@ -22,11 +22,7 @@ logging.disable(logging.WARNING)
 
 SAMPLE_ROOT = Path("C:/workspace/OrionParser/parser_sample/python")
 
-# Files that use unsupported Python features (skip for now)
-SKIP_FILES = {
-    # Relative imports (from . import X) — not yet supported
-    "app.py",
-}
+SKIP_FILES: set[str] = set()
 
 
 def get_algorithm_files() -> list[Path]:
