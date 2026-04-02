@@ -21,6 +21,7 @@ class Symbol:
     kind: str  # "function", "class", "variable", "import"
     scope: str  # e.g. "<module>", "MyClass", "MyClass.method"
     line: int = 0
+    docstring: str | None = None
 
 
 @dataclass
@@ -60,7 +61,10 @@ class SymbolTable:
 
 
 def _sym_dict(s: Symbol) -> dict[str, Any]:
-    return {"name": s.name, "kind": s.kind, "scope": s.scope, "line": s.line}
+    d = {"name": s.name, "kind": s.kind, "scope": s.scope, "line": s.line}
+    if s.docstring is not None:
+        d["docstring"] = s.docstring
+    return d
 
 
 def extract_symbols(ast: dict[str, Any]) -> SymbolTable:
@@ -84,7 +88,8 @@ def _walk(
         if node_type in ("FunctionDef", "AsyncFunctionDef"):
             name = node.get("name", "")
             table.functions = table.functions + [
-                Symbol(name=name, kind="function", scope=scope, line=line)
+                Symbol(name=name, kind="function", scope=scope, line=line,
+                       docstring=node.get("docstring"))
             ]
             # Recurse into function body
             func_scope = f"{scope}.{name}" if scope != "<module>" else name
@@ -93,7 +98,8 @@ def _walk(
         elif node_type == "ClassDef":
             name = node.get("name", "")
             table.classes = table.classes + [
-                Symbol(name=name, kind="class", scope=scope, line=line)
+                Symbol(name=name, kind="class", scope=scope, line=line,
+                       docstring=node.get("docstring"))
             ]
             _walk(node.get("body", []), table, scope=name)
 

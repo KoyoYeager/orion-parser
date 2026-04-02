@@ -538,3 +538,83 @@ z = y * x
         ast = parse_source(preprocessed)
         df = extract_data_flow(ast)
         assert ("<module>.x", "<module>.z", "<module>") in df["flows"]
+
+
+# ============================================================
+# Docstring attachment accuracy
+# ============================================================
+
+
+class TestDocstringAttachment:
+    def test_module_docstring(self):
+        source = '"""Module docstring."""\nx = 1\n'
+        ast = _full_parse(source)
+        assert ast.get("docstring") == "Module docstring."
+
+    def test_function_docstring(self):
+        source = 'def f():\n    """Function docs."""\n    pass\n'
+        ast = _full_parse(source)
+        func = ast["body"][0]
+        assert func.get("docstring") == "Function docs."
+
+    def test_class_docstring(self):
+        source = 'class Foo:\n    """Class docs."""\n    pass\n'
+        ast = _full_parse(source)
+        cls = ast["body"][0]
+        assert cls.get("docstring") == "Class docs."
+
+    def test_method_docstring(self):
+        source = 'class Foo:\n    def bar(self):\n        """Bar method."""\n        pass\n'
+        ast = _full_parse(source)
+        method = ast["body"][0]["body"][0]
+        assert method.get("docstring") == "Bar method."
+
+    def test_multiline_docstring(self):
+        source = 'def f():\n    """Line 1.\n\n    Line 2.\n    """\n    pass\n'
+        ast = _full_parse(source)
+        func = ast["body"][0]
+        assert func.get("docstring") is not None
+        assert "Line 1." in func["docstring"]
+        assert "Line 2." in func["docstring"]
+
+    def test_single_quote_docstring(self):
+        source = "def f():\n    '''Single quote docs.'''\n    pass\n"
+        ast = _full_parse(source)
+        func = ast["body"][0]
+        assert func.get("docstring") == "Single quote docs."
+
+    def test_no_docstring(self):
+        source = "def f():\n    x = 1\n"
+        ast = _full_parse(source)
+        func = ast["body"][0]
+        assert func.get("docstring") is None
+
+    def test_regular_string_not_docstring(self):
+        source = 'def f():\n    x = "not a docstring"\n    pass\n'
+        ast = _full_parse(source)
+        func = ast["body"][0]
+        assert func.get("docstring") is None
+
+    def test_docstring_in_symbols(self):
+        source = 'def greet(name):\n    """Say hello."""\n    return f"hi {name}"\n'
+        ast = _full_parse(source)
+        st = extract_symbols(ast)
+        func = st.functions[0]
+        assert func.name == "greet"
+        assert func.docstring == "Say hello."
+
+    def test_class_docstring_in_symbols(self):
+        source = 'class MyAPI:\n    """REST API client."""\n    pass\n'
+        ast = _full_parse(source)
+        st = extract_symbols(ast)
+        cls = st.classes[0]
+        assert cls.name == "MyAPI"
+        assert cls.docstring == "REST API client."
+
+    def test_both_comments_and_docstring(self):
+        source = '# Helper function\ndef helper():\n    """Do something useful."""\n    pass\n'
+        ast = _full_parse(source)
+        func = ast["body"][0]
+        assert func.get("docstring") == "Do something useful."
+        assert "comments" in func
+        assert "Helper function" in func["comments"][0]["text"]

@@ -53,9 +53,12 @@ class PythonPipeline(BasePipeline):
         except Exception as e:
             errors = errors + [f"Parser error: {e}"]
 
-        # Post-process: attach comments to AST nodes
+        # Post-process: attach comments and docstrings to AST nodes
         if ast and comments:
             attach_comments(ast, comments)
+        if ast:
+            from orionparser.languages.python.docstring_attacher import attach_docstrings
+            attach_docstrings(ast)
 
         return ParseResult(
             file_path=str(path),
