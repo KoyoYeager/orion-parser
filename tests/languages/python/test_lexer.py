@@ -91,11 +91,12 @@ class TestStructure:
         # Only the final NEWLINE after ) should remain
         assert newline_count <= 1
 
-    def test_comment_preserved(self):
+    def test_comment_skipped_by_lexer(self):
+        """Comments are extracted in preprocessing, not by lexer."""
         lexer = PythonLexer()
         tokens = lexer.tokenize("x = 1  # comment\n")
         types = [t["type"] for t in tokens]
-        assert "COMMENT" in types
+        assert "COMMENT" not in types
 
     def test_endmarker(self):
         lexer = PythonLexer()

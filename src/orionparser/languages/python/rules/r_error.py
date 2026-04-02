@@ -1,7 +1,8 @@
 """Error recovery rules.
 
-Follows the reference C parser's panic mode approach:
-synchronize on NEWLINE + DEDENT tokens.
+PLY's built-in error recovery handles token discarding.
+The `error` token in grammar rules (p_statement_error) catches
+and recovers from syntax errors at the statement level.
 """
 
 import logging
@@ -19,4 +20,4 @@ def p_error(p):
 def p_statement_error(p):
     """statement : error NEWLINE"""
     logger.debug("Recovered from error at line %d", p.lineno(1))
-    p[0] = {"type": "ErrorNode", "line": p.lineno(1)}
+    p[0] = {"type": "ErrorNode", "_line": p.lineno(1)}

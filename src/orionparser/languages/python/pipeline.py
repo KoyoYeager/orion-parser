@@ -24,10 +24,9 @@ class PythonPipeline(BasePipeline):
         return lexer.tokenize(source)
 
     def parse(self, source: str) -> dict[str, Any] | None:
-        from orionparser.languages.python.parser import PythonParser
+        from orionparser.languages.python.parser import parse_source
 
-        parser = PythonParser()
-        return parser.parse(source)
+        return parse_source(source)
 
     def analyze_file(self, path: Path) -> ParseResult:
         """Full pipeline with comment attachment."""

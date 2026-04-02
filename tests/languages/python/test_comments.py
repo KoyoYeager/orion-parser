@@ -3,7 +3,7 @@
 import logging
 
 from orionparser.languages.python.preprocess.extract_comments import extract_comments
-from orionparser.languages.python.parser import PythonParser
+from orionparser.languages.python.parser import parse_source
 from orionparser.languages.python.comment_attacher import attach_comments
 from orionparser.languages.python.preprocess import run_pipeline
 
@@ -56,8 +56,7 @@ class TestExtractComments:
 class TestAttachComments:
     def _parse_with_comments(self, source: str) -> dict:
         preprocessed, _logs, comments = run_pipeline(source)
-        parser = PythonParser()
-        ast = parser.parse(preprocessed)
+        ast = parse_source(preprocessed)
         assert ast is not None
         if comments:
             attach_comments(ast, comments)

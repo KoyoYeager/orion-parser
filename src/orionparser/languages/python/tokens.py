@@ -96,13 +96,11 @@ TOKEN_LIST: list[str] = [
     "RBRACE",
     "COMMA",
     "COLON",
-    "SEMI",
     "DOT",
     "ELLIPSIS",
     "ARROW",
     # Special
     "ENDMARKER",
-    "COMMENT",
 ] + list(RESERVED.values())
 
 TOKENS: tuple[str, ...] = tuple(TOKEN_LIST)

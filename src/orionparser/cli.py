@@ -71,14 +71,22 @@ def cmd_analyze(args: argparse.Namespace) -> None:
         df = extract_data_flow(result.ast)
         output["data_flow"] = {"variables": df["variables"], "flows": df["flows"]}
 
+    if args.symbols or args.all:
+        from orionparser.analysis.symbols import extract_symbols
+        st = extract_symbols(result.ast)
+        output["symbols"] = st.to_dict()
+
     if not output:
         # Default to all
         from orionparser.analysis.call_tree import extract_call_tree
         from orionparser.analysis.data_flow import extract_data_flow
+        from orionparser.analysis.symbols import extract_symbols
         ct = extract_call_tree(result.ast)
         df = extract_data_flow(result.ast)
+        st = extract_symbols(result.ast)
         output["call_tree"] = {"functions": ct["functions"], "calls": ct["calls"]}
         output["data_flow"] = {"variables": df["variables"], "flows": df["flows"]}
+        output["symbols"] = st.to_dict()
 
     print(json.dumps(output, indent=2, ensure_ascii=False))
 
@@ -124,6 +132,7 @@ def main() -> None:
     p_analyze.add_argument("file", help="Source file to analyze")
     p_analyze.add_argument("--call-tree", action="store_true", help="Extract call tree")
     p_analyze.add_argument("--data-flow", action="store_true", help="Extract data flow")
+    p_analyze.add_argument("--symbols", action="store_true", help="Extract symbols")
     p_analyze.add_argument("--all", action="store_true", help="All analyses")
     p_analyze.set_defaults(func=cmd_analyze)
 

@@ -2,15 +2,13 @@
 
 import logging
 
-from orionparser.languages.python.parser import PythonParser
+from orionparser.languages.python.parser import parse_source
 
-# Suppress PLY warnings during tests
 logging.disable(logging.WARNING)
 
 
 def _parse(source: str) -> dict:
-    parser = PythonParser()
-    result = parser.parse(source)
+    result = parse_source(source)
     assert result is not None, f"Parse returned None for: {source!r}"
     return result
 

@@ -2,15 +2,14 @@
 
 import logging
 
-from orionparser.languages.python.parser import PythonParser
+from orionparser.languages.python.parser import parse_source
 from orionparser.analysis.data_flow import extract_data_flow
 
 logging.disable(logging.WARNING)
 
 
 def _data_flow(source: str) -> dict:
-    parser = PythonParser()
-    ast = parser.parse(source)
+    ast = parse_source(source)
     assert ast is not None
     return extract_data_flow(ast)
 

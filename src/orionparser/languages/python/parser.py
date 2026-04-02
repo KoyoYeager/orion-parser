@@ -18,6 +18,11 @@ from orionparser.languages.python.tokens import TOKENS
 
 logger = logging.getLogger(__name__)
 
+# Module-level singleton: build yacc tables once, reuse everywhere.
+# PLY yacc has global state that breaks when yacc.yacc() is called
+# multiple times. A single parser instance avoids this.
+_singleton: PythonParser | None = None
+
 
 class PythonParser:
     """LALR(1) parser for Python source code."""
@@ -39,8 +44,6 @@ class PythonParser:
         """Parse Python source into AST dict."""
         self._errors = []
         tokens = self._lexer.tokenize(source)
-
-        # Feed tokens to parser via an iterator-based lexer adapter
         adapter = _TokenAdapter(tokens)
         result = self._parser.parse(lexer=adapter)
         return result
@@ -50,12 +53,20 @@ class PythonParser:
         return list(self._errors)
 
 
-class _TokenAdapter:
-    """Adapts a token list to PLY's lexer interface.
+def parse_source(source: str) -> dict[str, Any] | None:
+    """Parse source with the shared parser singleton.
 
-    PLY yacc calls lexer.token() repeatedly; this wraps
-    our pre-built token list to provide that interface.
+    Safe for sequential use — PLY's LRParser.parse() reinitializes
+    its internal stacks on each call.
     """
+    global _singleton
+    if _singleton is None:
+        _singleton = PythonParser()
+    return _singleton.parse(source)
+
+
+class _TokenAdapter:
+    """Adapts a token list to PLY's lexer interface."""
 
     def __init__(self, tokens: list[dict[str, Any]]) -> None:
         self._tokens = tokens
@@ -75,10 +86,7 @@ class _TokenAdapter:
 
 
 def _bind_rules(parser_class: type) -> None:
-    """Bind p_* functions from rule modules to PythonParser.
-
-    Same pattern as the reference C parser's _bind_rules().
-    """
+    """Bind p_* functions from rule modules to PythonParser."""
     from orionparser.languages.python.rules import (
         r_module,
         r_statements,

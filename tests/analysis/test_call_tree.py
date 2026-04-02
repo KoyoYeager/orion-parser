@@ -2,15 +2,14 @@
 
 import logging
 
-from orionparser.languages.python.parser import PythonParser
+from orionparser.languages.python.parser import parse_source
 from orionparser.analysis.call_tree import extract_call_tree
 
 logging.disable(logging.WARNING)
 
 
 def _call_tree(source: str) -> dict:
-    parser = PythonParser()
-    ast = parser.parse(source)
+    ast = parse_source(source)
     assert ast is not None
     return extract_call_tree(ast)
 

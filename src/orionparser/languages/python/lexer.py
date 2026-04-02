@@ -70,7 +70,6 @@ class PythonLexer:
     t_RBRACE = r"\}"
     t_COMMA = r","
     t_COLON = r":"
-    t_SEMI = r";"
     t_DOT = r"\."
 
     # Ignore spaces/tabs within a line (indent handled in post-processing)
@@ -79,9 +78,9 @@ class PythonLexer:
     def __init__(self) -> None:
         self.lexer: lex.Lexer = lex.lex(module=self)
 
-    def t_COMMENT(self, t: lex.LexToken) -> lex.LexToken:
+    def t_COMMENT(self, t: lex.LexToken) -> None:
         r"\#[^\n]*"
-        return t
+        # Comments are extracted in preprocessing; skip in lexer
 
     def t_STRING(self, t: lex.LexToken) -> lex.LexToken:
         r'(?:f|r|b|u|rf|rb|fr|br|F|R|B|U|RF|RB|FR|BR)?"""[\s\S]*?"""|' \
@@ -139,6 +138,7 @@ class PythonLexer:
     def _collect_raw_tokens(self, source: str) -> list[dict[str, Any]]:
         """Collect raw tokens from PLY lexer."""
         self.lexer.input(source)
+        self.lexer.lineno = 1  # Reset line counter for reuse
         tokens: list[dict[str, Any]] = []
         for tok in self.lexer:
             tokens = tokens + [
