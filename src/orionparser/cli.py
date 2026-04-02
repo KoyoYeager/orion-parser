@@ -11,84 +11,107 @@ from typing import Any
 from orionparser.registry import get_pipeline, supported_extensions
 
 
+def _collect_files(path: Path) -> list[Path]:
+    """Resolve path to a list of parseable files."""
+    if path.is_file():
+        return [path]
+    if path.is_dir():
+        exts = supported_extensions()
+        return sorted(f for f in path.rglob("*") if f.suffix in exts)
+    print(f"Error: {path} not found", file=sys.stderr)
+    sys.exit(1)
+
+
 def cmd_parse(args: argparse.Namespace) -> None:
-    """Parse a file and display the AST."""
-    path = Path(args.file)
-    if not path.exists():
-        print(f"Error: {path} not found", file=sys.stderr)
-        sys.exit(1)
+    """Parse file(s) and display the AST."""
+    files = _collect_files(Path(args.path))
 
-    pipeline = get_pipeline(path)
-    result = pipeline.analyze_file(path)
-
-    if args.json:
+    if args.json and len(files) > 1:
+        # Multi-file JSON: array of results
+        results = []
+        for f in files:
+            pipeline = get_pipeline(f)
+            result = pipeline.analyze_file(f)
+            results.append({
+                "file": str(f),
+                "success": result.success,
+                "ast": result.ast,
+            })
+        print(json.dumps(results, indent=2))
+    elif args.json:
+        pipeline = get_pipeline(files[0])
+        result = pipeline.analyze_file(files[0])
         print(json.dumps(result.ast, indent=2))
     else:
-        _print_result(result)
+        ok = fail = 0
+        for f in files:
+            pipeline = get_pipeline(f)
+            result = pipeline.analyze_file(f)
+            _print_result(result)
+            if result.success:
+                ok += 1
+            else:
+                fail += 1
+        if len(files) > 1:
+            print(f"\n{ok}/{ok + fail} files parsed successfully")
 
 
 def cmd_tokens(args: argparse.Namespace) -> None:
-    """Tokenize a file and display tokens."""
-    path = Path(args.file)
-    if not path.exists():
-        print(f"Error: {path} not found", file=sys.stderr)
-        sys.exit(1)
+    """Tokenize file(s) and display tokens."""
+    files = _collect_files(Path(args.path))
 
-    pipeline = get_pipeline(path)
-    source = path.read_text(encoding="utf-8")
-    preprocessed = pipeline.preprocess(source)
-    tokens = pipeline.tokenize(preprocessed)
+    for f in files:
+        pipeline = get_pipeline(f)
+        source = f.read_text(encoding="utf-8")
+        preprocessed = pipeline.preprocess(source)
+        tokens = pipeline.tokenize(preprocessed)
 
-    if args.json:
-        print(json.dumps(tokens, indent=2, ensure_ascii=True))
-    else:
-        for tok in tokens:
-            print(f"{tok.get('type', '?'):20s} {tok.get('value', '')!r}")
+        if len(files) > 1:
+            print(f"--- {f} ---")
+
+        if args.json:
+            print(json.dumps(tokens, indent=2))
+        else:
+            for tok in tokens:
+                print(f"{tok.get('type', '?'):20s} {tok.get('value', '')!r}")
 
 
 def cmd_analyze(args: argparse.Namespace) -> None:
-    """Analyze a file: call tree, data flow."""
-    path = Path(args.file)
-    if not path.exists():
-        print(f"Error: {path} not found", file=sys.stderr)
-        sys.exit(1)
+    """Analyze file(s): call tree, data flow, symbols."""
+    files = _collect_files(Path(args.path))
 
-    pipeline = get_pipeline(path)
-    result = pipeline.analyze_file(path)
-    if not result.ast:
-        print("Parse failed, cannot analyze", file=sys.stderr)
-        sys.exit(1)
+    all_output: list[dict[str, Any]] = []
+    for f in files:
+        pipeline = get_pipeline(f)
+        result = pipeline.analyze_file(f)
+        if not result.ast:
+            print(f"[FAIL] {f}: parse failed", file=sys.stderr)
+            continue
 
-    output: dict[str, Any] = {}
+        output: dict[str, Any] = {"file": str(f)}
 
-    if args.call_tree or args.all:
-        from orionparser.analysis.call_tree import extract_call_tree
-        ct = extract_call_tree(result.ast)
-        output["call_tree"] = {"functions": ct["functions"], "calls": ct["calls"]}
+        if args.call_tree or args.all or not (args.call_tree or args.data_flow or args.symbols):
+            from orionparser.analysis.call_tree import extract_call_tree
+            ct = extract_call_tree(result.ast)
+            output["call_tree"] = {"functions": ct["functions"], "calls": ct["calls"]}
 
-    if args.data_flow or args.all:
-        from orionparser.analysis.data_flow import extract_data_flow
-        df = extract_data_flow(result.ast)
-        output["data_flow"] = {"variables": df["variables"], "flows": df["flows"]}
+        if args.data_flow or args.all or not (args.call_tree or args.data_flow or args.symbols):
+            from orionparser.analysis.data_flow import extract_data_flow
+            df = extract_data_flow(result.ast)
+            output["data_flow"] = {"variables": df["variables"], "flows": df["flows"]}
 
-    if args.symbols or args.all:
-        from orionparser.analysis.symbols import extract_symbols
-        st = extract_symbols(result.ast)
-        output["symbols"] = st.to_dict()
+        if args.symbols or args.all or not (args.call_tree or args.data_flow or args.symbols):
+            from orionparser.analysis.symbols import extract_symbols
+            st = extract_symbols(result.ast)
+            output["symbols"] = st.to_dict()
 
-    if not output:
-        # Default to all
-        from orionparser.analysis.call_tree import extract_call_tree
-        from orionparser.analysis.data_flow import extract_data_flow
-        from orionparser.analysis.symbols import extract_symbols
-        ct = extract_call_tree(result.ast)
-        df = extract_data_flow(result.ast)
-        st = extract_symbols(result.ast)
-        output["call_tree"] = {"functions": ct["functions"], "calls": ct["calls"]}
-        output["data_flow"] = {"variables": df["variables"], "flows": df["flows"]}
-        output["symbols"] = st.to_dict()
+        all_output.append(output)
 
-    print(json.dumps(output, indent=2, ensure_ascii=True))
+    if len(all_output) == 1:
+        # Single file: output without wrapping array
+        print(json.dumps(all_output[0], indent=2))
+    else:
+        print(json.dumps(all_output, indent=2))
 
 
 def cmd_langs(args: argparse.Namespace) -> None:
@@ -104,8 +127,6 @@ def _print_result(result) -> None:
     if result.errors:
         for err in result.errors:
             print(f"  ERROR: {err}")
-    if result.ast:
-        print(json.dumps(result.ast, indent=2))
 
 
 def main() -> None:
@@ -116,20 +137,20 @@ def main() -> None:
     sub = parser.add_subparsers(dest="command")
 
     # parse
-    p_parse = sub.add_parser("parse", help="Parse a file into AST")
-    p_parse.add_argument("file", help="Source file to parse")
+    p_parse = sub.add_parser("parse", help="Parse file or directory into AST")
+    p_parse.add_argument("path", help="Source file or directory")
     p_parse.add_argument("--json", action="store_true", help="JSON output")
     p_parse.set_defaults(func=cmd_parse)
 
     # tokens
-    p_tokens = sub.add_parser("tokens", help="Tokenize a file")
-    p_tokens.add_argument("file", help="Source file to tokenize")
+    p_tokens = sub.add_parser("tokens", help="Tokenize file or directory")
+    p_tokens.add_argument("path", help="Source file or directory")
     p_tokens.add_argument("--json", action="store_true", help="JSON output")
     p_tokens.set_defaults(func=cmd_tokens)
 
     # analyze
-    p_analyze = sub.add_parser("analyze", help="Analyze call tree and data flow")
-    p_analyze.add_argument("file", help="Source file to analyze")
+    p_analyze = sub.add_parser("analyze", help="Analyze call tree, data flow, symbols")
+    p_analyze.add_argument("path", help="Source file or directory")
     p_analyze.add_argument("--call-tree", action="store_true", help="Extract call tree")
     p_analyze.add_argument("--data-flow", action="store_true", help="Extract data flow")
     p_analyze.add_argument("--symbols", action="store_true", help="Extract symbols")
