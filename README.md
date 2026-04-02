@@ -47,6 +47,10 @@ python -m orionparser parse --json example.py
 # トークン一覧
 python -m orionparser tokens example.py
 
+# ディレクトリを再帰解析
+python -m orionparser parse src/
+python -m orionparser analyze --symbols src/
+
 # コールツリー・データフロー・シンボル解析
 python -m orionparser analyze example.py
 python -m orionparser analyze --call-tree example.py
