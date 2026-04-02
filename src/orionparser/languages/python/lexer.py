@@ -311,6 +311,7 @@ class PythonLexer:
             # Statement-level FOR: mark next IN as COMP_IN
             if bracket_depth == 0 and t == "FOR":
                 after_for = True
+                at_line_start = False
                 result = result + [tok]
                 continue
 

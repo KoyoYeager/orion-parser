@@ -16,7 +16,8 @@ def p_simple_stmt_from_import(p):
 
 
 def p_simple_stmt_from_import_parens(p):
-    """simple_stmt : FROM from_module IMPORT LPAREN import_names RPAREN"""
+    """simple_stmt : FROM from_module IMPORT LPAREN import_names RPAREN
+                   | FROM from_module IMPORT LPAREN import_names COMMA RPAREN"""
     p[0] = {"type": "ImportFrom", "module": p[2], "names": p[5], "_line": p.lineno(1)}
 
 

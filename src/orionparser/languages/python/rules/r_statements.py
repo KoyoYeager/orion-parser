@@ -17,7 +17,8 @@ def p_simple_stmt_expr(p):
 
 
 def p_simple_stmt_assign(p):
-    """simple_stmt : expression EQUAL expression"""
+    """simple_stmt : expression EQUAL expression
+                   | expression EQUAL rhs_tuple"""
     p[0] = {"type": "Assign", "target": p[1], "value": p[3], "_line": p.lineno(2) or _expr_line(p, 1)}
 
 
@@ -72,8 +73,9 @@ def p_target_item(p):
 
 def p_rhs_tuple(p):
     """rhs_tuple : expression COMMA expression_items
+                 | expression COMMA expression_items COMMA
                  | expression COMMA"""
-    if len(p) == 4:
+    if len(p) in (4, 5):
         p[0] = {"type": "Tuple", "elts": [p[1]] + p[3]}
     else:
         p[0] = {"type": "Tuple", "elts": [p[1]]}

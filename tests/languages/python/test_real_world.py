@@ -59,7 +59,7 @@ class TestAlgorithmsBenchmark:
         rate = ok * 100 // total
 
         print(f"\n  algorithms: {ok}/{total} ({rate}%)")
-        assert rate >= 70, f"Pass rate {rate}% below 70% threshold"
+        assert rate >= 99, f"Pass rate {rate}% below 99% threshold"
 
 
 @pytest.mark.skipif(
@@ -82,7 +82,7 @@ class TestFlaskBenchmark:
         rate = ok * 100 // total
 
         print(f"\n  flask: {ok}/{total} ({rate}%)")
-        assert rate >= 60, f"Pass rate {rate}% below 60% threshold"
+        assert rate >= 99, f"Pass rate {rate}% below 99% threshold"
 
 
 @pytest.mark.skipif(
@@ -105,4 +105,29 @@ class TestStdlibBenchmark:
         rate = ok * 100 // total
 
         print(f"\n  stdlib: {ok}/{total} ({rate}%)")
-        assert rate >= 65, f"Pass rate {rate}% below 65% threshold"
+        assert rate >= 99, f"Pass rate {rate}% below 99% threshold"
+
+
+@pytest.mark.skipif(
+    not STDLIB_ROOT.exists(),
+    reason="Python stdlib not found",
+)
+class TestStdlibFullBenchmark:
+    """Benchmark: stdlib full (all packages, excluding test/)."""
+
+    def test_pass_rate(self):
+        files = sorted(
+            f for f in STDLIB_ROOT.rglob("*.py")
+            if "__pycache__" not in str(f)
+            and "/test/" not in str(f).replace("\\", "/")
+            and "/tests/" not in str(f).replace("\\", "/")
+            and "/site-packages/" not in str(f).replace("\\", "/")
+        )
+        assert len(files) > 0
+
+        ok = sum(1 for f in files if _parse_file(f))
+        total = len(files)
+        rate = ok * 100 // total
+
+        print(f"\n  stdlib-full: {ok}/{total} ({rate}%)")
+        assert rate >= 99, f"Pass rate {rate}% below 99% threshold"

@@ -76,12 +76,22 @@ def p_for_iter(p):
 
 def p_for_targets(p):
     """for_targets : for_targets COMMA expression
-                   | expression"""
+                   | for_targets COMMA STAR expression
+                   | expression
+                   | STAR expression"""
     if len(p) == 4:
         if isinstance(p[1], dict) and p[1].get("type") == "Tuple":
             p[0] = {"type": "Tuple", "elts": p[1]["elts"] + [p[3]]}
         else:
             p[0] = {"type": "Tuple", "elts": [p[1], p[3]]}
+    elif len(p) == 5:
+        starred = {"type": "Starred", "value": p[4]}
+        if isinstance(p[1], dict) and p[1].get("type") == "Tuple":
+            p[0] = {"type": "Tuple", "elts": p[1]["elts"] + [starred]}
+        else:
+            p[0] = {"type": "Tuple", "elts": [p[1], starred]}
+    elif len(p) == 3:
+        p[0] = {"type": "Starred", "value": p[2]}
     else:
         p[0] = p[1]
 
@@ -92,6 +102,7 @@ def p_try_stmt(p):
     """try_stmt : TRY COLON block except_clauses
                | TRY COLON block except_clauses ELSE COLON block
                | TRY COLON block except_clauses FINALLY COLON block
+               | TRY COLON block except_clauses ELSE COLON block FINALLY COLON block
                | TRY COLON block FINALLY COLON block"""
     if len(p) == 5:
         p[0] = {"type": "Try", "body": p[3], "handlers": p[4], "orelse": [], "finalbody": []}
@@ -99,6 +110,9 @@ def p_try_stmt(p):
         p[0] = {"type": "Try", "body": p[3], "handlers": p[4], "orelse": p[7], "finalbody": []}
     elif len(p) == 8 and p[5] == "finally":
         p[0] = {"type": "Try", "body": p[3], "handlers": p[4], "orelse": [], "finalbody": p[7]}
+    elif len(p) == 11:
+        # try except else finally
+        p[0] = {"type": "Try", "body": p[3], "handlers": p[4], "orelse": p[7], "finalbody": p[10]}
     elif len(p) == 7:
         p[0] = {"type": "Try", "body": p[3], "handlers": [], "orelse": [], "finalbody": p[6]}
 
@@ -193,13 +207,21 @@ def p_funcdef(p):
 
 def p_funcdef_async(p):
     """funcdef : ASYNC DEF NAME LPAREN param_list RPAREN COLON block
-              | ASYNC DEF NAME LPAREN RPAREN COLON block"""
+              | ASYNC DEF NAME LPAREN RPAREN COLON block
+              | ASYNC DEF NAME LPAREN param_list RPAREN ARROW expression COLON block
+              | ASYNC DEF NAME LPAREN RPAREN ARROW expression COLON block"""
     if len(p) == 9:
         p[0] = {"type": "AsyncFunctionDef", "name": p[3], "params": p[5],
                 "returns": None, "body": p[8]}
-    else:
+    elif len(p) == 8:
         p[0] = {"type": "AsyncFunctionDef", "name": p[3], "params": [],
                 "returns": None, "body": p[7]}
+    elif len(p) == 11:
+        p[0] = {"type": "AsyncFunctionDef", "name": p[3], "params": p[5],
+                "returns": p[8], "body": p[10]}
+    else:  # len(p) == 10
+        p[0] = {"type": "AsyncFunctionDef", "name": p[3], "params": [],
+                "returns": p[7], "body": p[9]}
 
 
 # --- async with / async for ---
