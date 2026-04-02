@@ -32,14 +32,21 @@
 ```bash
 git clone https://github.com/KoyoYeager/orion-parser.git
 cd orion-parser
-pip install -e ".[dev]"
+pip install -e ".[dev]"      # 方法A: pip install（推奨）
+```
+
+pip install できない環境では `run.py` を直接実行できる（インストール不要）。
+
+```bash
+python run.py parse example.py   # 方法B: pip install なしで実行
 ```
 
 ## 使い方
 
 ```bash
 # ファイルを解析（AST出力）
-python -m orionparser parse example.py
+python -m orionparser parse example.py           # pip install 済みの場合
+python run.py parse example.py                   # pip install なしの場合
 
 # JSON出力
 python -m orionparser parse --json example.py
