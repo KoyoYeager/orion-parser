@@ -304,16 +304,19 @@ def p_expression_attr(p):
 def p_expression_subscript(p):
     """expression : expression LSQB expression RSQB
                   | expression LSQB expression COMMA expression_items RSQB
+                  | expression LSQB expression COMMA expression_items COMMA RSQB
                   | expression LSQB expression COMMA RSQB
                   | expression LSQB subscript_items RSQB"""
     if len(p) == 5:
         p[0] = {"type": "Subscript", "value": p[1], "slice": p[3]}
-    elif len(p) == 7:
+    elif len(p) in (7, 8) and isinstance(p[5], list):
         p[0] = {"type": "Subscript", "value": p[1],
                 "slice": {"type": "Tuple", "elts": [p[3]] + p[5]}}
-    else:
+    elif len(p) == 6:
         p[0] = {"type": "Subscript", "value": p[1],
                 "slice": {"type": "Tuple", "elts": [p[3]]}}
+    else:
+        p[0] = {"type": "Subscript", "value": p[1], "slice": p[3]}
 
 
 def p_subscript_items(p):
