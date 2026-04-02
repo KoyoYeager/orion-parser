@@ -315,6 +315,26 @@ class PythonLexer:
                 result = result + [tok]
                 continue
 
+            # WITH LPAREN: remove outer parens (parenthesized with, PEP 617)
+            # `with (ctx1, ctx2 as f):` → `with ctx1, ctx2 as f:`
+            if t == "WITH" and i + 1 < len(tokens) and tokens[i + 1]["type"] == "LPAREN":
+                depth = 0
+                rparen_idx = -1
+                for j in range(i + 1, len(tokens)):
+                    if tokens[j]["type"] == "LPAREN":
+                        depth += 1
+                    elif tokens[j]["type"] == "RPAREN":
+                        depth -= 1
+                        if depth == 0:
+                            rparen_idx = j
+                            break
+                if rparen_idx > 0:
+                    # Remove the LPAREN and RPAREN, and trailing comma before RPAREN
+                    tokens[i + 1] = {"type": "_SKIP", "value": "", "line": tokens[i + 1]["line"]}
+                    if tokens[rparen_idx - 1]["type"] == "COMMA":
+                        tokens[rparen_idx - 1] = {"type": "_SKIP", "value": "", "line": tokens[rparen_idx - 1]["line"]}
+                    tokens[rparen_idx] = {"type": "_SKIP", "value": "", "line": tokens[rparen_idx]["line"]}
+
             # First IN after any FOR → COMP_IN (avoids `v IN items` comparison)
             if after_for and t == "IN":
                 after_for = False
@@ -351,7 +371,8 @@ class PythonLexer:
             elif t not in ("NEWLINE", "INDENT", "DEDENT", "ENDMARKER"):
                 at_line_start = False
 
-            result = result + [tok]
+            if t != "_SKIP":
+                result = result + [tok]
 
         return result
 

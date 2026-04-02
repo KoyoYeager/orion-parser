@@ -97,15 +97,28 @@ def p_expression_list_empty(p):
 
 
 def p_expression_list_single(p):
-    """expression : LSQB expression RSQB"""
-    p[0] = {"type": "List", "elts": [p[2]]}
+    """expression : LSQB expression RSQB
+                  | LSQB STAR expression RSQB"""
+    if len(p) == 4:
+        p[0] = {"type": "List", "elts": [p[2]]}
+    else:
+        p[0] = {"type": "List", "elts": [{"type": "Starred", "value": p[3]}]}
 
 
 def p_expression_list_multi(p):
     """expression : LSQB expression COMMA expression_items RSQB
                   | LSQB expression COMMA expression_items COMMA RSQB
-                  | LSQB expression COMMA RSQB"""
-    if len(p) in (6, 7):
+                  | LSQB expression COMMA RSQB
+                  | LSQB STAR expression COMMA expression_items RSQB
+                  | LSQB STAR expression COMMA expression_items COMMA RSQB
+                  | LSQB STAR expression COMMA RSQB"""
+    if p[2] == "*":
+        first = {"type": "Starred", "value": p[3]}
+        if len(p) in (7, 8):
+            p[0] = {"type": "List", "elts": [first] + p[5]}
+        else:
+            p[0] = {"type": "List", "elts": [first]}
+    elif len(p) in (6, 7):
         p[0] = {"type": "List", "elts": [p[2]] + p[4]}
     else:
         p[0] = {"type": "List", "elts": [p[2]]}

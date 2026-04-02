@@ -166,6 +166,7 @@ def p_with_items(p):
 
 def p_with_item(p):
     """with_item : expression AS expression
+                 | expression WITH_AS expression
                  | expression"""
     if len(p) == 4:
         p[0] = {"context": p[1], "alias": p[3]}
@@ -281,6 +282,11 @@ def p_param(p):
         p[0] = {"name": "**" + p[2], "annotation": p[4], "default": None}
 
 
+def p_param_star_typed_star(p):
+    """param : STAR NAME COLON STAR expression"""
+    p[0] = {"name": "*" + p[2], "annotation": {"type": "Starred", "value": p[5]}, "default": None}
+
+
 # --- class definition ---
 
 def p_classdef(p):
@@ -355,8 +361,16 @@ def p_case_clauses(p):
 
 def p_case_clause(p):
     """case_clause : CASE_KW expression COLON block
-                   | CASE_KW expression COMP_IF expression COLON block"""
+                   | CASE_KW expression COMP_IF expression COLON block
+                   | CASE_KW expression AS NAME COLON block
+                   | CASE_KW expression AS NAME COMP_IF expression COLON block"""
     if len(p) == 5:
         p[0] = {"type": "MatchCase", "pattern": p[2], "guard": None, "body": p[4], "_line": p.lineno(1)}
-    else:
+    elif len(p) == 7 and p[3] in ("if", "COMP_IF") or (isinstance(p[3], str) and p[3] not in ("as",)):
         p[0] = {"type": "MatchCase", "pattern": p[2], "guard": p[4], "body": p[6], "_line": p.lineno(1)}
+    elif len(p) == 7:
+        p[0] = {"type": "MatchCase", "pattern": {"type": "MatchAs", "pattern": p[2], "name": p[4]},
+                "guard": None, "body": p[6], "_line": p.lineno(1)}
+    else:
+        p[0] = {"type": "MatchCase", "pattern": {"type": "MatchAs", "pattern": p[2], "name": p[4]},
+                "guard": p[6], "body": p[8], "_line": p.lineno(1)}

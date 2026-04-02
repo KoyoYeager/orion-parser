@@ -114,6 +114,7 @@ def p_simple_stmt_ann_assign(p):
 
 def p_simple_stmt_return(p):
     """simple_stmt : RETURN expression
+                   | RETURN rhs_tuple
                    | RETURN"""
     if len(p) == 3:
         p[0] = {"type": "Return", "value": p[2], "_line": p.lineno(1)}
