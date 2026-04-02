@@ -110,7 +110,7 @@ def _print_result(result) -> None:
 
 def main() -> None:
     parser = argparse.ArgumentParser(
-        prog="orion",
+        prog="orion-parser",
         description="OrionParser — Multi-language source code analysis engine",
     )
     sub = parser.add_subparsers(dest="command")

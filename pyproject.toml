@@ -32,7 +32,7 @@ dev = ["pytest>=8.0", "pytest-cov>=5.0"]
 all = ["orion-parser[analysis,dev]"]
 
 [project.scripts]
-orion = "orionparser.cli:main"
+orion-parser = "orionparser.cli:main"
 
 [project.urls]
 Homepage = "https://github.com/KoyoYeager/orion-parser"
