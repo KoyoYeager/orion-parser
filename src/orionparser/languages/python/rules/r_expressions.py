@@ -458,6 +458,12 @@ def p_call_arg(p):
 # --- Starred (only in assignment targets, not general expressions) ---
 # Starred in function calls is handled by call_arg rules.
 
+# --- Match pattern AS binding (PEP 634) ---
+
+def p_expression_match_as(p):
+    """expression : expression MATCH_AS NAME"""
+    p[0] = {"type": "MatchAs", "pattern": p[1], "name": p[3]}
+
 
 # --- Lambda ---
 

@@ -111,6 +111,8 @@ TOKEN_LIST: list[str] = [
     "LAMBDA_COLON",
     # with-statement AS (avoids expression conflict in parenthesized with)
     "WITH_AS",
+    # match/case pattern AS binding
+    "MATCH_AS",
     # Special
     "ENDMARKER",
 ] + list(RESERVED.values())

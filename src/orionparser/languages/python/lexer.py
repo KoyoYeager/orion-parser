@@ -347,18 +347,35 @@ class PythonLexer:
             if at_line_start and t == "NAME":
                 next_tok = tokens[i + 1] if i + 1 < len(tokens) else None
                 next_type = next_tok["type"] if next_tok else None
-                if tok["value"] == "match" and next_type not in ("EQUAL", "LPAREN", "DOT", "COMMA", "NEWLINE", None):
-                    result = result + [{"type": "MATCH_KW", "value": tok["value"], "line": tok["line"]}]
-                    continue
-                if tok["value"] == "case" and next_type not in ("EQUAL", "LPAREN", "DOT", "COMMA", "NEWLINE", None):
+                if tok["value"] == "match" and next_type not in ("EQUAL", "DOT", "COMMA", "NEWLINE", None):
+                    # Disambiguate match() call vs match statement
+                    is_match_stmt = True
+                    if next_type == "LPAREN":
+                        # Check if RPAREN is followed by COLON
+                        depth2 = 0
+                        is_match_stmt = False
+                        for k in range(i + 2, len(tokens)):
+                            if tokens[k]["type"] == "LPAREN": depth2 += 1
+                            elif tokens[k]["type"] == "RPAREN":
+                                if depth2 == 0:
+                                    # Check what follows the closing paren
+                                    if k + 1 < len(tokens) and tokens[k + 1]["type"] == "COLON":
+                                        is_match_stmt = True
+                                    break
+                                depth2 -= 1
+                    if is_match_stmt:
+                        result = result + [{"type": "MATCH_KW", "value": tok["value"], "line": tok["line"]}]
+                        continue
+                if tok["value"] == "case" and next_type not in ("EQUAL", "DOT", "COMMA", "NEWLINE", None):
                     result = result + [{"type": "CASE_KW", "value": tok["value"], "line": tok["line"]}]
-                    # Convert the next IF in this case clause to COMP_IF
-                    # (guard: `case pattern if condition:`)
+                    # Convert IF → COMP_IF and AS → MATCH_AS in this case clause
                     for j in range(i + 1, len(tokens)):
-                        if tokens[j]["type"] == "IF":
+                        jt = tokens[j]["type"]
+                        if jt == "IF":
                             tokens[j] = {"type": "COMP_IF", "value": tokens[j]["value"], "line": tokens[j]["line"]}
-                            break
-                        if tokens[j]["type"] in ("COLON", "NEWLINE"):
+                        elif jt == "AS":
+                            tokens[j] = {"type": "MATCH_AS", "value": tokens[j]["value"], "line": tokens[j]["line"]}
+                        elif jt in ("COLON", "NEWLINE"):
                             break
                     continue
                 if tok["value"] == "type" and next_type == "NAME":

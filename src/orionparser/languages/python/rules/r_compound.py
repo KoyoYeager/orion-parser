@@ -129,10 +129,14 @@ def p_except_clauses(p):
 def p_except_clause(p):
     """except_clause : EXCEPT expression AS NAME COLON block
                      | EXCEPT expression COLON block
+                     | EXCEPT expression COMMA NAME COLON block
                      | EXCEPT COLON block
                      | EXCEPT STAR expression AS NAME COLON block
                      | EXCEPT STAR expression COLON block"""
     if len(p) == 7 and p[1] == "except" and p[3] == "as":
+        p[0] = {"type": "ExceptHandler", "exc_type": p[2], "name": p[4], "body": p[6]}
+    elif len(p) == 7 and p[1] == "except" and p[3] == ",":
+        # Python 2 style: except E, v: (treated as except E as v:)
         p[0] = {"type": "ExceptHandler", "exc_type": p[2], "name": p[4], "body": p[6]}
     elif len(p) == 5 and p[1] == "except":
         p[0] = {"type": "ExceptHandler", "exc_type": p[2], "name": None, "body": p[4]}
@@ -361,16 +365,8 @@ def p_case_clauses(p):
 
 def p_case_clause(p):
     """case_clause : CASE_KW expression COLON block
-                   | CASE_KW expression COMP_IF expression COLON block
-                   | CASE_KW expression AS NAME COLON block
-                   | CASE_KW expression AS NAME COMP_IF expression COLON block"""
+                   | CASE_KW expression COMP_IF expression COLON block"""
     if len(p) == 5:
         p[0] = {"type": "MatchCase", "pattern": p[2], "guard": None, "body": p[4], "_line": p.lineno(1)}
-    elif len(p) == 7 and p[3] in ("if", "COMP_IF") or (isinstance(p[3], str) and p[3] not in ("as",)):
-        p[0] = {"type": "MatchCase", "pattern": p[2], "guard": p[4], "body": p[6], "_line": p.lineno(1)}
-    elif len(p) == 7:
-        p[0] = {"type": "MatchCase", "pattern": {"type": "MatchAs", "pattern": p[2], "name": p[4]},
-                "guard": None, "body": p[6], "_line": p.lineno(1)}
     else:
-        p[0] = {"type": "MatchCase", "pattern": {"type": "MatchAs", "pattern": p[2], "name": p[4]},
-                "guard": p[6], "body": p[8], "_line": p.lineno(1)}
+        p[0] = {"type": "MatchCase", "pattern": p[2], "guard": p[4], "body": p[6], "_line": p.lineno(1)}

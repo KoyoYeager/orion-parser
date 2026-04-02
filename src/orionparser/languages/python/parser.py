@@ -56,13 +56,17 @@ class PythonParser:
 def parse_source(source: str) -> dict[str, Any] | None:
     """Parse source with the shared parser singleton.
 
-    Safe for sequential use — PLY's LRParser.parse() reinitializes
-    its internal stacks on each call.
+    If a parse fails (returns None), the singleton is rebuilt to
+    prevent PLY's internal state from corrupting subsequent parses.
     """
     global _singleton
     if _singleton is None:
         _singleton = PythonParser()
-    return _singleton.parse(source)
+    result = _singleton.parse(source)
+    if result is None:
+        # Rebuild singleton to clear any corrupted PLY state
+        _singleton = PythonParser()
+    return result
 
 
 class _TokenAdapter:
