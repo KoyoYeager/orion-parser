@@ -165,9 +165,12 @@ def p_funcdef_async(p):
 
 def p_param_list(p):
     """param_list : param_list COMMA param
+                  | param_list COMMA
                   | param"""
     if len(p) == 4:
         p[0] = p[1] + [p[3]]
+    elif len(p) == 3:
+        p[0] = p[1]  # trailing comma
     else:
         p[0] = [p[1]]
 
