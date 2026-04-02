@@ -618,3 +618,40 @@ class TestDocstringAttachment:
         assert func.get("docstring") == "Do something useful."
         assert "comments" in func
         assert "Helper function" in func["comments"][0]["text"]
+
+    def test_string_assign_is_not_docstring(self):
+        """x = '''...''' is an assignment, not a docstring."""
+        source = 'x = """not a docstring"""\n'
+        ast = _full_parse(source)
+        assign = ast["body"][0]
+        assert assign["type"] == "Assign"
+        assert assign.get("docstring") is None
+
+    def test_bare_string_after_assign_is_not_docstring(self):
+        """A bare string expression after a variable is NOT that variable's docstring."""
+        source = 'y = 1\n"""this is not y docstring"""\n'
+        ast = _full_parse(source)
+        # y assignment should not have docstring
+        y_assign = ast["body"][0]
+        assert y_assign.get("docstring") is None
+        # The bare string is a separate Expr statement
+        bare_expr = ast["body"][1]
+        assert bare_expr["type"] == "Expr"
+        assert bare_expr.get("docstring") is None
+
+    def test_second_string_in_body_is_not_docstring(self):
+        """Only the FIRST statement can be a docstring."""
+        source = 'def f():\n    """real docstring"""\n    """not a docstring"""\n    pass\n'
+        ast = _full_parse(source)
+        func = ast["body"][0]
+        assert func.get("docstring") == "real docstring"
+        # Second string should remain as an Expr, not attached as docstring
+        second = func["body"][1]
+        assert second["type"] == "Expr"
+
+    def test_function_with_code_before_string(self):
+        """If body starts with code, not a string, there's no docstring."""
+        source = 'def f():\n    x = 1\n    """late string"""\n    return x\n'
+        ast = _full_parse(source)
+        func = ast["body"][0]
+        assert func.get("docstring") is None
