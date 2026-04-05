@@ -1,0 +1,16 @@
+digraph CallTree {
+    rankdir=TB;
+    node [shape=box, style="rounded,filled", fontname="Consolas", fontsize=10];
+    edge [color="#555555", arrowsize=0.8];
+    "<module>" [label="<module>", fillcolor="#B3D9FF"];
+    "main" [label="main", fillcolor="#85C1E9"];
+    "parse_file" [label="parse_file", fillcolor="#85C1E9"];
+    "validate" [label="validate", fillcolor="#85C1E9"];
+    "read_tokens" [label="read_tokens", fillcolor="#85C1E9"];
+    "Config.__init__" [label="Config.__init__", fillcolor="#D7BDE2"];
+    "<module>" -> "main";
+    "<module>" -> "Config.__init__";
+    "main" -> "parse_file";
+    "main" -> "validate";
+    "parse_file" -> "read_tokens";
+}

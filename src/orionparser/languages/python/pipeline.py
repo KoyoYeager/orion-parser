@@ -33,7 +33,9 @@ class PythonPipeline(BasePipeline):
         from orionparser.languages.python.preprocess import run_pipeline
         from orionparser.languages.python.comment_attacher import attach_comments
 
-        source = path.read_text(encoding="utf-8")
+        from orionparser.core.encoding import read_file
+
+        source = read_file(path)
         errors: list[str] = []
 
         # Preprocess: normalize + extract comments

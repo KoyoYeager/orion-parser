@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<graph>
+  <nodes>
+    <node id="&lt;module&gt;" color="#B3D9FF"/>
+    <node id="main" color="#85C1E9"/>
+    <node id="parse_file" color="#85C1E9"/>
+    <node id="validate" color="#85C1E9"/>
+    <node id="read_tokens" color="#85C1E9"/>
+    <node id="Config.__init__" color="#D7BDE2"/>
+  </nodes>
+  <edges>
+    <edge source="&lt;module&gt;" target="main"/>
+    <edge source="&lt;module&gt;" target="Config.__init__"/>
+    <edge source="main" target="parse_file"/>
+    <edge source="main" target="validate"/>
+    <edge source="parse_file" target="read_tokens"/>
+  </edges>
+</graph>

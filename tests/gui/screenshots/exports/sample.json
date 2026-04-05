@@ -1,0 +1,50 @@
+{
+  "nodes": [
+    {
+      "id": "<module>",
+      "color": "#B3D9FF"
+    },
+    {
+      "id": "main",
+      "color": "#85C1E9"
+    },
+    {
+      "id": "parse_file",
+      "color": "#85C1E9"
+    },
+    {
+      "id": "validate",
+      "color": "#85C1E9"
+    },
+    {
+      "id": "read_tokens",
+      "color": "#85C1E9"
+    },
+    {
+      "id": "Config.__init__",
+      "color": "#D7BDE2"
+    }
+  ],
+  "edges": [
+    {
+      "source": "<module>",
+      "target": "main"
+    },
+    {
+      "source": "<module>",
+      "target": "Config.__init__"
+    },
+    {
+      "source": "main",
+      "target": "parse_file"
+    },
+    {
+      "source": "main",
+      "target": "validate"
+    },
+    {
+      "source": "parse_file",
+      "target": "read_tokens"
+    }
+  ]
+}

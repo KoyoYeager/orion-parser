@@ -44,7 +44,9 @@ class BasePipeline(ABC):
 
     def analyze_file(self, path: Path) -> ParseResult:
         """Run the full pipeline on a single file."""
-        source = path.read_text(encoding="utf-8")
+        from orionparser.core.encoding import read_file
+
+        source = read_file(path)
         errors: list[str] = []
 
         preprocessed = self.preprocess(source)

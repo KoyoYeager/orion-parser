@@ -1,0 +1,7 @@
+@startuml
+"<module>" --> "main"
+"<module>" --> "Config.__init__"
+"main" --> "parse_file"
+"main" --> "validate"
+"parse_file" --> "read_tokens"
+@enduml

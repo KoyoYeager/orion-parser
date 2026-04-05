@@ -70,7 +70,9 @@ def cmd_tokens(args: argparse.Namespace) -> None:
 
     for f in files:
         pipeline = get_pipeline(f)
-        source = f.read_text(encoding="utf-8")
+        from orionparser.core.encoding import read_file
+
+        source = read_file(f)
         preprocessed = pipeline.preprocess(source)
         tokens = pipeline.tokenize(preprocessed)
 
@@ -87,8 +89,17 @@ def cmd_tokens(args: argparse.Namespace) -> None:
 def cmd_analyze(args: argparse.Namespace) -> None:
     """Analyze file(s): call tree, data flow, symbols."""
     files = _collect_files(Path(args.path))
+    want_ct = args.call_tree or args.all or not (args.call_tree or args.data_flow or args.symbols)
+    want_df = args.data_flow or args.all or not (args.call_tree or args.data_flow or args.symbols)
+    want_sym = args.symbols or args.all or not (args.call_tree or args.data_flow or args.symbols)
 
     all_output: list[dict[str, Any]] = []
+    # For cross-file merge
+    all_functions: list[str] = []
+    all_calls: list[list[str]] = []
+    all_variables: dict[str, Any] = {}
+    all_flows: list[Any] = []
+
     for f in files:
         pipeline = get_pipeline(f)
         result = pipeline.analyze_file(f)
@@ -98,22 +109,43 @@ def cmd_analyze(args: argparse.Namespace) -> None:
 
         output: dict[str, Any] = {"file": str(f)}
 
-        if args.call_tree or args.all or not (args.call_tree or args.data_flow or args.symbols):
+        if want_ct:
             from orionparser.analysis.call_tree import extract_call_tree
             ct = extract_call_tree(result.ast)
             output["call_tree"] = {"functions": ct["functions"], "calls": ct["calls"]}
+            all_functions = all_functions + ct["functions"]
+            all_calls = all_calls + ct["calls"]
 
-        if args.data_flow or args.all or not (args.call_tree or args.data_flow or args.symbols):
+        if want_df:
             from orionparser.analysis.data_flow import extract_data_flow
             df = extract_data_flow(result.ast)
             output["data_flow"] = {"variables": df["variables"], "flows": df["flows"]}
+            all_variables.update(df["variables"])
+            all_flows = all_flows + df["flows"]
 
-        if args.symbols or args.all or not (args.call_tree or args.data_flow or args.symbols):
+        if want_sym:
             from orionparser.analysis.symbols import extract_symbols
             st = extract_symbols(result.ast)
             output["symbols"] = st.to_dict()
 
         all_output.append(output)
+
+    # For directories with multiple files, add a merged cross-file summary
+    if len(files) > 1 and all_output:
+        merged: dict[str, Any] = {"file": "(cross-file merged)"}
+        if want_ct:
+            unique_funcs = list(dict.fromkeys(all_functions))
+            seen_calls: set[tuple[str, str]] = set()
+            unique_calls = []
+            for c in all_calls:
+                key = (c[0], c[1]) if isinstance(c, list) else c
+                if key not in seen_calls:
+                    seen_calls.add(key)
+                    unique_calls = unique_calls + [c]
+            merged["call_tree"] = {"functions": unique_funcs, "calls": unique_calls}
+        if want_df:
+            merged["data_flow"] = {"variables": all_variables, "flows": all_flows}
+        all_output = all_output + [merged]
 
     if len(all_output) == 1:
         text = json.dumps(all_output[0], indent=2)
@@ -127,6 +159,16 @@ def cmd_analyze(args: argparse.Namespace) -> None:
         print(f"Output written to {out}")
     else:
         print(text)
+
+
+def cmd_gui(args: argparse.Namespace) -> None:
+    """Launch the GUI application."""
+    try:
+        from orionparser.gui.app import launch
+    except ImportError:
+        print("GUI dependencies not installed. Run: pip install orion-parser[gui]", file=sys.stderr)
+        sys.exit(1)
+    sys.exit(launch(path=args.path))
 
 
 def cmd_langs(args: argparse.Namespace) -> None:
@@ -177,6 +219,11 @@ def main() -> None:
     # langs
     p_langs = sub.add_parser("langs", help="List supported languages")
     p_langs.set_defaults(func=cmd_langs)
+
+    # gui
+    p_gui = sub.add_parser("gui", help="Launch GUI application")
+    p_gui.add_argument("path", nargs="?", help="File or directory to open")
+    p_gui.set_defaults(func=cmd_gui)
 
     args = parser.parse_args()
     if not args.command:
