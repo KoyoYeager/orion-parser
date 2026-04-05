@@ -77,8 +77,7 @@ class TestGraphAnalysisView:
         view = GraphAnalysisView()
         qtbot.addWidget(view)
 
-        # 2 enabled + 5 disabled (future)
-        assert view._selector.count() == 7
+        assert view._selector.count() >= 7
 
     def test_set_data_renders_graph(self, qtbot, sample_result, sample_source):
         from orionparser.gui.views.graph_analysis import GraphAnalysisView

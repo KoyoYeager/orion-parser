@@ -22,6 +22,8 @@ from PySide6.QtWidgets import (
 from orionparser.gui.panels.graph_panels.base_graph import BaseGraphPanel
 from orionparser.gui.panels.graph_panels.call_tree_panel import CallTreePanel
 from orionparser.gui.panels.graph_panels.data_flow_panel import DataFlowPanel
+from orionparser.gui.panels.graph_panels.flowchart_panel import FlowchartPanel
+from orionparser.gui.panels.graph_panels.class_diagram_panel import ClassDiagramPanel
 from orionparser.gui.widgets.graph_canvas import GraphCanvas
 
 
@@ -182,13 +184,13 @@ class GraphAnalysisView(QWidget):
         self._selector.setMaximumWidth(100)
         self._selector.setMinimumWidth(80)
 
-        self._graph_panels: list[BaseGraphPanel] = [CallTreePanel(), DataFlowPanel()]
+        self._graph_panels: list[BaseGraphPanel] = [CallTreePanel(), DataFlowPanel(), FlowchartPanel(), ClassDiagramPanel()]
         for gp in self._graph_panels:
             item = QListWidgetItem(gp.graph_name)
             item.setData(Qt.ItemDataRole.UserRole, gp.graph_id)
             self._selector.addItem(item)
 
-        for name in ["DFD", "フローチャート", "依存関係", "メトリクス", "セキュリティ"]:
+        for name in ["DFD", "依存関係", "メトリクス", "セキュリティ"]:
             item = QListWidgetItem(name)
             item.setFlags(item.flags() & ~Qt.ItemFlag.ItemIsEnabled)
             item.setToolTip("今後のバージョンで追加予定")
@@ -230,9 +232,13 @@ class GraphAnalysisView(QWidget):
         """Set data from all files in a directory for cross-file analysis."""
         self._dir_results = results
         self._current_result = results[0][0] if results else None
+        self._detail.setPlainText("グラフを構築中...")
+        from PySide6.QtWidgets import QApplication
+        QApplication.processEvents()
         self._build_full_graph()
         self._update_focus_list()
         self._render_current()
+        self._detail.setPlainText("")
 
     def clear(self) -> None:
         self.canvas.clear_graph()
@@ -244,8 +250,15 @@ class GraphAnalysisView(QWidget):
 
     def _active_panel(self) -> BaseGraphPanel | None:
         row = self._selector.currentRow()
-        if 0 <= row < len(self._graph_panels):
-            return self._graph_panels[row]
+        if row < 0:
+            return None
+        item = self._selector.item(row)
+        if item is None:
+            return None
+        gid = item.data(Qt.ItemDataRole.UserRole)
+        for panel in self._graph_panels:
+            if panel.graph_id == gid:
+                return panel
         return None
 
     def _current_layout(self) -> str:
@@ -257,6 +270,17 @@ class GraphAnalysisView(QWidget):
         if panel is None:
             self._full_graph = None
             return
+
+        # Flowchart: always uses single-file (current selection)
+        if isinstance(panel, FlowchartPanel):
+            if self._current_result is not None:
+                self._full_graph = panel.build_graph(self._current_result)
+            elif self._dir_results:
+                self._full_graph = panel.build_graph(self._dir_results[0][0])
+            else:
+                self._full_graph = None
+            return
+
         if self._dir_results is not None and hasattr(panel, "build_graph_multi"):
             self._full_graph = panel.build_graph_multi(self._dir_results)
         elif self._current_result is not None:
@@ -268,6 +292,17 @@ class GraphAnalysisView(QWidget):
         """Populate file and function dropdowns from current graph."""
         self._file_funcs: dict[str, list[str]] = {}
         all_names: list[str] = []
+
+        # Flowchart: get function names from the panel itself
+        panel = self._active_panel()
+        if isinstance(panel, FlowchartPanel):
+            all_names = panel.get_function_names()
+            self._focus_file.blockSignals(True)
+            self._focus_file.clear()
+            self._focus_file.addItem("(すべてのファイル)", "")
+            self._focus_file.blockSignals(False)
+            self._populate_func_combo(all_names)
+            return
 
         if self._full_graph is not None:
             seen: set[str] = set()
@@ -337,6 +372,19 @@ class GraphAnalysisView(QWidget):
             self._render_current()
             self._detail.setPlainText("")
             return
+
+        # For flowchart: switch to that function's flowchart
+        panel = self._active_panel()
+        if isinstance(panel, FlowchartPanel) and self._current_result is not None:
+            graph = panel.build_for_function(func_name)
+            if graph is not None:
+                self._current_graph = graph
+                colors = panel.get_node_colors(graph)
+                self.canvas.set_graph(graph, layout="flowchart", node_colors=colors)
+                self.canvas.fit_to_view()
+                self._detail.setPlainText(f"フローチャート: {func_name}")
+                return
+
         self._apply_focus(func_name)
 
     def _on_completer_activated(self, text: str) -> None:
@@ -350,16 +398,26 @@ class GraphAnalysisView(QWidget):
         panel = self._active_panel()
         if graph is not None and panel is not None:
             colors = panel.get_node_colors(graph)
-            self.canvas.set_graph(graph, layout=self._current_layout(), node_colors=colors)
+            if isinstance(panel, FlowchartPanel):
+                layout = "flowchart"
+            elif isinstance(panel, ClassDiagramPanel):
+                layout = "class_diagram"
+            else:
+                layout = self._current_layout()
+            self.canvas.set_graph(graph, layout=layout, node_colors=colors)
             self.canvas.fit_to_view()
         else:
             self.canvas.clear_graph()
 
     def _on_type_changed(self, row: int) -> None:
-        self._detail.clear()
+        self._detail.setPlainText("読み込み中...")
+        from PySide6.QtWidgets import QApplication
+        QApplication.processEvents()
         self._build_full_graph()
         self._update_focus_list()
         self._render_current()
+        if not self._detail.toPlainText().startswith("フォーカス"):
+            self._detail.clear()
 
     def _on_layout_changed(self, index: int) -> None:
         self._render_current()
@@ -495,6 +553,14 @@ class GraphAnalysisView(QWidget):
         }
         ext = _EXT.get(fmt, fmt)
 
+        # Default filename based on active graph type
+        panel = self._active_panel()
+        base_name = "flowchart" if isinstance(panel, FlowchartPanel) else "call_tree"
+        # Include function name if available
+        func_name = self._focus_combo.currentData()
+        if func_name:
+            base_name = f"{base_name}_{func_name}"
+
         _FILTERS = {
             "svg": "SVG (*.svg)", "png": "PNG (*.png)", "pdf": "PDF (*.pdf)",
             "jpg": "JPEG (*.jpg)", "bmp": "BMP (*.bmp)", "webp": "WebP (*.webp)",
@@ -508,10 +574,19 @@ class GraphAnalysisView(QWidget):
         path, _ = QFileDialog.getSaveFileName(
             self,
             f"グラフを {fmt.upper()} で保存",
-            f"call_tree.{ext}",
+            f"{base_name}.{ext}",
             _FILTERS.get(fmt, "All Files (*)"),
         )
         if not path:
+            return
+
+        # For image formats: save GUIの見た目をそのまま保存
+        if fmt in ("png", "jpg", "bmp", "webp", "tif", "gif"):
+            success = self.canvas.export_png_from_scene(path)
+            if success:
+                QMessageBox.information(self, "エクスポート完了", f"保存しました:\n{path}")
+            else:
+                QMessageBox.warning(self, "エクスポート失敗", "画像の保存に失敗しました。")
             return
 
         try:
@@ -523,7 +598,7 @@ class GraphAnalysisView(QWidget):
             QMessageBox.warning(self, "エクスポート失敗", str(exc))
             return
 
-        # Fallback for image formats: render from QGraphicsScene
+        # Fallback for image formats
         if not success and fmt in ("png", "jpg", "bmp", "webp", "tif", "gif"):
             success = self.canvas.export_png_from_scene(path)
 

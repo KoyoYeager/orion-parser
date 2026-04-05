@@ -149,38 +149,49 @@ class SourceViewer(QPlainTextEdit):
         area = self._line_area
         if area.width() <= 0 or area.height() <= 0:
             return
-        # Extra guard: ensure the widget has a valid native window handle
-        if not area.isVisible() or area.window().windowHandle() is None:
-            return
 
-        painter = QPainter()
-        if not painter.begin(area):
-            return
+        # Install temporary message handler to suppress QPainter C-level warnings
+        from PySide6.QtCore import qInstallMessageHandler
 
-        painter.fillRect(event.rect(), QColor("#E8E8E8"))
+        _orig = [None]
 
-        block = self.firstVisibleBlock()
-        block_number = block.blockNumber()
-        top = round(self.blockBoundingGeometry(block).translated(self.contentOffset()).top())
-        bottom = top + round(self.blockBoundingRect(block).height())
+        def _quiet(mode, context, message):
+            if "QPainter" in message or "Paint device" in message:
+                return
+            if _orig[0] is not None:
+                _orig[0](mode, context, message)
 
-        while block.isValid() and top <= event.rect().bottom():
-            if block.isVisible() and bottom >= event.rect().top():
-                number = str(block_number + 1)
-                if self._highlighted_line is not None and block_number + 1 == self._highlighted_line:
-                    painter.setPen(QColor("#0078D4"))
-                else:
-                    painter.setPen(QColor("#6E7681"))
-                painter.drawText(
-                    0, top, self._line_area.width() - 6, self.fontMetrics().height(),
-                    Qt.AlignmentFlag.AlignRight, number,
-                )
-            block = block.next()
-            top = bottom
-            bottom = top + round(self.blockBoundingRect(block).height())
-            block_number += 1
+        _orig[0] = qInstallMessageHandler(_quiet)
+        try:
+            painter = QPainter()
+            if not painter.begin(area):
+                return
+            try:
+                painter.fillRect(event.rect(), QColor("#E8E8E8"))
+                block = self.firstVisibleBlock()
+                block_number = block.blockNumber()
+                top = round(self.blockBoundingGeometry(block).translated(self.contentOffset()).top())
+                bottom = top + round(self.blockBoundingRect(block).height())
 
-        painter.end()
+                while block.isValid() and top <= event.rect().bottom():
+                    if block.isVisible() and bottom >= event.rect().top():
+                        number = str(block_number + 1)
+                        if self._highlighted_line is not None and block_number + 1 == self._highlighted_line:
+                            painter.setPen(QColor("#0078D4"))
+                        else:
+                            painter.setPen(QColor("#6E7681"))
+                        painter.drawText(
+                            0, top, area.width() - 6, self.fontMetrics().height(),
+                            Qt.AlignmentFlag.AlignRight, number,
+                        )
+                    block = block.next()
+                    top = bottom
+                    bottom = top + round(self.blockBoundingRect(block).height())
+                    block_number += 1
+            finally:
+                painter.end()
+        finally:
+            qInstallMessageHandler(_orig[0])
 
     # --- Highlight ---
 

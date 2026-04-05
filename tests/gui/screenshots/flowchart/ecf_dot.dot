@@ -1,0 +1,37 @@
+digraph Flowchart {
+    rankdir=TB;
+    node [fontname="Consolas", fontsize=10, style=filled];
+    edge [color="#3C5A99", arrowsize=0.8];
+    "n1" [label="extract_control_flow(ast: dict[(str, Any)])", shape=box, style="rounded,filled", fillcolor="#A9DFBF"];
+    "n2" [label="result = {\"\"functions\"\": {...}}", shape=box, style="filled", fillcolor="#85C1E9"];
+    "n3" [label="ast is None", shape=diamond, style="filled", fillcolor="#F9E79F"];
+    "n6" [label="return result", shape=box, style="rounded,filled", fillcolor="#F5B7B1"];
+    "n8" [label="for node in ast.get(\"\"body\"\", [])", shape=invtrapezium, style="filled", fillcolor="#D7BDE2"];
+    "n9" [label="not isinstance(node, dict)", shape=diamond, style="filled", fillcolor="#F9E79F"];
+    "n12" [label="continue", shape=box, style="filled", fillcolor="#85C1E9"];
+    "n14" [label="ntype = node.get(\"\"type\"\", \"\"\"\")", shape=box, style="filled", fillcolor="#85C1E9"];
+    "n15" [label="ntype in (\"\"FunctionDef\"\", \"\"AsyncFunctionDef\"\")", shape=diamond, style="filled", fillcolor="#F9E79F"];
+    "n18" [label="name = node.get(\"\"name\"\", \"\"\"\")", shape=box, style="filled", fillcolor="#85C1E9"];
+    "n19" [label="cfg = _build_cfg(name, node.get(\"\"body\"\", []), node.get(\"\"docstring\"\", \"\"\"\"), func_node=node)", shape=box, style="filled", fillcolor="#85C1E9"];
+    "n20" [label="result[\"\"functions\"\"][name] = cfg", shape=box, style="filled", fillcolor="#85C1E9"];
+    "n22" [label="for node in ast.get(\"\"body\"\", [])", shape=trapezium, style="filled", fillcolor="#D7BDE2"];
+    "n23" [label="return result", shape=box, style="rounded,filled", fillcolor="#F5B7B1"];
+    "n24" [label="END", shape=box, style="rounded,filled", fillcolor="#F5B7B1"];
+    "n1" -> "n2";
+    "n2" -> "n3";
+    "n3" -> "n6" [label="True"];
+    "n3" -> "n8" [label="False"];
+    "n6" -> "n8";
+    "n8" -> "n9";
+    "n9" -> "n12" [label="True"];
+    "n9" -> "n14" [label="False"];
+    "n12" -> "n14";
+    "n14" -> "n15";
+    "n15" -> "n18" [label="True"];
+    "n15" -> "n22" [label="False"];
+    "n18" -> "n19";
+    "n19" -> "n20";
+    "n20" -> "n22";
+    "n22" -> "n23";
+    "n23" -> "n24";
+}

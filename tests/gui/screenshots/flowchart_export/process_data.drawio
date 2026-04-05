@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile><diagram name="CallTree"><mxGraphModel>
+  <root>
+    <mxCell id="0"/>
+    <mxCell id="1" parent="0"/>
+      <mxCell id="2" value="process_data(items, threshold=0)" style="rounded=1;fillColor=#A9DFBF;strokeColor=#3C3C3C;fontFamily=Consolas;" vertex="1" parent="1"><mxGeometry x="20" y="40" width="160" height="36" as="geometry"/></mxCell>
+      <mxCell id="3" value="output = []" style="rounded=1;fillColor=#85C1E9;strokeColor=#3C3C3C;fontFamily=Consolas;" vertex="1" parent="1"><mxGeometry x="20" y="100" width="160" height="36" as="geometry"/></mxCell>
+      <mxCell id="4" value="error_count = 0" style="rounded=1;fillColor=#85C1E9;strokeColor=#3C3C3C;fontFamily=Consolas;" vertex="1" parent="1"><mxGeometry x="20" y="160" width="160" height="36" as="geometry"/></mxCell>
+      <mxCell id="5" value="for item in items" style="rounded=1;fillColor=#D7BDE2;strokeColor=#3C3C3C;fontFamily=Consolas;" vertex="1" parent="1"><mxGeometry x="20" y="220" width="160" height="36" as="geometry"/></mxCell>
+      <mxCell id="6" value="not validate(item)" style="rounded=1;fillColor=#F9E79F;strokeColor=#3C3C3C;fontFamily=Consolas;" vertex="1" parent="1"><mxGeometry x="20" y="280" width="160" height="36" as="geometry"/></mxCell>
+      <mxCell id="7" value="error_count += 1" style="rounded=1;fillColor=#85C1E9;strokeColor=#3C3C3C;fontFamily=Consolas;" vertex="1" parent="1"><mxGeometry x="20" y="340" width="160" height="36" as="geometry"/></mxCell>
+      <mxCell id="8" value="continue" style="rounded=1;fillColor=#85C1E9;strokeColor=#3C3C3C;fontFamily=Consolas;" vertex="1" parent="1"><mxGeometry x="20" y="400" width="160" height="36" as="geometry"/></mxCell>
+      <mxCell id="9" value="transformed = transform(item)" style="rounded=1;fillColor=#85C1E9;strokeColor=#3C3C3C;fontFamily=Consolas;" vertex="1" parent="1"><mxGeometry x="20" y="460" width="160" height="36" as="geometry"/></mxCell>
+      <mxCell id="10" value="transformed &gt;= threshold" style="rounded=1;fillColor=#F9E79F;strokeColor=#3C3C3C;fontFamily=Consolas;" vertex="1" parent="1"><mxGeometry x="20" y="520" width="160" height="36" as="geometry"/></mxCell>
+      <mxCell id="11" value="output.append(transformed)" style="rounded=1;fillColor=#85C1E9;strokeColor=#3C3C3C;fontFamily=Consolas;" vertex="1" parent="1"><mxGeometry x="20" y="580" width="160" height="36" as="geometry"/></mxCell>
+      <mxCell id="12" value="for item in items" style="rounded=1;fillColor=#D7BDE2;strokeColor=#3C3C3C;fontFamily=Consolas;" vertex="1" parent="1"><mxGeometry x="20" y="640" width="160" height="36" as="geometry"/></mxCell>
+      <mxCell id="13" value="error_count &gt; 0" style="rounded=1;fillColor=#F9E79F;strokeColor=#3C3C3C;fontFamily=Consolas;" vertex="1" parent="1"><mxGeometry x="20" y="700" width="160" height="36" as="geometry"/></mxCell>
+      <mxCell id="14" value="print("f"Skipped {error_...")" style="rounded=1;fillColor=#F5CBA7;strokeColor=#3C3C3C;fontFamily=Consolas;" vertex="1" parent="1"><mxGeometry x="20" y="760" width="160" height="36" as="geometry"/></mxCell>
+      <mxCell id="15" value="return output" style="rounded=1;fillColor=#F5B7B1;strokeColor=#3C3C3C;fontFamily=Consolas;" vertex="1" parent="1"><mxGeometry x="20" y="820" width="160" height="36" as="geometry"/></mxCell>
+      <mxCell id="16" value="END" style="rounded=1;fillColor=#F5B7B1;strokeColor=#3C3C3C;fontFamily=Consolas;" vertex="1" parent="1"><mxGeometry x="20" y="880" width="160" height="36" as="geometry"/></mxCell>
+      <mxCell id="17" edge="1" source="2" target="3" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+      <mxCell id="18" edge="1" source="3" target="4" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+      <mxCell id="19" edge="1" source="4" target="5" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+      <mxCell id="20" edge="1" source="5" target="6" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+      <mxCell id="21" edge="1" source="6" target="7" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+      <mxCell id="22" edge="1" source="6" target="9" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+      <mxCell id="23" edge="1" source="7" target="8" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+      <mxCell id="24" edge="1" source="8" target="9" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+      <mxCell id="25" edge="1" source="9" target="10" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+      <mxCell id="26" edge="1" source="10" target="11" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+      <mxCell id="27" edge="1" source="10" target="12" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+      <mxCell id="28" edge="1" source="11" target="12" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+      <mxCell id="29" edge="1" source="12" target="13" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+      <mxCell id="30" edge="1" source="13" target="14" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+      <mxCell id="31" edge="1" source="13" target="15" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+      <mxCell id="32" edge="1" source="14" target="15" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+      <mxCell id="33" edge="1" source="15" target="16" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+  </root>
+</mxGraphModel></diagram></mxfile>

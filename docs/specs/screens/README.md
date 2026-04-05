@@ -13,8 +13,12 @@ MainWindow
 └── グラフ解析モード (Ctrl+2)
     ├── ツールバー (レイアウト / 表示モード / エクスポート19形式)
     ├── 絞り込み (ファイル → 関数 → 表示範囲)
-    ├── グラフ種別セレクタ (コールツリー / データフロー)
-    ├── グラフキャンバス (列ベース階層 + L字接続線)
+    ├── グラフ種別セレクタ
+    │   ├── コールツリー (列ベース階層 + L字接続線)
+    │   ├── データフロー
+    │   ├── フローチャート (JIS準拠図形)
+    │   └── クラス図 (UML風ボックス)
+    ├── グラフキャンバス
     └── 詳細パネル
 ```
 
@@ -25,3 +29,4 @@ MainWindow
 | メインウィンドウ | [main-window.md](main-window.md) |
 | コード解析モード | [code-analysis.md](code-analysis.md) |
 | グラフ解析モード | [graph-analysis.md](graph-analysis.md) |
+| フローチャート仕様 | [flowchart-spec.md](flowchart-spec.md) |

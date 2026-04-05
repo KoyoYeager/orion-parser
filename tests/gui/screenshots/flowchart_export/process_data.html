@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja"><head><meta charset="UTF-8">
+<title>OrionParser - Call Tree</title>
+<style>
+body { font-family: Consolas, monospace; margin: 20px; background: #FAFAFA; }
+h1 { color: #0078D4; font-size: 18px; }
+.canvas { position: relative; min-height: 870px; border: 1px solid #DDD; background: #FFF; padding: 10px; }
+.col-header { position: absolute; top: 10px; font-weight: bold; color: #0078D4; font-size: 13px; }
+.node { position: absolute; padding: 6px 14px; border: 1.5px solid #3C3C3C;
+         border-radius: 5px; font-size: 12px; color: #1E1E1E; white-space: nowrap; }
+.node:hover { box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
+.badge { background: #E74C3C; color: #FFF; border-radius: 8px; padding: 1px 6px; font-size: 10px; margin-left: 4px; }
+.legend { margin-top: 12px; font-size: 11px; color: #666; }
+.legend span { display: inline-block; width: 14px; height: 14px; border-radius: 3px; vertical-align: middle; margin-right: 4px; border: 1px solid #999; }
+</style></head><body>
+<h1>OrionParser - Call Tree</h1>
+<p class="legend">
+<span style="background:#B3D9FF;"></span>階層0
+<span style="background:#85C1E9;"></span>階層1
+<span style="background:#82E0AA;"></span>階層2
+<span style="background:#F9E79F;"></span>階層3
+<span style="background:#F5CBA7;"></span>階層4
+<span style="background:#F1948A;"></span>階層5
+<span style="background:#D7BDE2;"></span>階層6
+<span style="background:#76D7C4;"></span>階層7
+<span style="background:#F7DC6F;"></span>階層8
+<span style="background:#E59866;"></span>階層9
+<span style="background:#7FB3D8;"></span>階層10+
+| <b style="border:2px solid #E67E22;padding:0 4px;">太枠</b> = 複数箇所から呼出
+</p>
+<div class="canvas"><div class="col-header" style="left:20px;">&#x968E;&#x5C64; 1</div>
+<div class="node" style="background:#A9DFBF;top:60px;left:20px;">process_data(items, threshold=0)</div>
+<div class="node" style="background:#85C1E9;top:110px;left:20px;">output = []</div>
+<div class="node" style="background:#85C1E9;top:160px;left:20px;">error_count = 0</div>
+<div class="node" style="background:#D7BDE2;top:210px;left:20px;">for item in items</div>
+<div class="node" style="background:#F9E79F;top:260px;left:20px;">not validate(item)</div>
+<div class="node" style="background:#85C1E9;top:310px;left:20px;">error_count += 1</div>
+<div class="node" style="background:#85C1E9;top:360px;left:20px;">continue</div>
+<div class="node" style="background:#85C1E9;top:410px;left:20px;">transformed = transform(item)</div>
+<div class="node" style="background:#F9E79F;top:460px;left:20px;">transformed &gt;= threshold</div>
+<div class="node" style="background:#85C1E9;top:510px;left:20px;">output.append(transformed)</div>
+<div class="node" style="background:#D7BDE2;top:560px;left:20px;">for item in items</div>
+<div class="node" style="background:#F9E79F;top:610px;left:20px;">error_count &gt; 0</div>
+<div class="node" style="background:#F5CBA7;top:660px;left:20px;">print("f"Skipped {error_...")</div>
+<div class="node" style="background:#F5B7B1;top:710px;left:20px;">return output</div>
+<div class="node" style="background:#F5B7B1;top:760px;left:20px;">END</div>
+</div>
+</body></html>

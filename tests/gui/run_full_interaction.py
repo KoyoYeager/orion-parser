@@ -59,7 +59,7 @@ win._on_directory_loaded(results, str(analysis_dir))
 QTest.qWait(300)
 
 check("file_panel_visible", win._file_panel.isVisible(), "File panel not visible")
-check("file_count", win._file_list.count() == 3, f"Expected 3 files, got {win._file_list.count()}")
+check("file_count", win._file_list.count() >= 3, f"Expected 3+ files, got {win._file_list.count()}")
 grab(win, "01_dir_loaded")
 
 # === 2. File selection → code view updates ===

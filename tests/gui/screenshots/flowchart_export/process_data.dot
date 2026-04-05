@@ -1,0 +1,37 @@
+digraph Flowchart {
+    rankdir=TB;
+    node [fontname="Consolas", fontsize=10, style=filled];
+    edge [color="#3C5A99", arrowsize=0.8];
+    "n1" [label="process_data(items, threshold=0)", shape=oval, fillcolor="#A9DFBF"];
+    "n2" [label="output = []", shape=box, fillcolor="#85C1E9"];
+    "n3" [label="error_count = 0", shape=box, fillcolor="#85C1E9"];
+    "n4" [label="for item in items", shape=trapezium, fillcolor="#D7BDE2"];
+    "n5" [label="not validate(item)", shape=diamond, fillcolor="#F9E79F"];
+    "n8" [label="error_count += 1", shape=box, fillcolor="#85C1E9"];
+    "n9" [label="continue", shape=box, fillcolor="#85C1E9"];
+    "n11" [label="transformed = transform(item)", shape=box, fillcolor="#85C1E9"];
+    "n12" [label="transformed >= threshold", shape=diamond, fillcolor="#F9E79F"];
+    "n15" [label="output.append(transformed)", shape=box, fillcolor="#85C1E9"];
+    "n17" [label="for item in items", shape=invtrapezium, fillcolor="#D7BDE2"];
+    "n18" [label="error_count > 0", shape=diamond, fillcolor="#F9E79F"];
+    "n21" [label="print(\"f\"Skipped {error_...\")", shape=parallelogram, fillcolor="#F5CBA7"];
+    "n23" [label="return output", shape=oval, fillcolor="#F5B7B1"];
+    "n24" [label="END", shape=oval, fillcolor="#F5B7B1"];
+    "n1" -> "n2";
+    "n2" -> "n3";
+    "n3" -> "n4";
+    "n4" -> "n5";
+    "n5" -> "n8" [label="True"];
+    "n5" -> "n11" [label="False"];
+    "n8" -> "n9";
+    "n9" -> "n11";
+    "n11" -> "n12";
+    "n12" -> "n15" [label="True"];
+    "n12" -> "n17" [label="False"];
+    "n15" -> "n17";
+    "n17" -> "n18";
+    "n18" -> "n21" [label="True"];
+    "n18" -> "n23" [label="False"];
+    "n21" -> "n23";
+    "n23" -> "n24";
+}

@@ -303,9 +303,16 @@ class MainWindow(QMainWindow):
     def _show_file(self, result: object, source: str, path: str) -> None:
         """Display a single file's analysis. In directory mode, graph keeps cross-file view."""
         self._code_view.set_data(result, source)
-        # Only update graph view if NOT in directory mode (directory graph is cross-file)
         if not self._viewmodel.is_directory:
             self._graph_view.set_data(result, source)
+        else:
+            # Update flowchart's current result for per-file display
+            self._graph_view._current_result = result
+            from orionparser.gui.panels.graph_panels.flowchart_panel import FlowchartPanel
+            if isinstance(self._graph_view._active_panel(), FlowchartPanel):
+                self._graph_view._build_full_graph()
+                self._graph_view._update_focus_list()
+                self._graph_view._render_current()
         self._action_reload.setEnabled(True)
 
         name = Path(path).name

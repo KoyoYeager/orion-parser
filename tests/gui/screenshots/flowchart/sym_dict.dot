@@ -1,0 +1,17 @@
+digraph Flowchart {
+    rankdir=TB;
+    node [fontname="Consolas", fontsize=10, style=filled];
+    edge [color="#3C5A99", arrowsize=0.8];
+    "n1" [label="_sym_dict(s: Symbol)", shape=box, style="rounded,filled", fillcolor="#A9DFBF"];
+    "n2" [label="d = {\"\"name\"\": s.name, \"\"kind\"\": s.kind, \"\"scope\"\": s.scope, \"\"line\"\": s.line}", shape=box, style="filled", fillcolor="#85C1E9"];
+    "n3" [label="s.docstring is not None", shape=diamond, style="filled", fillcolor="#F9E79F"];
+    "n6" [label="d[\"\"docstring\"\"] = s.docstring", shape=box, style="filled", fillcolor="#85C1E9"];
+    "n8" [label="return d", shape=box, style="rounded,filled", fillcolor="#F5B7B1"];
+    "n9" [label="END", shape=box, style="rounded,filled", fillcolor="#F5B7B1"];
+    "n1" -> "n2";
+    "n2" -> "n3";
+    "n3" -> "n6" [label="True"];
+    "n3" -> "n8" [label="False"];
+    "n6" -> "n8";
+    "n8" -> "n9";
+}

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<graph>
+  <nodes>
+    <node id="n1" label="process_data(items, threshold=0)" depth="0" call_count="0" color="#A9DFBF"/>
+    <node id="n2" label="output = []" depth="0" call_count="0" color="#85C1E9"/>
+    <node id="n3" label="error_count = 0" depth="0" call_count="0" color="#85C1E9"/>
+    <node id="n4" label="for item in items" depth="0" call_count="0" color="#D7BDE2"/>
+    <node id="n5" label="not validate(item)" depth="0" call_count="0" color="#F9E79F"/>
+    <node id="n8" label="error_count += 1" depth="0" call_count="0" color="#85C1E9"/>
+    <node id="n9" label="continue" depth="0" call_count="0" color="#85C1E9"/>
+    <node id="n11" label="transformed = transform(item)" depth="0" call_count="0" color="#85C1E9"/>
+    <node id="n12" label="transformed &gt;= threshold" depth="0" call_count="0" color="#F9E79F"/>
+    <node id="n15" label="output.append(transformed)" depth="0" call_count="0" color="#85C1E9"/>
+    <node id="n17" label="for item in items" depth="0" call_count="0" color="#D7BDE2"/>
+    <node id="n18" label="error_count &gt; 0" depth="0" call_count="0" color="#F9E79F"/>
+    <node id="n21" label="print("f"Skipped {error_...")" depth="0" call_count="0" color="#F5CBA7"/>
+    <node id="n23" label="return output" depth="0" call_count="0" color="#F5B7B1"/>
+    <node id="n24" label="END" depth="0" call_count="0" color="#F5B7B1"/>
+  </nodes>
+  <edges>
+    <edge source="n1" target="n2"/>
+    <edge source="n2" target="n3"/>
+    <edge source="n3" target="n4"/>
+    <edge source="n4" target="n5"/>
+    <edge source="n5" target="n8"/>
+    <edge source="n5" target="n11"/>
+    <edge source="n8" target="n9"/>
+    <edge source="n9" target="n11"/>
+    <edge source="n11" target="n12"/>
+    <edge source="n12" target="n15"/>
+    <edge source="n12" target="n17"/>
+    <edge source="n15" target="n17"/>
+    <edge source="n17" target="n18"/>
+    <edge source="n18" target="n21"/>
+    <edge source="n18" target="n23"/>
+    <edge source="n21" target="n23"/>
+    <edge source="n23" target="n24"/>
+  </edges>
+</graph>

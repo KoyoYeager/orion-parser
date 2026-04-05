@@ -82,6 +82,129 @@ class _NodeItem(QGraphicsRectItem):
         self._text_item.setPos(-tr.width() / 2, -tr.height() / 2)
 
 
+class _FlowchartNodeItem(QGraphicsRectItem):
+    """Flowchart node with JIS-standard shapes."""
+
+    def __init__(self, node_id: str, label: str, x: float, y: float,
+                 color: str, w: float, h: float, shape_type: str) -> None:
+        self.node_id = node_id
+        self._width = w
+        self._height = h
+        self._shape_type = shape_type
+
+        # Use invisible rect as bounding box
+        super().__init__(-w / 2, -h / 2, w, h)
+        self.setPos(x, y)
+        self.setPen(QPen(Qt.PenStyle.NoPen))
+        self.setBrush(QBrush(Qt.GlobalColor.transparent))
+        self.setFlag(QGraphicsItem.GraphicsItemFlag.ItemIsSelectable)
+        self.setAcceptHoverEvents(True)
+
+        # Draw actual shape as child polygon/rect
+        pen = QPen(QColor("#3C3C3C"), 1.5)
+        brush = QBrush(QColor(color))
+
+        if shape_type == "rounded":
+            from PySide6.QtWidgets import QGraphicsRectItem as QGRI
+            shape = QGRI(-w / 2, -h / 2, w, h, self)
+            shape.setPen(pen)
+            shape.setBrush(brush)
+            # Simulate rounded corners with cosmetic approach
+            shape.setData(0, "rounded")
+
+        elif shape_type == "diamond":
+            pts = QPolygonF([
+                QPointF(0, -h / 2),       # top
+                QPointF(w / 2, 0),         # right
+                QPointF(0, h / 2),         # bottom
+                QPointF(-w / 2, 0),        # left
+            ])
+            from PySide6.QtWidgets import QGraphicsPolygonItem
+            shape = QGraphicsPolygonItem(pts, self)
+            shape.setPen(pen)
+            shape.setBrush(brush)
+
+        elif shape_type == "trap_top":
+            # Trapezoid: top wider than bottom (ループ開始)
+            inset = 15
+            pts = QPolygonF([
+                QPointF(-w / 2, -h / 2),           # top-left
+                QPointF(w / 2, -h / 2),             # top-right
+                QPointF(w / 2 - inset, h / 2),      # bottom-right
+                QPointF(-w / 2 + inset, h / 2),     # bottom-left
+            ])
+            from PySide6.QtWidgets import QGraphicsPolygonItem
+            shape = QGraphicsPolygonItem(pts, self)
+            shape.setPen(pen)
+            shape.setBrush(brush)
+
+        elif shape_type == "trap_bottom":
+            # Trapezoid: bottom wider than top (ループ終了)
+            inset = 15
+            pts = QPolygonF([
+                QPointF(-w / 2 + inset, -h / 2),   # top-left
+                QPointF(w / 2 - inset, -h / 2),     # top-right
+                QPointF(w / 2, h / 2),               # bottom-right
+                QPointF(-w / 2, h / 2),              # bottom-left
+            ])
+            from PySide6.QtWidgets import QGraphicsPolygonItem
+            shape = QGraphicsPolygonItem(pts, self)
+            shape.setPen(pen)
+            shape.setBrush(brush)
+
+        elif shape_type == "parallelogram":
+            # Parallelogram (入出力)
+            skew = 15
+            pts = QPolygonF([
+                QPointF(-w / 2 + skew, -h / 2),    # top-left
+                QPointF(w / 2, -h / 2),              # top-right
+                QPointF(w / 2 - skew, h / 2),        # bottom-right
+                QPointF(-w / 2, h / 2),              # bottom-left
+            ])
+            from PySide6.QtWidgets import QGraphicsPolygonItem
+            shape = QGraphicsPolygonItem(pts, self)
+            shape.setPen(pen)
+            shape.setBrush(brush)
+
+        else:  # rect
+            from PySide6.QtWidgets import QGraphicsRectItem as QGRI
+            shape = QGRI(-w / 2, -h / 2, w, h, self)
+            shape.setPen(pen)
+            shape.setBrush(brush)
+
+        # Label text
+        font = QFont("Consolas", 8)
+        text = QGraphicsSimpleTextItem(label, self)
+        text.setFont(font)
+        text.setBrush(QBrush(QColor("#1E1E1E")))
+        tr = text.boundingRect()
+        text.setPos(-tr.width() / 2, -tr.height() / 2)
+
+
+class _ClassBoxItem(QGraphicsRectItem):
+    """UML-style class box with sections for name, attributes, methods."""
+
+    def __init__(self, node_id: str, label: str, x: float, y: float,
+                 color: str, w: float, h: float) -> None:
+        self.node_id = node_id
+        self._width = w
+        self._height = h
+        super().__init__(-w / 2, -h / 2, w, h)
+        self.setPos(x, y)
+        self.setBrush(QBrush(QColor(color)))
+        self.setPen(QPen(QColor("#3C3C3C"), 1.5))
+        self.setFlag(QGraphicsItem.GraphicsItemFlag.ItemIsSelectable)
+        self.setAcceptHoverEvents(True)
+
+        # Render label as multi-line text
+        font = QFont("Consolas", 8)
+        text = QGraphicsSimpleTextItem(label, self)
+        text.setFont(font)
+        text.setBrush(QBrush(QColor("#1E1E1E")))
+        tr = text.boundingRect()
+        text.setPos(-tr.width() / 2, -tr.height() / 2)
+
+
 class GraphCanvas(QGraphicsView):
     """Graph visualization with column-based hierarchy layout."""
 
@@ -115,7 +238,11 @@ class GraphCanvas(QGraphicsView):
         if len(graph.nodes) == 0:
             return
 
-        if layout == "tree" or layout == "dot":
+        if layout == "flowchart":
+            self._render_flowchart_layout(graph)
+        elif layout == "class_diagram":
+            self._render_class_diagram(graph)
+        elif layout == "tree" or layout == "dot":
             self._render_tree_layout(graph)
         else:
             pos = self._compute_layout(graph, layout)
@@ -195,6 +322,198 @@ class GraphCanvas(QGraphicsView):
         # Draw L-shaped connectors
         for u, v in graph.edges:
             self._add_l_shaped_edge(u, v)
+
+    # --- Class diagram layout ---
+
+    def _render_class_diagram(self, graph: Any) -> None:
+        """Render UML-style class boxes."""
+        node_order = graph.graph.get("node_order", list(graph.nodes))
+        if not node_order:
+            return
+
+        x_offset = 50.0
+        y_offset = 30.0
+        x_gap = 40.0
+        cur_x = x_offset
+
+        for nid in node_order:
+            nd = graph.nodes[nid]
+            label = nd.get("label", str(nid))
+            color = self._node_colors.get(nid, "#85C1E9")
+            tooltip = nd.get("docstring", "")
+
+            # Calculate box dimensions from label
+            lines = label.split("\n")
+            max_line_len = max((len(l) for l in lines), default=10)
+            box_w = max(200, max_line_len * 8 + 20)
+            box_h = max(80, len(lines) * 16 + 20)
+
+            item = _ClassBoxItem(nid, label, cur_x + box_w / 2, y_offset + box_h / 2,
+                                 color, box_w, box_h)
+            if tooltip:
+                item.setToolTip(tooltip)
+            self._scene.addItem(item)
+            self._node_items[nid] = item
+            cur_x += box_w + x_gap
+
+        # Draw inheritance arrows
+        for u, v in graph.edges:
+            if u in self._node_items and v in self._node_items:
+                src = self._node_items[u]
+                dst = self._node_items[v]
+                sx, sy = src.pos().x(), src.pos().y() - src._height / 2
+                ex, ey = dst.pos().x(), dst.pos().y() + dst._height / 2
+                path = QPainterPath(QPointF(sx, sy))
+                mid_y = (sy + ey) / 2
+                path.lineTo(QPointF(sx, mid_y))
+                path.lineTo(QPointF(ex, mid_y))
+                path.lineTo(QPointF(ex, ey))
+                edge_item = QGraphicsPathItem(path)
+                edge_item.setPen(QPen(QColor("#3C5A99"), 1.5))
+                self._scene.addItem(edge_item)
+                # Hollow triangle arrow (inheritance)
+                polygon = QPolygonF([
+                    QPointF(ex, ey),
+                    QPointF(ex - 8, ey + 12),
+                    QPointF(ex + 8, ey + 12),
+                ])
+                self._scene.addPolygon(polygon, QPen(QColor("#3C5A99"), 1.5), QBrush(QColor("#FFFFFF")))
+
+    # --- Flowchart layout (column-aware, Yes=down, No=right) ---
+
+    _FC_ROW_H = 65.0
+    _FC_NODE_H = 36.0
+    _FC_MIN_W = 140.0
+
+    def _render_flowchart_layout(self, graph: Any) -> None:
+        """Render flowchart: all nodes in column 0, No branches shown as side paths."""
+        node_order = graph.graph.get("node_order", list(graph.nodes))
+        if not node_order:
+            return
+
+        H = self._FC_ROW_H
+        NH = self._FC_NODE_H
+        MIN_W = self._FC_MIN_W
+
+        # All nodes go in a single column, top-to-bottom
+        CENTER_X = 300.0
+        cur_row = 0
+
+        for nid in node_order:
+            nd = graph.nodes[nid]
+            ntype = nd.get("type", "process")
+            label = nd.get("label", str(nid))
+            if not label and ntype not in ("start", "end"):
+                continue
+
+            # Auto-size width based on label length
+            char_w = 8
+            nw = max(MIN_W, len(label) * char_w + 30)
+            if ntype == "diamond":
+                nw = max(nw, MIN_W + 40)  # diamonds need more space
+
+            y = cur_row * H + 30
+            color = self._node_colors.get(nid, "#85C1E9")
+            tooltip = nd.get("tooltip", label)
+
+            shape_map = {
+                "start": "rounded", "end": "rounded", "return": "rounded",
+                "decision": "diamond",
+                "loop_start": "trap_bottom",  # ループ開始: 下が広い (入口が下)
+                "loop_end": "trap_top",       # ループ終了: 上が広い (出口が上)
+                "io": "parallelogram",
+            }
+            shape = shape_map.get(ntype, "rect")
+            item = _FlowchartNodeItem(nid, label, CENTER_X, y, color, nw, NH, shape)
+            if tooltip:
+                item.setToolTip(tooltip)
+            self._scene.addItem(item)
+            self._node_items[nid] = item
+            cur_row += 1
+
+        # Draw edges
+        for u, v in graph.edges:
+            if u not in self._node_items or v not in self._node_items:
+                continue
+            elabel = graph.edges[u, v].get("label", "")
+            self._add_fc_edge(u, v, elabel)
+
+    def _add_fc_edge(self, u: str, v: str, label: str = "") -> None:
+        """Draw flowchart edge. Yes=down, No=right then down."""
+        src = self._node_items[u]
+        dst = self._node_items[v]
+        src_type = getattr(src, "_shape_type", "")
+
+        sx, sy = src.pos().x(), src.pos().y()
+        ex, ey = dst.pos().x(), dst.pos().y()
+
+        pen = QPen(QColor("#3C5A99"), 1.5)
+
+        is_no = label in ("False", "NO")
+
+        if is_no and src_type == "diamond":
+            # NO: exit right from diamond, go far right, then down to target
+            start_x = sx + src._width / 2
+            start_y = sy
+            # Go right beyond the widest node, then down
+            right_x = sx + src._width / 2 + 60
+            end_y = ey - dst._height / 2
+
+            path = QPainterPath(QPointF(start_x, start_y))
+            path.lineTo(QPointF(right_x, start_y))  # horizontal right (clear of diamond)
+            path.lineTo(QPointF(right_x, end_y))     # down
+            path.lineTo(QPointF(ex, end_y))           # back to center
+
+            arr_x, arr_y = ex, end_y
+            arrow = QPolygonF([QPointF(arr_x, arr_y),
+                               QPointF(arr_x + 8, arr_y - 5),
+                               QPointF(arr_x + 8, arr_y + 5)])
+        elif ex < sx - 10:
+            # Merge back left: go down from src, then left, then down to target
+            start_x = sx
+            start_y = sy + src._height / 2
+            merge_y = ey - dst._height / 2 - 15
+            path = QPainterPath(QPointF(start_x, start_y))
+            path.lineTo(QPointF(start_x, merge_y))  # down
+            path.lineTo(QPointF(ex, merge_y))  # left
+            path.lineTo(QPointF(ex, ey - dst._height / 2))  # down to target
+
+            arr_x, arr_y = ex, ey - dst._height / 2
+            arrow = QPolygonF([QPointF(arr_x, arr_y),
+                               QPointF(arr_x - 5, arr_y - 8),
+                               QPointF(arr_x + 5, arr_y - 8)])
+        else:
+            # Normal: straight down (or slight horizontal adjust)
+            start_x = sx
+            start_y = sy + src._height / 2
+            end_y = ey - dst._height / 2
+
+            path = QPainterPath(QPointF(start_x, start_y))
+            if abs(start_x - ex) > 5:
+                mid_y = (start_y + end_y) / 2
+                path.lineTo(QPointF(start_x, mid_y))
+                path.lineTo(QPointF(ex, mid_y))
+            path.lineTo(QPointF(ex, end_y))
+
+            arr_x, arr_y = ex, end_y
+            arrow = QPolygonF([QPointF(arr_x, arr_y),
+                               QPointF(arr_x - 5, arr_y - 8),
+                               QPointF(arr_x + 5, arr_y - 8)])
+
+        edge_item = QGraphicsPathItem(path)
+        edge_item.setPen(pen)
+        self._scene.addItem(edge_item)
+        self._scene.addPolygon(arrow, QPen(Qt.PenStyle.NoPen), QBrush(QColor("#3C5A99")))
+
+        # Label
+        if label:
+            lbl_text = "YES" if label == "True" else ("NO" if label == "False" else label)
+            lbl = self._scene.addSimpleText(lbl_text, QFont("Yu Gothic UI", 8, QFont.Weight.Bold))
+            lbl.setBrush(QBrush(QColor("#3C5A99")))
+            if is_no and src_type == "diamond":
+                lbl.setPos(sx + src._width / 2 + 65, sy - 18)
+            else:
+                lbl.setPos(sx + 5, sy + src._height / 2 + 1)
 
     def _get_label(self, graph: Any, node_id: str) -> str:
         data = graph.nodes.get(node_id, {})
@@ -286,18 +605,62 @@ class GraphCanvas(QGraphicsView):
     def to_dot(self) -> str:
         if not HAS_NETWORKX or self._graph is None:
             return ""
+
+        # Detect if this is a flowchart graph
+        is_flowchart = any(
+            self._graph.nodes[n].get("type") in ("decision", "loop_start", "loop_end", "io")
+            for n in self._graph.nodes
+        )
+
+        if is_flowchart:
+            return self._to_dot_flowchart()
+        return self._to_dot_calltree()
+
+    def _to_dot_calltree(self) -> str:
         lines = ['digraph CallTree {']
-        lines = lines + ['    rankdir=LR;']  # left-to-right for column hierarchy
+        lines = lines + ['    rankdir=LR;']
         lines = lines + ['    node [shape=box, style="rounded,filled", fontname="Consolas", fontsize=10];']
         lines = lines + ['    edge [color="#555555", arrowsize=0.8];']
         for node_id in self._graph.nodes:
             label = self._get_label(self._graph, node_id).replace('"', '\\"')
             color = self._node_colors.get(node_id, "#85C1E9")
-            lines = lines + [f'    "{label}" [label="{label}", fillcolor="{color}"];']
+            lines = lines + [f'    "{node_id}" [label="{label}", fillcolor="{color}"];']
         for u, v in self._graph.edges:
-            ul = self._get_label(self._graph, u).replace('"', '\\"')
-            vl = self._get_label(self._graph, v).replace('"', '\\"')
-            lines = lines + [f'    "{ul}" -> "{vl}";']
+            lines = lines + [f'    "{u}" -> "{v}";']
+        lines = lines + ['}']
+        return "\n".join(lines)
+
+    def _to_dot_flowchart(self) -> str:
+        """Generate Graphviz DOT with JIS-appropriate shapes."""
+        _SHAPE_MAP = {
+            "start": "box", "end": "box", "return": "box",
+            "decision": "diamond",
+            "loop_start": "invtrapezium", "loop_end": "trapezium",
+            "io": "parallelogram",
+            "process": "box",
+        }
+        _STYLE_MAP = {
+            "start": "rounded,filled", "end": "rounded,filled", "return": "rounded,filled",
+        }
+        lines = ['digraph Flowchart {']
+        lines = lines + ['    rankdir=TB;']
+        lines = lines + ['    node [fontname="Consolas", fontsize=10, style=filled];']
+        lines = lines + ['    edge [color="#3C5A99", arrowsize=0.8];']
+
+        for nid in self._graph.nodes:
+            nd = self._graph.nodes[nid]
+            ntype = nd.get("type", "process")
+            label = nd.get("label", str(nid)).replace('"', '\\"')
+            color = self._node_colors.get(nid, "#85C1E9")
+            shape = _SHAPE_MAP.get(ntype, "box")
+            style = _STYLE_MAP.get(ntype, "filled")
+            lines = lines + [f'    "{nid}" [label="{label}", shape={shape}, style="{style}", fillcolor="{color}"];']
+
+        for u, v in self._graph.edges:
+            elabel = self._graph.edges[u, v].get("label", "")
+            lbl_attr = f' [label="{elabel}"]' if elabel else ""
+            lines = lines + [f'    "{u}" -> "{v}"{lbl_attr};']
+
         lines = lines + ['}']
         return "\n".join(lines)
 
@@ -704,8 +1067,13 @@ h1 {{ color: #0078D4; font-size: 18px; }}
     # --- Events ---
 
     def wheelEvent(self, event) -> None:
-        factor = 1.15 if event.angleDelta().y() > 0 else 1 / 1.15
-        self.scale(factor, factor)
+        if event.modifiers() & Qt.KeyboardModifier.ControlModifier:
+            # Ctrl+スクロール: ズーム
+            factor = 1.15 if event.angleDelta().y() > 0 else 1 / 1.15
+            self.scale(factor, factor)
+        else:
+            # 通常スクロール: 上下移動
+            super().wheelEvent(event)
 
     def _on_selection_changed(self) -> None:
         for item in self._scene.selectedItems():

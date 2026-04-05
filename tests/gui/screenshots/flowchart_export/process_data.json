@@ -1,0 +1,179 @@
+{
+  "nodes": [
+    {
+      "id": "n1",
+      "label": "process_data(items, threshold=0)",
+      "depth": 0,
+      "call_count": 0,
+      "color": "#A9DFBF"
+    },
+    {
+      "id": "n2",
+      "label": "output = []",
+      "depth": 0,
+      "call_count": 0,
+      "color": "#85C1E9"
+    },
+    {
+      "id": "n3",
+      "label": "error_count = 0",
+      "depth": 0,
+      "call_count": 0,
+      "color": "#85C1E9"
+    },
+    {
+      "id": "n4",
+      "label": "for item in items",
+      "depth": 0,
+      "call_count": 0,
+      "color": "#D7BDE2"
+    },
+    {
+      "id": "n5",
+      "label": "not validate(item)",
+      "depth": 0,
+      "call_count": 0,
+      "color": "#F9E79F"
+    },
+    {
+      "id": "n8",
+      "label": "error_count += 1",
+      "depth": 0,
+      "call_count": 0,
+      "color": "#85C1E9"
+    },
+    {
+      "id": "n9",
+      "label": "continue",
+      "depth": 0,
+      "call_count": 0,
+      "color": "#85C1E9"
+    },
+    {
+      "id": "n11",
+      "label": "transformed = transform(item)",
+      "depth": 0,
+      "call_count": 0,
+      "color": "#85C1E9"
+    },
+    {
+      "id": "n12",
+      "label": "transformed >= threshold",
+      "depth": 0,
+      "call_count": 0,
+      "color": "#F9E79F"
+    },
+    {
+      "id": "n15",
+      "label": "output.append(transformed)",
+      "depth": 0,
+      "call_count": 0,
+      "color": "#85C1E9"
+    },
+    {
+      "id": "n17",
+      "label": "for item in items",
+      "depth": 0,
+      "call_count": 0,
+      "color": "#D7BDE2"
+    },
+    {
+      "id": "n18",
+      "label": "error_count > 0",
+      "depth": 0,
+      "call_count": 0,
+      "color": "#F9E79F"
+    },
+    {
+      "id": "n21",
+      "label": "print(\"f\"Skipped {error_...\")",
+      "depth": 0,
+      "call_count": 0,
+      "color": "#F5CBA7"
+    },
+    {
+      "id": "n23",
+      "label": "return output",
+      "depth": 0,
+      "call_count": 0,
+      "color": "#F5B7B1"
+    },
+    {
+      "id": "n24",
+      "label": "END",
+      "depth": 0,
+      "call_count": 0,
+      "color": "#F5B7B1"
+    }
+  ],
+  "edges": [
+    {
+      "source": "n1",
+      "target": "n2"
+    },
+    {
+      "source": "n2",
+      "target": "n3"
+    },
+    {
+      "source": "n3",
+      "target": "n4"
+    },
+    {
+      "source": "n4",
+      "target": "n5"
+    },
+    {
+      "source": "n5",
+      "target": "n8"
+    },
+    {
+      "source": "n5",
+      "target": "n11"
+    },
+    {
+      "source": "n8",
+      "target": "n9"
+    },
+    {
+      "source": "n9",
+      "target": "n11"
+    },
+    {
+      "source": "n11",
+      "target": "n12"
+    },
+    {
+      "source": "n12",
+      "target": "n15"
+    },
+    {
+      "source": "n12",
+      "target": "n17"
+    },
+    {
+      "source": "n15",
+      "target": "n17"
+    },
+    {
+      "source": "n17",
+      "target": "n18"
+    },
+    {
+      "source": "n18",
+      "target": "n21"
+    },
+    {
+      "source": "n18",
+      "target": "n23"
+    },
+    {
+      "source": "n21",
+      "target": "n23"
+    },
+    {
+      "source": "n23",
+      "target": "n24"
+    }
+  ]
+}
