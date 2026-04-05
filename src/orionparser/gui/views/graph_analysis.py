@@ -24,6 +24,7 @@ from orionparser.gui.panels.graph_panels.call_tree_panel import CallTreePanel
 from orionparser.gui.panels.graph_panels.data_flow_panel import DataFlowPanel
 from orionparser.gui.panels.graph_panels.flowchart_panel import FlowchartPanel
 from orionparser.gui.panels.graph_panels.class_diagram_panel import ClassDiagramPanel
+from orionparser.gui.panels.graph_panels.dfd_panel import DFDPanel
 from orionparser.gui.widgets.graph_canvas import GraphCanvas
 
 
@@ -184,13 +185,13 @@ class GraphAnalysisView(QWidget):
         self._selector.setMaximumWidth(100)
         self._selector.setMinimumWidth(80)
 
-        self._graph_panels: list[BaseGraphPanel] = [CallTreePanel(), DataFlowPanel(), FlowchartPanel(), ClassDiagramPanel()]
+        self._graph_panels: list[BaseGraphPanel] = [CallTreePanel(), DataFlowPanel(), FlowchartPanel(), ClassDiagramPanel(), DFDPanel()]
         for gp in self._graph_panels:
             item = QListWidgetItem(gp.graph_name)
             item.setData(Qt.ItemDataRole.UserRole, gp.graph_id)
             self._selector.addItem(item)
 
-        for name in ["DFD", "依存関係", "メトリクス", "セキュリティ"]:
+        for name in ["依存関係", "メトリクス", "セキュリティ"]:
             item = QListWidgetItem(name)
             item.setFlags(item.flags() & ~Qt.ItemFlag.ItemIsEnabled)
             item.setToolTip("今後のバージョンで追加予定")
@@ -271,8 +272,8 @@ class GraphAnalysisView(QWidget):
             self._full_graph = None
             return
 
-        # Flowchart: always uses single-file (current selection)
-        if isinstance(panel, FlowchartPanel):
+        # Flowchart/DFD: always uses single-file (current selection)
+        if isinstance(panel, (FlowchartPanel, DFDPanel)):
             if self._current_result is not None:
                 self._full_graph = panel.build_graph(self._current_result)
             elif self._dir_results:
@@ -295,7 +296,7 @@ class GraphAnalysisView(QWidget):
 
         # Flowchart: get function names from the panel itself
         panel = self._active_panel()
-        if isinstance(panel, FlowchartPanel):
+        if isinstance(panel, (FlowchartPanel, DFDPanel)):
             all_names = panel.get_function_names()
             self._focus_file.blockSignals(True)
             self._focus_file.clear()
@@ -373,8 +374,18 @@ class GraphAnalysisView(QWidget):
             self._detail.setPlainText("")
             return
 
-        # For flowchart: switch to that function's flowchart
+        # For flowchart/DFD: switch to that function
         panel = self._active_panel()
+        if isinstance(panel, DFDPanel) and self._current_result is not None:
+            graph = panel.build_for_function(func_name)
+            if graph is not None:
+                self._current_graph = graph
+                colors = panel.get_node_colors(graph)
+                self.canvas.set_graph(graph, layout="dfd", node_colors=colors)
+                self.canvas.fit_to_view()
+                self._detail.setPlainText(f"DFD: {func_name}")
+                return
+
         if isinstance(panel, FlowchartPanel) and self._current_result is not None:
             graph = panel.build_for_function(func_name)
             if graph is not None:
@@ -402,6 +413,8 @@ class GraphAnalysisView(QWidget):
                 layout = "flowchart"
             elif isinstance(panel, ClassDiagramPanel):
                 layout = "class_diagram"
+            elif isinstance(panel, DFDPanel):
+                layout = "dfd"
             else:
                 layout = self._current_layout()
             self.canvas.set_graph(graph, layout=layout, node_colors=colors)
@@ -555,7 +568,14 @@ class GraphAnalysisView(QWidget):
 
         # Default filename based on active graph type
         panel = self._active_panel()
-        base_name = "flowchart" if isinstance(panel, FlowchartPanel) else "call_tree"
+        if isinstance(panel, FlowchartPanel):
+            base_name = "flowchart"
+        elif isinstance(panel, DFDPanel):
+            base_name = "dfd"
+        elif isinstance(panel, ClassDiagramPanel):
+            base_name = "class_diagram"
+        else:
+            base_name = "call_tree"
         # Include function name if available
         func_name = self._focus_combo.currentData()
         if func_name:

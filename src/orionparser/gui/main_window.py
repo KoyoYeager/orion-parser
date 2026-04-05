@@ -309,7 +309,8 @@ class MainWindow(QMainWindow):
             # Update flowchart's current result for per-file display
             self._graph_view._current_result = result
             from orionparser.gui.panels.graph_panels.flowchart_panel import FlowchartPanel
-            if isinstance(self._graph_view._active_panel(), FlowchartPanel):
+            from orionparser.gui.panels.graph_panels.dfd_panel import DFDPanel
+            if isinstance(self._graph_view._active_panel(), (FlowchartPanel, DFDPanel)):
                 self._graph_view._build_full_graph()
                 self._graph_view._update_focus_list()
                 self._graph_view._render_current()

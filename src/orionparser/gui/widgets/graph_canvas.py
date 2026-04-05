@@ -242,6 +242,8 @@ class GraphCanvas(QGraphicsView):
             self._render_flowchart_layout(graph)
         elif layout == "class_diagram":
             self._render_class_diagram(graph)
+        elif layout == "dfd":
+            self._render_dfd_layout(graph)
         elif layout == "tree" or layout == "dot":
             self._render_tree_layout(graph)
         else:
@@ -322,6 +324,60 @@ class GraphCanvas(QGraphicsView):
         # Draw L-shaped connectors
         for u, v in graph.edges:
             self._add_l_shaped_edge(u, v)
+
+    # --- DFD layout ---
+
+    def _render_dfd_layout(self, graph: Any) -> None:
+        """Render DFD with data stores in center, processes around them."""
+        node_order = graph.graph.get("node_order", list(graph.nodes))
+        if not node_order:
+            return
+
+        ROW_H = 70.0
+        CENTER_X = 350.0
+        MIN_W = 160.0
+        NODE_H = 40.0
+
+        for row_idx, nid in enumerate(node_order):
+            nd = graph.nodes[nid]
+            ntype = nd.get("type", "process")
+            label = nd.get("label", str(nid))
+
+            nw = max(MIN_W, len(label.split("\n")[0]) * 8 + 30)
+            x = CENTER_X
+            y = row_idx * ROW_H + 30
+            color = self._node_colors.get(nid, "#85C1E9")
+            tooltip = ""
+
+            # Shape selection based on DFD type
+            if ntype == "external":
+                shape = "rect"  # external entity = rectangle
+            elif ntype == "datastore":
+                shape = "parallelogram"  # data store = open rectangle (approximated)
+            elif ntype == "process":
+                shape = "rounded"  # process = rounded rectangle
+            else:
+                shape = "rect"
+
+            item = _FlowchartNodeItem(nid, label, x, y, color, nw, NODE_H, shape)
+            defs = nd.get("definitions", [])
+            usages = nd.get("usages", [])
+            if defs or usages:
+                tip_parts = [label]
+                if defs:
+                    tip_parts.append(f"定義: {len(defs)}箇所")
+                if usages:
+                    tip_parts.append(f"使用: {len(usages)}箇所")
+                item.setToolTip("\n".join(tip_parts))
+            self._scene.addItem(item)
+            self._node_items[nid] = item
+
+        # Draw edges
+        for u, v in graph.edges:
+            if u not in self._node_items or v not in self._node_items:
+                continue
+            elabel = graph.edges[u, v].get("label", "")
+            self._add_fc_edge(u, v, elabel)
 
     # --- Class diagram layout ---
 

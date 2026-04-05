@@ -30,3 +30,4 @@ MainWindow
 | コード解析モード | [code-analysis.md](code-analysis.md) |
 | グラフ解析モード | [graph-analysis.md](graph-analysis.md) |
 | フローチャート仕様 | [flowchart-spec.md](flowchart-spec.md) |
+| DFD仕様 | [dfd-spec.md](dfd-spec.md) |
