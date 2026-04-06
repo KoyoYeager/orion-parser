@@ -1,0 +1,159 @@
+{
+  "name": "orion-parser",
+  "displayName": "OrionParser",
+  "description": "ソースコードの構造を解析・可視化 — コールツリー、フローチャート、DFD、クラス図",
+  "version": "0.1.0",
+  "publisher": "KoyoYeager",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": ["Programming Languages", "Visualization"],
+  "activationEvents": [
+    "onLanguage:python",
+    "onCommand:orionparser.analyzeFile",
+    "onCommand:orionparser.analyzeFolder"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "orionparser.analyzeFile",
+        "title": "OrionParser: ファイルを解析",
+        "icon": "$(search)"
+      },
+      {
+        "command": "orionparser.showSymbols",
+        "title": "OrionParser: シンボル一覧"
+      },
+      {
+        "command": "orionparser.showCallTree",
+        "title": "OrionParser: コールツリー"
+      },
+      {
+        "command": "orionparser.showFlowchart",
+        "title": "OrionParser: フローチャート"
+      },
+      {
+        "command": "orionparser.showDFD",
+        "title": "OrionParser: DFD"
+      },
+      {
+        "command": "orionparser.showClassDiagram",
+        "title": "OrionParser: クラス図"
+      },
+      {
+        "command": "orionparser.showTokens",
+        "title": "OrionParser: トークン"
+      },
+      {
+        "command": "orionparser.showAST",
+        "title": "OrionParser: AST"
+      },
+      {
+        "command": "orionparser.analyzeFolder",
+        "title": "OrionParser: フォルダを解析"
+      },
+      {
+        "command": "orionparser.exportGraph",
+        "title": "OrionParser: グラフをエクスポート"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "orionparser",
+          "title": "OrionParser",
+          "icon": "$(symbol-structure)"
+        }
+      ]
+    },
+    "views": {
+      "orionparser": [
+        {
+          "id": "orionparser.symbols",
+          "name": "シンボル一覧"
+        }
+      ]
+    },
+    "menus": {
+      "editor/context": [
+        {
+          "command": "orionparser.analyzeFile",
+          "group": "orionparser@1",
+          "when": "editorLangId == python"
+        },
+        {
+          "command": "orionparser.showCallTree",
+          "group": "orionparser@2",
+          "when": "editorLangId == python"
+        },
+        {
+          "command": "orionparser.showFlowchart",
+          "group": "orionparser@3",
+          "when": "editorLangId == python"
+        },
+        {
+          "command": "orionparser.showClassDiagram",
+          "group": "orionparser@4",
+          "when": "editorLangId == python"
+        }
+      ],
+      "editor/title": [
+        {
+          "command": "orionparser.analyzeFile",
+          "group": "navigation",
+          "when": "editorLangId == python"
+        }
+      ],
+      "explorer/context": [
+        {
+          "command": "orionparser.analyzeFolder",
+          "group": "orionparser",
+          "when": "explorerResourceIsFolder"
+        }
+      ]
+    },
+    "keybindings": [
+      {
+        "command": "orionparser.analyzeFile",
+        "key": "ctrl+shift+a",
+        "when": "editorLangId == python"
+      },
+      {
+        "command": "orionparser.showCallTree",
+        "key": "ctrl+shift+t",
+        "when": "editorLangId == python"
+      },
+      {
+        "command": "orionparser.showFlowchart",
+        "key": "ctrl+shift+f",
+        "when": "editorLangId == python"
+      }
+    ],
+    "configuration": {
+      "title": "OrionParser",
+      "properties": {
+        "orionparser.pythonPath": {
+          "type": "string",
+          "default": "python",
+          "description": "Pythonインタープリタのパス"
+        },
+        "orionparser.orionParserPath": {
+          "type": "string",
+          "default": "",
+          "description": "orion-parserのsrcディレクトリパス（空の場合は拡張の相対パスを使用）"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "lint": "eslint src --ext ts"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/vscode": "^1.85.0",
+    "typescript": "^5.3.0"
+  }
+}
