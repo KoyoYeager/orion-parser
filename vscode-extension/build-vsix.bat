@@ -1,53 +1,52 @@
 @echo off
-chcp 65001 >nul
 echo ========================================
-echo  OrionParser VSIX ビルド
+echo  OrionParser VSIX Build
 echo ========================================
 echo.
 
 cd /d "%~dp0"
 
-:: --- 依存パッケージのインストール ---
+:: --- Install dependencies ---
 echo [1/3] npm install ...
 call npm install
 if errorlevel 1 (
-    echo ERROR: npm install に失敗しました
+    echo ERROR: npm install failed
     pause
     exit /b 1
 )
 echo.
 
-:: --- TypeScript コンパイル ---
-echo [2/3] TypeScript コンパイル ...
+:: --- TypeScript compile ---
+echo [2/3] TypeScript compile ...
 call npx tsc -p ./
 if errorlevel 1 (
-    echo ERROR: コンパイルに失敗しました
+    echo ERROR: TypeScript compile failed
     pause
     exit /b 1
 )
 echo.
 
-:: --- VSIX パッケージ作成 ---
-echo [3/3] VSIX パッケージ作成 ...
+:: --- Create VSIX package ---
+echo [3/3] Creating VSIX package ...
 call npx --yes @vscode/vsce package --no-dependencies
 if errorlevel 1 (
-    echo ERROR: VSIX パッケージ作成に失敗しました
+    echo ERROR: VSIX packaging failed
     pause
     exit /b 1
 )
 echo.
 
-:: --- 結果表示 ---
+:: --- Show result ---
 for %%f in (*.vsix) do (
     echo ========================================
-    echo  完成: %%f
+    echo  Done: %%f
     echo ========================================
     echo.
-    echo インストール方法:
+    echo Install:
     echo   code --install-extension %%f
     echo.
-    echo または VSCode で Ctrl+Shift+P ^>
-    echo   "Extensions: Install from VSIX..." ^> %%f を選択
+    echo Or in VSCode: Ctrl+Shift+P
+    echo   "Extensions: Install from VSIX..."
 )
 
 pause
