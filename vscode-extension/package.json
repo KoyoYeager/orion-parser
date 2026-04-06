@@ -1,7 +1,7 @@
 {
   "name": "orion-parser",
   "displayName": "OrionParser",
-  "description": "ソースコードの構造を解析・可視化 — コールツリー、フローチャート、DFD、クラス図",
+  "description": "Source code structure analysis & visualization — Call Tree, Flowchart, DFD, Class Diagram",
   "version": "0.1.0",
   "publisher": "KoyoYeager",
   "repository": {
@@ -18,28 +18,27 @@
   ],
   "activationEvents": [
     "onLanguage:python",
-    "onCommand:orionparser.analyzeFile",
-    "onCommand:orionparser.analyzeFolder"
+    "onView:orionparser.actions"
   ],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
       {
         "command": "orionparser.analyzeFile",
-        "title": "OrionParser: ファイルを解析",
+        "title": "OrionParser: Analyze File",
         "icon": "$(search)"
       },
       {
         "command": "orionparser.showSymbols",
-        "title": "OrionParser: シンボル一覧"
+        "title": "OrionParser: Symbols"
       },
       {
         "command": "orionparser.showCallTree",
-        "title": "OrionParser: コールツリー"
+        "title": "OrionParser: Call Tree"
       },
       {
         "command": "orionparser.showFlowchart",
-        "title": "OrionParser: フローチャート"
+        "title": "OrionParser: Flowchart"
       },
       {
         "command": "orionparser.showDFD",
@@ -47,11 +46,11 @@
       },
       {
         "command": "orionparser.showClassDiagram",
-        "title": "OrionParser: クラス図"
+        "title": "OrionParser: Class Diagram"
       },
       {
         "command": "orionparser.showTokens",
-        "title": "OrionParser: トークン"
+        "title": "OrionParser: Tokens"
       },
       {
         "command": "orionparser.showAST",
@@ -59,11 +58,58 @@
       },
       {
         "command": "orionparser.analyzeFolder",
-        "title": "OrionParser: フォルダを解析"
+        "title": "OrionParser: Analyze Folder"
       },
       {
         "command": "orionparser.exportGraph",
-        "title": "OrionParser: グラフをエクスポート"
+        "title": "OrionParser: Export Graph"
+      },
+      {
+        "command": "orionparser.action.selectFile",
+        "title": "OrionParser: Open File...",
+        "icon": "$(file-add)"
+      },
+      {
+        "command": "orionparser.action.selectFolder",
+        "title": "OrionParser: Open Folder...",
+        "icon": "$(folder-opened)"
+      },
+      {
+        "command": "orionparser.action.useActiveEditor",
+        "title": "OrionParser: Use Active Editor",
+        "icon": "$(file-code)"
+      },
+      {
+        "command": "orionparser.action.runCallTree",
+        "title": "OrionParser: Run Call Tree"
+      },
+      {
+        "command": "orionparser.action.runFlowchart",
+        "title": "OrionParser: Run Flowchart"
+      },
+      {
+        "command": "orionparser.action.runDFD",
+        "title": "OrionParser: Run DFD"
+      },
+      {
+        "command": "orionparser.action.runClassDiagram",
+        "title": "OrionParser: Run Class Diagram"
+      },
+      {
+        "command": "orionparser.action.runSymbols",
+        "title": "OrionParser: Run Symbols"
+      },
+      {
+        "command": "orionparser.action.runTokens",
+        "title": "OrionParser: Run Tokens"
+      },
+      {
+        "command": "orionparser.action.runAST",
+        "title": "OrionParser: Run AST"
+      },
+      {
+        "command": "orionparser.action.currentTarget",
+        "title": "OrionParser: Current Target"
       }
     ],
     "viewsContainers": {
@@ -78,12 +124,28 @@
     "views": {
       "orionparser": [
         {
+          "id": "orionparser.actions",
+          "name": "Analysis"
+        },
+        {
           "id": "orionparser.symbols",
-          "name": "シンボル一覧"
+          "name": "Symbols"
         }
       ]
     },
     "menus": {
+      "view/title": [
+        {
+          "command": "orionparser.action.selectFile",
+          "when": "view == orionparser.actions",
+          "group": "navigation@1"
+        },
+        {
+          "command": "orionparser.action.selectFolder",
+          "when": "view == orionparser.actions",
+          "group": "navigation@2"
+        }
+      ],
       "editor/context": [
         {
           "command": "orionparser.analyzeFile",
@@ -118,6 +180,11 @@
           "command": "orionparser.analyzeFolder",
           "group": "orionparser",
           "when": "explorerResourceIsFolder"
+        },
+        {
+          "command": "orionparser.analyzeFile",
+          "group": "orionparser",
+          "when": "resourceLangId == python"
         }
       ]
     },
@@ -144,12 +211,12 @@
         "orionparser.pythonPath": {
           "type": "string",
           "default": "python",
-          "description": "Pythonインタープリタのパス"
+          "description": "Path to Python interpreter"
         },
         "orionparser.orionParserPath": {
           "type": "string",
           "default": "",
-          "description": "orion-parserのsrcディレクトリパス（空の場合は拡張の相対パスを使用）"
+          "description": "Path to orion-parser src directory (leave empty for auto-detect)"
         }
       }
     }

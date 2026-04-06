@@ -5,34 +5,95 @@ import { AnalysisPanel } from './panels/AnalysisPanel';
 import { OrionSymbolProvider } from './providers/SymbolProvider';
 import { OrionHoverProvider } from './providers/HoverProvider';
 import { SymbolTreeProvider } from './providers/TreeView';
+import { ActionTreeProvider } from './providers/ActionTreeView';
 
 let bridge: PythonBridge;
 let symbolTree: SymbolTreeProvider;
+let actionTree: ActionTreeProvider;
 
 export function activate(context: vscode.ExtensionContext) {
     bridge = new PythonBridge();
     symbolTree = new SymbolTreeProvider(bridge);
+    actionTree = new ActionTreeProvider();
 
-    // サイドバーツリービュー
+    // Sidebar views
+    vscode.window.registerTreeDataProvider('orionparser.actions', actionTree);
     vscode.window.registerTreeDataProvider('orionparser.symbols', symbolTree);
 
-    // Document Symbol Provider (アウトライン / Ctrl+Shift+O)
-    const symbolProvider = new OrionSymbolProvider(bridge);
+    // Document Symbol Provider (Outline / Ctrl+Shift+O)
     context.subscriptions.push(
         vscode.languages.registerDocumentSymbolProvider(
-            { language: 'python' }, symbolProvider
+            { language: 'python' }, new OrionSymbolProvider(bridge)
         )
     );
 
-    // Hover Provider (docstring表示)
-    const hoverProvider = new OrionHoverProvider(bridge);
+    // Hover Provider (docstring)
     context.subscriptions.push(
         vscode.languages.registerHoverProvider(
-            { language: 'python' }, hoverProvider
+            { language: 'python' }, new OrionHoverProvider(bridge)
         )
     );
 
-    // コマンド登録
+    // ========== Sidebar action commands ==========
+    context.subscriptions.push(
+        vscode.commands.registerCommand('orionparser.action.selectFile', async () => {
+            const uris = await vscode.window.showOpenDialog({
+                canSelectFiles: true,
+                canSelectFolders: false,
+                canSelectMany: false,
+                filters: { 'Python': ['py'] },
+                openLabel: 'Select Python File',
+            });
+            if (uris && uris.length > 0) {
+                actionTree.setTarget(uris[0].fsPath, 'file');
+                // Also open the file in editor
+                await vscode.window.showTextDocument(uris[0]);
+                symbolTree.refresh(uris[0].fsPath);
+            }
+        }),
+        vscode.commands.registerCommand('orionparser.action.selectFolder', async () => {
+            const uris = await vscode.window.showOpenDialog({
+                canSelectFiles: false,
+                canSelectFolders: true,
+                canSelectMany: false,
+                openLabel: 'Select Folder',
+            });
+            if (uris && uris.length > 0) {
+                actionTree.setTarget(uris[0].fsPath, 'folder');
+            }
+        }),
+        vscode.commands.registerCommand('orionparser.action.useActiveEditor', () => {
+            const editor = vscode.window.activeTextEditor;
+            if (editor) {
+                actionTree.setTarget(editor.document.uri.fsPath, 'file');
+                symbolTree.refresh(editor.document.uri.fsPath);
+            } else {
+                vscode.window.showWarningMessage('No active editor');
+            }
+        }),
+        vscode.commands.registerCommand('orionparser.action.currentTarget', () => {
+            if (actionTree.targetPath) {
+                vscode.window.showInformationMessage(`Target: ${actionTree.targetPath}`);
+            }
+        }),
+        // --- Analysis action commands ---
+        vscode.commands.registerCommand('orionparser.action.runCallTree', () =>
+            runAnalysisFromSidebar(context, 'calltree')),
+        vscode.commands.registerCommand('orionparser.action.runFlowchart', () =>
+            runAnalysisFromSidebar(context, 'flowchart')),
+        vscode.commands.registerCommand('orionparser.action.runDFD', () =>
+            runAnalysisFromSidebar(context, 'dfd')),
+        vscode.commands.registerCommand('orionparser.action.runClassDiagram', () =>
+            runAnalysisFromSidebar(context, 'classdiagram')),
+        vscode.commands.registerCommand('orionparser.action.runSymbols', () =>
+            runAnalysisFromSidebar(context, 'symbols')),
+        vscode.commands.registerCommand('orionparser.action.runTokens', () =>
+            runAnalysisFromSidebar(context, 'tokens')),
+        vscode.commands.registerCommand('orionparser.action.runAST', () =>
+            runAnalysisFromSidebar(context, 'ast')),
+    );
+
+    // ========== Original commands (right-click, palette, shortcuts) ==========
     context.subscriptions.push(
         vscode.commands.registerCommand('orionparser.analyzeFile', () => cmdAnalyzeFile(context)),
         vscode.commands.registerCommand('orionparser.showSymbols', () => cmdShowGraph(context, 'symbols')),
@@ -40,114 +101,125 @@ export function activate(context: vscode.ExtensionContext) {
         vscode.commands.registerCommand('orionparser.showFlowchart', () => cmdShowGraph(context, 'flowchart')),
         vscode.commands.registerCommand('orionparser.showDFD', () => cmdShowGraph(context, 'dfd')),
         vscode.commands.registerCommand('orionparser.showClassDiagram', () => cmdShowGraph(context, 'classdiagram')),
-        vscode.commands.registerCommand('orionparser.showTokens', () => cmdShowAnalysis(context, 'tokens')),
-        vscode.commands.registerCommand('orionparser.showAST', () => cmdShowAnalysis(context, 'ast')),
+        vscode.commands.registerCommand('orionparser.showTokens', () => cmdShowCodeAnalysis(context, 'tokens')),
+        vscode.commands.registerCommand('orionparser.showAST', () => cmdShowCodeAnalysis(context, 'ast')),
         vscode.commands.registerCommand('orionparser.analyzeFolder', () => cmdAnalyzeFolder(context)),
-        vscode.commands.registerCommand('orionparser.exportGraph', () => cmdExportGraph())
+        vscode.commands.registerCommand('orionparser.exportGraph', () => cmdExportGraph()),
     );
 
-    // アクティブエディタ変更でツリー更新
+    // Track active editor changes
     vscode.window.onDidChangeActiveTextEditor((editor) => {
         if (editor && editor.document.languageId === 'python') {
             symbolTree.refresh(editor.document.uri.fsPath);
         }
     }, null, context.subscriptions);
 
-    // 初回: 現在のエディタでツリー更新
+    // Initial symbol tree
     const activeEditor = vscode.window.activeTextEditor;
     if (activeEditor && activeEditor.document.languageId === 'python') {
         symbolTree.refresh(activeEditor.document.uri.fsPath);
+        actionTree.setTarget(activeEditor.document.uri.fsPath, 'file');
     }
 
-    // ステータスバー
+    // Status bar
     const statusBar = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 100);
     statusBar.text = '$(symbol-structure) OrionParser';
-    statusBar.tooltip = 'OrionParser: ファイルを解析';
+    statusBar.tooltip = 'OrionParser: Analyze File';
     statusBar.command = 'orionparser.analyzeFile';
     statusBar.show();
     context.subscriptions.push(statusBar);
-
-    vscode.window.showInformationMessage('OrionParser が有効化されました');
 }
 
 export function deactivate() {}
 
-// === コマンド実装 ===
+// ============================================================
+// Sidebar analysis runner
+// ============================================================
 
-async function cmdAnalyzeFile(context: vscode.ExtensionContext) {
-    const editor = vscode.window.activeTextEditor;
-    if (!editor) {
-        vscode.window.showWarningMessage('ファイルを開いてください');
-        return;
+async function runAnalysisFromSidebar(context: vscode.ExtensionContext, type: string) {
+    const targetPath = actionTree.targetPath;
+
+    if (!targetPath) {
+        // No target set — prompt for file/folder
+        const choice = await vscode.window.showQuickPick([
+            { label: '$(file-add) Open File...', value: 'file' },
+            { label: '$(folder-opened) Open Folder...', value: 'folder' },
+            { label: '$(file-code) Use Active Editor', value: 'active' },
+        ], { placeHolder: 'Select a target first' });
+
+        if (!choice) { return; }
+
+        if (choice.value === 'file') {
+            await vscode.commands.executeCommand('orionparser.action.selectFile');
+        } else if (choice.value === 'folder') {
+            await vscode.commands.executeCommand('orionparser.action.selectFolder');
+        } else {
+            await vscode.commands.executeCommand('orionparser.action.useActiveEditor');
+        }
+
+        // Re-check after selection
+        if (!actionTree.targetPath) { return; }
+        return runAnalysisFromSidebar(context, type);
     }
-    const filePath = editor.document.uri.fsPath;
 
-    const pick = await vscode.window.showQuickPick([
-        { label: 'シンボル一覧', value: 'symbols' },
-        { label: 'コールツリー', value: 'calltree' },
-        { label: 'フローチャート', value: 'flowchart' },
-        { label: 'DFD', value: 'dfd' },
-        { label: 'クラス図', value: 'classdiagram' },
-        { label: 'トークン', value: 'tokens' },
-        { label: 'AST', value: 'ast' },
-        { label: '全解析', value: 'all' },
-    ], { placeHolder: '解析タイプを選択' });
-
-    if (!pick) { return; }
+    const isFolder = actionTree.targetType === 'folder';
 
     await vscode.window.withProgress(
-        { location: vscode.ProgressLocation.Notification, title: 'OrionParser 解析中...' },
+        { location: vscode.ProgressLocation.Notification, title: `OrionParser: ${type} ...` },
         async () => {
             try {
-                if (pick.value === 'tokens' || pick.value === 'ast') {
-                    await cmdShowAnalysis(context, pick.value);
-                } else if (pick.value === 'all') {
-                    const data = await bridge.analyzeAll(filePath);
-                    GraphPanel.createOrShow(context.extensionUri, 'シンボル一覧', data, 'symbols');
+                if (type === 'tokens' || type === 'ast') {
+                    if (isFolder) {
+                        vscode.window.showWarningMessage('Tokens/AST requires a file, not a folder');
+                        return;
+                    }
+                    const data = type === 'tokens'
+                        ? await bridge.getTokens(targetPath)
+                        : await bridge.analyzeAll(targetPath);
+                    AnalysisPanel.createOrShow(context.extensionUri, type, data, type);
                 } else {
-                    await showGraphForType(context, filePath, pick.value);
+                    await showGraphForPath(context, targetPath, type, isFolder);
                 }
             } catch (e: any) {
-                vscode.window.showErrorMessage(`解析エラー: ${e.message}`);
+                vscode.window.showErrorMessage(`Error: ${e.message}`);
             }
         }
     );
 }
 
-async function cmdShowGraph(context: vscode.ExtensionContext, graphType: string) {
-    const editor = vscode.window.activeTextEditor;
-    if (!editor) {
-        vscode.window.showWarningMessage('ファイルを開いてください');
+// ============================================================
+// Graph rendering for any path (file or folder)
+// ============================================================
+
+async function showGraphForPath(
+    context: vscode.ExtensionContext,
+    filePath: string,
+    graphType: string,
+    isFolder: boolean
+) {
+    const titles: Record<string, string> = {
+        symbols: 'Symbols', calltree: 'Call Tree', flowchart: 'Flowchart',
+        dfd: 'DFD', classdiagram: 'Class Diagram',
+    };
+
+    if (isFolder) {
+        // Folder: only calltree is supported for directory
+        if (graphType !== 'calltree') {
+            vscode.window.showWarningMessage(`Folder analysis: only Call Tree is supported. Running Call Tree.`);
+            graphType = 'calltree';
+        }
+        const data = await bridge.getCallTree(filePath);
+        GraphPanel.createOrShow(context.extensionUri, 'Call Tree (Folder)', data, 'calltree');
         return;
     }
-    const filePath = editor.document.uri.fsPath;
-
-    await vscode.window.withProgress(
-        { location: vscode.ProgressLocation.Notification, title: `OrionParser: ${graphType} 解析中...` },
-        async () => {
-            try {
-                await showGraphForType(context, filePath, graphType);
-            } catch (e: any) {
-                vscode.window.showErrorMessage(`解析エラー: ${e.message}`);
-            }
-        }
-    );
-}
-
-async function showGraphForType(context: vscode.ExtensionContext, filePath: string, graphType: string) {
-    const titles: { [key: string]: string } = {
-        symbols: 'シンボル一覧',
-        calltree: 'コールツリー',
-        flowchart: 'フローチャート',
-        dfd: 'DFD',
-        classdiagram: 'クラス図',
-    };
 
     let data: any;
     switch (graphType) {
         case 'symbols': data = await bridge.getSymbols(filePath); break;
         case 'calltree': {
-            const [ct, sym] = await Promise.all([bridge.getCallTree(filePath), bridge.getSymbols(filePath)]);
+            const [ct, sym] = await Promise.all([
+                bridge.getCallTree(filePath), bridge.getSymbols(filePath)
+            ]);
             data = { ...ct, _symbols: sym.symbols || {} };
             break;
         }
@@ -160,25 +232,106 @@ async function showGraphForType(context: vscode.ExtensionContext, filePath: stri
     GraphPanel.createOrShow(context.extensionUri, titles[graphType] || graphType, data, graphType);
 }
 
-async function cmdShowAnalysis(context: vscode.ExtensionContext, viewType: string) {
+// ============================================================
+// Original command handlers (palette, right-click, shortcuts)
+// ============================================================
+
+async function cmdAnalyzeFile(context: vscode.ExtensionContext) {
+    // If no active editor, offer file selection
+    let filePath: string;
     const editor = vscode.window.activeTextEditor;
-    if (!editor) {
-        vscode.window.showWarningMessage('ファイルを開いてください');
-        return;
+    if (editor) {
+        filePath = editor.document.uri.fsPath;
+        actionTree.setTarget(filePath, 'file');
+    } else {
+        const uris = await vscode.window.showOpenDialog({
+            canSelectFiles: true, canSelectFolders: false, canSelectMany: false,
+            filters: { 'Python': ['py'] }, openLabel: 'Select Python File',
+        });
+        if (!uris || uris.length === 0) { return; }
+        filePath = uris[0].fsPath;
+        actionTree.setTarget(filePath, 'file');
+        await vscode.window.showTextDocument(uris[0]);
     }
-    const filePath = editor.document.uri.fsPath;
-    const titles: { [key: string]: string } = { tokens: 'トークン', ast: 'AST' };
+
+    const pick = await vscode.window.showQuickPick([
+        { label: '$(symbol-method) Symbols', value: 'symbols' },
+        { label: '$(type-hierarchy) Call Tree', value: 'calltree' },
+        { label: '$(workflow) Flowchart', value: 'flowchart' },
+        { label: '$(git-merge) DFD', value: 'dfd' },
+        { label: '$(symbol-class) Class Diagram', value: 'classdiagram' },
+        { label: '$(list-flat) Tokens', value: 'tokens' },
+        { label: '$(list-tree) AST', value: 'ast' },
+        { label: '$(search) All', value: 'all' },
+    ], { placeHolder: 'Select analysis type' });
+
+    if (!pick) { return; }
 
     await vscode.window.withProgress(
-        { location: vscode.ProgressLocation.Notification, title: `OrionParser: ${titles[viewType]} 解析中...` },
+        { location: vscode.ProgressLocation.Notification, title: `OrionParser: ${pick.value} ...` },
+        async () => {
+            try {
+                if (pick.value === 'tokens' || pick.value === 'ast') {
+                    const data = pick.value === 'tokens'
+                        ? await bridge.getTokens(filePath)
+                        : await bridge.analyzeAll(filePath);
+                    AnalysisPanel.createOrShow(context.extensionUri, pick.value, data, pick.value);
+                } else if (pick.value === 'all') {
+                    const data = await bridge.analyzeAll(filePath);
+                    GraphPanel.createOrShow(context.extensionUri, 'Symbols', data, 'symbols');
+                } else {
+                    await showGraphForPath(context, filePath, pick.value, false);
+                }
+            } catch (e: any) {
+                vscode.window.showErrorMessage(`Error: ${e.message}`);
+            }
+        }
+    );
+}
+
+async function cmdShowGraph(context: vscode.ExtensionContext, graphType: string) {
+    const editor = vscode.window.activeTextEditor;
+    if (!editor) {
+        // Offer file selection instead of just warning
+        await vscode.commands.executeCommand('orionparser.action.selectFile');
+        if (!actionTree.targetPath) { return; }
+        return runAnalysisFromSidebar(context, graphType);
+    }
+
+    const filePath = editor.document.uri.fsPath;
+    actionTree.setTarget(filePath, 'file');
+
+    await vscode.window.withProgress(
+        { location: vscode.ProgressLocation.Notification, title: `OrionParser: ${graphType} ...` },
+        async () => {
+            try {
+                await showGraphForPath(context, filePath, graphType, false);
+            } catch (e: any) {
+                vscode.window.showErrorMessage(`Error: ${e.message}`);
+            }
+        }
+    );
+}
+
+async function cmdShowCodeAnalysis(context: vscode.ExtensionContext, viewType: string) {
+    const editor = vscode.window.activeTextEditor;
+    if (!editor) {
+        await vscode.commands.executeCommand('orionparser.action.selectFile');
+        if (!actionTree.targetPath) { return; }
+        return runAnalysisFromSidebar(context, viewType);
+    }
+
+    const filePath = editor.document.uri.fsPath;
+    await vscode.window.withProgress(
+        { location: vscode.ProgressLocation.Notification, title: `OrionParser: ${viewType} ...` },
         async () => {
             try {
                 const data = viewType === 'tokens'
                     ? await bridge.getTokens(filePath)
                     : await bridge.analyzeAll(filePath);
-                AnalysisPanel.createOrShow(context.extensionUri, titles[viewType] || viewType, data, viewType);
+                AnalysisPanel.createOrShow(context.extensionUri, viewType, data, viewType);
             } catch (e: any) {
-                vscode.window.showErrorMessage(`解析エラー: ${e.message}`);
+                vscode.window.showErrorMessage(`Error: ${e.message}`);
             }
         }
     );
@@ -186,22 +339,21 @@ async function cmdShowAnalysis(context: vscode.ExtensionContext, viewType: strin
 
 async function cmdAnalyzeFolder(context: vscode.ExtensionContext) {
     const folderUri = await vscode.window.showOpenDialog({
-        canSelectFolders: true,
-        canSelectFiles: false,
-        canSelectMany: false,
-        openLabel: 'フォルダを選択',
+        canSelectFolders: true, canSelectFiles: false, canSelectMany: false,
+        openLabel: 'Select Folder',
     });
     if (!folderUri || folderUri.length === 0) { return; }
     const folderPath = folderUri[0].fsPath;
+    actionTree.setTarget(folderPath, 'folder');
 
     await vscode.window.withProgress(
-        { location: vscode.ProgressLocation.Notification, title: 'OrionParser: フォルダ解析中...' },
+        { location: vscode.ProgressLocation.Notification, title: 'OrionParser: Folder analysis ...' },
         async () => {
             try {
                 const data = await bridge.getCallTree(folderPath);
-                GraphPanel.createOrShow(context.extensionUri, 'コールツリー (フォルダ)', data, 'calltree');
+                GraphPanel.createOrShow(context.extensionUri, 'Call Tree (Folder)', data, 'calltree');
             } catch (e: any) {
-                vscode.window.showErrorMessage(`解析エラー: ${e.message}`);
+                vscode.window.showErrorMessage(`Error: ${e.message}`);
             }
         }
     );
@@ -209,8 +361,8 @@ async function cmdAnalyzeFolder(context: vscode.ExtensionContext) {
 
 async function cmdExportGraph() {
     if (!GraphPanel.currentPanel) {
-        vscode.window.showWarningMessage('グラフパネルが開かれていません');
+        vscode.window.showWarningMessage('No graph panel is open');
         return;
     }
-    vscode.window.showInformationMessage('グラフパネル内の保存ボタンを使用してください');
+    vscode.window.showInformationMessage('Use the Save button in the graph panel');
 }
