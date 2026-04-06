@@ -4,6 +4,11 @@
   "description": "ソースコードの構造を解析・可視化 — コールツリー、フローチャート、DFD、クラス図",
   "version": "0.1.0",
   "publisher": "KoyoYeager",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/KoyoYeager/orion-parser.git"
+  },
+  "license": "MIT",
   "engines": {
     "vscode": "^1.85.0"
   },
