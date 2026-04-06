@@ -7,9 +7,11 @@
     "rootDir": "src",
     "sourceMap": true,
     "strict": true,
+    "noImplicitAny": false,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "types": ["node", "vscode", "mocha"]
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules"]
