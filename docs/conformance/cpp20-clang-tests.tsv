@@ -1,0 +1,17 @@
+file	sha256	define	orion	clang	diagnostic
+cxx-modules-interface.cppm	43261eade21abb59346994956ef06cb522e616d14dda839df8931629e476335e		accept	accept	
+cxx-modules-interface.cppm	43261eade21abb59346994956ef06cb522e616d14dda839df8931629e476335e	ERRORS	26:3	26:3	expected member name
+cxx1z-nested-namespace-definition.cpp	2440da650c7e6e8501f2ebd88eea32a995fb712179ad919b95cdc661c5347d1a	FIXIT	accept	accept	
+cxx1z-nested-namespace-definition.cpp	2440da650c7e6e8501f2ebd88eea32a995fb712179ad919b95cdc661c5347d1a		17:21	17:1	nested namespace definition cannot
+cxx2a-inline-nested-namespace-definition.cpp	2147909d239df8f3f5af53b327c150d30790122433a4a15ab0c7c729ceef40da		5:11	5:11	expected identifier
+cxx-namespace-alias.cpp	02f9aeac800821a83547ace278af47b17d6958c7328ec1fb47fd87a83220accd		3:15	3:15	expected namespace name
+cxx20-using-enum.cpp	5c29b7719d3e51e59acfc51e68fff71684beb9ee97934df93f2b0245802b2121		7:17	7:17	using enum requires an enum or typedef name
+cxx2a-constrained-template-param.cpp	abc70bf40d47ee6872c22408a5615f70f4517c0ac155d9a369c457127f8d0ef1		35:12	35:12	concept named in type constraint is not a type concept
+cxx2a-constrained-template-param-with-partial-id.cpp	37e517376ca746b1c1a19ed2f8f3160f1bd8435e3401d4591d82e5bca0f51508		6:10	6:10	'C1' requires more than 1 template argument
+cxx2a-abbreviated-templates.cpp	85109a335ed711634c12325f23874d674a759dc32a9233fc1dd5f2a193f0d5fd		accept	accept	
+cxx20-coroutines.cpp	b0bbfb284cc5adfa1221042b10c885493ef9d78500843b2d1c9e95855035226c		9:7	9:7	expected expression
+cxx2a-designated-init.cpp	ce9285bb1aaf8c404a8bf303a9148756ea97001f8033f2771d4a89f64bde2fee		accept	13:14	chosen constructor is explicit in copy-initialization
+cxx98-enum.cpp	aab918306da35d2827878a5b91c3c4cc259032df437995e43fa5787b6d355ab3		8:15	8:10	ISO C++ only allows ':' in member enumeration declaration to introduce a fixed underlying type
+asm.cpp	935fda235189a44fe28e010b9cd158cfab071699bae103a17e00c791aa8ce593		3:10	4:22	cannot use wide string literal in 'asm'
+cxx2a-template-lambdas.cpp	19d66f416643a118072d7a9508444c1a64ccff8965e0411a79f76ee552b34ca3		4:14	4:14	lambda template parameter list cannot be empty
+cxx0x-literal-operators.cpp	ac4a17589b930fc998f82cada543214b59c66920a427730df4e83477c64b5f75		3:18	3:18	expected identifier

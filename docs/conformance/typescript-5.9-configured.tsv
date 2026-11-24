@@ -1,0 +1,3 @@
+fixture	virtual_file	options_json	category	reference_codes	detail
+classes/propertyMemberDeclarations/accessorsOverrideProperty10.ts	accessorsOverrideProperty10.ts	"{""strict"": ""esnext"", ""target"": ""esnext""}"	options	5024	
+classes/propertyMemberDeclarations/propertyOverridesAccessors6.ts	propertyOverridesAccessors6.ts	"{""strict"": ""esnext"", ""target"": ""esnext""}"	options	5024	

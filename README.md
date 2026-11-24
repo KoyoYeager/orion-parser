@@ -18,6 +18,20 @@
 | 言語 | Lexer | Parser | 解析 | 実コードテスト | 状態 |
 |------|-------|--------|------|--------------|------|
 | Python 3.10-3.12 | ✅ | ✅ | ✅ | 2,458ファイル 100% | ✅ 完成 |
+| JavaScript (ECMAScript 2024) | 一部対応 | 一部対応 | AST 出力 | Test262 で検証中 | [実装・検証状況](docs/conformance/README.md) |
+| TypeScript 5.9（TSX・宣言ファイルを含む） | 一部対応 | 一部対応 | AST 出力 | TypeScript 5.9.3 と比較中 | [実装・検証状況](docs/conformance/README.md) |
+| C17（.c と前処理済みの .i） | 検証済み | 標準文法581選択肢を検証 | AST 出力 | zlib 1.3.1 の 15 ファイル・152 関数（ホスト環境） | [実装・検証状況](docs/conformance/README.md#c17-checkpoint) |
+| Java SE 21（.java） | 検証済み | 標準文法811選択肢を検証 | AST 出力 | OpenJDK 全15,405ファイルの受理・トップレベル構造を照合 | [実装・検証状況](docs/conformance/README.md#java-se-21-checkpoint) |
+| C++20（.cpp・.cppm・.ii ほか） | 検証済み | 標準文法1,020選択肢を検証 | JSON AST 出力 | fmt 10.2.1 の実装3ファイルと公開ヘッダーの利用例3件を Ubuntu・Alpine で照合 | [実装・検証状況](docs/conformance/README.md#c20-checkpoint) |
+
+C17 の `.c` は GNU cpp で前処理し、PLY yacc で解析します。ヘッダーの探索先やマクロは `orion-parser parse main.c -I include -D SIZE=8 --json` のように指定できます。前処理済みの `.i` は直接解析できます。
+
+TypeScript の構文解析にはプロジェクト設定も指定できます。
+
+```bash
+orion-parser parse src/view.tsx --json --tsconfig tsconfig.json
+```
+
 
 ### Python パース実績
 

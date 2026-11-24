@@ -54,3 +54,17 @@ class TestReadFile:
         p.write_bytes(b"x = 1\n")
         result = read_file(p)
         assert "x = 1" in result
+
+
+@pytest.mark.parametrize("suffix", [".i", ".ii"])
+def test_preprocessed_file_prefers_utf8_with_legacy_fallback(tmp_path, monkeypatch, suffix):
+    from orionparser.registry import get_pipeline
+
+    path = tmp_path / ("literal" + suffix)
+    pipeline = get_pipeline(path)
+    monkeypatch.setattr("chardet.detect", lambda raw: {"encoding": "ISO-8859-1"})
+    text = 'const char *unit = "µs";\n'
+    path.write_bytes(text.encode("utf-8-sig"))
+    assert pipeline.preprocess_file(path) == text
+    path.write_bytes(text.encode("latin-1"))
+    assert pipeline.preprocess_file(path) == text

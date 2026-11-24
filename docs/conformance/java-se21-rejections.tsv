@@ -1,0 +1,80 @@
+case	source	orion_column	javac_column	javac_code	orion_line	javac_line
+requires semicolon	module m { requires a }	23	22	compiler.err.expected
+exports target	module m { exports p to ; }	25	24	compiler.err.expected
+provides target	module m { provides S with X,; }	30	30	compiler.err.expected
+duplicate requires modifier	module m { requires static static x; }	28	28	compiler.err.repeated.modifier
+late package	import a.*; package p; class A {}	13	13	compiler.err.expected4
+restricted type identifier	class record {}	7	7	compiler.err.restricted.type.not.allowed
+missing closing angle bracket	class A { List<X<Y> x; }	21	21	compiler.err.expected2
+primitive type argument	class A { List<int> x; }	16		parse-accept
+missing type bound	class A { <T extends> T f(T x){return x;} }	21	21	compiler.err.illegal.start.of.type
+for semicolon	class A { void f(){ for(int i=0; i<1 i++){} } }	38	37	compiler.err.expected
+invalid statement expression	class A { void f(){ 1+2; } }	21	22	compiler.err.not.stmt
+annotation list comma	@A(value={1,,2}) class B {}	13	13	compiler.err.illegal.start.of.expr
+malformed Unicode escape	class \uZZZZ {}	9	9	compiler.err.illegal.unicode.esc
+package before module	package p; module m {}	12		parse-accept
+mixed var and explicit lambda parameters	class X { F f = (var x, T y) -> x; }	18	17	compiler.err.invalid.lambda.parameter.declaration
+mixed inferred and typed lambda parameters	class X { F f = (x, T y) -> x; }	23	17	compiler.err.invalid.lambda.parameter.declaration
+nonfinal varargs parameter	class X { F f = (String... xs, String s) -> s; }	30	28	compiler.err.varargs.must.be.last
+array on var lambda parameter	class X { F f = (var x[]) -> x; }	18	22	compiler.err.restricted.type.not.allowed.array
+missing lambda body	class X { F f = (x) ->; }	23	23	compiler.err.illegal.start.of.expr
+array constructor type arguments	class X { F f = String[]::<T>new; }	30		parse-accept
+primitive lambda cast	class X { F f = (int) x -> x; }	18		parse-accept
+constructor reference on this	class X { F f = this::new; }	23		parse-accept
+record final component	record R(final int x) {}	9	10	compiler.err.record.cant.declare.field.modifiers
+record trailing dimensions	record R(int x[]) {}	9	15	compiler.err.record.component.and.old.array.syntax
+nonfinal record varargs	record R(int... x, int y) {}	18	17	compiler.err.varargs.must.be.last
+record instance field	record R(){ int x; }	8	17	compiler.err.record.cannot.declare.instance.fields
+compact constructor outside record	class R { R {} }	7	12	compiler.err.expected
+sealed record	sealed record R() {}	1	1	compiler.err.expected4
+missing permits type	sealed class A permits {}	24	23	compiler.err.expected
+separated non-sealed	non - sealed class A {}	1	1	compiler.err.expected4
+wrong compact constructor name	record R(){ Other {} }	8	13	compiler.err.invalid.meth.decl.ret.type.req
+mixed switch rule and statement group	class X{int f(int x){return switch(x){case 1: yield 1;default -> 0;};}}	55		parse-accept
+trailing record pattern comma	class X{int f(Object x){return switch(x){case P(int a,) -> 1;default -> 0;};}}	53	55	compiler.err.illegal.start.of.type
+default after numeric constant	class X{int f(int x){return switch(x){case 1, default -> 1;};}}	47	47	compiler.err.default.label.not.allowed
+missing pattern guard	class X{int f(Object x){return switch(x){case String s when -> 1;default -> 0;};}}	61	61	compiler.err.illegal.start.of.expr
+missing yield operand	class X{int f(int x){return switch(x){case 1 -> {yield;} default -> 0;};}}	55	55	compiler.err.illegal.start.of.expr
+nonstatement expression in switch statement rule	class X{void f(int x){ switch(x){default -> 1;} }}	45	45	compiler.err.not.stmt
+top-level var instanceof pattern	class X{boolean f(Object x){return x instanceof var v;}}	49	49	compiler.err.restricted.type.not.allowed.here
+record instance initializer	record R(){ {;} }	8	13	compiler.err.instance.initializer.not.allowed.in.records
+top-level var case pattern	class X{int f(Object o){return switch(o){case var x -> 0;default -> 1;};}}	47	47	compiler.err.restricted.type.not.allowed.here
+missing enum argument	enum E { A(,); }	12	12	compiler.err.illegal.start.of.expr	1	1
+missing enum separator	enum E { A {} B }	15	14	compiler.err.expected3	1	1
+annotation element parameter	@interface A { int x(int n); }	22		parse-accept	1	
+missing element default	@interface A { String name() default ; }	38	38	compiler.err.illegal.start.of.expr	1	1
+missing opening line terminator	"class X { String s = """"""bad""""""; }"	25	25	compiler.err.illegal.text.block.open	1	1
+invalid text block escape	"class X { String s = """"""
+ bad\q
+ """"""; }"	5	6	compiler.err.illegal.esc.char	2	2
+unclosed text block	"class X { String s = """"""
+ text; }"	22	22	compiler.err.unclosed.text.block	1	1
+try without handler or resource	class X{void f(){try {} }}	25	18	compiler.err.try.without.catch.finally.or.resource.decls
+empty resource specification	class X{void f(){try () {} }}	23	23	compiler.err.illegal.start.of.expr
+missing resource initializer	class X{void f(){try (R r) {} }}	23	26	compiler.err.expected
+call as resource	class X{void f(){try (open()) {} }}	23	27	compiler.err.try.with.resources.expr.needs.var
+var catch parameter	class X{void f(){try {} catch(var e) {} }}	31	31	compiler.err.restricted.type.not.allowed.here
+array creation without size or initializer	class X{Object f(){return new int[];}}	34	36	compiler.err.array.dimension.missing
+sized array with initializer	class X{Object f(){return new int[1]{2};}}	37	37	compiler.err.illegal.array.creation.both.dimension.and.initialization
+sized dimension after empty dimension	class X{Object f(){return new int[1][][2];}}	39	40	compiler.err.expected
+unqualified yield invocation	class X { int f(){return yield();} }	26	26	compiler.err.invalid.yield
+void method with trailing dims	class X { void f()[]{} }	19	19	compiler.err.expected
+local annotation interface	class X { void f(){ @interface Local {} } }	22		parse-accept
+annotated primitive argument	class X { List<@A int> values; }	16		parse-accept
+annotation on class literal dims	class X { Object f(){return String @A [].class;} }	36	47	compiler.err.no.annotations.on.dot.class
+underscore after hex prefix	class X { long n=0x_FF; }	20	20	compiler.err.illegal.underscore
+incomplete signed exponent	class X { String s=1e+; }	20	20	compiler.err.malformed.fp.lit
+tab-expanded source position	"	class record {}"	15	15	compiler.err.restricted.type.not.allowed	1	1
+var in second method parameter	class X{void f(int a,var y){} }	22	22	compiler.err.restricted.type.not.allowed.here	1	1
+var field	class X{var x;}	9	9	compiler.err.restricted.type.not.allowed.here	1	1
+var without initializer	class X{void f(){var n;}}	18		parse-accept	1	1
+compound var declaration	class X{void f(){var x=1,y=2;}}	18	18	compiler.err.restricted.type.not.allowed.compound	1	1
+var array type	class X{void f(){var[] x=new int[0];}}	18	18	compiler.err.restricted.type.not.allowed.array	1	1
+var as cast target	class X{ Object f(){return (var)x;} }	29	29	compiler.err.restricted.type.not.allowed.here	1	1
+var class literal	class X{ Object f(){return var.class;} }	28		parse-accept	1	1
+unparenthesized switch selection	class X{void f(){ switch(x){default->new X();}.f();}}	47	47	compiler.err.illegal.start.of.expr	1	1
+postfix on bare switch expression	class X { int f(){return switch(x){default->x;}++;} }	48	48	compiler.err.expected	1	1
+annotated record pattern head	class X { boolean f(Object x){return x instanceof @A Point(var a);} }	51	51	compiler.err.record.patterns.annotations.not.allowed	1	1
+annotation within record pattern head	class X { boolean f(Object x){return x instanceof Box<@A T>(var a);} }	51	55	compiler.err.record.patterns.annotations.not.allowed	1	1
+qualified annotated method reference new	class X { F f = java.lang.@A String::new; }	parse-accept	27	compiler.err.expected	1	1
+qualified annotated method reference trim	class X { F f = java.lang.@A String::trim; }	parse-accept	27	compiler.err.expected	1	1

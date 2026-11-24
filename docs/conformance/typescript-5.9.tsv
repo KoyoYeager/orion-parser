@@ -1,0 +1,774 @@
+source	function	line:column	branch locations
+parser.ts	visitNode	443:1	
+parser.ts	visitNodes	447:1	448:5=true/false; 449:9=true/false; 454:13=true/false
+parser.ts	isJSDocLikeText	462:1	
+parser.ts	isFileProbablyExternalModule	469:1	
+parser.ts	isAnExternalModuleIndicatorNode	476:1	477:12=true/false
+parser.ts	getImportMetaIfNecessary	484:1	485:12=true/false
+parser.ts	walkTreeForImportMeta	490:1	491:12=true/false
+parser.ts	hasModifierOfKind	495:1	
+parser.ts	isImportMeta	499:1	
+parser.ts	forEachChildInCallOrConstructSignature	1140:1	
+parser.ts	forEachChildInUnionOrIntersectionType	1146:1	
+parser.ts	forEachChildInParenthesizedTypeOrTypeOperator	1150:1	
+parser.ts	forEachChildInObjectOrArrayBindingPattern	1154:1	
+parser.ts	forEachChildInCallOrNewExpression	1158:1	
+parser.ts	forEachChildInBlock	1166:1	
+parser.ts	forEachChildInContinueOrBreakStatement	1170:1	
+parser.ts	forEachChildInClassDeclarationOrExpression	1174:1	
+parser.ts	forEachChildInNamedImportsOrExports	1182:1	
+parser.ts	forEachChildInImportOrExportSpecifier	1186:1	
+parser.ts	forEachChildInJsxOpeningOrSelfClosingElement	1191:1	
+parser.ts	forEachChildInOptionalRestOrJSDocParameterModifier	1197:1	
+parser.ts	forEachChildInJSDocParameterOrPropertyTag	1201:1	1203:10=true/false; 1206:10=true/false
+parser.ts	forEachChildInJSDocTypeLikeTag	1209:1	1212:10=true/false
+parser.ts	forEachChildInJSDocLinkCodeOrPlain	1215:1	
+parser.ts	forEachChildInJSDocTag	1219:1	1221:13=true/false
+parser.ts	forEachChildInJSDocImportTag	1224:1	1229:13=true/false
+parser.ts	forEachChildInPartiallyEmittedExpression	1232:1	
+parser.ts	forEachChild	1249:1	1250:5=true/false; 1254:12=true/false
+parser.ts	forEachChildRecursively	1272:1	1281:9=true/false; 1282:13=true/false; 1284:17=true/false; 1285:21=true/false; 1296:13=true/false; 1297:17=true/false; 1300:13=true/false
+parser.ts	addWorkItem	1316:5	
+parser.ts	gatherPossibleChildren	1311:1	
+parser.ts	setExternalModuleIndicator	1340:1	
+parser.ts	createSourceFile	1344:1	1354:9=true/false; 1355:5=true/false; 1359:30=true/false
+parser.ts	parseIsolatedEntityName	1372:1	
+parser.ts	parseJsonText	1381:1	
+parser.ts	isExternalModule	1386:1	
+parser.ts	updateSourceFile	1399:1	
+parser.ts	parseIsolatedJSDocComment	1414:1	1416:5=true/false
+parser.ts	parseJSDocTypeExpressionForTests	1427:1	
+parser.ts	countNode	1455:5	
+parser.ts	parseSourceFile	1603:5	1614:9=true/false
+parser.ts	parseIsolatedEntityName	1635:5	1643:16=true/false
+parser.ts	parseJsonText	1646:5	1654:9=true/false; 1665:21=SyntaxKind.OpenBracketToken; 1668:21=SyntaxKind.TrueKeyword; 1669:21=SyntaxKind.FalseKeyword; 1670:21=SyntaxKind.NullKeyword; 1673:21=SyntaxKind.MinusToken; 1674:25=true/false; 1681:21=SyntaxKind.NumericLiteral; 1682:21=SyntaxKind.StringLiteral; 1683:25=true/false; 1688:21=default; 1694:17=true/false; 1697:22=true/false; 1702:21=true/false; 1708:32=true/false; 1718:9=true/false; 1726:9=true/false
+parser.ts	initializeState	1735:5	1758:13=ScriptKind.JS; 1759:13=ScriptKind.JSX; 1762:13=ScriptKind.JSON; 1765:13=default
+parser.ts	clearState	1780:5	
+parser.ts	reportPragmaDiagnostic	1841:9	
+parser.ts	parseSourceFileWorker	1803:5	1805:9=true/false; 1831:9=true/false; 1835:9=true/false
+parser.ts	withJSDoc	1847:5	1848:9=true/false; 1854:9=true/false; 1855:9=true/false
+parser.ts	containsPossibleTopLevelAwait	1938:9	
+parser.ts	findNextStatementWithAwait	1943:9	1945:17=true/false
+parser.ts	findNextStatementWithoutAwait	1952:9	1954:17=true/false
+parser.ts	currentNode	1961:9	1963:13=true/false
+parser.ts	reparseTopLevelAwait	1862:5	1883:35=true/false; 1884:13=true/false; 1885:84=true/false; 1899:21=true/false; 1903:21=true/false; 1905:25=true/false; 1909:25=true/false; 1920:21=true/false; 1924:9=true/false; 1930:13=true/false
+parser.ts	fixupParentReferences	1970:5	
+parser.ts	setFields	2003:9	
+parser.ts	createSourceFile	1978:5	1995:9=true/false; 1998:13=true/false
+parser.ts	setContextFlag	2018:5	2019:9=true/false
+parser.ts	setDisallowInContext	2027:5	
+parser.ts	setYieldContext	2031:5	
+parser.ts	setDecoratorContext	2035:5	
+parser.ts	setAwaitContext	2039:5	
+parser.ts	doOutsideOfContext	2043:5	2051:9=true/false
+parser.ts	doInsideOfContext	2064:5	2072:9=true/false
+parser.ts	allowInAnd	2085:5	
+parser.ts	disallowInAnd	2089:5	
+parser.ts	allowConditionalTypesAnd	2093:5	
+parser.ts	disallowConditionalTypesAnd	2097:5	
+parser.ts	doInYieldContext	2101:5	
+parser.ts	doInDecoratorContext	2105:5	
+parser.ts	doInAwaitContext	2109:5	
+parser.ts	doOutsideOfAwaitContext	2113:5	
+parser.ts	doInYieldAndAwaitContext	2117:5	
+parser.ts	doOutsideOfYieldAndAwaitContext	2121:5	
+parser.ts	inContext	2125:5	
+parser.ts	inYieldContext	2129:5	
+parser.ts	inDisallowInContext	2133:5	
+parser.ts	inDisallowConditionalTypesContext	2137:5	
+parser.ts	inDecoratorContext	2141:5	
+parser.ts	inAwaitContext	2145:5	
+parser.ts	parseErrorAtCurrentToken	2149:5	
+parser.ts	parseErrorAtPosition	2153:5	2157:9=true/false
+parser.ts	parseErrorAt	2168:5	
+parser.ts	parseErrorAtRange	2172:5	
+parser.ts	scanError	2176:5	
+parser.ts	getNodePos	2180:5	
+parser.ts	hasPrecedingJSDocComment	2184:5	
+parser.ts	token	2194:5	
+parser.ts	nextTokenWithoutCheck	2198:5	
+parser.ts	nextTokenAnd	2202:5	
+parser.ts	nextToken	2207:5	2209:9=true/false
+parser.ts	nextTokenJSDoc	2216:5	
+parser.ts	nextJSDocCommentTextToken	2220:5	
+parser.ts	reScanGreaterToken	2224:5	
+parser.ts	reScanSlashToken	2228:5	
+parser.ts	reScanTemplateToken	2232:5	
+parser.ts	reScanLessThanToken	2236:5	
+parser.ts	reScanHashToken	2240:5	
+parser.ts	scanJsxIdentifier	2244:5	
+parser.ts	scanJsxText	2248:5	
+parser.ts	scanJsxAttributeValue	2252:5	
+parser.ts	speculationHelper	2256:5	2272:24=true/false; 2280:9=true/false; 2282:13=true/false
+parser.ts	lookAhead	2295:5	
+parser.ts	tryParse	2304:5	
+parser.ts	isBindingIdentifier	2308:5	2309:9=true/false
+parser.ts	isIdentifier	2318:5	2319:9=true/false; 2325:9=true/false; 2331:9=true/false
+parser.ts	parseExpected	2338:5	2339:9=true/false; 2340:13=true/false; 2347:9=true/false
+parser.ts	parseErrorForMissingSemicolonAfter	2364:5	2368:9=true/false; 2374:32=true/false; 2375:9=true/false; 2384:13="const"; 2385:13="let"; 2386:13="var"; 2390:13="declare"; 2394:13="interface"; 2398:13="is"; 2402:13="module"; 2403:13="namespace"; 2407:13="type"; 2414:9=true/false; 2420:9=true/false
+parser.ts	parseErrorForInvalidName	2435:5	2436:9=true/false
+parser.ts	getSpaceSuggestion	2444:5	2446:13=true/false
+parser.ts	parseSemicolonAfterPropertyName	2454:5	2455:9=true/false; 2460:9=true/false; 2466:9=true/false; 2467:13=true/false; 2476:9=true/false; 2480:9=true/false
+parser.ts	parseExpectedJSDoc	2488:5	2489:9=true/false
+parser.ts	parseExpectedMatchingBrackets	2498:5	2499:9=true/false; 2504:9=true/false; 2507:9=true/false
+parser.ts	parseOptional	2515:5	2516:9=true/false
+parser.ts	parseOptionalToken	2523:5	
+parser.ts	parseOptionalToken	2524:5	2525:9=true/false
+parser.ts	parseOptionalTokenJSDoc	2531:5	
+parser.ts	parseOptionalTokenJSDoc	2532:5	2533:9=true/false
+parser.ts	parseExpectedToken	2539:5	
+parser.ts	parseExpectedToken	2540:5	
+parser.ts	parseExpectedTokenJSDoc	2545:5	
+parser.ts	parseExpectedTokenJSDoc	2546:5	2548:9=true/false
+parser.ts	parseTokenNode	2553:5	
+parser.ts	parseTokenNodeJSDoc	2560:5	
+parser.ts	canParseSemicolon	2567:5	2569:9=true/false
+parser.ts	tryParseSemicolon	2577:5	2578:9=true/false; 2582:9=true/false
+parser.ts	parseSemicolon	2590:5	
+parser.ts	createNodeArray	2594:5	
+parser.ts	finishNode	2600:5	2602:9=true/false; 2609:9=true/false
+parser.ts	createMissingNode	2617:5	
+parser.ts	createMissingNode	2618:5	
+parser.ts	createMissingNode	2619:5	2620:9=true/false; 2623:14=true/false; 2628:24=true/false; 2629:13=true/false; 2630:13=true/false; 2631:13=true/false; 2632:13=true/false
+parser.ts	internIdentifier	2637:5	2639:9=true/false
+parser.ts	createIdentifier	2648:5	2649:9=true/false; 2651:25=true/false; 2660:9=true/false; 2665:9=true/false; 2677:32=true/false
+parser.ts	parseBindingIdentifier	2684:5	
+parser.ts	parseIdentifier	2688:5	
+parser.ts	parseIdentifierName	2692:5	
+parser.ts	parseIdentifierNameErrorOnUnicodeEscapeSequence	2696:5	2697:9=true/false
+parser.ts	isLiteralPropertyName	2703:5	
+parser.ts	isImportAttributeName	2710:5	
+parser.ts	parsePropertyNameWorker	2714:5	2715:9=true/false; 2720:9=true/false; 2723:9=true/false
+parser.ts	parsePropertyName	2729:5	
+parser.ts	parseComputedPropertyName	2733:5	
+parser.ts	parsePrivateIdentifier	2747:5	
+parser.ts	parseContextualModifier	2754:5	
+parser.ts	nextTokenIsOnSameLineAndCanFollowModifier	2758:5	2760:9=true/false
+parser.ts	nextTokenCanFollowModifier	2766:5	2768:13=SyntaxKind.ConstKeyword; 2771:13=SyntaxKind.ExportKeyword; 2773:17=true/false; 2776:17=true/false; 2780:13=SyntaxKind.DefaultKeyword; 2782:13=SyntaxKind.StaticKeyword; 2785:13=SyntaxKind.GetKeyword; 2786:13=SyntaxKind.SetKeyword; 2789:13=default
+parser.ts	canFollowExportModifier	2794:5	
+parser.ts	nextTokenCanFollowExportModifier	2802:5	
+parser.ts	parseAnyContextualModifier	2807:5	
+parser.ts	canFollowModifier	2811:5	
+parser.ts	canFollowGetOrSetKeyword	2819:5	
+parser.ts	nextTokenCanFollowDefaultKeyword	2824:5	
+parser.ts	isListElement	2835:5	2837:9=true/false; 2842:13=ParsingContext.SourceElements; 2843:13=ParsingContext.BlockStatements; 2844:13=ParsingContext.SwitchClauseStatements; 2852:13=ParsingContext.SwitchClauses; 2854:13=ParsingContext.TypeMembers; 2856:13=ParsingContext.ClassMembers; 2862:13=ParsingContext.EnumMembers; 2866:13=ParsingContext.ObjectLiteralMembers; 2868:21=SyntaxKind.OpenBracketToken; 2869:21=SyntaxKind.AsteriskToken; 2870:21=SyntaxKind.DotDotDotToken; 2871:21=SyntaxKind.DotToken; 2873:21=default; 2876:13=ParsingContext.RestProperties; 2878:13=ParsingContext.ObjectBindingElements; 2880:13=ParsingContext.ImportAttributes; 2882:13=ParsingContext.HeritageClauseElement; 2885:17=true/false; 2889:17=true/false; 2898:13=ParsingContext.VariableDeclarations; 2900:13=ParsingContext.ArrayBindingElements; 2902:13=ParsingContext.TypeParameters; 2904:13=ParsingContext.ArrayLiteralMembers; 2906:21=SyntaxKind.CommaToken; 2907:21=SyntaxKind.DotToken; 2911:13=ParsingContext.ArgumentExpressions; 2913:13=ParsingContext.Parameters; 2915:13=ParsingContext.JSDocParameters; 2917:13=ParsingContext.TypeArguments; 2918:13=ParsingContext.TupleElementTypes; 2920:13=ParsingContext.HeritageClauses; 2922:13=ParsingContext.ImportOrExportSpecifiers; 2925:17=true/false; 2928:17=true/false; 2932:13=ParsingContext.JsxAttributes; 2934:13=ParsingContext.JsxChildren; 2936:13=ParsingContext.JSDocComment; 2938:13=ParsingContext.Count; 2940:13=default
+parser.ts	isValidHeritageClauseObjectLiteral	2945:5	2947:9=true/false
+parser.ts	nextTokenIsIdentifier	2963:5	
+parser.ts	nextTokenIsIdentifierOrKeyword	2968:5	
+parser.ts	nextTokenIsIdentifierOrKeywordOrGreaterThan	2973:5	
+parser.ts	isHeritageClauseExtendsOrImplementsKeyword	2978:5	2979:9=true/false
+parser.ts	nextTokenIsStartOfExpression	2989:5	
+parser.ts	nextTokenIsStartOfType	2994:5	
+parser.ts	isListTerminator	3000:5	3001:9=true/false; 3007:13=ParsingContext.BlockStatements; 3008:13=ParsingContext.SwitchClauses; 3009:13=ParsingContext.TypeMembers; 3010:13=ParsingContext.ClassMembers; 3011:13=ParsingContext.EnumMembers; 3012:13=ParsingContext.ObjectLiteralMembers; 3013:13=ParsingContext.ObjectBindingElements; 3014:13=ParsingContext.ImportOrExportSpecifiers; 3015:13=ParsingContext.ImportAttributes; 3017:13=ParsingContext.SwitchClauseStatements; 3019:13=ParsingContext.HeritageClauseElement; 3021:13=ParsingContext.VariableDeclarations; 3023:13=ParsingContext.TypeParameters; 3026:13=ParsingContext.ArgumentExpressions; 3029:13=ParsingContext.ArrayLiteralMembers; 3030:13=ParsingContext.TupleElementTypes; 3031:13=ParsingContext.ArrayBindingElements; 3033:13=ParsingContext.JSDocParameters; 3034:13=ParsingContext.Parameters; 3035:13=ParsingContext.RestProperties; 3038:13=ParsingContext.TypeArguments; 3041:13=ParsingContext.HeritageClauses; 3043:13=ParsingContext.JsxAttributes; 3045:13=ParsingContext.JsxChildren; 3047:13=default
+parser.ts	isVariableDeclaratorListTerminator	3052:5	3055:9=true/false; 3061:9=true/false; 3069:9=true/false
+parser.ts	isInSomeParsingContext	3078:5	3083:13=true/false; 3084:17=true/false
+parser.ts	parseList	3094:5	3101:13=true/false; 3107:13=true/false
+parser.ts	parseListElement	3116:5	3118:9=true/false
+parser.ts	currentNode	3125:5	3135:9=true/false; 3145:9=true/false; 3161:9=true/false; 3167:9=true/false; 3171:9=true/false
+parser.ts	consumeNode	3179:5	
+parser.ts	isReusableParsingContext	3186:5	3188:13=ParsingContext.ClassMembers; 3189:13=ParsingContext.SwitchClauses; 3190:13=ParsingContext.SourceElements; 3191:13=ParsingContext.BlockStatements; 3192:13=ParsingContext.SwitchClauseStatements; 3193:13=ParsingContext.EnumMembers; 3194:13=ParsingContext.TypeMembers; 3195:13=ParsingContext.VariableDeclarations; 3196:13=ParsingContext.JSDocParameters; 3197:13=ParsingContext.Parameters
+parser.ts	canReuseNode	3203:5	3205:13=ParsingContext.ClassMembers; 3208:13=ParsingContext.SwitchClauses; 3211:13=ParsingContext.SourceElements; 3212:13=ParsingContext.BlockStatements; 3213:13=ParsingContext.SwitchClauseStatements; 3216:13=ParsingContext.EnumMembers; 3219:13=ParsingContext.TypeMembers; 3222:13=ParsingContext.VariableDeclarations; 3225:13=ParsingContext.JSDocParameters; 3226:13=ParsingContext.Parameters
+parser.ts	isReusableClassMember	3281:5	3282:9=true/false; 3284:17=SyntaxKind.Constructor; 3285:17=SyntaxKind.IndexSignature; 3286:17=SyntaxKind.GetAccessor; 3287:17=SyntaxKind.SetAccessor; 3288:17=SyntaxKind.PropertyDeclaration; 3289:17=SyntaxKind.SemicolonClassElement; 3291:17=SyntaxKind.MethodDeclaration
+parser.ts	isReusableSwitchClause	3306:5	3307:9=true/false; 3309:17=SyntaxKind.CaseClause; 3310:17=SyntaxKind.DefaultClause
+parser.ts	isReusableStatement	3318:5	3319:9=true/false; 3321:17=SyntaxKind.FunctionDeclaration; 3322:17=SyntaxKind.VariableStatement; 3323:17=SyntaxKind.Block; 3324:17=SyntaxKind.IfStatement; 3325:17=SyntaxKind.ExpressionStatement; 3326:17=SyntaxKind.ThrowStatement; 3327:17=SyntaxKind.ReturnStatement; 3328:17=SyntaxKind.SwitchStatement; 3329:17=SyntaxKind.BreakStatement; 3330:17=SyntaxKind.ContinueStatement; 3331:17=SyntaxKind.ForInStatement; 3332:17=SyntaxKind.ForOfStatement; 3333:17=SyntaxKind.ForStatement; 3334:17=SyntaxKind.WhileStatement; 3335:17=SyntaxKind.WithStatement; 3336:17=SyntaxKind.EmptyStatement; 3337:17=SyntaxKind.TryStatement; 3338:17=SyntaxKind.LabeledStatement; 3339:17=SyntaxKind.DoStatement; 3340:17=SyntaxKind.DebuggerStatement; 3341:17=SyntaxKind.ImportDeclaration; 3342:17=SyntaxKind.ImportEqualsDeclaration; 3343:17=SyntaxKind.ExportDeclaration; 3344:17=SyntaxKind.ExportAssignment; 3345:17=SyntaxKind.ModuleDeclaration; 3346:17=SyntaxKind.ClassDeclaration; 3347:17=SyntaxKind.InterfaceDeclaration; 3348:17=SyntaxKind.EnumDeclaration; 3349:17=SyntaxKind.TypeAliasDeclaration
+parser.ts	isReusableEnumMember	3357:5	
+parser.ts	isReusableTypeMember	3361:5	3362:9=true/false; 3364:17=SyntaxKind.ConstructSignature; 3365:17=SyntaxKind.MethodSignature; 3366:17=SyntaxKind.IndexSignature; 3367:17=SyntaxKind.PropertySignature; 3368:17=SyntaxKind.CallSignature
+parser.ts	isReusableVariableDeclaration	3376:5	3377:9=true/false
+parser.ts	isReusableParameter	3399:5	3400:9=true/false
+parser.ts	abortParsingListOrMoveToNextToken	3410:5	3412:9=true/false
+parser.ts	parsingContextErrors	3420:5	3422:13=ParsingContext.SourceElements; 3423:24=true/false; 3426:13=ParsingContext.BlockStatements; 3428:13=ParsingContext.SwitchClauses; 3430:13=ParsingContext.SwitchClauseStatements; 3432:13=ParsingContext.RestProperties; 3433:13=ParsingContext.TypeMembers; 3435:13=ParsingContext.ClassMembers; 3437:13=ParsingContext.EnumMembers; 3439:13=ParsingContext.HeritageClauseElement; 3441:13=ParsingContext.VariableDeclarations; 3442:24=true/false; 3445:13=ParsingContext.ObjectBindingElements; 3447:13=ParsingContext.ArrayBindingElements; 3449:13=ParsingContext.ArgumentExpressions; 3451:13=ParsingContext.ObjectLiteralMembers; 3453:13=ParsingContext.ArrayLiteralMembers; 3455:13=ParsingContext.JSDocParameters; 3457:13=ParsingContext.Parameters; 3458:24=true/false; 3461:13=ParsingContext.TypeParameters; 3463:13=ParsingContext.TypeArguments; 3465:13=ParsingContext.TupleElementTypes; 3467:13=ParsingContext.HeritageClauses; 3469:13=ParsingContext.ImportOrExportSpecifiers; 3470:17=true/false; 3474:13=ParsingContext.JsxAttributes; 3476:13=ParsingContext.JsxChildren; 3478:13=ParsingContext.ImportAttributes; 3480:13=ParsingContext.JSDocComment; 3482:13=ParsingContext.Count; 3484:13=default
+parser.ts	parseDelimitedList	3490:5	
+parser.ts	parseDelimitedList	3491:5	
+parser.ts	parseDelimitedList	3492:5	3500:13=true/false; 3503:17=true/false; 3510:17=true/false; 3516:17=true/false; 3529:17=true/false; 3532:17=true/false; 3542:13=true/false; 3546:13=true/false
+parser.ts	getExpectedCommaDiagnostic	3561:5	3562:16=true/false
+parser.ts	createMissingList	3569:5	
+parser.ts	isMissingList	3575:5	
+parser.ts	parseBracketedList	3579:5	3580:9=true/false
+parser.ts	parseEntityName	3589:5	3591:34=true/false; 3593:13=true/false
+parser.ts	createQualifiedName	3609:5	
+parser.ts	parseRightSideOfDot	3613:5	3633:9=true/false; 3636:13=true/false; 3644:9=true/false; 3646:20=true/false; 3649:9=true/false; 3650:20=true/false
+parser.ts	parseTemplateSpans	3656:5	
+parser.ts	parseTemplateExpression	3668:5	
+parser.ts	parseTemplateType	3679:5	
+parser.ts	parseTemplateTypeSpans	3690:5	
+parser.ts	parseTemplateTypeSpan	3702:5	
+parser.ts	parseLiteralOfTemplateSpan	3713:5	3714:9=true/false
+parser.ts	parseTemplateSpan	3724:5	
+parser.ts	parseLiteralNode	3735:5	
+parser.ts	parseTemplateHead	3739:5	3740:9=true/false
+parser.ts	parseTemplateMiddleOrTemplateTail	3748:5	
+parser.ts	getTemplateLiteralRawText	3754:5	3757:59=true/false; 3757:90=true/false
+parser.ts	parseLiteralLikeNode	3760:5	3762:22=true/false; 3768:13=true/false; 3769:13=true/false; 3770:13=true/false; 3773:9=true/false; 3777:9=true/false
+parser.ts	parseEntityNameOfTypeReference	3787:5	
+parser.ts	parseTypeArgumentsOfTypeReference	3791:5	3792:9=true/false
+parser.ts	parseTypeReference	3797:5	
+parser.ts	typeHasArrowFunctionBlockingParseError	3809:5	3811:13=SyntaxKind.TypeReference; 3813:13=SyntaxKind.FunctionType; 3814:13=SyntaxKind.ConstructorType; 3818:13=SyntaxKind.ParenthesizedType; 3820:13=default
+parser.ts	parseThisTypePredicate	3825:5	
+parser.ts	parseThisTypeNode	3830:5	
+parser.ts	parseJSDocAllType	3836:5	
+parser.ts	parseJSDocNonNullableType	3842:5	
+parser.ts	parseJSDocUnknownOrNullableType	3848:5	3863:9=true/false
+parser.ts	parseJSDocFunctionType	3878:5	3881:9=true/false
+parser.ts	parseJSDocParameter	3889:5	3892:9=true/false
+parser.ts	parseJSDocType	3910:5	3913:9=true/false; 3919:21=SyntaxKind.CloseBraceToken; 3920:21=SyntaxKind.EndOfFileToken; 3921:21=SyntaxKind.CommaToken; 3922:21=SyntaxKind.WhitespaceTrivia; 3924:21=default; 3936:9=true/false; 3939:9=true/false
+parser.ts	parseTypeQuery	3946:5	3951:31=true/false
+parser.ts	parseTypeParameter	3955:5	3961:9=true/false; 3966:13=true/false; 3981:29=true/false
+parser.ts	parseTypeParameters	3987:5	3988:9=true/false
+parser.ts	isStartOfParameter	3993:5	
+parser.ts	parseNameOfParameter	4001:5	4005:9=true/false
+parser.ts	isParameterNameStart	4019:5	
+parser.ts	parseParameter	4026:5	
+parser.ts	parseParameterForSpeculation	4030:5	
+parser.ts	parseParameterWorker	4034:5	
+parser.ts	parseParameterWorker	4035:5	
+parser.ts	parseParameterWorker	4036:5	4044:27=true/false; 4048:9=true/false; 4059:13=true/false; 4071:9=true/false
+parser.ts	parseReturnType	4093:5	
+parser.ts	parseReturnType	4094:5	
+parser.ts	parseReturnType	4095:5	4096:9=true/false
+parser.ts	shouldParseReturnType	4101:5	4102:9=true/false; 4106:14=true/false; 4109:14=true/false
+parser.ts	parseParametersWorker	4118:5	
+parser.ts	parseParametersWorker	4119:5	
+parser.ts	parseParametersWorker	4120:5	4140:28=true/false; 4142:65=true/false
+parser.ts	parseParameters	4150:5	4164:9=true/false
+parser.ts	parseTypeMemberSemicolon	4173:5	4176:9=true/false
+parser.ts	parseSignatureMember	4184:5	4187:9=true/false; 4195:22=true/false
+parser.ts	isIndexSignature	4201:5	
+parser.ts	isUnambiguouslyIndexSignature	4205:5	4223:9=true/false; 4227:9=true/false; 4229:13=true/false; 4233:14=true/false; 4244:9=true/false; 4250:9=true/false
+parser.ts	parseIndexSignatureDeclaration	4260:5	
+parser.ts	parsePropertyOrMethodSignature	4268:5	4272:9=true/false; 4286:13=true/false
+parser.ts	isTypeMemberStart	4292:5	4294:9=true/false; 4309:9=true/false; 4313:9=true/false; 4319:9=true/false
+parser.ts	parseTypeMember	4330:5	4331:9=true/false; 4334:9=true/false; 4340:9=true/false; 4344:9=true/false; 4348:9=true/false
+parser.ts	nextTokenIsOpenParenOrLessThan	4354:5	
+parser.ts	nextTokenIsDot	4359:5	
+parser.ts	nextTokenIsOpenParenOrLessThanOrDot	4363:5	4365:13=SyntaxKind.OpenParenToken; 4366:13=SyntaxKind.LessThanToken; 4367:13=SyntaxKind.DotToken
+parser.ts	parseTypeLiteral	4373:5	
+parser.ts	parseObjectTypeMembers	4378:5	4380:9=true/false
+parser.ts	isStartOfMappedType	4391:5	4393:9=true/false; 4396:9=true/false
+parser.ts	parseMappedTypeParameter	4402:5	
+parser.ts	parseMappedType	4410:5	4414:9=true/false; 4416:13=true/false; 4422:26=true/false; 4425:9=true/false; 4427:13=true/false
+parser.ts	parseTupleElementType	4438:5	4440:9=true/false; 4444:9=true/false
+parser.ts	isNextTokenColonOrQuestionColon	4453:5	
+parser.ts	isTupleElementName	4457:5	4458:9=true/false
+parser.ts	parseTupleElementNameOrTupleElementType	4464:5	4465:9=true/false
+parser.ts	parseTupleType	4479:5	
+parser.ts	parseParenthesizedType	4489:5	
+parser.ts	parseModifiersForConstructorType	4497:5	4499:9=true/false
+parser.ts	parseFunctionOrConstructorType	4508:5	4517:22=true/false
+parser.ts	parseKeywordAndNoDot	4523:5	4525:16=true/false
+parser.ts	parseLiteralTypeNode	4528:5	4530:9=true/false; 4533:100=true/false; 4536:9=true/false
+parser.ts	isStartOfTypeOfImportType	4542:5	
+parser.ts	parseImportType	4547:5	4555:9=true/false; 4559:13=true/false; 4568:13=true/false; 4570:17=true/false; 4579:27=true/false
+parser.ts	nextTokenIsNumericOrBigIntLiteral	4584:5	
+parser.ts	parseNonArrayType	4589:5	4591:13=SyntaxKind.AnyKeyword; 4592:13=SyntaxKind.UnknownKeyword; 4593:13=SyntaxKind.StringKeyword; 4594:13=SyntaxKind.NumberKeyword; 4595:13=SyntaxKind.BigIntKeyword; 4596:13=SyntaxKind.SymbolKeyword; 4597:13=SyntaxKind.BooleanKeyword; 4598:13=SyntaxKind.UndefinedKeyword; 4599:13=SyntaxKind.NeverKeyword; 4600:13=SyntaxKind.ObjectKeyword; 4603:13=SyntaxKind.AsteriskEqualsToken; 4607:13=SyntaxKind.AsteriskToken; 4609:13=SyntaxKind.QuestionQuestionToken; 4613:13=SyntaxKind.QuestionToken; 4615:13=SyntaxKind.FunctionKeyword; 4617:13=SyntaxKind.ExclamationToken; 4619:13=SyntaxKind.NoSubstitutionTemplateLiteral; 4620:13=SyntaxKind.StringLiteral; 4621:13=SyntaxKind.NumericLiteral; 4622:13=SyntaxKind.BigIntLiteral; 4623:13=SyntaxKind.TrueKeyword; 4624:13=SyntaxKind.FalseKeyword; 4625:13=SyntaxKind.NullKeyword; 4627:13=SyntaxKind.MinusToken; 4628:24=true/false; 4629:13=SyntaxKind.VoidKeyword; 4631:13=SyntaxKind.ThisKeyword; 4633:17=true/false; 4640:13=SyntaxKind.TypeOfKeyword; 4641:24=true/false; 4642:13=SyntaxKind.OpenBraceToken; 4643:24=true/false; 4644:13=SyntaxKind.OpenBracketToken; 4646:13=SyntaxKind.OpenParenToken; 4648:13=SyntaxKind.ImportKeyword; 4650:13=SyntaxKind.AssertsKeyword; 4651:24=true/false; 4652:13=SyntaxKind.TemplateHead; 4654:13=default
+parser.ts	isStartOfType	4659:5	4661:13=SyntaxKind.AnyKeyword; 4662:13=SyntaxKind.UnknownKeyword; 4663:13=SyntaxKind.StringKeyword; 4664:13=SyntaxKind.NumberKeyword; 4665:13=SyntaxKind.BigIntKeyword; 4666:13=SyntaxKind.BooleanKeyword; 4667:13=SyntaxKind.ReadonlyKeyword; 4668:13=SyntaxKind.SymbolKeyword; 4669:13=SyntaxKind.UniqueKeyword; 4670:13=SyntaxKind.VoidKeyword; 4671:13=SyntaxKind.UndefinedKeyword; 4672:13=SyntaxKind.NullKeyword; 4673:13=SyntaxKind.ThisKeyword; 4674:13=SyntaxKind.TypeOfKeyword; 4675:13=SyntaxKind.NeverKeyword; 4676:13=SyntaxKind.OpenBraceToken; 4677:13=SyntaxKind.OpenBracketToken; 4678:13=SyntaxKind.LessThanToken; 4679:13=SyntaxKind.BarToken; 4680:13=SyntaxKind.AmpersandToken; 4681:13=SyntaxKind.NewKeyword; 4682:13=SyntaxKind.StringLiteral; 4683:13=SyntaxKind.NumericLiteral; 4684:13=SyntaxKind.BigIntLiteral; 4685:13=SyntaxKind.TrueKeyword; 4686:13=SyntaxKind.FalseKeyword; 4687:13=SyntaxKind.ObjectKeyword; 4688:13=SyntaxKind.AsteriskToken; 4689:13=SyntaxKind.QuestionToken; 4690:13=SyntaxKind.ExclamationToken; 4691:13=SyntaxKind.DotDotDotToken; 4692:13=SyntaxKind.InferKeyword; 4693:13=SyntaxKind.ImportKeyword; 4694:13=SyntaxKind.AssertsKeyword; 4695:13=SyntaxKind.NoSubstitutionTemplateLiteral; 4696:13=SyntaxKind.TemplateHead; 4698:13=SyntaxKind.FunctionKeyword; 4700:13=SyntaxKind.MinusToken; 4702:13=SyntaxKind.OpenParenToken; 4706:13=default
+parser.ts	isStartOfParenthesizedOrFunctionType	4711:5	
+parser.ts	parsePostfixTypeOrHigher	4716:5	4721:17=SyntaxKind.ExclamationToken; 4725:17=SyntaxKind.QuestionToken; 4727:21=true/false; 4733:17=SyntaxKind.OpenBracketToken; 4735:21=true/false; 4745:17=default
+parser.ts	parseTypeOperator	4752:5	
+parser.ts	tryParseConstraintOfInferType	4758:5	4759:9=true/false; 4761:13=true/false
+parser.ts	parseTypeParameterOfInferType	4767:5	
+parser.ts	parseInferType	4775:5	
+parser.ts	parseTypeOperatorOrHigher	4781:5	4784:13=SyntaxKind.KeyOfKeyword; 4785:13=SyntaxKind.UniqueKeyword; 4786:13=SyntaxKind.ReadonlyKeyword; 4788:13=SyntaxKind.InferKeyword
+parser.ts	parseFunctionOrConstructorTypeToError	4794:5	4800:9=true/false; 4803:13=true/false; 4804:30=true/false; 4809:30=true/false
+parser.ts	parseUnionOrIntersectionType	4819:5	4829:9=true/false
+parser.ts	parseIntersectionTypeOrHigher	4839:5	
+parser.ts	parseUnionTypeOrHigher	4843:5	
+parser.ts	nextTokenIsNewKeyword	4847:5	
+parser.ts	isStartOfFunctionTypeOrConstructorType	4852:5	4853:9=true/false; 4856:9=true/false
+parser.ts	skipParameterStart	4863:5	4864:9=true/false; 4868:9=true/false; 4872:9=true/false
+parser.ts	isUnambiguouslyStartOfFunctionType	4881:5	4883:9=true/false; 4888:9=true/false; 4891:13=true/false; 4901:13=true/false; 4903:17=true/false
+parser.ts	parseTypeOrTypePredicate	4912:5	4916:9=true/false
+parser.ts	parseTypePredicatePrefix	4924:5	4926:9=true/false
+parser.ts	parseAssertsTypePredicate	4932:5	4935:31=true/false; 4936:22=true/false
+parser.ts	parseType	4940:5	4941:9=true/false; 4944:9=true/false; 4949:9=true/false
+parser.ts	parseTypeAnnotation	4961:5	4962:16=true/false
+parser.ts	isStartOfLeftHandSideExpression	4966:5	4968:13=SyntaxKind.ThisKeyword; 4969:13=SyntaxKind.SuperKeyword; 4970:13=SyntaxKind.NullKeyword; 4971:13=SyntaxKind.TrueKeyword; 4972:13=SyntaxKind.FalseKeyword; 4973:13=SyntaxKind.NumericLiteral; 4974:13=SyntaxKind.BigIntLiteral; 4975:13=SyntaxKind.StringLiteral; 4976:13=SyntaxKind.NoSubstitutionTemplateLiteral; 4977:13=SyntaxKind.TemplateHead; 4978:13=SyntaxKind.OpenParenToken; 4979:13=SyntaxKind.OpenBracketToken; 4980:13=SyntaxKind.OpenBraceToken; 4981:13=SyntaxKind.FunctionKeyword; 4982:13=SyntaxKind.ClassKeyword; 4983:13=SyntaxKind.NewKeyword; 4984:13=SyntaxKind.SlashToken; 4985:13=SyntaxKind.SlashEqualsToken; 4986:13=SyntaxKind.Identifier; 4988:13=SyntaxKind.ImportKeyword; 4990:13=default
+parser.ts	isStartOfExpression	4995:5	4996:9=true/false; 5001:13=SyntaxKind.PlusToken; 5002:13=SyntaxKind.MinusToken; 5003:13=SyntaxKind.TildeToken; 5004:13=SyntaxKind.ExclamationToken; 5005:13=SyntaxKind.DeleteKeyword; 5006:13=SyntaxKind.TypeOfKeyword; 5007:13=SyntaxKind.VoidKeyword; 5008:13=SyntaxKind.PlusPlusToken; 5009:13=SyntaxKind.MinusMinusToken; 5010:13=SyntaxKind.LessThanToken; 5011:13=SyntaxKind.AwaitKeyword; 5012:13=SyntaxKind.YieldKeyword; 5013:13=SyntaxKind.PrivateIdentifier; 5014:13=SyntaxKind.AtToken; 5019:13=default; 5024:17=true/false
+parser.ts	isStartOfExpressionStatement	5032:5	
+parser.ts	parseExpression	5041:5	5048:9=true/false; 5059:9=true/false
+parser.ts	parseInitializer	5065:5	5066:16=true/false
+parser.ts	parseAssignmentExpressionOrHigher	5069:5	5082:9=true/false; 5098:9=true/false; 5118:9=true/false; 5128:9=true/false
+parser.ts	isYieldExpression	5136:5	5137:9=true/false; 5140:13=true/false
+parser.ts	nextTokenIsIdentifierOnSameLine	5164:5	
+parser.ts	parseYieldExpression	5169:5	5178:9=true/false
+parser.ts	parseSimpleArrowFunctionExpression	5197:5	
+parser.ts	tryParseParenthesizedArrowFunctionExpression	5216:5	5218:9=true/false; 5227:16=true/false
+parser.ts	isParenthesizedArrowFunctionExpression	5236:5	5237:9=true/false; 5241:9=true/false
+parser.ts	isParenthesizedArrowFunctionExpressionWorker	5251:5	5252:9=true/false; 5254:13=true/false; 5257:13=true/false; 5265:9=true/false; 5266:13=true/false; 5273:21=SyntaxKind.EqualsGreaterThanToken; 5274:21=SyntaxKind.ColonToken; 5275:21=SyntaxKind.OpenBraceToken; 5277:21=default; 5288:13=true/false; 5294:13=true/false; 5301:13=true/false; 5302:17=true/false; 5312:13=true/false; 5317:17=SyntaxKind.ColonToken; 5321:17=SyntaxKind.QuestionToken; 5324:21=true/false; 5329:17=SyntaxKind.CommaToken; 5330:17=SyntaxKind.EqualsToken; 5331:17=SyntaxKind.CloseParenToken; 5343:13=true/false; 5348:13=true/false; 5352:21=true/false; 5355:29=SyntaxKind.EqualsToken; 5356:29=SyntaxKind.GreaterThanToken; 5357:29=SyntaxKind.SlashToken; 5359:29=default; 5363:26=true/false; 5369:17=true/false
+parser.ts	parsePossibleParenthesizedArrowFunctionExpression	5381:5	5383:9=true/false; 5388:9=true/false
+parser.ts	tryParseAsyncSimpleArrowFunctionExpression	5395:5	5397:9=true/false; 5398:13=true/false
+parser.ts	isUnParenthesizedAsyncArrowFunctionWorker	5409:5	5413:9=true/false; 5417:13=true/false; 5422:13=true/false
+parser.ts	parseParenthesizedArrowFunctionExpression	5430:5	5434:25=true/false; 5445:9=true/false; 5446:13=true/false; 5452:13=true/false; 5454:17=true/false; 5462:13=true/false; 5469:9=true/false; 5490:9=true/false; 5499:22=true/false; 5517:9=true/false; 5524:13=true/false
+parser.ts	parseArrowFunctionExpressionBody	5533:5	5534:9=true/false; 5535:39=true/false; 5538:9=true/false; 5559:80=true/false; 5566:22=true/false
+parser.ts	parseConditionalExpressionRest	5574:5	5577:9=true/false; 5590:17=true/false
+parser.ts	parseBinaryExpressionOrHigher	5598:5	
+parser.ts	isInOrOfKeyword	5604:5	
+parser.ts	parseBinaryExpressionRest	5608:5	5637:44=true/false; 5641:13=true/false; 5645:13=true/false; 5649:13=true/false; 5655:17=true/false; 5661:35=true/false
+parser.ts	isBinaryOperator	5673:5	5674:9=true/false
+parser.ts	makeSatisfiesExpression	5681:5	
+parser.ts	makeBinaryExpression	5685:5	
+parser.ts	makeAsExpression	5689:5	
+parser.ts	parsePrefixUnaryExpression	5693:5	
+parser.ts	parseDeleteExpression	5698:5	
+parser.ts	parseTypeOfExpression	5703:5	
+parser.ts	parseVoidExpression	5708:5	
+parser.ts	isAwaitExpression	5713:5	5714:9=true/false; 5715:13=true/false
+parser.ts	parseAwaitExpression	5726:5	
+parser.ts	parseUnaryExpressionOrHigher	5738:5	5747:9=true/false; 5750:20=true/false; 5768:9=true/false; 5771:13=true/false
+parser.ts	parseSimpleUnaryExpression	5796:5	5798:13=SyntaxKind.PlusToken; 5799:13=SyntaxKind.MinusToken; 5800:13=SyntaxKind.TildeToken; 5801:13=SyntaxKind.ExclamationToken; 5803:13=SyntaxKind.DeleteKeyword; 5805:13=SyntaxKind.TypeOfKeyword; 5807:13=SyntaxKind.VoidKeyword; 5809:13=SyntaxKind.LessThanToken; 5812:17=true/false; 5819:13=SyntaxKind.AwaitKeyword; 5820:17=true/false; 5824:13=default
+parser.ts	isUpdateExpression	5839:5	5843:13=SyntaxKind.PlusToken; 5844:13=SyntaxKind.MinusToken; 5845:13=SyntaxKind.TildeToken; 5846:13=SyntaxKind.ExclamationToken; 5847:13=SyntaxKind.DeleteKeyword; 5848:13=SyntaxKind.TypeOfKeyword; 5849:13=SyntaxKind.VoidKeyword; 5850:13=SyntaxKind.AwaitKeyword; 5852:13=SyntaxKind.LessThanToken; 5854:17=true/false; 5859:13=default
+parser.ts	parseUpdateExpression	5875:5	5876:9=true/false; 5880:14=true/false; 5888:9=true/false
+parser.ts	parseLeftHandSideExpressionOrHigher	5897:5	5931:9=true/false; 5932:13=true/false; 5941:18=true/false; 5947:17=true/false; 5948:21=true/false; 5961:26=true/false
+parser.ts	parseMemberExpressionOrHigher	5970:5	
+parser.ts	parseSuperExpression	6023:5	6026:9=true/false; 6029:13=true/false; 6031:17=true/false; 6037:9=true/false
+parser.ts	parseJsxElementOrSelfClosingElementOrFragment	6048:5	6052:9=true/false; 6057:13=true/false; 6081:17=true/false; 6082:21=true/false; 6094:14=true/false; 6112:9=true/false; 6113:31=true/false; 6115:13=true/false
+parser.ts	parseJsxText	6126:5	
+parser.ts	parseJsxChild	6133:5	6135:13=SyntaxKind.EndOfFileToken; 6138:17=true/false; 6149:13=SyntaxKind.LessThanSlashToken; 6150:13=SyntaxKind.ConflictMarkerTrivia; 6152:13=SyntaxKind.JsxText; 6153:13=SyntaxKind.JsxTextAllWhiteSpaces; 6155:13=SyntaxKind.OpenBraceToken; 6157:13=SyntaxKind.LessThanToken; 6159:13=default
+parser.ts	parseJsxChildren	6164:5	6172:13=true/false; 6174:13=true/false
+parser.ts	parseJsxAttributes	6189:5	
+parser.ts	parseJsxOpeningOrSelfClosingElementOrOpeningFragment	6194:5	6199:9=true/false; 6205:31=true/false; 6210:9=true/false; 6219:13=true/false; 6221:17=true/false
+parser.ts	parseJsxElementName	6234:5	6242:9=true/false
+parser.ts	parseJsxTagName	6252:5	6258:9=true/false; 6262:16=true/false
+parser.ts	parseJsxExpression	6265:5	6267:9=true/false; 6273:9=true/false; 6274:13=true/false; 6282:9=true/false; 6286:13=true/false
+parser.ts	parseJsxAttribute	6294:5	6295:9=true/false
+parser.ts	parseJsxAttributeValue	6303:5	6304:9=true/false; 6305:13=true/false; 6308:13=true/false; 6311:13=true/false
+parser.ts	parseJsxAttributeName	6319:5	6324:9=true/false
+parser.ts	parseJsxSpreadAttribute	6331:5	
+parser.ts	parseJsxClosingElement	6340:5	6344:9=true/false; 6346:13=true/false
+parser.ts	parseJsxClosingFragment	6356:5	6359:9=true/false; 6361:13=true/false
+parser.ts	parseTypeAssertion	6371:5	
+parser.ts	nextTokenIsIdentifierOrKeywordOrOpenBracketOrTemplate	6381:5	
+parser.ts	isStartOfOptionalPropertyOrElementAccessChain	6388:5	
+parser.ts	tryReparseOptionalChain	6393:5	6394:9=true/false; 6398:9=true/false; 6403:13=true/false
+parser.ts	parsePropertyAccessExpressionRest	6415:5	6418:32=true/false; 6421:9=true/false; 6424:9=true/false
+parser.ts	parseElementAccessExpressionRest	6432:5	6434:9=true/false; 6439:13=true/false; 6447:31=true/false
+parser.ts	parseMemberExpressionRest	6453:5	6457:13=true/false; 6465:13=true/false; 6471:13=true/false; 6476:13=true/false; 6478:30=true/false; 6484:13=true/false; 6485:17=true/false; 6491:17=true/false
+parser.ts	isTemplateStartOfTaggedTemplate	6501:5	
+parser.ts	parseTaggedTemplateRest	6505:5	6509:13=true/false; 6513:9=true/false
+parser.ts	parseCallExpressionRest	6520:5	6525:13=true/false; 6527:17=true/false; 6532:13=true/false; 6534:17=true/false; 6539:34=true/false; 6545:13=true/false
+parser.ts	parseArgumentList	6555:5	
+parser.ts	parseTypeArgumentsInExpression	6562:5	6563:9=true/false; 6568:9=true/false; 6574:9=true/false; 6584:16=true/false
+parser.ts	canFollowTypeArgumentsInExpression	6587:5	6590:13=SyntaxKind.OpenParenToken; 6591:13=SyntaxKind.NoSubstitutionTemplateLiteral; 6592:13=SyntaxKind.TemplateHead; 6597:13=SyntaxKind.LessThanToken; 6598:13=SyntaxKind.GreaterThanToken; 6599:13=SyntaxKind.PlusToken; 6600:13=SyntaxKind.MinusToken
+parser.ts	parsePrimaryExpression	6608:5	6610:13=SyntaxKind.NoSubstitutionTemplateLiteral; 6611:17=true/false; 6615:13=SyntaxKind.NumericLiteral; 6616:13=SyntaxKind.BigIntLiteral; 6617:13=SyntaxKind.StringLiteral; 6619:13=SyntaxKind.ThisKeyword; 6620:13=SyntaxKind.SuperKeyword; 6621:13=SyntaxKind.NullKeyword; 6622:13=SyntaxKind.TrueKeyword; 6623:13=SyntaxKind.FalseKeyword; 6625:13=SyntaxKind.OpenParenToken; 6627:13=SyntaxKind.OpenBracketToken; 6629:13=SyntaxKind.OpenBraceToken; 6631:13=SyntaxKind.AsyncKeyword; 6635:17=true/false; 6640:13=SyntaxKind.AtToken; 6642:13=SyntaxKind.ClassKeyword; 6644:13=SyntaxKind.FunctionKeyword; 6646:13=SyntaxKind.NewKeyword; 6648:13=SyntaxKind.SlashToken; 6649:13=SyntaxKind.SlashEqualsToken; 6650:17=true/false; 6654:13=SyntaxKind.TemplateHead; 6656:13=SyntaxKind.PrivateIdentifier
+parser.ts	parseParenthesizedExpression	6663:5	
+parser.ts	parseSpreadElement	6672:5	
+parser.ts	parseArgumentOrArrayLiteralElement	6679:5	6680:16=true/false; 6681:13=true/false
+parser.ts	parseArgumentExpression	6685:5	
+parser.ts	parseArrayLiteralExpression	6689:5	
+parser.ts	parseObjectLiteralElement	6699:5	6703:9=true/false; 6709:9=true/false; 6712:9=true/false; 6724:9=true/false; 6735:9=true/false; 6737:49=true/false
+parser.ts	parseObjectLiteralExpression	6755:5	
+parser.ts	parseFunctionExpression	6765:5	6779:29=true/false; 6780:25=true/false; 6781:22=true/false; 6782:13=true/false; 6783:13=true/false
+parser.ts	parseOptionalBindingIdentifier	6797:5	6798:16=true/false
+parser.ts	parseNewExpressionOrNewDotTarget	6801:5	6804:9=true/false; 6812:9=true/false; 6816:9=true/false; 6819:30=true/false
+parser.ts	parseBlock	6824:5	6829:9=true/false; 6834:13=true/false
+parser.ts	parseFunctionBlock	6847:5	6860:9=true/false; 6866:9=true/false
+parser.ts	parseEmptyStatement	6877:5	
+parser.ts	parseIfStatement	6884:5	6893:31=true/false
+parser.ts	parseDoStatement	6897:5	
+parser.ts	parseWhileStatement	6916:5	
+parser.ts	parseForOrForInOrForOfStatement	6928:5	6936:9=true/false; 6937:13=true/false; 6951:9=true/false; 6951:13=true/false; 6956:14=true/false; 6963:31=true/false; 6967:33=true/false
+parser.ts	parseBreakOrContinueStatement	6977:5	6981:23=true/false; 6982:23=true/false; 6985:22=true/false
+parser.ts	parseReturnStatement	6991:5	6995:28=true/false
+parser.ts	parseWithStatement	7000:5	
+parser.ts	parseCaseClause	7012:5	
+parser.ts	parseDefaultClause	7022:5	
+parser.ts	parseCaseOrDefaultClause	7030:5	7031:16=true/false
+parser.ts	parseCaseBlock	7034:5	
+parser.ts	parseSwitchStatement	7042:5	
+parser.ts	parseThrowStatement	7053:5	7066:26=true/false; 7067:9=true/false; 7071:9=true/false
+parser.ts	parseTryStatement	7078:5	7084:29=true/false; 7089:9=true/false
+parser.ts	parseCatchClause	7097:5	7102:9=true/false
+parser.ts	parseDebuggerStatement	7115:5	
+parser.ts	parseExpressionOrLabeledStatement	7123:5	7132:9=true/false; 7136:13=true/false; 7140:13=true/false
+parser.ts	nextTokenIsIdentifierOrKeywordOnSameLine	7148:5	
+parser.ts	nextTokenIsClassKeywordOnSameLine	7153:5	
+parser.ts	nextTokenIsFunctionKeywordOnSameLine	7158:5	
+parser.ts	nextTokenIsIdentifierOrKeywordOrLiteralOnSameLine	7163:5	
+parser.ts	isDeclaration	7168:5	7171:17=SyntaxKind.VarKeyword; 7172:17=SyntaxKind.LetKeyword; 7173:17=SyntaxKind.ConstKeyword; 7174:17=SyntaxKind.FunctionKeyword; 7175:17=SyntaxKind.ClassKeyword; 7176:17=SyntaxKind.EnumKeyword; 7178:17=SyntaxKind.UsingKeyword; 7180:17=SyntaxKind.AwaitKeyword; 7204:17=SyntaxKind.InterfaceKeyword; 7205:17=SyntaxKind.TypeKeyword; 7206:17=SyntaxKind.DeferKeyword; 7208:17=SyntaxKind.ModuleKeyword; 7209:17=SyntaxKind.NamespaceKeyword; 7211:17=SyntaxKind.AbstractKeyword; 7212:17=SyntaxKind.AccessorKeyword; 7213:17=SyntaxKind.AsyncKeyword; 7214:17=SyntaxKind.DeclareKeyword; 7215:17=SyntaxKind.PrivateKeyword; 7216:17=SyntaxKind.ProtectedKeyword; 7217:17=SyntaxKind.PublicKeyword; 7218:17=SyntaxKind.ReadonlyKeyword; 7222:21=true/false; 7225:21=true/false; 7232:17=SyntaxKind.GlobalKeyword; 7236:17=SyntaxKind.ImportKeyword; 7240:17=SyntaxKind.ExportKeyword; 7242:21=true/false; 7245:21=true/false; 7254:17=SyntaxKind.StaticKeyword; 7258:17=default
+parser.ts	isStartOfDeclaration	7264:5	
+parser.ts	isStartOfStatement	7268:5	7270:13=SyntaxKind.AtToken; 7271:13=SyntaxKind.SemicolonToken; 7272:13=SyntaxKind.OpenBraceToken; 7273:13=SyntaxKind.VarKeyword; 7274:13=SyntaxKind.LetKeyword; 7275:13=SyntaxKind.UsingKeyword; 7276:13=SyntaxKind.FunctionKeyword; 7277:13=SyntaxKind.ClassKeyword; 7278:13=SyntaxKind.EnumKeyword; 7279:13=SyntaxKind.IfKeyword; 7280:13=SyntaxKind.DoKeyword; 7281:13=SyntaxKind.WhileKeyword; 7282:13=SyntaxKind.ForKeyword; 7283:13=SyntaxKind.ContinueKeyword; 7284:13=SyntaxKind.BreakKeyword; 7285:13=SyntaxKind.ReturnKeyword; 7286:13=SyntaxKind.WithKeyword; 7287:13=SyntaxKind.SwitchKeyword; 7288:13=SyntaxKind.ThrowKeyword; 7289:13=SyntaxKind.TryKeyword; 7290:13=SyntaxKind.DebuggerKeyword; 7294:13=SyntaxKind.CatchKeyword; 7295:13=SyntaxKind.FinallyKeyword; 7298:13=SyntaxKind.ImportKeyword; 7301:13=SyntaxKind.ConstKeyword; 7302:13=SyntaxKind.ExportKeyword; 7305:13=SyntaxKind.AsyncKeyword; 7306:13=SyntaxKind.DeclareKeyword; 7307:13=SyntaxKind.InterfaceKeyword; 7308:13=SyntaxKind.ModuleKeyword; 7309:13=SyntaxKind.NamespaceKeyword; 7310:13=SyntaxKind.TypeKeyword; 7311:13=SyntaxKind.GlobalKeyword; 7312:13=SyntaxKind.DeferKeyword; 7316:13=SyntaxKind.AccessorKeyword; 7317:13=SyntaxKind.PublicKeyword; 7318:13=SyntaxKind.PrivateKeyword; 7319:13=SyntaxKind.ProtectedKeyword; 7320:13=SyntaxKind.StaticKeyword; 7321:13=SyntaxKind.ReadonlyKeyword; 7326:13=default
+parser.ts	nextTokenIsBindingIdentifierOrStartOfDestructuring	7331:5	
+parser.ts	isLetDeclaration	7336:5	
+parser.ts	nextTokenIsBindingIdentifierOrStartOfDestructuringOnSameLineDisallowOf	7342:5	
+parser.ts	nextTokenIsEqualsOrSemicolonOrColonToken	7346:5	
+parser.ts	nextTokenIsBindingIdentifierOrStartOfDestructuringOnSameLine	7351:5	7353:9=true/false
+parser.ts	isUsingDeclaration	7359:5	
+parser.ts	nextTokenIsUsingKeywordThenBindingIdentifierOrStartOfObjectDestructuringOnSameLine	7366:5	7367:9=true/false
+parser.ts	isAwaitUsingDeclaration	7373:5	
+parser.ts	parseStatement	7380:5	7382:13=SyntaxKind.SemicolonToken; 7384:13=SyntaxKind.OpenBraceToken; 7386:13=SyntaxKind.VarKeyword; 7388:13=SyntaxKind.LetKeyword; 7389:17=true/false; 7393:13=SyntaxKind.AwaitKeyword; 7394:17=true/false; 7398:13=SyntaxKind.UsingKeyword; 7399:17=true/false; 7403:13=SyntaxKind.FunctionKeyword; 7405:13=SyntaxKind.ClassKeyword; 7407:13=SyntaxKind.IfKeyword; 7409:13=SyntaxKind.DoKeyword; 7411:13=SyntaxKind.WhileKeyword; 7413:13=SyntaxKind.ForKeyword; 7415:13=SyntaxKind.ContinueKeyword; 7417:13=SyntaxKind.BreakKeyword; 7419:13=SyntaxKind.ReturnKeyword; 7421:13=SyntaxKind.WithKeyword; 7423:13=SyntaxKind.SwitchKeyword; 7425:13=SyntaxKind.ThrowKeyword; 7427:13=SyntaxKind.TryKeyword; 7430:13=SyntaxKind.CatchKeyword; 7431:13=SyntaxKind.FinallyKeyword; 7433:13=SyntaxKind.DebuggerKeyword; 7435:13=SyntaxKind.AtToken; 7437:13=SyntaxKind.AsyncKeyword; 7438:13=SyntaxKind.InterfaceKeyword; 7439:13=SyntaxKind.TypeKeyword; 7440:13=SyntaxKind.ModuleKeyword; 7441:13=SyntaxKind.NamespaceKeyword; 7442:13=SyntaxKind.DeclareKeyword; 7443:13=SyntaxKind.ConstKeyword; 7444:13=SyntaxKind.EnumKeyword; 7445:13=SyntaxKind.ExportKeyword; 7446:13=SyntaxKind.ImportKeyword; 7447:13=SyntaxKind.PrivateKeyword; 7448:13=SyntaxKind.ProtectedKeyword; 7449:13=SyntaxKind.PublicKeyword; 7450:13=SyntaxKind.AbstractKeyword; 7451:13=SyntaxKind.AccessorKeyword; 7452:13=SyntaxKind.StaticKeyword; 7453:13=SyntaxKind.ReadonlyKeyword; 7454:13=SyntaxKind.GlobalKeyword; 7455:17=true/false
+parser.ts	isDeclareModifier	7463:5	
+parser.ts	parseDeclaration	7467:5	7475:9=true/false; 7477:13=true/false
+parser.ts	tryReuseAmbientDeclaration	7491:5	7496:13=true/false
+parser.ts	parseDeclarationWorker	7502:5	7504:13=SyntaxKind.VarKeyword; 7505:13=SyntaxKind.LetKeyword; 7506:13=SyntaxKind.ConstKeyword; 7507:13=SyntaxKind.UsingKeyword; 7508:13=SyntaxKind.AwaitKeyword; 7510:13=SyntaxKind.FunctionKeyword; 7512:13=SyntaxKind.ClassKeyword; 7514:13=SyntaxKind.InterfaceKeyword; 7516:13=SyntaxKind.TypeKeyword; 7518:13=SyntaxKind.EnumKeyword; 7520:13=SyntaxKind.GlobalKeyword; 7521:13=SyntaxKind.ModuleKeyword; 7522:13=SyntaxKind.NamespaceKeyword; 7524:13=SyntaxKind.ImportKeyword; 7526:13=SyntaxKind.ExportKeyword; 7529:21=SyntaxKind.DefaultKeyword; 7530:21=SyntaxKind.EqualsToken; 7532:21=SyntaxKind.AsKeyword; 7534:21=default; 7537:13=default; 7538:17=true/false
+parser.ts	nextTokenIsStringLiteral	7550:5	
+parser.ts	nextTokenIsFromKeywordOrEqualsToken	7554:5	
+parser.ts	nextTokenIsIdentifierOrStringLiteralOnSameLine	7559:5	
+parser.ts	parseFunctionBlockOrSemicolon	7564:5	7565:9=true/false; 7566:13=true/false; 7570:13=true/false
+parser.ts	parseArrayBindingElement	7580:5	7582:9=true/false
+parser.ts	parseObjectBindingElement	7591:5	7597:9=true/false
+parser.ts	parseObjectBindingPattern	7609:5	
+parser.ts	parseArrayBindingPattern	7617:5	
+parser.ts	isBindingIdentifierOrPrivateIdentifierOrPattern	7625:5	
+parser.ts	parseIdentifierOrPattern	7632:5	7633:9=true/false; 7636:9=true/false
+parser.ts	parseVariableDeclarationAllowExclamation	7642:5	
+parser.ts	parseVariableDeclaration	7646:5	7651:9=true/false; 7658:29=true/false
+parser.ts	parseVariableDeclarationList	7663:5	7668:13=SyntaxKind.VarKeyword; 7670:13=SyntaxKind.LetKeyword; 7673:13=SyntaxKind.ConstKeyword; 7676:13=SyntaxKind.UsingKeyword; 7679:13=SyntaxKind.AwaitKeyword; 7684:13=default; 7700:9=true/false; 7709:17=true/false
+parser.ts	canFollowContextualOfKeyword	7718:5	
+parser.ts	parseVariableStatement	7722:5	
+parser.ts	parseFunctionDeclaration	7729:5	7735:22=true/false; 7736:29=true/false; 7737:25=true/false; 7739:9=true/false
+parser.ts	parseConstructorName	7748:5	7749:9=true/false; 7752:9=true/false; 7755:24=true/false
+parser.ts	tryParseConstructorDeclaration	7760:5	7762:13=true/false
+parser.ts	parseMethodDeclaration	7777:5	7787:29=true/false; 7788:25=true/false
+parser.ts	parsePropertyDeclaration	7809:5	7816:34=true/false
+parser.ts	parsePropertyOrMethodDeclaration	7830:5	7840:9=true/false
+parser.ts	parseAccessorDeclaration	7846:5	7852:22=true/false; 7857:9=true/false
+parser.ts	isClassMemberStart	7861:5	7864:9=true/false; 7877:13=true/false; 7884:9=true/false; 7890:9=true/false; 7896:9=true/false; 7901:9=true/false; 7903:13=true/false; 7910:17=SyntaxKind.OpenParenToken; 7911:17=SyntaxKind.LessThanToken; 7912:17=SyntaxKind.ExclamationToken; 7913:17=SyntaxKind.ColonToken; 7914:17=SyntaxKind.EqualsToken; 7915:17=SyntaxKind.QuestionToken; 7917:17=default
+parser.ts	parseClassStaticBlockDeclaration	7930:5	
+parser.ts	parseClassStaticBlockBody	7938:5	
+parser.ts	parseDecoratorExpression	7953:5	7954:9=true/false
+parser.ts	tryParseDecorator	7966:5	7968:9=true/false
+parser.ts	tryParseModifier	7975:5	7979:9=true/false; 7982:13=true/false; 7986:14=true/false; 7989:14=true/false; 7993:13=true/false
+parser.ts	parseModifiers	8008:5	
+parser.ts	parseModifiers	8009:5	
+parser.ts	parseModifiers	8010:5	8020:9=true/false; 8028:13=true/false; 8034:9=true/false; 8042:9=true/false; 8044:17=true/false
+parser.ts	parseModifiersForArrowFunction	8052:5	8054:9=true/false
+parser.ts	parseClassElement	8063:5	8066:9=true/false; 8072:9=true/false; 8076:9=true/false; 8080:9=true/false; 8084:9=true/false; 8086:13=true/false; 8091:9=true/false; 8097:9=true/false; 8106:13=true/false; 8117:9=true/false
+parser.ts	parseDecoratedExpression	8127:5	8131:9=true/false
+parser.ts	parseClassExpression	8141:5	
+parser.ts	parseClassDeclaration	8145:5	
+parser.ts	parseClassDeclarationOrExpression	8149:5	8156:9=true/false; 8160:9=true/false; 8170:22=true/false
+parser.ts	parseNameOfClassDeclarationOrExpression	8176:5	8182:16=true/false
+parser.ts	isImplementsClause	8187:5	
+parser.ts	parseHeritageClauses	8191:5	8195:9=true/false
+parser.ts	parseHeritageClause	8202:5	
+parser.ts	parseExpressionWithTypeArguments	8211:5	8214:9=true/false
+parser.ts	tryParseTypeArguments	8221:5	8222:16=true/false
+parser.ts	isHeritageClause	8226:5	
+parser.ts	parseClassMembers	8230:5	
+parser.ts	parseInterfaceDeclaration	8234:5	
+parser.ts	parseTypeAliasDeclaration	8244:5	8246:9=true/false
+parser.ts	parseEnumMember	8262:5	
+parser.ts	parseEnumDeclaration	8270:5	8274:9=true/false
+parser.ts	parseModuleBlock	8285:5	8288:9=true/false
+parser.ts	parseModuleOrNamespaceDeclaration	8298:5	8302:22=true/false; 8303:22=true/false
+parser.ts	parseAmbientExternalModuleDeclaration	8310:5	8313:9=true/false; 8323:9=true/false
+parser.ts	parseModuleDeclaration	8333:5	8335:9=true/false; 8339:14=true/false; 8344:13=true/false
+parser.ts	isExternalModuleReference	8351:5	
+parser.ts	nextTokenIsOpenParen	8356:5	
+parser.ts	nextTokenIsOpenBrace	8360:5	
+parser.ts	nextTokenIsSlash	8364:5	
+parser.ts	parseNamespaceExportDeclaration	8368:5	
+parser.ts	parseImportDeclarationOrImportEqualsDeclaration	8379:5	8386:9=true/false; 8391:9=true/false; 8397:26=true/false; 8399:14=true/false; 8401:14=true/false; 8404:26=true/false; 8407:9=true/false
+parser.ts	tryParseImportClause	8420:5	8425:9=true/false
+parser.ts	tryParseImportAttributes	8436:5	8438:9=true/false
+parser.ts	parseImportAttribute	8443:5	8445:22=true/false
+parser.ts	parseImportAttributes	8451:5	8453:9=true/false; 8457:9=true/false; 8460:13=true/false; 8462:17=true/false
+parser.ts	tokenAfterImportDefinitelyProducesImportDeclaration	8477:5	
+parser.ts	tokenAfterImportedIdentifierDefinitelyProducesImportDeclaration	8481:5	
+parser.ts	parseImportEqualsDeclaration	8487:5	
+parser.ts	parseImportClause	8496:5	8507:9=true/false; 8511:13=true/false; 8512:13=true/false; 8518:13=true/false
+parser.ts	parseModuleReference	8524:5	8525:16=true/false
+parser.ts	parseExternalModuleReference	8530:5	
+parser.ts	parseModuleSpecifier	8539:5	8540:9=true/false
+parser.ts	parseNamespaceImport	8553:5	
+parser.ts	canParseModuleExportName	8563:5	
+parser.ts	parseModuleExportName	8567:5	8568:16=true/false
+parser.ts	parseNamedImportsOrExports	8571:5	
+parser.ts	parseNamedImportsOrExports	8572:5	
+parser.ts	parseNamedImportsOrExports	8573:5	8584:22=true/false
+parser.ts	parseExportSpecifier	8590:5	
+parser.ts	parseImportSpecifier	8595:5	
+parser.ts	parseNameWithKeywordCheck	8684:9	
+parser.ts	parseImportOrExportSpecifier	8599:5	8614:9=true/false; 8622:13=true/false; 8625:17=true/false; 8628:21=true/false; 8643:22=true/false; 8656:18=true/false; 8664:9=true/false; 8669:9=true/false; 8670:13=true/false; 8675:18=true/false; 8679:22=true/false
+parser.ts	parseNamespaceExport	8692:5	
+parser.ts	parseExportDeclaration	8696:5	8704:9=true/false; 8705:13=true/false; 8716:13=true/false; 8722:9=true/false
+parser.ts	parseExportAssignment	8731:5	8735:9=true/false
+parser.ts	parseJSDocTypeExpressionForTests	8786:9	8794:13=true/false; 8800:20=true/false
+parser.ts	parseJSDocTypeExpression	8804:9	8806:31=true/false; 8808:13=true/false
+parser.ts	parseJSDocNameReference	8817:9	8827:13=true/false
+parser.ts	parseIsolatedJSDocComment	8836:9	8844:20=true/false
+parser.ts	parseJSDocComment	8847:9	8855:13=true/false; 8856:17=true/false
+parser.ts	pushComment	8918:17	8919:21=true/false
+parser.ts	doJSDocScan	8910:13	8928:17=true/false; 8935:25=SyntaxKind.AtToken; 8937:29=true/false; 8945:25=SyntaxKind.NewLineTrivia; 8950:25=SyntaxKind.AsteriskToken; 8952:29=true/false; 8964:25=SyntaxKind.WhitespaceTrivia; 8968:29=true/false; 8973:25=SyntaxKind.EndOfFileToken; 8975:25=SyntaxKind.JSDocCommentTextToken; 8979:25=SyntaxKind.OpenBraceToken; 8984:29=true/false; 8985:33=true/false; 8995:25=default; 9003:21=true/false; 9011:17=true/false; 9014:17=true/false; 9016:62=true/false; 9016:122=true/false
+parser.ts	removeLeadingNewlines	9019:13	
+parser.ts	removeTrailingWhitespace	9025:13	9028:21=true/false; 9031:26=true/false
+parser.ts	isNextNonwhitespaceTokenEndOfFile	9041:13	9045:21=true/false; 9048:21=true/false
+parser.ts	skipWhitespace	9054:13	9055:17=true/false; 9056:21=true/false
+parser.ts	skipWhitespaceOrAsterisk	9065:13	9066:17=true/false; 9067:21=true/false; 9077:21=true/false; 9082:26=true/false; 9087:24=true/false
+parser.ts	parseTag	9090:13	9100:21="author"; 9103:21="implements"; 9106:21="augments"; 9107:21="extends"; 9110:21="class"; 9111:21="constructor"; 9114:21="public"; 9117:21="private"; 9120:21="protected"; 9123:21="readonly"; 9126:21="override"; 9129:21="deprecated"; 9133:21="this"; 9136:21="enum"; 9139:21="arg"; 9140:21="argument"; 9141:21="param"; 9143:21="return"; 9144:21="returns"; 9147:21="template"; 9150:21="type"; 9153:21="typedef"; 9156:21="callback"; 9159:21="overload"; 9162:21="satisfies"; 9165:21="see"; 9168:21="exception"; 9169:21="throws"; 9172:21="import"; 9175:21=default
+parser.ts	parseTrailingTagComments	9182:13	9184:17=true/false
+parser.ts	pushComment	9197:17	9198:21=true/false
+parser.ts	parseTagComments	9190:13	9204:17=true/false; 9206:21=true/false; 9215:25=SyntaxKind.NewLineTrivia; 9221:25=SyntaxKind.AtToken; 9224:25=SyntaxKind.EndOfFileToken; 9227:25=SyntaxKind.WhitespaceTrivia; 9231:29=true/false; 9237:25=SyntaxKind.OpenBraceToken; 9242:29=true/false; 9252:25=SyntaxKind.BacktickToken; 9253:29=true/false; 9261:25=SyntaxKind.JSDocCommentTextToken; 9262:29=true/false; 9267:25=SyntaxKind.AsteriskToken; 9268:29=true/false; 9276:25=default; 9277:29=true/false; 9283:21=true/false; 9293:17=true/false; 9294:21=true/false; 9299:22=true/false
+parser.ts	parseJSDocLink	9304:13	9306:17=true/false; 9317:32=true/false; 9318:23=true/false
+parser.ts	parseJSDocLinkName	9323:13	9324:17=true/false; 9329:77=true/false
+parser.ts	parseJSDocLinkPrefix	9341:13	9343:17=true/false; 9349:21=true/false
+parser.ts	isJSDocLinkTag	9353:13	
+parser.ts	parseUnknownTag	9357:13	
+parser.ts	addTag	9361:13	9362:17=true/false; 9365:17=true/false
+parser.ts	tryParseTypeExpression	9375:13	9377:24=true/false
+parser.ts	parseBracketNameInPropertyAndParamTag	9380:13	9383:17=true/false; 9389:17=true/false; 9392:17=true/false; 9395:21=true/false
+parser.ts	isObjectOrObjectArrayTypeReference	9405:13	9407:21=SyntaxKind.ObjectKeyword; 9409:21=SyntaxKind.ArrayType; 9411:21=default
+parser.ts	parseParameterOrPropertyTag	9416:13	9424:17=true/false; 9431:17=true/false; 9435:32=true/false
+parser.ts	parseNestedTypeLiteral	9441:13	9442:17=true/false; 9447:25=true/false; 9450:30=true/false; 9454:21=true/false
+parser.ts	parseReturnTag	9461:13	9462:17=true/false
+parser.ts	parseTypeTag	9470:13	9471:17=true/false; 9476:34=true/false
+parser.ts	parseSeeTag	9480:13	9483:40=true/false; 9484:34=true/false
+parser.ts	parseThrowsTag	9488:13	
+parser.ts	parseAuthorTag	9494:13	9499:17=true/false; 9502:34=true/false
+parser.ts	parseAuthorNameAndEmail	9508:13	9513:21=true/false; 9516:26=true/false; 9519:26=true/false
+parser.ts	parseImplementsTag	9531:13	
+parser.ts	parseAugmentsTag	9536:13	
+parser.ts	parseSatisfiesTag	9541:13	9543:34=true/false
+parser.ts	parseImportTag	9547:13	9551:17=true/false; 9559:34=true/false
+parser.ts	parseExpressionWithTypeArgumentsForAugments	9563:13	9572:17=true/false
+parser.ts	parsePropertyAccessEntityNameExpression	9579:13	
+parser.ts	parseSimpleTag	9589:13	
+parser.ts	parseThisTag	9593:13	
+parser.ts	parseEnumTag	9599:13	
+parser.ts	parseTypedefTag	9605:13	9614:17=true/false; 9620:25=true/false; 9624:25=true/false; 9625:29=true/false; 9627:33=true/false; 9640:21=true/false; 9643:42=true/false; 9651:23=true/false; 9655:17=true/false
+parser.ts	parseJSDocTypeNameWithNamespace	9663:13	9665:17=true/false; 9669:17=true/false; 9675:25=true/false; 9680:17=true/false
+parser.ts	parseCallbackTagParameters	9686:13	9691:21=true/false
+parser.ts	parseJSDocSignature	9700:13	9703:21=true/false; 9705:25=true/false
+parser.ts	parseCallbackTag	9713:13	9718:17=true/false; 9721:29=true/false
+parser.ts	parseOverloadTag	9725:13	9729:17=true/false; 9732:29=true/false
+parser.ts	escapedTextsEqual	9736:13	9738:21=true/false
+parser.ts	parseChildPropertyTag	9749:13	
+parser.ts	parseChildParameterOrPropertyTag	9753:13	9758:25=SyntaxKind.AtToken; 9759:29=true/false; 9761:33=true/false; 9771:25=SyntaxKind.NewLineTrivia; 9775:25=SyntaxKind.AsteriskToken; 9776:29=true/false; 9781:25=SyntaxKind.Identifier; 9784:25=SyntaxKind.EndOfFileToken
+parser.ts	tryParseChildTag	9790:13	9799:21="type"; 9801:21="prop"; 9802:21="property"; 9805:21="arg"; 9806:21="argument"; 9807:21="param"; 9810:21="template"; 9812:21="this"; 9814:21=default; 9817:17=true/false
+parser.ts	parseTemplateTagTypeParameter	9823:13	9826:17=true/false; 9833:17=true/false; 9840:17=true/false
+parser.ts	parseTemplateTagTypeParameters	9846:13	9852:21=true/false
+parser.ts	parseTemplateTag	9861:13	9873:36=true/false
+parser.ts	parseOptionalJsdoc	9878:13	9879:17=true/false
+parser.ts	parseJSDocEntityName	9886:13	9888:17=true/false; 9896:21=true/false
+parser.ts	parseJSDocIdentifierName	9904:13	9905:17=true/false
+parser.ts	parseJSDocCommentWorker	8880:9	8882:25=true/false; 8890:13=true/false
+parser.ts	markAsIncrementallyParsed	9924:1	9925:5=true/false
+parser.ts	intersectsIncrementalChange	9933:1	
+parser.ts	markAsIntersectingIncrementalChange	9937:1	
+parser.ts	updateSourceFile	9942:5	9946:9=true/false; 9951:9=true/false
+parser.ts	addNewlyScannedDirectives	10068:9	10069:13=true/false; 10071:13=true/false; 10074:18=true/false
+parser.ts	getNewCommentDirectives	10031:5	10041:9=true/false; 10047:13=true/false; 10050:18=true/false; 10059:17=true/false
+parser.ts	moveElementEntirelyPastChangeRange	10080:5	
+parser.ts	moveElementEntirelyPastChangeRange	10081:5	
+parser.ts	visitNode	10091:9	10093:13=true/false; 10103:13=true/false; 10108:13=true/false
+parser.ts	visitArray	10116:9	
+parser.ts	moveElementEntirelyPastChangeRange	10082:5	10083:9=true/false
+parser.ts	shouldCheckNode	10125:5	10127:13=SyntaxKind.StringLiteral; 10128:13=SyntaxKind.NumericLiteral; 10129:13=SyntaxKind.Identifier
+parser.ts	adjustIntersectingElement	10136:5	10194:21=true/false; 10202:9=true/false
+parser.ts	visitNode	10214:19	
+parser.ts	checkNodePositions	10211:5	10212:9=true/false; 10218:13=true/false
+parser.ts	visitNode	10241:9	10243:13=true/false; 10254:13=true/false; 10261:17=true/false
+parser.ts	visitArray	10274:9	10276:13=true/false; 10287:13=true/false
+parser.ts	updateTokenPositionsAndMarkElements	10228:5	
+parser.ts	extendToAffectedRange	10303:5	
+parser.ts	getLastDescendant	10350:9	10353:17=true/false
+parser.ts	visit	10362:9	10363:13=true/false; 10371:13=true/false; 10372:17=true/false; 10382:17=true/false
+parser.ts	findNearestNodeStartingBeforeOrAtPosition	10335:5	10341:9=true/false; 10343:13=true/false
+parser.ts	checkChangeRange	10420:5	10422:9=true/false; 10425:13=true/false
+parser.ts	currentNode	10453:13	10458:17=true/false; 10462:21=true/false; 10469:21=true/false
+parser.ts	visitNode	10500:13	10501:17=true/false
+parser.ts	visitArray	10513:13	10514:17=true/false; 10519:25=true/false; 10520:29=true/false; 10528:33=true/false
+parser.ts	findHighestListElementThatStartsAtPosition	10490:9	
+parser.ts	createSyntaxCursor	10444:5	
+parser.ts	isDeclarationFileName	10551:1	
+parser.ts	getDeclarationFileExtension	10556:1	10558:5=true/false; 10561:5=true/false; 10564:9=true/false
+parser.ts	parseResolutionMode	10571:1	10572:5=true/false; 10575:5=true/false; 10578:5=true/false
+parser.ts	processCommentPragmas	10586:1	10596:9=true/false; 10598:13=true/false
+parser.ts	processPragmasIntoFields	10614:1	10625:13="reference"; 10631:38=true/false; 10632:21=true/false; 10635:26=true/false; 10637:115=true/false; 10637:162=true/false; 10639:26=true/false; 10640:108=true/false; 10642:26=true/false; 10643:104=true/false; 10651:13="amd-dependency"; 10658:13="amd-module"; 10659:17=true/false; 10661:25=true/false; 10673:13="ts-nocheck"; 10674:13="ts-check"; 10677:21=true/false; 10687:13="jsx"; 10688:13="jsxfrag"; 10689:13="jsximportsource"; 10690:13="jsxruntime"; 10692:13=default
+parser.ts	getNamedArgRegEx	10699:1	10700:5=true/false
+parser.ts	extractPragmas	10710:1	10712:5=true/false; 10715:9=true/false; 10718:9=true/false; 10723:17=true/false; 10726:22=true/false; 10728:21=true/false; 10750:5=true/false; 10754:5=true/false
+parser.ts	addPragmaForMatch	10763:1	10764:5=true/false; 10767:5=true/false; 10772:5=true/false
+parser.ts	getNamedPragmaArguments	10777:1	10778:5=true/false; 10779:5=true/false; 10784:9=true/false; 10787:9=true/false
+parser.ts	tagNamesAreEquivalent	10796:1	10797:5=true/false; 10801:5=true/false; 10805:5=true/false; 10809:5=true/false
+scanner.ts	tokenIsIdentifierOrKeyword	42:1	
+scanner.ts	tokenIsIdentifierOrKeywordOrGreaterThan	47:1	
+scanner.ts	lookupInUnicodeMap	358:1	360:5=true/false; 373:9=true/false; 377:9=true/false
+scanner.ts	isUnicodeIdentifierStart	389:1	390:12=true/false
+scanner.ts	isUnicodeIdentifierPart	395:1	396:12=true/false
+scanner.ts	makeReverseMap	401:1	
+scanner.ts	tokenToString	412:1	
+scanner.ts	tokenToString	413:1	
+scanner.ts	tokenToString	414:1	
+scanner.ts	stringToToken	419:1	
+scanner.ts	regularExpressionFlagToCharacterCode	426:1	
+scanner.ts	characterCodeToRegularExpressionFlag	431:1	
+scanner.ts	computeLineStarts	436:1	444:13=CharacterCodes.carriageReturn; 445:17=true/false; 449:13=CharacterCodes.lineFeed; 453:13=default; 454:17=true/false
+scanner.ts	getPositionOfLineAndCharacter	465:1	
+scanner.ts	getPositionOfLineAndCharacter	467:1	
+scanner.ts	getPositionOfLineAndCharacter	468:1	469:12=true/false
+scanner.ts	computePositionOfLineAndCharacter	475:1	476:5=true/false; 477:9=true/false; 479:20=true/false; 479:35=true/false; 482:122=true/false; 487:5=true/false; 491:16=true/false; 491:68=true/false; 493:5=true/false; 496:10=true/false
+scanner.ts	getLineStarts	503:1	
+scanner.ts	computeLineAndCharacterOfPosition	508:1	
+scanner.ts	computeLineOfPosition	520:1	522:5=true/false
+scanner.ts	getLinesBetweenPositions	537:1	538:5=true/false; 542:19=true/false; 545:12=true/false
+scanner.ts	getLineAndCharacterOfPosition	548:1	
+scanner.ts	isWhiteSpaceLike	552:1	
+scanner.ts	isWhiteSpaceSingleLine	557:1	
+scanner.ts	isLineBreak	574:1	
+scanner.ts	isDigit	592:1	
+scanner.ts	isHexDigit	596:1	
+scanner.ts	isASCIILetter	600:1	
+scanner.ts	isWordCharacter	605:1	
+scanner.ts	isOctalDigit	609:1	
+scanner.ts	couldStartTrivia	613:1	617:9=CharacterCodes.carriageReturn; 618:9=CharacterCodes.lineFeed; 619:9=CharacterCodes.tab; 620:9=CharacterCodes.verticalTab; 621:9=CharacterCodes.formFeed; 622:9=CharacterCodes.space; 623:9=CharacterCodes.slash; 626:9=CharacterCodes.lessThan; 627:9=CharacterCodes.bar; 628:9=CharacterCodes.equals; 629:9=CharacterCodes.greaterThan; 632:9=CharacterCodes.hash; 635:9=default
+scanner.ts	skipTrivia	641:1	642:5=true/false; 651:13=CharacterCodes.carriageReturn; 652:17=true/false; 656:13=CharacterCodes.lineFeed; 658:17=true/false; 663:13=CharacterCodes.tab; 664:13=CharacterCodes.verticalTab; 665:13=CharacterCodes.formFeed; 666:13=CharacterCodes.space; 669:13=CharacterCodes.slash; 670:17=true/false; 673:17=true/false; 676:25=true/false; 684:17=true/false; 687:25=true/false; 698:13=CharacterCodes.lessThan; 699:13=CharacterCodes.bar; 700:13=CharacterCodes.equals; 701:13=CharacterCodes.greaterThan; 702:17=true/false; 709:13=CharacterCodes.hash; 710:17=true/false; 717:13=CharacterCodes.asterisk; 718:17=true/false; 725:13=default; 726:17=true/false
+scanner.ts	isConflictMarkerTrivia	740:1	744:5=true/false; 747:9=true/false; 749:17=true/false
+scanner.ts	scanConflictMarkerTrivia	762:1	763:5=true/false; 770:5=true/false; 781:13=true/false
+scanner.ts	isShebangTrivia	794:1	
+scanner.ts	scanShebangTrivia	800:1	
+scanner.ts	iterateCommentRanges	826:1	834:5=true/false; 837:9=true/false; 845:13=CharacterCodes.carriageReturn; 846:17=true/false; 850:13=CharacterCodes.lineFeed; 852:17=true/false; 857:17=true/false; 862:13=CharacterCodes.tab; 863:13=CharacterCodes.verticalTab; 864:13=CharacterCodes.formFeed; 865:13=CharacterCodes.space; 868:13=CharacterCodes.slash; 871:17=true/false; 872:34=true/false; 875:21=true/false; 877:29=true/false; 886:29=true/false; 894:21=true/false; 895:25=true/false; 897:29=true/false; 913:13=default; 914:17=true/false; 915:21=true/false; 925:5=true/false
+scanner.ts	forEachLeadingCommentRange	932:1	
+scanner.ts	forEachLeadingCommentRange	933:1	
+scanner.ts	forEachLeadingCommentRange	934:1	
+scanner.ts	forEachTrailingCommentRange	938:1	
+scanner.ts	forEachTrailingCommentRange	939:1	
+scanner.ts	forEachTrailingCommentRange	940:1	
+scanner.ts	reduceEachLeadingCommentRange	944:1	
+scanner.ts	reduceEachTrailingCommentRange	948:1	
+scanner.ts	appendCommentRange	952:1	
+scanner.ts	getLeadingCommentRanges	957:1	
+scanner.ts	getTrailingCommentRanges	961:1	
+scanner.ts	getShebang	966:1	968:5=true/false
+scanner.ts	isIdentifierStart	973:1	
+scanner.ts	isIdentifierPart	978:1	981:10=true/false
+scanner.ts	isIdentifierText	986:1	988:5=true/false; 993:9=true/false
+scanner.ts	codePointUnchecked	1131:5	
+scanner.ts	codePointChecked	1139:5	1140:16=true/false
+scanner.ts	charCodeUnchecked	1148:5	
+scanner.ts	charCodeChecked	1156:5	1157:16=true/false
+scanner.ts	error	1160:5	
+scanner.ts	error	1161:5	
+scanner.ts	error	1162:5	1163:9=true/false
+scanner.ts	scanNumberFragment	1171:5	1178:13=true/false; 1180:17=true/false; 1187:21=true/false; 1198:13=true/false; 1206:9=true/false
+scanner.ts	scanNumber	1233:5	1236:9=true/false; 1238:13=true/false; 1246:18=true/false; 1252:18=true/false; 1261:34=true/false; 1262:17=true/false; 1272:9=true/false; 1277:9=true/false; 1280:13=true/false; 1283:13=true/false; 1292:9=true/false; 1294:13=true/false; 1297:13=true/false; 1305:9=true/false; 1312:9=true/false
+scanner.ts	checkForIdentifierStartAfterNumericLiteral	1326:5	1327:9=true/false; 1334:9=true/false; 1335:13=true/false
+scanner.ts	scanDigits	1348:5	1352:13=true/false
+scanner.ts	scanExactNumberOfHexDigits	1365:5	1367:16=true/false
+scanner.ts	scanMinimumNumberOfHexDigits	1374:5	
+scanner.ts	scanHexDigits	1378:5	1384:13=true/false; 1386:17=true/false; 1390:22=true/false; 1400:13=true/false; 1403:18=true/false; 1413:9=true/false; 1416:9=true/false
+scanner.ts	scanString	1422:5	1428:13=true/false; 1435:13=true/false; 1440:13=true/false; 1447:13=true/false
+scanner.ts	scanTemplateAndSetTokenValue	1462:5	1471:13=true/false; 1475:34=true/false; 1482:13=true/false; 1485:34=true/false; 1490:13=true/false; 1493:34=true/false; 1498:13=true/false; 1500:86=true/false; 1507:13=true/false; 1511:17=true/false
+scanner.ts	scanEscapeSequence	1543:5	1546:9=true/false; 1553:13=CharacterCodes._0; 1556:17=true/false; 1561:13=CharacterCodes._1; 1562:13=CharacterCodes._2; 1563:13=CharacterCodes._3; 1565:17=true/false; 1570:13=CharacterCodes._4; 1571:13=CharacterCodes._5; 1572:13=CharacterCodes._6; 1573:13=CharacterCodes._7; 1575:17=true/false; 1580:17=true/false; 1582:21=true/false; 1591:13=CharacterCodes._8; 1592:13=CharacterCodes._9; 1595:17=true/false; 1596:21=true/false; 1605:13=CharacterCodes.b; 1607:13=CharacterCodes.t; 1609:13=CharacterCodes.n; 1611:13=CharacterCodes.v; 1613:13=CharacterCodes.f; 1615:13=CharacterCodes.r; 1617:13=CharacterCodes.singleQuote; 1619:13=CharacterCodes.doubleQuote; 1621:13=CharacterCodes.u; 1622:17=true/false; 1626:21=true/false; 1628:25=true/false; 1636:21=true/false; 1638:25=true/false; 1647:17=true/false; 1657:25=true/false; 1663:21=true/false; 1670:13=CharacterCodes.x; 1673:21=true/false; 1675:25=true/false; 1686:13=CharacterCodes.carriageReturn; 1687:17=true/false; 1691:13=CharacterCodes.lineFeed; 1692:13=CharacterCodes.lineSeparator; 1693:13=CharacterCodes.paragraphSeparator; 1695:13=default; 1696:17=true/false
+scanner.ts	scanExtendedUnicodeEscape	1708:5	1713:30=true/false; 1717:9=true/false; 1718:13=true/false; 1723:14=true/false; 1724:13=true/false; 1730:9=true/false; 1731:13=true/false; 1736:14=true/false; 1741:13=true/false; 1747:9=true/false
+scanner.ts	peekUnicodeEscape	1758:5	1759:9=true/false
+scanner.ts	peekExtendedUnicodeEscape	1769:5	1770:9=true/false; 1774:34=true/false
+scanner.ts	scanIdentifierParts	1781:5	1786:13=true/false; 1789:18=true/false; 1791:17=true/false; 1797:17=true/false
+scanner.ts	getIdentifierToken	1815:5	1818:9=true/false; 1820:13=true/false; 1822:17=true/false
+scanner.ts	scanBinaryOrOctalDigits	1830:5	1839:13=true/false; 1841:17=true/false; 1845:22=true/false; 1855:13=true/false; 1862:9=true/false
+scanner.ts	checkBigIntSuffix	1869:5	1870:9=true/false; 1873:13=true/false; 1881:34=true/false; 1883:19=true/false
+scanner.ts	scan	1891:5	1896:13=true/false; 1901:13=true/false; 1903:17=true/false; 1905:21=true/false; 1915:17=CharacterCodes.lineFeed; 1916:17=CharacterCodes.carriageReturn; 1918:21=true/false; 1923:25=true/false; 1932:17=CharacterCodes.tab; 1933:17=CharacterCodes.verticalTab; 1934:17=CharacterCodes.formFeed; 1935:17=CharacterCodes.space; 1936:17=CharacterCodes.nonBreakingSpace; 1937:17=CharacterCodes.ogham; 1938:17=CharacterCodes.enQuad; 1939:17=CharacterCodes.emQuad; 1940:17=CharacterCodes.enSpace; 1941:17=CharacterCodes.emSpace; 1942:17=CharacterCodes.threePerEmSpace; 1943:17=CharacterCodes.fourPerEmSpace; 1944:17=CharacterCodes.sixPerEmSpace; 1945:17=CharacterCodes.figureSpace; 1946:17=CharacterCodes.punctuationSpace; 1947:17=CharacterCodes.thinSpace; 1948:17=CharacterCodes.hairSpace; 1949:17=CharacterCodes.zeroWidthSpace; 1950:17=CharacterCodes.narrowNoBreakSpace; 1951:17=CharacterCodes.mathematicalSpace; 1952:17=CharacterCodes.ideographicSpace; 1953:17=CharacterCodes.byteOrderMark; 1954:21=true/false; 1964:17=CharacterCodes.exclamation; 1965:21=true/false; 1966:25=true/false; 1973:17=CharacterCodes.doubleQuote; 1974:17=CharacterCodes.singleQuote; 1977:17=CharacterCodes.backtick; 1979:17=CharacterCodes.percent; 1980:21=true/false; 1985:17=CharacterCodes.ampersand; 1986:21=true/false; 1987:25=true/false; 1992:21=true/false; 1997:17=CharacterCodes.openParen; 2000:17=CharacterCodes.closeParen; 2003:17=CharacterCodes.asterisk; 2004:21=true/false; 2007:21=true/false; 2008:25=true/false; 2014:21=true/false; 2024:17=CharacterCodes.plus; 2025:21=true/false; 2028:21=true/false; 2033:17=CharacterCodes.comma; 2036:17=CharacterCodes.minus; 2037:21=true/false; 2040:21=true/false; 2045:17=CharacterCodes.dot; 2046:21=true/false; 2050:21=true/false; 2055:17=CharacterCodes.slash; 2057:21=true/false; 2061:29=true/false; 2074:25=true/false; 2082:21=true/false; 2091:29=true/false; 2099:29=true/false; 2105:25=true/false; 2111:25=true/false; 2115:25=true/false; 2119:29=true/false; 2126:21=true/false; 2133:17=CharacterCodes._0; 2134:21=true/false; 2137:25=true/false; 2145:26=true/false; 2148:25=true/false; 2156:26=true/false; 2159:25=true/false; 2168:17=CharacterCodes._1; 2169:17=CharacterCodes._2; 2170:17=CharacterCodes._3; 2171:17=CharacterCodes._4; 2172:17=CharacterCodes._5; 2173:17=CharacterCodes._6; 2174:17=CharacterCodes._7; 2175:17=CharacterCodes._8; 2176:17=CharacterCodes._9; 2178:17=CharacterCodes.colon; 2181:17=CharacterCodes.semicolon; 2184:17=CharacterCodes.lessThan; 2185:21=true/false; 2187:25=true/false; 2195:21=true/false; 2196:25=true/false; 2201:21=true/false; 2204:21=true/false; 2213:17=CharacterCodes.equals; 2214:21=true/false; 2216:25=true/false; 2224:21=true/false; 2225:25=true/false; 2230:21=true/false; 2235:17=CharacterCodes.greaterThan; 2236:21=true/false; 2238:25=true/false; 2248:17=CharacterCodes.question; 2249:21=true/false; 2252:21=true/false; 2253:25=true/false; 2260:17=CharacterCodes.openBracket; 2263:17=CharacterCodes.closeBracket; 2266:17=CharacterCodes.caret; 2267:21=true/false; 2272:17=CharacterCodes.openBrace; 2275:17=CharacterCodes.bar; 2276:21=true/false; 2278:25=true/false; 2286:21=true/false; 2287:25=true/false; 2292:21=true/false; 2297:17=CharacterCodes.closeBrace; 2300:17=CharacterCodes.tilde; 2303:17=CharacterCodes.at; 2306:17=CharacterCodes.backslash; 2308:21=true/false; 2314:21=true/false; 2324:17=CharacterCodes.hash; 2325:21=true/false; 2332:21=true/false; 2335:25=true/false; 2341:25=true/false; 2350:21=true/false; 2364:17=CharacterCodes.replacementCharacter; 2368:17=default; 2370:21=true/false; 2373:26=true/false; 2377:26=true/false
+scanner.ts	shouldParseJSDoc	2390:5	2392:13=JSDocParsingMode.ParseAll; 2394:13=JSDocParsingMode.ParseNone; 2398:9=true/false; 2403:9=true/false
+scanner.ts	reScanInvalidIdentifier	2412:5	2418:9=true/false
+scanner.ts	scanIdentifier	2425:5	2427:9=true/false; 2431:13=true/false
+scanner.ts	reScanGreaterToken	2438:5	2439:9=true/false; 2440:13=true/false; 2441:17=true/false; 2442:21=true/false; 2447:17=true/false; 2453:13=true/false
+scanner.ts	reScanAsteriskEqualsToken	2461:5	
+scanner.ts	reScanSlashToken	2467:5	2468:9=true/false; 2488:17=true/false; 2493:17=true/false; 2498:22=true/false; 2503:22=true/false; 2506:22=true/false; 2509:22=true/false; 2512:22=true/false; 2525:13=true/false; 2535:21=true/false; 2538:26=true/false; 2541:26=true/false; 2544:26=true/false; 2547:26=true/false; 2548:25=true/false; 2551:30=true/false; 2554:30=true/false; 2555:29=true/false; 2558:34=true/false; 2561:34=true/false; 2579:21=true/false; 2583:21=true/false; 2585:25=true/false; 2588:30=true/false; 2591:30=true/false; 2601:17=true/false
+scanner.ts	scanDisjunction	2643:9	2649:17=true/false
+scanner.ts	scanAlternative	2685:9	2691:21=CharacterCodes.EOF; 2693:21=CharacterCodes.caret; 2694:21=CharacterCodes.$; 2698:21=CharacterCodes.backslash; 2701:29=CharacterCodes.b; 2702:29=CharacterCodes.B; 2706:29=default; 2712:21=CharacterCodes.openParen; 2714:25=true/false; 2717:33=CharacterCodes.equals; 2718:33=CharacterCodes.exclamation; 2723:33=CharacterCodes.lessThan; 2727:41=CharacterCodes.equals; 2728:41=CharacterCodes.exclamation; 2732:41=default; 2735:45=true/false; 2743:33=default; 2746:37=true/false; 2749:41=true/false; 2765:21=CharacterCodes.openBrace; 2770:25=true/false; 2774:25=true/false; 2778:29=true/false; 2779:33=true/false; 2788:34=true/false; 2792:30=true/false; 2793:29=true/false; 2799:25=true/false; 2800:29=true/false; 2810:21=CharacterCodes.asterisk; 2811:21=CharacterCodes.plus; 2812:21=CharacterCodes.question; 2814:25=true/false; 2818:25=true/false; 2823:21=CharacterCodes.dot; 2827:21=CharacterCodes.openBracket; 2829:25=true/false; 2838:21=CharacterCodes.closeParen; 2839:25=true/false; 2843:21=CharacterCodes.closeBracket; 2844:21=CharacterCodes.closeBrace; 2845:25=true/false; 2851:21=CharacterCodes.slash; 2852:21=CharacterCodes.bar; 2854:21=default
+scanner.ts	scanPatternModifiers	2862:9	2865:17=true/false; 2870:17=true/false; 2873:22=true/false; 2876:22=true/false
+scanner.ts	scanAtomEscape	2893:9	2896:17=CharacterCodes.k; 2898:21=true/false; 2903:26=true/false; 2907:17=CharacterCodes.q; 2908:21=true/false; 2914:17=default
+scanner.ts	scanDecimalEscape	2923:9	2926:13=true/false
+scanner.ts	scanCharacterEscape	2942:9	2946:17=CharacterCodes.EOF; 2949:17=CharacterCodes.c; 2952:21=true/false; 2956:21=true/false; 2959:26=true/false; 2969:17=CharacterCodes.caret; 2970:17=CharacterCodes.$; 2971:17=CharacterCodes.slash; 2972:17=CharacterCodes.backslash; 2973:17=CharacterCodes.dot; 2974:17=CharacterCodes.asterisk; 2975:17=CharacterCodes.plus; 2976:17=CharacterCodes.question; 2977:17=CharacterCodes.openParen; 2978:17=CharacterCodes.closeParen; 2979:17=CharacterCodes.openBracket; 2980:17=CharacterCodes.closeBracket; 2981:17=CharacterCodes.openBrace; 2982:17=CharacterCodes.closeBrace; 2983:17=CharacterCodes.bar; 2986:17=default; 2990:32=true/false; 2991:32=true/false; 2992:32=true/false
+scanner.ts	scanGroupName	2997:9	3001:13=true/false; 3004:18=true/false; 3007:18=true/false
+scanner.ts	isClassContentExit	3018:9	
+scanner.ts	scanClassRanges	3023:9	3025:13=true/false; 3031:17=true/false; 3036:17=true/false; 3039:21=true/false; 3042:21=true/false; 3047:21=true/false; 3051:21=true/false; 3056:21=true/false
+scanner.ts	scanClassSetExpression	3082:9	3085:13=true/false; 3091:13=true/false; 3097:17="--"; 3098:17="&&"; 3102:17=default; 3107:17=CharacterCodes.minus; 3108:21=true/false; 3109:25=true/false; 3118:17=CharacterCodes.ampersand; 3119:21=true/false; 3121:25=true/false; 3132:17=default; 3133:21=true/false; 3141:17=true/false; 3145:21=CharacterCodes.minus; 3148:25=true/false; 3152:25=true/false; 3160:29=true/false; 3165:29=true/false; 3169:29=true/false; 3173:29=true/false; 3178:29=true/false; 3187:21=CharacterCodes.ampersand; 3190:25=true/false; 3193:29=true/false; 3204:17=true/false; 3209:21="--"; 3210:21="&&"; 3215:21=default
+scanner.ts	scanClassSetSubExpression	3223:9	3227:17=true/false; 3232:21=CharacterCodes.minus; 3234:25=true/false; 3236:29=true/false; 3244:21=CharacterCodes.ampersand; 3246:25=true/false; 3248:29=true/false; 3251:29=true/false; 3260:21=default; 3262:29=ClassSetExpressionType.ClassSubtraction; 3265:29=ClassSetExpressionType.ClassIntersection; 3268:29=default; 3274:17=true/false
+scanner.ts	scanClassSetOperand	3290:9	3293:17=CharacterCodes.EOF; 3295:17=CharacterCodes.openBracket; 3300:17=CharacterCodes.backslash; 3302:21=true/false; 3305:26=true/false; 3307:25=true/false; 3320:17=default
+scanner.ts	scanClassStringDisjunctionContents	3326:9	3332:21=CharacterCodes.EOF; 3334:21=CharacterCodes.closeBrace; 3335:25=true/false; 3339:21=CharacterCodes.bar; 3340:25=true/false; 3347:21=default
+scanner.ts	scanClassSetCharacter	3358:9	3360:13=true/false; 3364:13=true/false; 3368:21=CharacterCodes.b; 3371:21=CharacterCodes.ampersand; 3372:21=CharacterCodes.minus; 3373:21=CharacterCodes.exclamation; 3374:21=CharacterCodes.hash; 3375:21=CharacterCodes.percent; 3376:21=CharacterCodes.comma; 3377:21=CharacterCodes.colon; 3378:21=CharacterCodes.semicolon; 3379:21=CharacterCodes.lessThan; 3380:21=CharacterCodes.equals; 3381:21=CharacterCodes.greaterThan; 3382:21=CharacterCodes.at; 3383:21=CharacterCodes.backtick; 3384:21=CharacterCodes.tilde; 3387:21=default; 3391:18=true/false; 3393:21=CharacterCodes.ampersand; 3394:21=CharacterCodes.exclamation; 3395:21=CharacterCodes.hash; 3396:21=CharacterCodes.percent; 3397:21=CharacterCodes.asterisk; 3398:21=CharacterCodes.plus; 3399:21=CharacterCodes.comma; 3400:21=CharacterCodes.dot; 3401:21=CharacterCodes.colon; 3402:21=CharacterCodes.semicolon; 3403:21=CharacterCodes.lessThan; 3404:21=CharacterCodes.equals; 3405:21=CharacterCodes.greaterThan; 3406:21=CharacterCodes.question; 3407:21=CharacterCodes.at; 3408:21=CharacterCodes.backtick; 3409:21=CharacterCodes.tilde; 3416:17=CharacterCodes.slash; 3417:17=CharacterCodes.openParen; 3418:17=CharacterCodes.closeParen; 3419:17=CharacterCodes.openBracket; 3420:17=CharacterCodes.closeBracket; 3421:17=CharacterCodes.openBrace; 3422:17=CharacterCodes.closeBrace; 3423:17=CharacterCodes.minus; 3424:17=CharacterCodes.bar
+scanner.ts	scanClassAtom	3440:9	3441:13=true/false; 3445:21=CharacterCodes.b; 3448:21=CharacterCodes.minus; 3451:21=default; 3452:25=true/false
+scanner.ts	scanCharacterClassEscape	3466:9	3472:17=CharacterCodes.d; 3473:17=CharacterCodes.D; 3474:17=CharacterCodes.s; 3475:17=CharacterCodes.S; 3476:17=CharacterCodes.w; 3477:17=CharacterCodes.W; 3480:17=CharacterCodes.P; 3483:17=CharacterCodes.p; 3485:21=true/false; 3489:25=true/false; 3491:29=true/false; 3494:34=true/false; 3497:33=true/false; 3504:29=true/false; 3507:34=true/false; 3510:33=true/false; 3516:29=true/false; 3519:34=true/false; 3520:33=true/false; 3523:38=true/false; 3530:34=true/false; 3533:33=true/false; 3539:25=true/false; 3543:26=true/false
+scanner.ts	scanWordCharacters	3555:9	3559:17=true/false
+scanner.ts	scanSourceCharacter	3568:9	3569:26=true/false; 3571:20=true/false
+scanner.ts	scanExpectedChar	3574:9	3575:13=true/false
+scanner.ts	scanRegularExpressionWorker	2613:5	3586:13=true/false; 3588:17=true/false; 3590:21=true/false; 3600:13=true/false; 3601:17=true/false
+scanner.ts	checkRegularExpressionFlagAvailability	3611:5	3613:9=true/false
+scanner.ts	appendIfCommentDirective	3618:5	3625:9=true/false
+scanner.ts	getDirectiveFromComment	3638:5	3640:9=true/false; 3645:13="ts-expect-error"; 3648:13="ts-ignore"
+scanner.ts	reScanTemplateToken	3658:5	
+scanner.ts	reScanTemplateHeadOrNoSubstitutionTemplate	3663:5	
+scanner.ts	reScanJsxToken	3668:5	
+scanner.ts	reScanLessThanToken	3673:5	3674:9=true/false
+scanner.ts	reScanHashToken	3681:5	3682:9=true/false
+scanner.ts	reScanQuestionToken	3689:5	
+scanner.ts	scanJsxToken	3695:5	3698:9=true/false; 3703:9=true/false; 3704:13=true/false; 3712:9=true/false; 3725:13=true/false; 3728:13=true/false; 3729:17=true/false; 3735:13=true/false; 3738:13=true/false; 3748:13=true/false; 3751:18=true/false; 3756:18=true/false; 3765:16=true/false
+scanner.ts	scanJsxIdentifier	3770:5	3771:9=true/false; 3778:17=true/false; 3785:17=true/false
+scanner.ts	scanJsxAttributeValue	3794:5	3798:13=CharacterCodes.doubleQuote; 3799:13=CharacterCodes.singleQuote; 3802:13=default
+scanner.ts	reScanJsxAttributeValue	3808:5	
+scanner.ts	scanJSDocCommentTextToken	3813:5	3816:9=true/false; 3820:13=true/false; 3821:17=true/false; 3824:22=true/false; 3834:9=true/false
+scanner.ts	scanJsDocToken	3841:5	3844:9=true/false; 3851:13=CharacterCodes.tab; 3852:13=CharacterCodes.verticalTab; 3853:13=CharacterCodes.formFeed; 3854:13=CharacterCodes.space; 3859:13=CharacterCodes.at; 3861:13=CharacterCodes.carriageReturn; 3862:17=true/false; 3866:13=CharacterCodes.lineFeed; 3869:13=CharacterCodes.asterisk; 3871:13=CharacterCodes.openBrace; 3873:13=CharacterCodes.closeBrace; 3875:13=CharacterCodes.openBracket; 3877:13=CharacterCodes.closeBracket; 3879:13=CharacterCodes.openParen; 3881:13=CharacterCodes.closeParen; 3883:13=CharacterCodes.lessThan; 3885:13=CharacterCodes.greaterThan; 3887:13=CharacterCodes.equals; 3889:13=CharacterCodes.comma; 3891:13=CharacterCodes.dot; 3893:13=CharacterCodes.backtick; 3895:13=CharacterCodes.hash; 3897:13=CharacterCodes.backslash; 3900:17=true/false; 3906:17=true/false; 3916:9=true/false; 3920:13=true/false
+scanner.ts	speculationHelper	3930:5	3941:9=true/false
+scanner.ts	scanRange	3952:5	
+scanner.ts	lookAhead	3977:5	
+scanner.ts	tryScan	3981:5	
+scanner.ts	getText	3985:5	
+scanner.ts	clearCommentDirectives	3989:5	
+scanner.ts	setText	3993:5	3995:15=true/false
+scanner.ts	setOnError	3999:5	
+scanner.ts	setScriptTarget	4003:5	
+scanner.ts	setLanguageVariant	4007:5	
+scanner.ts	setScriptKind	4011:5	
+scanner.ts	setJSDocParsingMode	4015:5	
+scanner.ts	resetTokenState	4019:5	
+scanner.ts	setSkipJsDocLeadingAsterisks	4029:5	4030:38=true/false
+scanner.ts	createScanner	1022:1	1115:5=true/false
+scanner.ts	codePointAt	4034:1	
+scanner.ts	charSize	4039:1	4040:5=true/false; 4043:5=true/false
+scanner.ts	utf16EncodeAsStringFallback	4050:1	4053:5=true/false
+scanner.ts	utf16EncodeAsString	4066:1	
+checker.ts	checkGrammarRegularExpressionLiteral	33150:5	33152:9=true/false; 33160:17=true/false; 33164:22=true/false
+checker.ts	checkGrammarPrivateIdentifierExpression	34663:5	34664:9=true/false; 34668:9=true/false; 34669:13=true/false; 34674:13=true/false
+checker.ts	checkGrammarMappedType	42804:5	42805:9=true/false
+checker.ts	checkGrammarDecorator	43759:5	43761:9=true/false; 43767:13=true/false; 43775:17=true/false; 43783:17=true/false; 43784:21=true/false; 43787:21=true/false; 43801:17=true/false; 43802:21=true/false; 43811:17=true/false; 43819:13=true/false
+checker.ts	checkGrammarExportDeclaration	48628:5	48629:9=true/false
+checker.ts	checkGrammarModuleElementContext	48635:5	48637:9=true/false
+checker.ts	checkGrammarModifiers	51535:5	51537:9=true/false; 51541:9=true/false; 51545:32=true/false; 51554:13=true/false; 51555:17=true/false; 51556:21=true/false; 51563:22=true/false; 51565:21=true/false; 51571:17=true/false; 51576:17=true/false; 51579:21=true/false; 51592:17=true/false; 51595:22=true/false; 51602:17=true/false; 51603:21=true/false; 51606:21=true/false; 51610:17=true/false; 51611:21=true/false; 51616:21=SyntaxKind.ConstKeyword; 51617:25=true/false; 51621:25=true/false; 51629:21=SyntaxKind.OverrideKeyword; 51631:25=true/false; 51634:30=true/false; 51637:30=true/false; 51640:30=true/false; 51643:30=true/false; 51650:21=SyntaxKind.PublicKeyword; 51651:21=SyntaxKind.ProtectedKeyword; 51652:21=SyntaxKind.PrivateKeyword; 51655:25=true/false; 51658:30=true/false; 51661:30=true/false; 51664:30=true/false; 51667:30=true/false; 51670:30=true/false; 51673:30=true/false; 51676:30=true/false; 51677:29=true/false; 51684:30=true/false; 51690:21=SyntaxKind.StaticKeyword; 51691:25=true/false; 51694:30=true/false; 51697:30=true/false; 51700:30=true/false; 51703:30=true/false; 51706:30=true/false; 51709:30=true/false; 51712:30=true/false; 51719:21=SyntaxKind.AccessorKeyword; 51720:25=true/false; 51723:30=true/false; 51726:30=true/false; 51729:30=true/false; 51736:21=SyntaxKind.ReadonlyKeyword; 51737:25=true/false; 51740:30=true/false; 51744:30=true/false; 51750:21=SyntaxKind.ExportKeyword; 51751:25=true/false; 51763:25=true/false; 51766:30=true/false; 51769:30=true/false; 51772:30=true/false; 51775:30=true/false; 51778:30=true/false; 51781:30=true/false; 51784:30=true/false; 51789:21=SyntaxKind.DefaultKeyword; 51790:43=true/false; 51791:25=true/false; 51794:30=true/false; 51797:30=true/false; 51800:30=true/false; 51803:30=true/false; 51809:21=SyntaxKind.DeclareKeyword; 51810:25=true/false; 51813:30=true/false; 51816:30=true/false; 51819:30=true/false; 51822:30=true/false; 51825:30=true/false; 51828:30=true/false; 51831:30=true/false; 51834:30=true/false; 51837:30=true/false; 51844:21=SyntaxKind.AbstractKeyword; 51845:25=true/false; 51848:25=true/false; 51852:29=true/false; 51860:29=true/false; 51861:49=true/false; 51866:29=true/false; 51869:29=true/false; 51872:29=true/false; 51875:29=true/false; 51878:29=true/false; 51882:25=true/false; 51889:21=SyntaxKind.AsyncKeyword; 51890:25=true/false; 51893:30=true/false; 51896:30=true/false; 51899:25=true/false; 51906:21=SyntaxKind.InKeyword; 51907:21=SyntaxKind.OutKeyword; 51908:43=true/false; 51909:43=true/false; 51911:25=true/false; 51914:25=true/false; 51917:25=true/false; 51927:9=true/false; 51928:13=true/false; 51931:13=true/false; 51934:13=true/false; 51939:14=true/false; 51942:14=true/false; 51945:14=true/false; 51948:9=true/false
+checker.ts	checkGrammarAsyncModifier	52031:5	52033:13=SyntaxKind.MethodDeclaration; 52034:13=SyntaxKind.FunctionDeclaration; 52035:13=SyntaxKind.FunctionExpression; 52036:13=SyntaxKind.ArrowFunction
+checker.ts	checkGrammarForDisallowedTrailingComma	52043:5	52044:9=true/false
+checker.ts	checkGrammarTypeParameterList	52050:5	52051:9=true/false
+checker.ts	checkGrammarParameterList	52059:5	52065:13=true/false; 52066:17=true/false; 52069:17=true/false; 52073:17=true/false; 52077:17=true/false; 52081:18=true/false; 52083:17=true/false; 52087:18=true/false
+checker.ts	checkGrammarForUseStrictSimpleParameterList	52097:5	52098:9=true/false; 52100:13=true/false; 52102:17=true/false; 52111:25=true/false
+checker.ts	checkGrammarFunctionLikeDeclaration	52121:5	
+checker.ts	checkGrammarClassLikeDeclaration	52131:5	
+checker.ts	checkGrammarArrowFunction	52137:5	52138:9=true/false; 52142:9=true/false; 52143:13=true/false
+checker.ts	checkGrammarIndexSignatureParameters	52154:5	52156:9=true/false; 52157:13=true/false; 52165:9=true/false; 52168:9=true/false; 52171:9=true/false; 52174:9=true/false; 52177:9=true/false; 52181:9=true/false; 52184:9=true/false; 52187:9=true/false
+checker.ts	checkGrammarIndexSignature	52193:5	
+checker.ts	checkGrammarForAtLeastOneTypeArgument	52198:5	52199:9=true/false
+checker.ts	checkGrammarTypeArguments	52208:5	
+checker.ts	checkGrammarTaggedTemplateChain	52213:5	52214:9=true/false
+checker.ts	checkGrammarHeritageClause	52220:5	52222:9=true/false; 52225:9=true/false
+checker.ts	checkGrammarExpressionWithTypeArguments	52232:5	52233:9=true/false
+checker.ts	checkGrammarClassDeclarationHeritageClauses	52239:5	52243:9=true/false; 52245:17=true/false; 52246:21=true/false; 52250:21=true/false; 52254:21=true/false; 52262:21=true/false
+checker.ts	checkGrammarInterfaceDeclaration	52275:5	52278:9=true/false; 52280:17=true/false; 52281:21=true/false
+checker.ts	checkGrammarComputedPropertyName	52299:5	52301:9=true/false; 52306:9=true/false
+checker.ts	checkGrammarForGenerator	52312:5	52313:9=true/false; 52319:13=true/false; 52322:13=true/false
+checker.ts	checkGrammarForInvalidQuestionMark	52328:5	
+checker.ts	checkGrammarForInvalidExclamationToken	52332:5	
+checker.ts	checkGrammarObjectLiteralExpression	52336:5	52340:13=true/false; 52341:17=true/false; 52344:21=true/false; 52351:13=true/false; 52356:13=true/false; 52362:13=true/false; 52367:13=true/false; 52369:21=true/false; 52374:18=true/false; 52376:21=true/false; 52392:17=SyntaxKind.ShorthandPropertyAssignment; 52393:17=SyntaxKind.PropertyAssignment; 52397:21=true/false; 52400:21=true/false; 52405:17=SyntaxKind.MethodDeclaration; 52408:17=SyntaxKind.GetAccessor; 52411:17=SyntaxKind.SetAccessor; 52414:17=default; 52418:13=true/false; 52420:17=true/false; 52425:17=true/false; 52429:21=true/false; 52432:26=true/false; 52435:26=true/false; 52436:25=true/false
+checker.ts	checkGrammarJsxElement	52451:5	52457:13=true/false; 52463:13=true/false; 52470:13=true/false
+checker.ts	checkGrammarJsxName	52476:5	52477:9=true/false; 52480:9=true/false
+checker.ts	checkGrammarJsxExpression	52485:5	52486:9=true/false
+checker.ts	checkGrammarForInOrForOfStatement	52491:5	52492:9=true/false; 52496:9=true/false; 52497:13=true/false; 52499:17=true/false; 52500:21=true/false; 52501:25=true/false; 52505:29=ModuleKind.Node16; 52506:29=ModuleKind.Node18; 52507:29=ModuleKind.Node20; 52508:29=ModuleKind.NodeNext; 52509:33=true/false; 52516:29=ModuleKind.ES2022; 52517:29=ModuleKind.ESNext; 52518:29=ModuleKind.Preserve; 52519:29=ModuleKind.System; 52520:33=true/false; 52524:29=default; 52534:21=true/false; 52537:25=true/false; 52549:9=true/false; 52557:9=true/false; 52559:13=true/false; 52569:17=true/false; 52573:17=true/false; 52574:40=true/false; 52581:17=true/false; 52582:40=true/false; 52587:17=true/false; 52588:40=true/false
+checker.ts	checkGrammarAccessor	52599:5	52600:9=true/false; 52601:13=true/false; 52604:13=true/false; 52608:9=true/false; 52609:13=true/false; 52612:13=true/false; 52616:9=true/false; 52619:9=true/false; 52622:17=true/false; 52627:9=true/false; 52628:13=true/false; 52632:13=true/false; 52635:13=true/false; 52638:13=true/false
+checker.ts	checkGrammarTypeOperatorNode	52659:5	52660:9=true/false; 52661:13=true/false; 52665:13=true/false; 52667:17=true/false; 52672:17=SyntaxKind.VariableDeclaration; 52674:21=true/false; 52677:21=true/false; 52680:21=true/false; 52685:17=SyntaxKind.PropertyDeclaration; 52686:21=true/false; 52694:17=SyntaxKind.PropertySignature; 52695:21=true/false; 52700:17=default; 52704:14=true/false; 52705:13=true/false
+checker.ts	checkGrammarForInvalidDynamicName	52711:5	52713:9=true/false; 52713:71=true/false
+checker.ts	checkGrammarMethod	52718:5	52719:9=true/false; 52723:9=true/false; 52724:13=true/false; 52726:17=true/false; 52729:22=true/false; 52732:22=true/false; 52735:22=true/false; 52739:13=true/false; 52744:9=true/false; 52745:13=true/false; 52753:13=true/false; 52756:18=true/false; 52760:14=true/false; 52763:14=true/false
+checker.ts	checkGrammarBreakOrContinueStatement	52768:5	52771:13=true/false; 52776:17=SyntaxKind.LabeledStatement; 52777:21=true/false; 52783:25=true/false; 52790:17=SyntaxKind.SwitchStatement; 52791:21=true/false; 52796:17=default; 52797:21=true/false; 52807:9=true/false; 52808:29=true/false; 52815:29=true/false
+checker.ts	checkGrammarBindingElement	52822:5	52823:9=true/false; 52825:13=true/false; 52830:13=true/false; 52835:9=true/false
+checker.ts	checkGrammarVariableDeclaration	52883:5	52886:9=true/false; 52888:17=NodeFlags.AwaitUsing; 52890:17=NodeFlags.Using; 52895:9=true/false; 52896:13=true/false; 52899:18=true/false; 52900:17=true/false; 52904:21=NodeFlags.AwaitUsing; 52906:21=NodeFlags.Using; 52908:21=NodeFlags.Const; 52914:9=true/false; 52915:29=true/false; 52917:19=true/false; 52923:9=true/false
+checker.ts	checkGrammarNameInLetOrConstDeclarations	52957:5	52958:9=true/false; 52959:13=true/false; 52966:17=true/false
+checker.ts	checkGrammarVariableDeclarationList	52974:5	52976:9=true/false; 52980:9=true/false; 52985:9=true/false; 52986:13=true/false; 52989:21=true/false; 52995:13=true/false; 52998:21=true/false; 53004:13=true/false
+checker.ts	checkGrammarForDisallowedBlockScopedVariableStatement	53029:5	53030:9=true/false; 53032:13=true/false; 53033:33=true/false; 53034:21=true/false; 53035:21=true/false; 53036:21=true/false
+checker.ts	checkGrammarMetaProperty	53043:5	53046:13=SyntaxKind.NewKeyword; 53047:17=true/false; 53051:13=SyntaxKind.ImportKeyword; 53052:17=true/false; 53054:21=true/false; 53055:25=true/false; 53060:25=true/false
+checker.ts	checkGrammarConstructorTypeParameters	53111:5	53112:37=true/false; 53114:9=true/false; 53115:25=true/false
+checker.ts	checkGrammarConstructorTypeAnnotation	53120:5	53122:9=true/false
+checker.ts	checkGrammarProperty	53127:5	53128:9=true/false; 53131:9=true/false; 53132:13=true/false; 53135:13=true/false; 53138:13=true/false; 53141:13=true/false; 53144:13=true/false; 53148:14=true/false; 53149:13=true/false; 53155:13=true/false; 53159:14=true/false; 53160:13=true/false; 53165:13=true/false; 53170:9=true/false; 53174:9=true/false; 53178:29=true/false; 53180:19=true/false
+checker.ts	checkGrammarTopLevelElementForRequiredDeclareModifier	53187:5	53200:9=true/false
+checker.ts	checkGrammarTopLevelElementsForRequiredDeclareModifier	53216:5	53218:13=true/false; 53219:17=true/false
+checker.ts	checkGrammarSourceFile	53227:5	
+checker.ts	checkGrammarStatementInAmbientContext	53231:5	53232:9=true/false; 53235:13=true/false; 53244:13=true/false; 53247:17=true/false
+checker.ts	checkGrammarNumericLiteral	53260:5	53269:9=true/false; 53279:9=true/false
+checker.ts	checkGrammarBigIntLiteral	53286:5	53289:9=true/false; 53291:13=true/false; 53292:17=true/false
+checker.ts	checkGrammarImportClause	53323:5	53324:9=true/false; 53325:13=true/false; 53328:13=true/false; 53332:14=true/false; 53333:13=true/false; 53336:13=true/false; 53339:13=true/false
+checker.ts	checkGrammarNamedImportsOrExports	53346:5	53348:13=true/false; 53351:21=true/false
+checker.ts	checkGrammarImportCallExpression	53359:5	53360:9=true/false; 53364:9=true/false; 53365:13=true/false; 53369:14=true/false; 53373:9=true/false; 53378:9=true/false; 53382:13=true/false; 53388:9=true/false; 53395:9=true/false

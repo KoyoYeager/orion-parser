@@ -1,0 +1,61 @@
+clause	case	source
+6.9.1	prototype followed by a declaration list	int f(int n) int x; {return n;}
+6.9.1	empty list followed by parameter declarations	int f() int x; {return 0;}
+6.9.1	missing all old-style parameter declarations	int f(a){return a;}
+6.9.1	missing one old-style parameter declaration	int f(a,b) int a; {return a;}
+6.9.1	parameter declaration contains an unknown name	int f(a) int a,b; {return a;}
+6.9.1	parameter redeclared	int f(a) int a; int a; {return a;}
+6.9.1	duplicate name in identifier list	int f(a,a) int a; {return a;}
+6.9.1	initialized parameter	int f(a) int a=1; {return a;}
+6.9.1	static parameter declaration	int f(a) static int a; {return a;}
+6.9.1	parameter declaration without a declarator	int f(a) struct S; int a; {return a;}
+6.7.6.3	variadic list without a fixed parameter	int f(...);
+6.7.6.3	missing parameter after comma	int f(int a,);
+6.7.6.2	static array bound missing	int f(int a[static]);
+6.7.6.2	static and star array bound	int f(int a[static *]);
+6.7.2.1	missing bit-field width	struct S { unsigned a:; };
+6.7.2.2	missing enumerator value	enum E { a=, b };
+6.7.9	missing designator assignment	int a[1] = {[0] 1};
+6.7.9	empty designated initializer	int a[1] = {[0] = };
+6.5.1.1	missing generic association expression	int f(int a){return _Generic(a,int:);}
+6.5.15	missing final conditional operand	int f(int a){return a ? 1 : ;}
+6.8.1	label directly before a declaration	int f(void){label: int x=1; return x;}
+6.8.5	for loop missing the second semicolon	int f(void){for (int i=0; i<1) {} return 0;}
+6.7.6.3	identifier-list prototype	int f(a);
+6.7.6.3	identifier list inside pointer to function	int (*p)(a,b);
+6.7.6.3	identifier list in callback parameter	int f(int (*cb)(arg)){return 0;}
+6.9.1	typedef name redeclared in identifier list	typedef int T; int f(a,T) int a,T; {return a+T;}
+6.9.1	unnamed definition parameter	int f(int){return 0;}
+6.9.1	unnamed pointer parameter	int f(int*){return 0;}
+6.9.1	unnamed typedef parameter	typedef int T; int f(T){return 0;}
+6.9.1	void pointer alias is a parameter	typedef void *P; int f(P){return 0;}
+6.9.1	typedef on function definition	typedef int f(void){return 1;}
+6.9.1	thread-local function definition	_Thread_local int f(void){return 1;}
+6.7.6.3	prototype parameter with storage class static	int f(static int a);
+6.7.6.3	prototype parameter with storage class typedef	int f(typedef int a);
+6.7.6.2	static array outside a parameter	int a[static 3];
+6.7.6.2	qualified local array	int f(void){int a[const 2]; return 0;}
+6.7.6.2	qualified inner array bound	int f(int a[2][const 3]);
+6.7.6.2	static array behind a pointer	int f(int (*p)[static 3]);
+6.7.6.2	qualified array in a type name	int f(void){return sizeof(int[const 2]);}
+6.7.6.2	unspecified VLA bound at file scope	int a[*];
+6.7.6.2	unspecified VLA bound in a definition	int f(int (*p)[*]){return 0;}
+6.8.6.3	break following loop	int f(void){while(0){} break; return 0;}
+6.8.6.2	continue in switch without loop	int f(int x){switch(x){default: continue;} return 0;}
+6.8.1	case following switch	int f(int x){switch(x){} case 1:return 0;}
+6.8.1	default outside switch	int f(void){default:return 0;}
+6.8.4.2	duplicate default labels in nested blocks	int f(int x){switch(x){default:; {default:;}}return 0;}
+6.8.6.1	goto target in different function	int f(void){goto x;} int g(void){x:return 0;}
+6.8.1	duplicate labels across blocks	int f(void){{x:;} {x:;}return 0;}
+6.5.1.1	repeated generic default	int f(int n){return _Generic(n, default:1, int:2, default:3);}
+6.4.5	UTF-8 and wide across ordinary string	int f(void){return sizeof(u8"a" "b" L"c");}
+6.4.5	wide then UTF-8	int f(void){return sizeof(U"a" u8"b");}
+6.7.1	invalid storage combination	extern static int x;
+6.7.1	thread-local with typedef	typedef _Thread_local int T;
+6.7.2.1	member with neither declarator nor anonymous aggregate	struct S { int x; int; };
+6.7.2.1	tag declaration as unnamed member	struct S { struct T; int x; };
+6.7.2.1	typedef name as unnamed member	typedef int T; struct S { T; int x; };
+6.7.10	one-argument static assertion from later C revision	_Static_assert(1);
+6.7	missing all declared names	int;
+6.7	typedef reference without a declarator	typedef int T; T;
+6.7	anonymous aggregate with only member names	struct { int member; };

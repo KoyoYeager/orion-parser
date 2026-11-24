@@ -5,7 +5,7 @@ from __future__ import annotations
 from abc import ABC, abstractmethod
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Any
+from typing import Any, Self
 
 
 @dataclass
@@ -30,9 +30,19 @@ class BasePipeline(ABC):
       - analyze_file: full pipeline for a single file
     """
 
+    @classmethod
+    def from_path(cls, path: Path) -> Self:
+        """Select file-sensitive syntax options when the language needs them."""
+        return cls()
+
     @abstractmethod
     def preprocess(self, source: str) -> str:
         """Normalize source code before lexing."""
+
+    def preprocess_file(self, path: Path) -> str:
+        from orionparser.core.encoding import read_file
+
+        return self.preprocess(read_file(path))
 
     @abstractmethod
     def tokenize(self, source: str) -> list[dict[str, Any]]:
@@ -44,12 +54,8 @@ class BasePipeline(ABC):
 
     def analyze_file(self, path: Path) -> ParseResult:
         """Run the full pipeline on a single file."""
-        from orionparser.core.encoding import read_file
-
-        source = read_file(path)
         errors: list[str] = []
-
-        preprocessed = self.preprocess(source)
+        preprocessed = self.preprocess_file(path)
 
         tokens = []
         try:

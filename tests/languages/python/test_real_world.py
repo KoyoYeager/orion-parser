@@ -1,29 +1,18 @@
-"""Real-world Python code tests.
-
-Tests OrionParser against actual Python files from GitHub repositories.
-Files with unsupported syntax (list comprehensions etc.) are expected
-to fail — we track the pass rate as a benchmark.
-
-Test corpus: C:/workspace/OrionParser/parser_sample/python/
-  - algorithms/ (TheAlgorithms/Python) — 1375 files
-  - flask/ (pallets/flask) — 83 files
-"""
+"""Measure Python parse rates against external source trees and the interpreter standard library."""
 
 import logging
-import os
-import sys
+import sysconfig
 from pathlib import Path
 
 import pytest
 
+from tests.python_samples import GITHUB_REPOS, SAMPLE_ROOT
 from orionparser.languages.python.parser import parse_source
 from orionparser.languages.python.preprocess import run_pipeline
 
 logging.disable(logging.WARNING)
 
-SAMPLE_ROOT = Path("C:/workspace/OrionParser/parser_sample/python")
-STDLIB_ROOT = Path(sys.prefix) / "Lib"
-GITHUB_REPOS = Path(__file__).parent.parent.parent / "fixtures" / "real_world_repos" / "files"
+STDLIB_ROOT = Path(sysconfig.get_path("stdlib"))
 
 
 def _collect_files(subdir: str) -> list[Path]:

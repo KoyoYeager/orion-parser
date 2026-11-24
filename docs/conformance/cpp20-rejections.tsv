@@ -1,0 +1,383 @@
+case	source_json	orion	clang
+global fragment without module	"""module;\nint a;\n"""	3:1	1:1
+declaration before named module	"""int x;\nexport module m;\n"""	2:1	2:8
+private fragment in partition	"""export module m:part;\nmodule :private;\n"""	2:1	2:9
+missing operand	"""using T=int;\nT f(T n){return n + ;}\n"""	2:21	2:21
+unclosed comment	"""int f(){\n/* missing"""	2:1	2:1
+non-module export	"""export int x;\n"""	1:1	1:1
+non-module partition import	"""import :part;\n"""	1:1	1:1
+shadowed parameter type	"""using T=int; int f(int T,T x);\n"""	1:26	1:26
+unclosed nested arguments	"""template<class T> struct S{T x;}; S<S<int> value;\n"""	1:44	1:43
+missing hexadecimal exponent	"""int f(){return 0x1.2;}\n"""	1:16	1:21
+unterminated raw literal	"""const char* s=R\""long(not closed\"";\n"""	1:15	1:15
+bad parameter list	"""int f( {return 0;}\n"""	1:9	1:9
+callback trailing parameter comma	"""int (*p)(int,);\n"""	1:14	1:14
+trailing return without function	"""int x -> int;\n"""	1:7	1:6
+destructor parameters	"""struct A { ~A(int n); };\n"""	1:14	1:12
+constructor override	"""struct A { A() override; };\n"""	1:16	1:16
+duplicate override	"""struct A { virtual int f() override override; };\n"""	1:37	1:37
+base clause without body	"""struct B {}; class C: public B;\n"""	1:31	1:31
+unknown member pointer owner	"""int Absent::*p;\n"""	1:5	1:5
+non-overloadable member access	"""struct S { int operator.*(int); };\n"""	1:24	1:24
+conversion function with a parameter	"""struct S { operator int(int); };\n"""	1:24	1:12
+nonempty literal operator name	"""int operator \""bad\""_x(unsigned long long);\n"""	1:14	1:14
+missing second declarator	"""int x, = 2;\n"""	1:8	1:8
+missing dependent name after qualifier	"""template<class T> using X=typename T::template rebind<> ::;\n"""	1:57	1:59
+member-pointer operator missing operand	"""int f(int p){return p->*;}\n"""	1:25	1:25
+mismatched binary fold	"""template<class...T> int f(T...x){return (x + ... - 0);}\n"""	1:50	1:50
+no pack in binary fold	"""int f(){return (1 + ... + 2);}\n"""	1:21	1:21
+pack on both sides	"""template<class... T> auto f(T... a){return (a + ... + a);}\n"""	1:49	1:49
+non-cast fold operand	"""template<class...T> int f(T...x){return (x + 1 + ...);}\n"""	1:50	1:44
+alignof invalid type	"""using T=int; int f(){return alignof(T+1);}\n"""	1:36	1:38
+cast missing operand	"""using T=int; int f(){return (T*);}\n"""	1:31	1:33
+missing noexcept operand	"""int f(){return noexcept();}\n"""	1:25	1:25
+empty requirement body	"""template<class T> concept C=requires{};\n"""	1:38	1:38
+requires parameter default	"""template<class T> concept C=requires(T x=0){x;};\n"""	1:37	1:42
+requires ellipsis	"""template<class T> concept C=requires(T x,...){x;};\n"""	1:37	1:42
+missing return type constraint	"""template<class T> concept C=requires(T x){{x} -> ;};\n"""	1:50	1:50
+unparenthesized sizeof in requires clause	"""template<class T> int f(T x) requires sizeof(T)>0 {return 1;}\n"""	1:39	1:48
+malformed nested constraint	"""template<class T> concept C=requires(T x){requires x + ;};\n"""	1:56	1:56
+nonempty array delete brackets	"""void f(int *p) { delete[2] p; }\n"""	1:25	1:25
+empty placement	"""void f() { new ( ) int; }\n"""	1:18	1:18
+missing second allocation dimension	"""void f() { new int[2][]; }\n"""	1:23	1:23
+trailing allocation argument comma	"""void f() { new int(1,); }\n"""	1:22	1:22
+storage class in allocation type	"""void f() { new static int; }\n"""	1:16	1:16
+duplicate capture	"""void f(int x){ auto f=[x,x]{}; }\n"""	1:26	1:26
+redundant copy capture	"""void f(int x){ auto f=[=,x]{}; }\n"""	1:26	1:26
+redundant reference capture	"""void f(int x){ auto f=[&,&x]{}; }\n"""	1:26	1:27
+lambda specifier without parentheses	"""void f(int x){ auto f=[] mutable {}; }\n"""	1:26	1:26
+trailing lambda capture comma	"""void f(int x){ auto f=[&,]{}; }\n"""	1:26	1:26
+incompatible lambda specifiers	"""void f(int x){ auto f=[]() constexpr consteval {}; }\n"""	1:38	1:38
+lambda parameter redeclares capture	"""void g(int x){ auto f = [x](int x){return x;}; }\n"""	1:28	1:33
+try without handler	"""void f(){ try {} }\n"""	1:18	1:18
+empty catch parameter	"""void f(){ try {} catch () {} }\n"""	1:25	1:25
+handler after catch-all	"""void f(){ try {} catch (...) {} catch (int) {} }\n"""	1:33	1:18
+defaulted exception declaration	"""void f(){ try {} catch (int x = 0) {} }\n"""	1:31	1:31
+braced throw operand	"""void f(){ throw {1}; }\n"""	1:17	1:17
+variable function try block	"""int x try {} catch(...) {}\n"""	1:7	1:6
+storage class in catch	"""void f(){ try {} catch (static int x) {} }\n"""	1:25	1:25
+case outside switch	"""void f(){ case 1: ; }\n"""	1:11	1:11
+duplicate default	"""void f(int n){ switch(n){default: ; default: ;} }\n"""	1:37	1:26
+break across lambda	"""void f(){ while(1){ []{break;}(); } }\n"""	1:24	1:24
+continue in switch alone	"""void f(int n){ switch(n){case 0: continue;} }\n"""	1:34	1:34
+missing do terminator	"""void f(){ do {} while(1) }\n"""	1:26	1:25
+uninitialized condition	"""void f(){if (int n) {} }\n"""	1:14	1:18
+direct parentheses in condition	"""void f(){if (int n(1)) {} }\n"""	1:14	1:18
+multiple condition declarations	"""void f(){if (int a=1,b=2) {} }\n"""	1:14	1:21
+while init statement	"""void f(){while (int i=0; i) {} }\n"""	1:24	1:24
+C++23 alias initializer	"""void f(){if (using A=int; true) {} }\n"""	1:14	1:14
+static condition	"""void f(){if (static int x=1) {} }\n"""	1:14	1:14
+duplicate structured name	"""void f(int *p){auto [x,x]=p;}\n"""	1:24	1:24
+pointer structured binding	"""void f(int *p){auto *[x]=p;}\n"""	1:16	1:22
+missing constexpr condition	"""void f(){if constexpr () {} }\n"""	1:24	1:24
+control variable redeclared in body	"""void f(){if(int x=1){int x=2;}}\n"""	1:26	1:26
+init and condition redeclare	"""void f(){if(int x=1; int x=2){} }\n"""	1:26	1:26
+range variable redeclares initializer	"""void f(){int a[2]; for(int x=1; int x:a){} }\n"""	1:37	1:37
+non-string nodiscard	"""[[nodiscard(1)]] int f();\n"""	1:3	1:13
+maybe_unused argument	"""[[maybe_unused()]] int x;\n"""	1:3	1:15
+mixed attribute namespaces	"""[[using a: b::c]] int x;\n"""	1:9	1:12
+numeric attribute	"""[[123]] int x;\n"""	1:3	1:3
+missing attribute namespace	"""[[using]] int x;\n"""	1:8	1:8
+mismatched attribute delimiter	"""[[a::b({x])]] int var;\n"""	1:10	1:11
+empty alignment	"""alignas() int x;\n"""	1:9	1:9
+unknown qualified declarator owner	"""template<class T> int Missing<T>::x;\n"""	1:23	1:23
+non-template member pointer owner	"""struct Plain{}; int Plain<int>::*p;\n"""	1:21	1:26
+absent qualified declarator name	"""template<class T> struct A{}; int A<int>::;\n"""	1:43	1:43
+incomplete qualified method pointer	"""template<class T> struct A{}; int (A<int>::*f)(;\n"""	1:48	1:48
+linkage inside function	"""void f(){extern \""C\"" int g();}\n"""	1:17	1:17
+missing linkage brace	"""extern \""C\"" { int a;\n"""	2:1	1:20
+user-defined linkage string	"""extern \""C\""_tag int f();\n"""	1:8	1:11
+specialization without primary	"""template<> struct Missing<int> {};\n"""	1:19	1:19
+specialization without template header	"""template<class T> struct A; struct A<int>{};\n"""	1:29	1:36
+specialization missing template-id	"""template<> struct Only {};\n"""	1:12	1:1
+trailing specialization argument comma	"""template<class T> struct A; template<> struct A<int,> {};\n"""	1:53	1:53
+unnamed opaque enum	"""enum;\n"""	1:5	1:5
+class specialization of alias template	"""template<class T> using Alias=T; template<> struct Alias<int>{};\n"""	1:52	1:52
+missing dependent base template-id	"""template<class B> struct D : B::template {};\n"""	1:42	1:33
+missing unnamed non-type default	"""template<unsigned = > struct X {};\n"""	1:21	1:21
+unnamed value pack default	"""template<int... = 3> struct X {};\n"""	1:17	1:17
+extra unary trait operand	"""template<class T> bool v = __is_enum(T,T);\n"""	1:39	1:28
+missing binary trait operand	"""template<class T> bool v = __is_base_of(T);\n"""	1:42	1:28
+empty constructible trait	"""template<class T> bool v = __is_constructible();\n"""	1:47	1:47
+malformed dependent construction	"""template<class T> auto x() { return typename T::type{; }\n"""	1:54	1:54
+trailing using declarator comma	"""namespace N { int a; } using N::a,;\n"""	1:35	1:35
+unnamed class without definition	"""struct;\n"""	1:7	1:1
+trailing unnamed member declarator comma	"""struct Container { struct {} field,; };\n"""	1:36	1:36
+invalid variable template arguments	"""template<class> constexpr bool flag=true; bool f(){return flag<int,>;}\n"""	1:68	1:68
+type requirement on non-template parameter	"""template<class T> concept C = requires { typename T<int>; };\n"""	1:51	1:52
+missing builtin transform operand	"""using X = __remove_cv();\n"""	1:23	1:23
+variable specialization without header	"""template<class T> int v; int v<int> = 1;\n"""	1:30	1:30
+undeclared variable template specialization	"""template<> int missing<int> = 1;\n"""	1:16	1:16
+invalid conditional noexcept	"""void f() noexcept(;) {}\n"""	1:19	1:19
+hidden friend ordinary lookup	"""class H { friend class New; }; New *p;\n"""	1:36	1:32
+unknown qualified friend	"""class H { friend struct Missing::X; };\n"""	1:25	1:25
+cv-qualified friend	"""class H { friend const int; };\n"""	1:11	1:18
+undeclared friend class template	"""class H { friend struct Missing<int>; };\n"""	1:25	1:25
+guide for different result class	"""template<class> struct X; template<class> struct Y; X(int)->Y<int>;\n"""	1:61	1:61
+guide with builtin result	"""template<class> struct X; X(int)->int;\n"""	1:35	1:35
+trailing deduction guide parameter comma	"""template<class> struct X; X(int,)->X<int>;\n"""	1:33	1:33
+empty guide explicit condition	"""template<class> struct X; explicit() X(int)->X<int>;\n"""	1:36	1:36
+typed dynamic exception specification	"""void f() throw(int);\n"""	1:16	1:10
+empty GNU typeof	"""using A=__typeof__();\n"""	1:20	1:20
+missing bit cast comma	"""int f(float x){return __builtin_bit_cast(int x);}\n"""	1:46	1:45
+pointer bit-field	"""struct Bad { int *p : 2; };\n"""	1:21	1:19
+unnamed bit-field initializer	"""struct Bad { int : 2 = 1; };\n"""	1:22	1:22
+namespace bit-field	"""int value : 3;\n"""	1:11	1:11
+incomplete record typedef list	"""typedef struct { int x; } X,;\n"""	1:29	1:29
+non-class alias shadows class alias	"""struct A{using N=int;}; using S=A; void f(){using S=int; S::N x;}\n"""	1:63	1:58
+non-string asm label	"""void f() __asm(3);\n"""	1:16	1:16
+invalid decltype construction	"""template<class T> int f(T v){return decltype(v){;}\n"""	1:49	1:49
+unknown explicit instantiation	"""extern template class Missing<int>;\n"""	1:23	1:23
+bad class instantiation argument list	"""template<class T> struct Box; extern template struct Box<int,>;\n"""	1:62	1:62
+instantiation of ordinary variable	"""int x; extern template int x;\n"""	1:28	1:28
+unknown explicit function specialization	"""template<> void missing(int);\n"""	1:17	1:17
+late alias in leading result type	"""class A { Alias early(); using Alias = int; };\n"""	1:17	1:11
+invalid inline body before later members	"""struct A { int f(){return 1 + ;} using T=int; };\n"""	1:31	1:31
+undeclared qualified class definition	"""struct Unknown::Nested {};\n"""	1:8	1:8
+ordinary field used as member template	"""struct A { int member; }; int f(A a){return a.member<int>();}\n"""	1:57	1:47
+member value in typedef	"""template<class T> struct C { int x; }; typedef C<int>::x Wrong;\n"""	1:58	1:56
+unknown nested class of template	"""template<class T> struct D { struct Member; }; template<class T> struct D<T>::Absent {};\n"""	1:79	1:79
+missing comma return operand	"""int f(){return 1,;}\n"""	1:18	1:18
+unknown nested constructor owner	"""template<class T> struct A { struct Inner; }; template<class T> A<T>::Missing::Missing() {}\n"""	1:71	1:71
+missing elaborated enum	"""enum Missing *p;\n"""	1:6	1:6
+enum tag names a record	"""struct Existing {}; enum Existing *p;\n"""	1:26	1:21
+trailing typedef comma	"""typedef int A,;\n"""	1:15	1:15
+multiple using aliases	"""using Alias = int, Extra;\n"""	1:18	1:18
+namespace alias outside its block	"""namespace N{} void f(){namespace Short=N;} using namespace Short;\n"""	1:60	1:60
+malformed deferred constructor initializer	"""template<class T> struct Bad { Bad(): value(1 + ;) {} int value; };\n"""	1:49	1:49
+missing await operand	"""void f(){ co_await ; }\n"""	1:20	1:20
+missing yield operand	"""void f(){ co_yield ; }\n"""	1:20	1:20
+incomplete coroutine return	"""void f(){ co_return 1 + ; }\n"""	1:25	1:25
+empty yield initializer element	"""void f(){ co_yield {,}; }\n"""	1:21	1:21
+await outside function	"""int x = co_await 1;\n"""	1:9	1:9
+constructor coroutine	"""struct S { S(){ co_return; } };\n"""	1:17	1:17
+constexpr coroutine	"""constexpr void f(){ co_return; }\n"""	1:21	1:21
+varargs coroutine	"""void f(int, ...){ co_return; }\n"""	1:19	1:19
+await in handler	"""void f(){ try {} catch(...){ co_await 0; } }\n"""	1:30	1:30
+await in sizeof	"""void f(){ (void)sizeof(co_await 0); }\n"""	1:24	1:24
+invalid sequence template name	"""using X = __make_integer_seq<int, int, 4>;\n"""	1:30	1:30
+missing integer sequence length	"""template<class T,T...> struct S{}; using X=__make_integer_seq<S,int,>;\n"""	1:69	1:69
+positional after designated	"""struct P{int x,y;}; P v{.x=1, 2};\n"""	1:31	1:25
+designated after positional	"""struct P{int x,y;}; P v{1, .y=2};\n"""	1:28	1:28
+duplicate field designator	"""struct P{int x;}; P v{.x=1,.x=2};\n"""	1:28	1:31
+parenthesized field designator	"""struct P{int x;}; P v{.x(1)};\n"""	1:25	1:25
+missing designated value	"""struct P{int x;}; P v{.x=};\n"""	1:26	1:26
+main coroutine	"""int main() { co_return; }\n"""	1:14	1:14
+unnamed grouped function pointer pack	"""template<int (*...)(int)> struct Calls {};\n"""	1:19	1:19
+unnamed grouped array reference pack	"""template<class... T> void arrays(T (&...)[2]);\n"""	1:38	1:41
+default for grouped parameter pack	"""template<int (*...Callbacks)(int) = nullptr> struct Calls {};\n"""	1:35	1:35
+invalid second array pack bound	"""template<class... T> void f(T ...a[2][+]);\n"""	1:40	1:40
+default on unnamed array parameter pack	"""template<class... T> void f(T ...[2] = {});\n"""	1:38	1:38
+array bound assignment	"""int n; int a[n=2];\n"""	1:15	1:15
+array bound unparenthesized comma	"""int a[1,2];\n"""	1:8	1:8
+array dimension alignment	"""int a[2] alignas(16);\n"""	1:10	1:10
+unused attribute on array type	"""int a[2] [[maybe_unused]];\n"""	1:12	1:12
+pack array attribute missing name	"""template<class... T> void f(T ...[2] [[example::]]);\n"""	1:49	1:49
+unclosed array attribute	"""int a[2] [[example::dim];\n"""	1:24	1:25
+cv after reference qualifier	"""struct X{void f() & const;};\n"""	1:21	1:20
+second function reference qualifier	"""struct X{void f() & &&;};\n"""	1:21	1:20
+repeated method const	"""struct X{void f() const const;};\n"""	1:25	1:25
+deprecated pointer type	"""using P=int * [[deprecated]];\n"""	1:17	1:17
+reference alignment	"""using R=int & alignas(16);\n"""	1:15	1:15
+function type marked unused	"""void f() [[maybe_unused]];\n"""	1:12	1:12
+constructor type alignment	"""struct X{ X() alignas(8); };\n"""	1:15	1:15
+attribute after pointer const	"""using P=int * const [[example::tag]];\n"""	1:30	1:21
+int double pack function suffix	"""template<class... T> void f(T ...(int double x));\n"""	1:39	1:39
+mixed signedness	"""using T=unsigned signed int;\n"""	1:18	1:18
+three long specifiers	"""using T=long long long;\n"""	1:19	1:19
+mixed integer widths	"""using T=short long;\n"""	1:15	1:15
+signed wide character	"""using T=signed wchar_t;\n"""	1:16	1:9
+invalid long float	"""using T=long float;\n"""	1:14	1:9
+repeated int through qualifier	"""using T=int const int;\n"""	1:19	1:19
+invalid auto width	"""long auto f();\n"""	1:6	1:1
+unnamed scoped enum	"""enum class { item };\n"""	1:12	1:12
+unscoped opaque enum without base	"""enum Flags;\n"""	1:6	1:6
+qualified opaque enum	"""namespace N{enum class E;} enum class N::E;\n"""	1:39	1:39
+qualified enum without declaration	"""namespace N{} enum class N::E {a};\n"""	1:29	1:29
+enum definition in unrelated namespace	"""namespace N{enum class E;} namespace M{enum class N::E {a};}\n"""	1:54	1:54
+qualified enum inside function	"""namespace N{enum class E;} void f(){enum class N::E {a};}\n"""	1:51	1:51
+toggle scoped enum	"""enum class E; enum E : int { a };\n"""	1:20	1:20
+remove fixed enum base	"""enum E : int; enum E { a };\n"""	1:20	1:20
+second enum definition	"""enum class E {a}; enum class E {b};\n"""	1:30	1:30
+duplicate named enumerator	"""enum E { a, a };\n"""	1:13	1:13
+pointer enum base	"""enum class E : int * {a};\n"""	1:20	1:14
+storage specifier in enum base	"""enum class E : static int {a};\n"""	1:16	1:16
+out of scope enum base alias	"""namespace N{using T=int; enum class E:T;} enum class N::E:T {a};\n"""	1:59	1:59
+using opaque enum	"""enum class E; using enum E;\n"""	1:26	1:26
+using alias before enum definition	"""enum class E; using A=E; void f(){using enum A;}\n"""	1:46	1:46
+enum definition on function result	"""enum E { a } f();\n"""	1:1	1:6
+enum definition on following callback	"""enum E {a} first, (*callback)();\n"""	1:1	1:6
+enum definition in condition	"""void f(){ if(enum E{a} x=E::a){} }\n"""	1:14	1:19
+enum definition as parameter	"""void f(enum E {a} p);\n"""	1:8	1:13
+missing trailing enum name	"""enum E{a} v, *;\n"""	1:15	1:15
+storage specifier in enum type alias	"""using T = static enum E {a};\n"""	1:11	1:11
+enum typedef function result	"""typedef enum E{a} Function();\n"""	1:9	1:14
+inline record function result	"""struct R {int x;} make();\n"""	1:19	1:8
+inline record typedef function	"""typedef struct R {int x;} Fn();\n"""	1:27	1:16
+inline record function type alias	"""using Fn=struct R {int x;} (*)();\n"""	1:10	1:17
+missing record pointer name	"""struct R {int x;} named, *;\n"""	1:27	1:27
+static on inline record alias	"""using A = static struct R {int x;};\n"""	1:11	1:11
+asm without string	"""asm();\n"""	1:5	1:5
+asm identifier operand	"""void f(){ asm(value); }\n"""	1:15	1:15
+asm user-defined suffix	"""asm(\""x\""_label);\n"""	1:8	1:8
+asm missing semicolon	"""asm(\""\"")\nint next;\n"""	2:1	1:8
+asm as class member	"""struct A { asm(\""\""); };\n"""	1:12	1:12
+asm second operand	"""void f(){ asm(\""\"", \""\""); }\n"""	1:17	1:17
+assertion message suffix	"""static_assert(true, \""ok\""_label);\n"""	1:25	1:25
+assertion missing message	"""static_assert(true, );\n"""	1:21	1:21
+qualified destructor has an argument	"""struct C{}; void f(C*p){p->C::~C(1);}\n"""	1:34	1:34
+parenthesized destructor has an argument	"""struct C{}; void f(C*p){(p->C::~C)(1);}\n"""	1:36	1:36
+dependent pseudo-destructor argument	"""template<class T> void f(T*p){p->T::~T(1);}\n"""	1:40	1:31
+unknown destructor qualifier	"""struct C{}; void f(C*p){p->Unknown::~C();}\n"""	1:28	1:28
+qualified decltype destructor	"""struct C{}; void f(C*p){p->C::~decltype(C{})();}\n"""	1:32	1:32
+missing destructor name	"""struct C{}; void f(C*p){p->C::~();}\n"""	1:32	1:32
+argument to explicit conversion	"""struct N{operator int();}; int f(N n){return n.operator int(1);}\n"""	1:61	1:61
+argument to implicit conversion member	"""struct N{operator int(); int f(){return operator int(1);}};\n"""	1:54	1:54
+missing conversion target	"""struct N{}; void f(N*p){p->operator ;}\n"""	1:37	1:37
+storage specifier in conversion call	"""struct N{}; void f(N n){n.operator static int();}\n"""	1:36	1:36
+class-only alias in conversion member call	"""struct N{using I=int; operator I();}; int f(N n){return n.N::operator I();}\n"""	1:71	1:71
+class-only alias in conversion member address	"""struct N{using I=int; operator I();}; auto ptr=&N::operator I;\n"""	1:61	1:61
+unqualified conversion outside class	"""int f(){ return operator int(); }\n"""	1:17	1:17
+template keyword on qualified non-template	"""struct B{int f();}; int g(B b){return b.B::template f<int>();}\n"""	1:53	1:53
+qualified member template missing name	"""template<class T> int f(T*p){return p->T::template <int>();}\n"""	1:52	1:52
+incomplete qualified template argument list	"""struct B{template<class> int f();}; int g(B b){return b.B::f<int();}\n"""	1:67	1:67
+qualified member template trailing comma	"""template<class T> int f(T&p){return p.T::template g<int,>();}\n"""	1:57	1:57
+template keyword on ordinary call operator	"""struct N{int operator()(int);}; int f(N n){return n.template operator()<int>(1);}\n"""	1:62	1:62
+unmarked ordinary call operator with type arguments	"""struct N{int operator()(int);}; int f(N n){return n.operator()<int>(1);}\n"""	1:67	1:53
+incomplete member operator id	"""template<class T> int f(T &x){return x.template operator( <int>(1);}\n"""	1:59	1:59
+member operator template trailing comma	"""template<class T> int f(T *p){return p->template operator[]<int,>(1);}\n"""	1:65	1:65
+template keyword on ordinary lambda	"""int f(){auto id=[](int x){return x;};return id.template operator()<int>(1);}\n"""	1:57	1:57
+unmarked template arguments on ordinary lambda	"""int f(){auto id=[](int x){return x;};return id.operator()<int>(1);}\n"""	1:62	1:48
+ordinary lambda shadows a generic closure	"""int f(){auto id=[](auto x){return x;}; {auto id=[](int x){return x;};return id.template operator()<int>(1);}}\n"""	1:89	1:89
+ordinary lambda init-capture is not a template	"""int f(){auto id=[](int x){return x;}; return [copy=id](){return copy.template operator()<int>(2);}();}\n"""	1:79	1:79
+ordinary closure alias explicit template	"""auto x=[](int a){return a;}; using F=decltype(x); int f(F a){return a.template operator()<int>(1);}\n"""	1:80	1:80
+ordinary closure pointer alias unmarked template	"""auto x=[](int a){return a;}; typedef decltype(x) *P; int f(P a){return a->operator()<int>(1);}\n"""	1:89	1:75
+local ordinary closure alias shadows generic	"""auto g=[](auto a){return a;}; using F=decltype(g); int f(){auto x=[](int a){return a;}; using F=decltype(x); F a=x; return a.template operator()<int>(1);}\n"""	1:135	1:135
+ordinary closure returned by function	"""auto l=[](int x){return x;}; decltype(l) make(){return l;} int f(){return make().template operator()<int>(2);}\n"""	1:91	1:91
+ordinary closure pointer return	"""auto l=[](int x){return x;}; auto make()->decltype(l)*{return &l;} int f(){return make()->operator()<int>(2);}\n"""	1:105	1:91
+arity selects ordinary closure result	"""auto g=[](auto x){return x;}; auto s=[](int x){return x;}; decltype(g) pick(){return g;} decltype(s) pick(int){return s;} int f(){return pick(0).template operator()<int>(1);}\n"""	1:155	1:155
+dependent factory call requires template disambiguator	"""auto g=[](auto x){return x;}; template<class T> decltype(g) pick(T){return g;} template<class U> int f(U u){return pick(u).operator()<int>(1);}\n"""	1:138	1:124
+expanded factory arguments require template disambiguator	"""auto g=[](auto x){return x;}; decltype(g) pick(int,...){return g;} template<class... T> int f(T... xs){return pick(1,xs...).operator()<int>(1);}\n"""	1:139	1:125
+temporary ordinary lambda	"""auto x=[](int v){return v;}; using F=decltype(x); int test(const F *p){return F{}.template operator()<int>(1);}\n"""	1:92	1:92
+ordinary lambda static cast	"""auto x=[](int v){return v;}; using F=decltype(x); int test(const F *p){return static_cast<F &>(x).template operator()<int>(2);}\n"""	1:108	1:108
+ordinary lambda pointer cast	"""auto x=[](int v){return v;}; using F=decltype(x); int test(const F *p){return const_cast<F *>(p)->operator()<int>(3);}\n"""	1:113	1:99
+ordinary closure after subscripting	"""auto l=[](int x){return x;};using F=decltype(l);int f(F*p){return p[0].template operator()<int>(1);}\n"""	1:81	1:81
+ordinary closure matrix element	"""auto l=[](int x){return x;};using F=decltype(l);int f(F(&p)[2][3]){return p[0][1].operator()<int>(2);}\n"""	1:97	1:83
+ordinary closure subscript overload	"""auto l=[](int x){return x;};struct S{decltype(l)&operator[](int){return l;}};int f(S&s){return s[0].template operator()<int>(3);}\n"""	1:110	1:110
+allocated ordinary closure	"""auto plain=[](int x){return x;};using F=decltype(plain);using Ptr=F*;int f(){return (new F)->template operator()<int>(1);}\n"""	1:103	1:103
+allocated ordinary array element	"""auto plain=[](int x){return x;};using F=decltype(plain);using Ptr=F*;int f(){return (new F[2])[0].operator()<int>(2);}\n"""	1:113	1:99
+allocated ordinary pointer alias	"""auto plain=[](int x){return x;};using F=decltype(plain);using Ptr=F*;int f(){return (*(new Ptr(&plain)))->template operator()<int>(3);}\n"""	1:116	1:116
+conditional ordinary closure	"""auto l=[](int x){return x;};using F=decltype(l);int f(bool b,F x,F y){return (b?x:y).template operator()<int>(1);}\n"""	1:95	1:95
+nonzero hex integer is not a null pointer constant	"""auto l=[](auto x){return x;};using F=decltype(l);int f(bool b,F*p){return (b?p:0x0b0)->operator()<int>(1);}\n"""	1:102	1:77
+conditional integer zero expression is not a null pointer constant	"""auto l=[](auto x){return x;};using F=decltype(l);int f(bool b,F*p){return (b?p:(b?0:0))->operator()<int>(1);}\n"""	1:104	1:77
+conditional with dependent test requires template keyword	"""auto l=[](auto x){return x;};using F=decltype(l);template<class T> int f(T b,F x){return (b?x:x).operator()<int>(1);}\n"""	1:112	1:98
+built-in comma yields ordinary closure	"""auto l=[](int x){return x;}; int f(){return (void(),l).template operator()<int>(1);}\n"""	1:65	1:65
+member comma returns ordinary closure	"""auto l=[](int x){return x;}; struct S{decltype(l)&operator,(int){return l;}}; int f(S s){return (s,0).template operator()<int>(1);}\n"""	1:112	1:112
+dependent comma operand requires disambiguator	"""auto l=[](auto x){return x;}; template<class T> int f(T t){return (t,l).operator()<int>(1);}\n"""	1:87	1:73
+assignment result ordinary closure	"""auto l=[](int x){return x;};using F=decltype(l);int f(F*p,F*q){return (p=q)->template operator()<int>(1);}\n"""	1:87	1:87
+overloaded compound assignment returns ordinary closure	"""auto l=[](int x){return x;};struct S{decltype(l)&operator+=(int){return l;}};int f(S&s){return (s+=1).operator()<int>(2);}\n"""	1:117	1:103
+dependent assignment requires template keyword	"""template<class T> int f(T&a,T b){return (a=b).operator()<int>(3);}\n"""	1:61	1:47
+incremented pointer to ordinary closure	"""auto l=[](int x){return x;};using F=decltype(l);int f(F*p){return (++p)->template operator()<int>(1);}\n"""	1:83	1:83
+postfix overload returns ordinary closure	"""auto g=[](auto x){return x;};auto s=[](int x){return x;};struct C{decltype(g)&operator++(){return g;}decltype(s)&operator++(int){return s;}};int f(C&c){return (c++).template operator()<int>(1);}\n"""	1:175	1:175
+dependent decrement requires template keyword	"""template<class T> int f(T&t){return (--t).operator()<int>(1);}\n"""	1:57	1:43
+dereference overload yields ordinary closure	"""auto s=[](int x){return x;};struct P{decltype(s)&operator*(){return s;}};int f(P p){return (*p).template operator()<int>(1);}\n"""	1:106	1:106
+free unary overload yields ordinary closure pointer	"""auto s=[](int x){return x;};namespace N{struct A{};decltype(s)*operator~(A){return &s;}}int f(N::A a){return (~a)->operator()<int>(1);}\n"""	1:130	1:116
+type-dependent unary minus requires template keyword	"""template<class T>int f(T t){return (-t).operator()<int>(1);}\n"""	1:55	1:41
+pointer difference is not a pointer result	"""auto l=[](auto x){return x;};using F=decltype(l);int f(F*p,F*q){return (p-q)->operator()<int>(0);}\n"""	1:93	1:79
+pointer addition retains ordinary closure	"""auto l=[](int x){return x;};using F=decltype(l);int f(F*p){return (1+p)->template operator()<int>(0);}\n"""	1:83	1:83
+additive dependent member requires template	"""template<class T>int f(T x){return (x+1).operator()<int>(0);}\n"""	1:56	1:42
+multiplication overload returns ordinary closure	"""auto s=[](int i){return i;};struct X{decltype(s)&operator*(int){return s;}};int f(X x){return (x*2).template operator()<int>(3);}\n"""	1:110	1:110
+hidden friend shift returns ordinary closure pointer	"""auto s=[](int i){return i;};struct X{friend decltype(s)*operator<<(int,X){return &s;}};int f(X x){return (1<<x)->operator()<int>(3);}\n"""	1:128	1:114
+dependent bitwise member needs disambiguator	"""template<class T>int f(T x){return (x^2).operator()<int>(0);}\n"""	1:56	1:42
+ordinary closure from data member pointer	"""auto l=[](int x){return x;};using F=decltype(l);struct A{F f;};int h(A&a,F A::*pm){return (a.*pm).template operator()<int>(1);}\n"""	1:108	1:108
+ordinary closure returned by member-function pointer	"""auto l=[](int x){return x;};using F=decltype(l);struct A{};using P=F(A::*)();int h(A*a,P pm){return (a->*pm)().operator()<int>(1);}\n"""	1:126	1:112
+unrelated member pointer receiver	"""auto l=[](auto x){return x;};using F=decltype(l);struct A{};struct B{};int h(B&b,F A::*pm){return (b.*pm).operator()<int>(1);}\n"""	1:121	1:101
+bound member function requires call	"""auto l=[](auto x){return x;};using F=decltype(l);struct A{};using S=F();using P=S A::*;int f(A&a,P m){return (a.*m).operator()<int>(1);}\n"""	1:131	1:110
+arrow-star with non-pointer object	"""auto l=[](auto x){return x;};using F=decltype(l);struct A{};int f(A&a,F A::*m){return (a->*m).operator()<int>(1);}\n"""	1:109	1:89
+hex float missing exponent digits	"""auto n = 0x1.8p+_unit;\n"""	1:10	1:15
+hex float missing binary exponent	"""auto n = 0x1.8_unit;\n"""	1:10	1:15
+decimal missing signed exponent digits	"""auto n = 12e-_unit;\n"""	1:10	1:12
+invalid binary digit with separator	"""auto n = 0b1'2_num;\n"""	1:10	1:14
+maximal pp-number around hex e	"""auto n = 0x1e+2;\n"""	1:10	1:14
+extra dot after numeric suffix	"""auto n = 1.5_unit.2;\n"""	1:10	1:13
+numeric suffix contains basic-character UCN	"""auto n = 1_\\u0061;\n"""	1:12	1:11
+different adjacent string suffixes	"""auto s = \""first\""_a \""second\""_b;\n"""	1:20	1:20
+different suffixes around ordinary raw string	"""auto s = R\""(x)\""_x \""middle\"" R\""tag(y)tag\""_y;\n"""	1:28	1:28
+wide and UTF-8 concatenation	"""auto s = L\""x\"" u8\""y\"";\n"""	1:15	1:15
+incompatible explicit UTF encodings	"""auto s = u\""x\"" \""\"" U\""y\"";\n"""	1:18	1:18
+surrogate in string	"""auto s = U\""\\uD800\"";\n"""	1:12	1:12
+surrogate in character	"""auto c = u'\\uDFFF';\n"""	1:12	1:12
+out of range scalar in string	"""auto s = U\""\\U00110000\"";\n"""	1:12	1:12
+truncated universal character name	"""auto s = \""\\u123\"";\n"""	1:11	1:11
+multiple UTF-16 characters	"""auto c = u'ab';\n"""	1:10	1:10
+multiple UTF-32 characters	"""auto c = U'ab';\n"""	1:10	1:10
+multiple UTF-8 characters	"""auto c = u8'ab';\n"""	1:10	1:10
+wide multicharacter literal	"""auto c = L'ab';\n"""	1:10	1:10
+UTF-8 character requires multiple code units	"""auto c = u8'\\u00E9';\n"""	1:10	1:10
+UTF-16 character requires surrogate pair	"""auto c = u'\\U0001F642';\n"""	1:10	1:10
+UTF-8 physical non-ASCII character	"""auto c = u8'\u00e9';\n"""	1:10	1:10
+out of range byte octal escape	"""auto c = u8'\\400';\n"""	1:13	1:13
+out of range UTF-16 hex escape	"""auto c = u'\\x10000';\n"""	1:12	1:12
+out of range UTF-32 hex escape	"""auto c = U'\\x100000000';\n"""	1:12	1:12
+out of range byte string escape	"""auto value = u8\""\\x100\"";\n"""	1:17	1:17
+out of range octal string escape	"""auto value = \""\\400\"";\n"""	1:15	1:15
+UTF-16 string second escape too large	"""auto value = \""\\x100\"" \""\\x10000\"" u\""\"";\n"""	1:23	1:23
+UTF-32 string escape too large	"""auto value = U\""\\x100000000\"";\n"""	1:16	1:16
+wide numeric escape after raw string	"""auto value = LR\""(\\xFFFFFFFFF)\"" \""\\xFFFFFFFFF\"";\n"""	1:33	1:33
+at sign in raw delimiter	"""auto value = R\""@(x)@\"";\n"""	1:16	1:16
+backtick in raw delimiter	"""auto value = R\""`(x)`\"";\n"""	1:16	1:16
+dollar in raw delimiter	"""auto value = R\""$(x)$\"";\n"""	1:16	1:16
+raw delimiter exceeds sixteen characters	"""auto value = R\""0123456789abcdefg(x)0123456789abcdefg\"";\n"""	1:32	1:32
+syntax error after consecutive splices	"""int n=1\\\n\\\n+ ;\n"""	3:3	3:3
+oversized spliced string escape	"""auto s=\""a\\\nb\\x100\"";\n"""	2:2	2:2
+spliced assertion suffix	"""static_assert(true,\""ok\""\\\n_suffix);\n"""	2:1	2:1
+splice in raw delimiter	"""auto s=R\""a\\\nb(x)ab\"";\n"""	1:11	1:11
+spliced closing angle with extra greater	"""template<class T>struct B{}; using S=B<int>\\\n>;\n"""	2:1	2:1
+ordinary unnamed namespace reopened inline	"""namespace {} inline namespace {}\n"""	1:21	1:21
+ordinary named namespace reopened inline	"""namespace A {} inline namespace A {}\n"""	1:33	1:33
+ordinary nested namespace reopened inline	"""namespace A{namespace B{}} namespace A::inline B{}\n"""	1:48	1:48
+unnamed namespace type outside its enclosing namespace	"""namespace A { namespace {using Word=int;} } namespace B { Word x; }\n"""	1:64	1:59
+export unnamed namespace	"""export module m;\nexport inline namespace {}\n"""	2:25	2:25
+export inside unnamed namespace	"""export module m;\nnamespace { export int f(); }\n"""	2:13	2:13
+unnamed namespace inside exported namespace	"""export module m;\nexport namespace outer { namespace { int n; } }\n"""	2:36	2:36
+ambiguous namespace alias via directives	"""namespace A{namespace N{}}namespace B{namespace N{}}using namespace A;using namespace B;namespace Z=N;\n"""	1:101	1:101
+ambiguous qualified namespace via directives	"""namespace A{namespace N{}}namespace B{namespace N{}}namespace C{using namespace A;using namespace B;}namespace Z=C::N;\n"""	1:117	1:117
+namespace alias redeclared with different target	"""namespace A{}namespace B{}namespace X=A;namespace X=B;\n"""	1:51	1:51
+alias reuses namespace name	"""namespace A{}namespace B{}namespace A=B;\n"""	1:37	1:37
+reopen namespace alias as namespace	"""namespace N{}namespace X=N;namespace X{}\n"""	1:38	1:38
+local directive does not escape block	"""namespace Lib{namespace N{}}void f(){{using namespace Lib; namespace X=N;} namespace Y=N;}\n"""	1:88	1:88
+unknown namespace through using cycle	"""namespace A{}namespace B{using namespace A;}namespace A{using namespace B;}namespace X=A::Missing;\n"""	1:91	1:91
+qualified imported aliases name different types	"""namespace A{using T=int;} namespace B{using T=long;} namespace X{using namespace A;using namespace B;} X::T n;\n"""	1:107	1:107
+qualified type conflicts with imported value	"""namespace A{using T=int;}namespace B{int T;}namespace X{using namespace A;using namespace B;}int f(){return sizeof(X::T);}\n"""	1:119	1:119
+ordinary unnamed import conflicts in unqualified lookup	"""namespace N { namespace { using T = int; }\nconstexpr int T = 3;\nauto f(){ return sizeof(T); } }\n"""	3:25	3:25
+inline unnamed namespace competes in qualified lookup	"""namespace N{inline namespace{using T=int;} constexpr int T=3;} int f(){return sizeof(N::T);}\n"""	1:89	1:89
+unqualified type imported from different namespaces	"""namespace A{using T=int;}namespace B{int T;}using namespace A;using namespace B;int f(){return sizeof(T);}\n"""	1:103	1:103
+alias chain pointer cv mismatch	"""using Ptr=int*;using Ref=int&;namespace A{using B=const Ptr;using T=B;}namespace B{using C=const int *;using T=C;}namespace X{using namespace A;using namespace B;} X::T value;\n"""	1:168	1:168
+alias chain reference mismatch	"""using Ptr=int*;using Ref=int&;namespace A{using B=Ref;using T=B;}namespace B{using C=int &&;using T=C;}namespace X{using namespace A;using namespace B;} X::T value;\n"""	1:157	1:157
+alias chain signedness mismatch	"""using Ptr=int*;using Ref=int&;namespace A{using B=signed char;using T=B;}namespace B{using C=char;using T=C;}namespace X{using namespace A;using namespace B;} X::T value;\n"""	1:163	1:163
+combining mark starts identifier	"""int \\u0301name;\n"""	1:5	1:5
+surrogate in identifier	"""int tail\\uD800;\n"""	1:9	1:9
+basic character written as UCN	"""int \\u0061;\n"""	1:5	1:5
+array extents differ	"""namespace A{using T=int[4];} namespace B{using T=int[5];} namespace C{using namespace A;using namespace B;} void f(C::T);\n"""	1:119	1:119
+array dimensions reversed	"""namespace A{using T=int[2][4];} namespace B{using T=int[4][2];} namespace C{using namespace A;using namespace B;} void f(C::T);\n"""	1:125	1:125
+array of pointers versus pointer to array	"""namespace A{using T=int *[4];} namespace B{using T=int (*)[4];} namespace C{using namespace A;using namespace B;} void f(C::T);\n"""	1:125	1:125
+array element pointer qualification	"""namespace A{using T=int *const[4];} namespace B{using T=const int *[4];} namespace C{using namespace A;using namespace B;} void f(C::T);\n"""	1:134	1:134
+shadowed constant changes imported array extent	"""constexpr int width = 4;\nnamespace A { constexpr int width = 2; using T = int[width]; }\nnamespace B { using T = int[width]; }\nnamespace C { using namespace A; using namespace B; }\nvoid consume(C::T);\n"""	5:17	5:17
+UCN character literal adjacent to number	"""int n = 7'\\u0024';\n"""	1:10	1:10
+elaborated specialization of non-template	"""struct Plain {};\nstruct Plain<int> *value;\n"""	2:8	2:8
+ordinary member alias used as a template	"""template<class T> struct Parent { using Item=T; };\nusing Wrong = Parent<int>::template Item<int>;\n"""	2:26	2:37
+inferred array extent differs from imported alias	"""int values[] = {1, 2, 3, 4};\nconstexpr auto n = sizeof(values);\nnamespace A { using T = int[n]; }\nnamespace B { using T = int[12]; }\nnamespace C { using namespace A; using namespace B; }\nvoid consume(C::T);\n"""	6:17	6:17
+member function pointer size differs from data member pointer	"""struct C { int field; int method(); };\nnamespace A { using T = int[sizeof(&C::field)]; }\nnamespace B { using T = int[sizeof(&C::method)]; }\nnamespace Both { using namespace A; using namespace B; }\nvoid consume(Both::T);\n"""	5:20	5:20
+different underlying class-template arguments	"""template<class T> struct Box {};\nnamespace A { using T = Box<int>; }\nnamespace B { using T = Box<long>; }\nnamespace C { using namespace A; using namespace B; }\nvoid consume(C::T);\n"""	5:17	5:17
+deduced integer argument differs in signedness	"""template<auto N> struct Number {};\nnamespace A { using T = Number<4>; }\nnamespace B { using T = Number<4u>; }\nnamespace C { using namespace A; using namespace B; }\nvoid consume(C::T);\n"""	5:17	5:17
+address arguments refer to different namespace objects	"""namespace first { inline int value; }\nnamespace second { inline int value; }\ntemplate<int *P> struct Ref {};\nnamespace A { using T = Ref<&first::value>; }\nnamespace B { using T = Ref<&second::value>; }\nnamespace C { using namespace A; using namespace B; }\nvoid consume(C::T);\n"""	7:17	7:17
+arguments point to different data members	"""struct Data { int first, second; };\ntemplate<int Data::*M> struct Field {};\nnamespace A { using T = Field<&Data::first>; }\nnamespace B { using T = Field<&Data::second>; }\nnamespace C { using namespace A; using namespace B; }\nvoid consume(C::T);\n"""	6:17	6:17
+function addresses from distinct namespaces	"""namespace first { int apply(int); }\nnamespace second { int apply(int); }\ntemplate<int (*F)(int)> struct Handler {};\nnamespace A { using T = Handler<first::apply>; }\nnamespace B { using T = Handler<&second::apply>; }\nnamespace C { using namespace A; using namespace B; }\nvoid consume(C::T);\n"""	7:17	7:17
+incomparable function template address patterns	"""template<class T, class U> int visit(T *, U);\ntemplate<class T, class U> int visit(T, U *);\ntemplate<int (*F)(int *, int *)> struct Handler {};\nnamespace A { using T = Handler<visit>; }\nnamespace B { using T = Handler<&visit<int,int *>>; }\nnamespace C { using namespace A; using namespace B; }\nvoid consume(C::T);\n"""	7:17	4:33
+exact integer overload returns ordinary lambda	"""auto generic = [](auto x){return x;};\nauto plain = [](int x){return x;};\ndecltype(generic) select(double) { return generic; }\ndecltype(plain) select(int) { return plain; }\nint use(){return select(1).operator()<int>(4);}\n"""	5:42	5:28
+friend disambiguator names ordinary alias	"""struct Family { using View = int; };\nstruct Grant { friend class Family::template View<int>; };\n"""	2:46	2:46
+parenthesized destructor member without a call	"""struct X {};\nvoid use(X *p) { (p->~X); }\n"""	2:22	2:18
+incomparable class partial specializations used for lookup	"""template<class A, class B> struct Pick;\ntemplate<class T, class U> struct Pick<T *, U> { using Id = int; };\ntemplate<class T, class U> struct Pick<T, U *> { static constexpr int Id = 1; };\nint f() { return sizeof(Pick<int *,int *>::Id); }\n"""	4:42	4:25
+mismatched scalar pseudo-destructor	"""using Number = double;\nvoid retire(int *p) { p->~Number(); }\n"""	2:27	2:27
+unsatisfied overload constraint selects ordinary closure	"""auto generic = [](auto x){return x;};\nauto plain = [](int x){return x;};\ntemplate<class T> decltype(plain)& choose(T){return plain;}\ntemplate<class T> requires (sizeof(T) > 1)\ndecltype(generic)& choose(T){return generic;}\nint f(){return choose('a').operator()<int>(3);}\n"""	6:42	6:28
+deduced ordinary closure factory result	"""auto factory() { return [](int x){ return x; }; }\nint use() { return factory().operator()<int>(5); }\n"""	2:44	2:30

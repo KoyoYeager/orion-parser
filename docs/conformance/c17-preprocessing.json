@@ -1,0 +1,158 @@
+[
+  {
+    "case": "one text line",
+    "rules": [
+      "preprocessing-file.1",
+      "group.1",
+      "group-part.3",
+      "text-line.1",
+      "pp-tokens.1",
+      "pp-tokens.2",
+      "new-line.1"
+    ],
+    "source": "int only;\n",
+    "expanded": "int only;\n"
+  },
+  {
+    "case": "conditional branches",
+    "rules": [
+      "group.2",
+      "group-part.1",
+      "group-part.2",
+      "if-section.1",
+      "if-group.1",
+      "if-group.2",
+      "if-group.3",
+      "elif-groups.1",
+      "elif-groups.2",
+      "elif-group.1",
+      "else-group.1",
+      "endif-line.1",
+      "control-line.2",
+      "control-line.6",
+      "replacement-list.1"
+    ],
+    "source": "#define FLAG\n#ifndef MISSING\n#ifdef FLAG\n#if 0\n#error skipped\n#elif 0\n#error skipped\n#elif defined(FLAG)\nint selected;\n#else\n#error skipped\n#endif\n#endif\n#endif\n#undef FLAG\n#ifdef FLAG\n#error still defined\n#else\nint fallback;\n#endif\n",
+    "expanded": "int selected; int fallback;\n"
+  },
+  {
+    "case": "macro substitution",
+    "rules": [
+      "control-line.3",
+      "control-line.4",
+      "control-line.5",
+      "lparen.1"
+    ],
+    "source": "#define EMPTY()\n#define ALL(...) __VA_ARGS__\n#define FIRST(x, ...) x + (__VA_ARGS__)\n#define CAT(a,b) a ## b\n#define TEXT(x) #x\nEMPTY() int CAT(an,swer) = FIRST(ALL(1), 2);\nchar *message = TEXT(two words);\n",
+    "expanded": "int answer = 1 + (2); char *message = \"two words\";\n"
+  },
+  {
+    "case": "null directive and mapped location",
+    "rules": [
+      "control-line.7",
+      "control-line.10"
+    ],
+    "source": "#\n#line 32 \"virtual.c\"\nint line = __LINE__; char *file = __FILE__;\n",
+    "expanded": "int line = 32; char *file = \"virtual.c\";\n"
+  },
+  {
+    "case": "pragmas",
+    "rules": [
+      "control-line.9",
+      "on-off-switch.1",
+      "on-off-switch.2",
+      "on-off-switch.3"
+    ],
+    "source": "#pragma STDC FP_CONTRACT ON\n#pragma STDC FP_CONTRACT OFF\n_Pragma(\"STDC FP_CONTRACT DEFAULT\")\nint after;\n",
+    "expanded": "int after;\n"
+  },
+  {
+    "case": "disabled non-directive",
+    "rules": [
+      "group-part.4",
+      "non-directive.1"
+    ],
+    "source": "#if 0\n# unknown tokens\n#endif\nint kept;\n",
+    "expanded": "int kept;\n"
+  },
+  {
+    "case": "include macro",
+    "rules": [
+      "control-line.1"
+    ],
+    "source": "#define HEADER \"local.h\"\n#include HEADER\nint sum = LOCAL;\n",
+    "headers": {
+      "local.h": "#define LOCAL 42\n"
+    },
+    "expanded": "int sum = 42;\n"
+  },
+  {
+    "case": "translation phases",
+    "rules": [],
+    "source": "??=define SUM(x) ((x) + ??/\n2)\nint v = SUM(3 /* comment */);\n",
+    "expanded": "int v = ((3) + 2);\n"
+  },
+  {
+    "case": "error directive",
+    "rules": [
+      "control-line.8"
+    ],
+    "source": "#error intentional_failure\n",
+    "diagnostic": "intentional_failure"
+  },
+  {
+    "case": "direct and computed header names",
+    "rules": [
+      "preprocessing-token.1",
+      "header-name.1",
+      "header-name.2",
+      "h-char-sequence.1",
+      "h-char-sequence.2",
+      "h-char.1",
+      "q-char-sequence.1",
+      "q-char-sequence.2",
+      "q-char.1"
+    ],
+    "source": "#include <a>\n#include <ab>\n#include \"b\"\n#include \"bc\"\nint x=A+AB+B+BC;\n",
+    "expanded": "int x=1+2+3+4;\n",
+    "headers": {
+      "a": "#define A 1\n",
+      "ab": "#define AB 2\n",
+      "b": "#define B 3\n",
+      "bc": "#define BC 4\n"
+    }
+  },
+  {
+    "case": "preprocessor token classes and digraph operators",
+    "rules": [
+      "preprocessing-token.2",
+      "preprocessing-token.3",
+      "preprocessing-token.4",
+      "preprocessing-token.5",
+      "preprocessing-token.6",
+      "preprocessing-token.7",
+      "punctuator.47",
+      "punctuator.48",
+      "punctuator.53",
+      "punctuator.54"
+    ],
+    "source": "%:define STR(x) %: x\n%:define JOIN(a,b) a %:%: b\n#define TEXT(x) #x\n#define PASTE(a,b) a ## b\nint JOIN(i,d) = PASTE(1,2); char *tokens[] = {STR(name),TEXT(@),TEXT(+=),TEXT('q'),TEXT(\"q\")};\n",
+    "expanded": "int id = 12; char *tokens[] = {\"name\",\"@\",\"+=\",\"'q'\",\"\\\"q\\\"\"};\n"
+  },
+  {
+    "case": "preprocessing numbers before conversion to literal tokens",
+    "rules": [
+      "pp-number.1",
+      "pp-number.2",
+      "pp-number.3",
+      "pp-number.4",
+      "pp-number.5",
+      "pp-number.6",
+      "pp-number.7",
+      "pp-number.8",
+      "pp-number.9"
+    ],
+    "source": "#define APPEND(n) n ## 2\n#define SPELL(x) #x\n#define EXPAND(x) SPELL(x)\nchar *s[] = {EXPAND(APPEND(1)),EXPAND(APPEND(.3)),EXPAND(APPEND(42)),EXPAND(APPEND(1abc)),EXPAND(APPEND(1e+)),EXPAND(APPEND(1E-)),EXPAND(APPEND(0x1p+)),EXPAND(APPEND(0x1P-)),EXPAND(APPEND(1.))};\n",
+    "expanded": "char *s[] = {\"12\",\".32\",\"422\",\"1abc2\",\"1e+2\",\"1E-2\",\"0x1p+2\",\"0x1P-2\",\"1.2\"};\n"
+  }
+]

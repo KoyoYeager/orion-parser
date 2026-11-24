@@ -1,0 +1,19 @@
+con\
+stexpr int val\
+ue = 1\
+2;
+int accumulate(int n) { n +\
+= value; return n; }
+/\
+* comment across a closing *\
+/
+constexpr auto text = "one\
+two";
+constexpr auto raw = R\
+"tag(first\
+second)ta\
+g"third)tag";
+template<class T> struct Box {};
+using Deep = Box<Box<int>\
+>;
+static_assert(value == 12);

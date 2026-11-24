@@ -1,10 +1,10 @@
 """Tests for symbol extraction — verify against expected lists."""
 
 import logging
-from pathlib import Path
 
 import pytest
 
+from tests.python_samples import SAMPLE_ROOT
 from orionparser.analysis.symbols import extract_symbols
 from orionparser.languages.python.parser import parse_source
 from orionparser.languages.python.preprocess import run_pipeline
@@ -105,9 +105,9 @@ class TestRealCode:
 
     def test_bubble_sort(self):
         """Test against a real algorithm file with known structure."""
-        path = Path("C:/workspace/OrionParser/parser_sample/python/algorithms/sorts/bubble_sort.py")
+        path = SAMPLE_ROOT / "algorithms/sorts/bubble_sort.py"
         if not path.exists():
-            return
+            pytest.skip(f"External sample unavailable: {path}")
         source = path.read_text(encoding="utf-8")
         st = _symbols(source)
         func_names = st.function_names()
@@ -116,9 +116,9 @@ class TestRealCode:
         assert len(st.imports) > 0  # imports exist
 
     def test_binary_search(self):
-        path = Path("C:/workspace/OrionParser/parser_sample/python/algorithms/searches/binary_search.py")
+        path = SAMPLE_ROOT / "algorithms/searches/binary_search.py"
         if not path.exists():
-            return
+            pytest.skip(f"External sample unavailable: {path}")
         source = path.read_text(encoding="utf-8")
         st = _symbols(source)
         func_names = st.function_names()
@@ -179,9 +179,9 @@ def main():
 
     def test_flask_helpers(self):
         """Test against Flask helpers.py — real project file."""
-        path = Path("C:/workspace/OrionParser/parser_sample/python/flask/src/flask/helpers.py")
+        path = SAMPLE_ROOT / "flask/src/flask/helpers.py"
         if not path.exists():
-            return
+            pytest.skip(f"External sample unavailable: {path}")
         source = path.read_text(encoding="utf-8")
         try:
             st = _symbols(source)

@@ -1,0 +1,269 @@
+[
+  {
+    "case": "empty preprocessing file",
+    "source": "",
+    "variants": [
+      {
+        "expanded": ""
+      }
+    ],
+    "rules": [
+      "preprocessing-file.1"
+    ]
+  },
+  {
+    "case": "single text group",
+    "source": "int single;\n",
+    "variants": [
+      {
+        "expanded": "int single;\n"
+      }
+    ],
+    "rules": [
+      "preprocessing-file.1",
+      "group.1",
+      "group-part.3",
+      "text-line.1",
+      "pp-tokens.1",
+      "pp-tokens.2",
+      "new-line.1"
+    ]
+  },
+  {
+    "case": "function object and variadic macros",
+    "source": "#\n#define EMPTY\n#define BASE 4\n#define VALUE() BASE\n#define JOIN(a, b) a ## b\n#define TEXT(x) #x\n#define ARGS(...) __VA_OPT__(,) __VA_ARGS__\n#define PLUS(x, ...) x __VA_OPT__(+ (__VA_ARGS__))\nint JOIN(val, ue) = PLUS(VALUE());\nint sum = PLUS(BASE, 5);\nint list[3] = { VALUE() ARGS(6, 7) };\nint one[1] = { VALUE() ARGS() };\nconst char *label = TEXT(value);\n#undef BASE\n#ifndef BASE\nEMPTY int after;\n#endif\n",
+    "variants": [
+      {
+        "expanded": "int value = 4; int sum = 4 + (5); int list[3] = {4, 6, 7}; int one[1] = {4}; const char *label = \"value\"; int after;\n"
+      }
+    ],
+    "rules": [
+      "group.2",
+      "group-part.1",
+      "group-part.2",
+      "group-part.3",
+      "control-line.3",
+      "control-line.4",
+      "control-line.5",
+      "control-line.6",
+      "control-line.7",
+      "control-line.11",
+      "if-section.1",
+      "if-group.3",
+      "endif-line.1",
+      "replacement-list.1",
+      "lparen.1",
+      "identifier-list.1",
+      "identifier-list.2",
+      "va-opt-replacement.1"
+    ]
+  },
+  {
+    "case": "conditional branch selection",
+    "source": "#if !defined MODE\nint value = 0;\n#elif MODE == 1\nint value = 1;\n#elif defined(MODE) && MODE == 2\nint value = 2;\n#else\nint value = 3;\n#endif\n#ifdef MODE\nint configured;\n#endif\n",
+    "variants": [
+      {
+        "expanded": "int value = 0;\n"
+      },
+      {
+        "defines": [
+          "MODE=1"
+        ],
+        "expanded": "int value = 1; int configured;\n"
+      },
+      {
+        "defines": [
+          "MODE=2"
+        ],
+        "expanded": "int value = 2; int configured;\n"
+      },
+      {
+        "defines": [
+          "MODE=3"
+        ],
+        "expanded": "int value = 3; int configured;\n"
+      }
+    ],
+    "rules": [
+      "if-group.1",
+      "if-group.2",
+      "elif-groups.1",
+      "elif-groups.2",
+      "elif-group.1",
+      "else-group.1",
+      "endif-line.1",
+      "defined-macro-expression.1",
+      "defined-macro-expression.2"
+    ]
+  },
+  {
+    "case": "header lookup and attributes",
+    "source": "#define QUOTED \"settings.hpp\"\n#define ANGLED <config/value.hpp>\n#if __has_include(\"settings.hpp\") && __has_include(QUOTED) && __has_include(ANGLED)\n#include QUOTED\n#include <config/value.hpp>\n#include QUOTED\n#else\n#error required header missing\n#endif\n#if __has_include(\"absent.hpp\")\n#error unexpected header\n#endif\n#if __has_cpp_attribute(nodiscard)\nint attribute_available = HEADER_VALUE;\n#endif\n",
+    "variants": [
+      {
+        "expanded": "int included; int attribute_available = 17;\n"
+      }
+    ],
+    "rules": [
+      "control-line.1",
+      "control-line.10",
+      "has-include-expression.1",
+      "has-include-expression.2",
+      "header-name-tokens.1",
+      "header-name-tokens.2",
+      "h-preprocessing-token.1",
+      "h-pp-tokens.1",
+      "h-pp-tokens.2",
+      "has-attribute-expression.1"
+    ],
+    "headers": {
+      "settings.hpp": "#pragma once\nint included;\n",
+      "config/value.hpp": "#define HEADER_VALUE 17\n"
+    }
+  },
+  {
+    "case": "presumed file and line",
+    "source": "#line 73 \"assigned.cpp\"\nint line = __LINE__;\nconst char *file = __FILE__;\n",
+    "variants": [
+      {
+        "expanded": "int line = 73; const char *file = \"assigned.cpp\";\n"
+      }
+    ],
+    "rules": [
+      "control-line.8"
+    ]
+  },
+  {
+    "case": "active error directive",
+    "source": "#if 1\n#error orion_required_diagnostic\n#endif\n",
+    "variants": [
+      {
+        "diagnostic": "orion_required_diagnostic",
+        "line": 2
+      }
+    ],
+    "rules": [
+      "control-line.9"
+    ]
+  },
+  {
+    "case": "duplicate macro parameter",
+    "source": "#define BAD(x,x) x\n",
+    "variants": [
+      {
+        "diagnostic": "duplicate macro parameter",
+        "line": 1,
+        "clang_column": 15,
+        "cli_column": 15
+      }
+    ],
+    "rules": []
+  },
+  {
+    "case": "nested variadic replacement",
+    "source": "#define BAD(...) __VA_OPT__(__VA_OPT__(,))\n",
+    "variants": [
+      {
+        "diagnostic": "__VA_OPT__",
+        "line": 1,
+        "clang_column": 29,
+        "cli_column": 29
+      }
+    ],
+    "rules": []
+  },
+  {
+    "case": "leading token paste",
+    "source": "#define BAD(x) ## x\n",
+    "variants": [
+      {
+        "diagnostic": "##",
+        "line": 1,
+        "clang_column": 16,
+        "cli_column": 14
+      }
+    ],
+    "rules": []
+  },
+  {
+    "case": "global and private module fragments",
+    "source": "module;\n#define VALUE 7\nexport module audit;\nexport int value = VALUE;\nmodule :private;\nint local = VALUE;\n",
+    "variants": [
+      {
+        "expanded": "module;\nexport module audit;\nexport int value = 7;\nmodule :private;\nint local = 7;\n"
+      }
+    ],
+    "rules": [
+      "preprocessing-file.2",
+      "module-file.1",
+      "pp-global-module-fragment.1",
+      "pp-private-module-fragment.1",
+      "pp-module.1"
+    ]
+  },
+  {
+    "case": "conditionally supported directive in selected and skipped groups",
+    "source": "#if ENABLE\n#orion_directive custom\n#endif\nint value;\n",
+    "variants": [
+      {
+        "expanded": "int value;\n"
+      },
+      {
+        "defines": [
+          "ENABLE=1"
+        ],
+        "diagnostic": "invalid preprocessing directive",
+        "line": 2,
+        "clang_column": 2,
+        "cli_column": 2
+      }
+    ],
+    "rules": [
+      "group-part.4",
+      "conditionally-supported-directive.1"
+    ]
+  },
+  {
+    "case": "stringification and token pasting using both preprocessing operator spellings",
+    "source": "%:define CAT(a,b) a %:%: b\n%:define SPELL(x) %: x\n#define JOIN(a,b) a ## b\n#define TEXT(x) #x\nconst char *CAT(na,me) = SPELL(and_eq);\nconst char *JOIN(oth,er) = TEXT(+=);\n",
+    "variants": [
+      {
+        "expanded": "const char *name = \"and_eq\"; const char *other = \"+=\";\n"
+      }
+    ],
+    "rules": [
+      "preprocessing-op-or-punc.1",
+      "preprocessing-operator.1",
+      "preprocessing-operator.2",
+      "preprocessing-operator.3",
+      "preprocessing-operator.4"
+    ]
+  },
+  {
+    "case": "one-character and multi-character header names and a residual preprocessing token",
+    "source": "#include \"q\"\n#include <h>\n#include \"dir/qq\"\n#include <dir/hh>\n#define SPELL(x) #x\nconst char *at = SPELL(@);\n",
+    "headers": {
+      "q": "int q;\n",
+      "h": "int h;\n",
+      "dir/qq": "int qq;\n",
+      "dir/hh": "int hh;\n"
+    },
+    "variants": [
+      {
+        "expanded": "int q; int h; int qq; int hh; const char *at = \"@\";\n"
+      }
+    ],
+    "rules": [
+      "preprocessing-token.1",
+      "preprocessing-token.12",
+      "header-name.1",
+      "header-name.2",
+      "h-char-sequence.1",
+      "h-char-sequence.2",
+      "h-char.1",
+      "q-char-sequence.1",
+      "q-char-sequence.2",
+      "q-char.1"
+    ]
+  }
+]

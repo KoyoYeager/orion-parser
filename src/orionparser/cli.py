@@ -8,7 +8,7 @@ import sys
 from pathlib import Path
 from typing import Any
 
-from orionparser.registry import get_pipeline, supported_extensions
+from orionparser.registry import get_language, get_pipeline, supported_extensions
 
 
 def _collect_files(path: Path) -> list[Path]:
@@ -16,33 +16,40 @@ def _collect_files(path: Path) -> list[Path]:
     if path.is_file():
         return [path]
     if path.is_dir():
-        exts = supported_extensions()
-        return sorted(f for f in path.rglob("*") if f.suffix in exts)
+        return sorted(f for f in path.rglob("*") if get_language(f) and f.is_file())
     print(f"Error: {path} not found", file=sys.stderr)
     sys.exit(1)
+
+
+def _pipeline(path, args):
+    return get_pipeline(path, typescript_options=getattr(args, "tsconfig", None),
+                        c_includes=getattr(args, "include_dirs", ()), c_defines=getattr(args, "defines", ()))
 
 
 def cmd_parse(args: argparse.Namespace) -> None:
     """Parse file(s) and display the AST."""
     files = _collect_files(Path(args.path))
 
-    if args.json or args.output:
-        if len(files) > 1:
-            results = []
-            for f in files:
-                pipeline = get_pipeline(f)
-                result = pipeline.analyze_file(f)
-                results.append({
-                    "file": str(f),
-                    "success": result.success,
-                    "ast": result.ast,
-                })
-            text = json.dumps(results, indent=2)
+    structured = args.json or args.output
+    entries = []
+    failures = 0
+    for file in files:
+        result = _pipeline(file, args).analyze_file(file)
+        if not result.success:
+            failures += 1
+        if structured:
+            entry = {"file": str(file), "success": result.success, "ast": result.ast}
+            if not result.success:
+                entry["errors"] = result.errors
+                for error in result.errors or ["parse failed"]:
+                    print(f"{file}: {error}", file=sys.stderr)
+            entries.append(entry)
         else:
-            pipeline = get_pipeline(files[0])
-            result = pipeline.analyze_file(files[0])
-            text = json.dumps(result.ast, indent=2)
+            _print_result(result)
 
+    if structured:
+        payload = entries[0]["ast"] if len(entries) == 1 else entries
+        text = json.dumps(payload, indent=2)
         if args.output:
             out = Path(args.output)
             out.parent.mkdir(parents=True, exist_ok=True)
@@ -50,18 +57,10 @@ def cmd_parse(args: argparse.Namespace) -> None:
             print(f"Output written to {out}")
         else:
             print(text)
-    else:
-        ok = fail = 0
-        for f in files:
-            pipeline = get_pipeline(f)
-            result = pipeline.analyze_file(f)
-            _print_result(result)
-            if result.success:
-                ok += 1
-            else:
-                fail += 1
-        if len(files) > 1:
-            print(f"\n{ok}/{ok + fail} files parsed successfully")
+    elif len(files) > 1:
+        print(f"\n{len(files) - failures}/{len(files)} files parsed successfully")
+    if failures:
+        raise SystemExit(1)
 
 
 def cmd_tokens(args: argparse.Namespace) -> None:
@@ -69,12 +68,11 @@ def cmd_tokens(args: argparse.Namespace) -> None:
     files = _collect_files(Path(args.path))
 
     for f in files:
-        pipeline = get_pipeline(f)
-        from orionparser.core.encoding import read_file
-
-        source = read_file(f)
-        preprocessed = pipeline.preprocess(source)
-        tokens = pipeline.tokenize(preprocessed)
+        pipeline = _pipeline(f, args)
+        try:
+            tokens = pipeline.tokenize(pipeline.preprocess_file(f))
+        except (ValueError, OSError) as error:
+            raise SystemExit(f"{f}: {error}") from error
 
         if len(files) > 1:
             print(f"--- {f} ---")
@@ -101,7 +99,7 @@ def cmd_analyze(args: argparse.Namespace) -> None:
     all_flows: list[Any] = []
 
     for f in files:
-        pipeline = get_pipeline(f)
+        pipeline = _pipeline(f, args)
         result = pipeline.analyze_file(f)
         if not result.ast:
             print(f"[FAIL] {f}: parse failed", file=sys.stderr)
@@ -215,6 +213,15 @@ def main() -> None:
     p_analyze.add_argument("--all", action="store_true", help="All analyses")
     p_analyze.add_argument("-o", "--output", help="Write JSON to file instead of stdout")
     p_analyze.set_defaults(func=cmd_analyze)
+
+    from orionparser.languages.typescript.options import project_argument
+    for command in (p_parse, p_tokens, p_analyze):
+        command.add_argument("-I", dest="include_dirs", action="append", default=[], metavar="DIR",
+                             help="Add a C/C++ header search directory (repeatable)")
+        command.add_argument("-D", dest="defines", action="append", default=[], metavar="NAME[=VALUE]",
+                             help="Define a C/C++ preprocessor macro (repeatable)")
+        command.add_argument("--tsconfig", type=project_argument, metavar="PATH",
+                             help="TypeScript project file or directory for syntax and module options")
 
     # langs
     p_langs = sub.add_parser("langs", help="List supported languages")

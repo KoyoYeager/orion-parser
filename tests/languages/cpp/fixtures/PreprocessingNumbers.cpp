@@ -1,0 +1,16 @@
+constexpr auto digit = 7;
+constexpr auto fraction = .5;
+constexpr auto digits = 76;
+constexpr auto suffix = 9u;
+constexpr auto separated = 1'2;
+constexpr auto hex_letters = 0xA'F;
+constexpr auto exponent = 1e+2;
+constexpr auto upper_exponent = 1E-2;
+constexpr auto binary_exponent = 0x1p-2;
+constexpr auto upper_binary_exponent = 0x1P+2;
+constexpr auto trailing_point = 1.;
+constexpr auto single = 1.25f;
+constexpr auto extended = 0x1.8p+1l;
+constexpr auto upper_single = 12'3e-1F;
+constexpr auto upper_extended = 0x1P2L;
+static_assert(single == 1.25 && extended == 3 && upper_extended == 4);

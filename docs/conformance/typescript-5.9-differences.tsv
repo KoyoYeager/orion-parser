@@ -1,0 +1,27 @@
+fixture	virtual_file	line	classification	reduced_source_json	orion_diagnostic	status
+src/compiler/builder.ts	builder.ts	1258	Arrow return type on a destructured parameter	"""const f=([x]): T => x"""	line 1, column 14: unexpected ':'	resolved
+src/compiler/checker.ts	checker.ts	2766	Arrow return type on an empty parameter list	"""const f=(): T => x"""	line 1, column 9: unexpected invalid parenthesized expression	resolved
+src/compiler/commandLineParser.ts	commandLineParser.ts	141	Type annotation on a destructured arrow parameter	"""const f=([x]: [T]) => x"""	line 1, column 13: unexpected ':'	resolved
+src/compiler/core.ts	core.ts	332	Generic generator declaration	"""function* f<T>(){}"""	line 1, column 12: unexpected '<'	resolved
+src/compiler/emitter.ts	emitter.ts	567	Arrow return type on an empty parameter list	"""const f=(): T => x"""	line 1, column 9: unexpected invalid parenthesized expression	resolved
+src/compiler/factory/nodeFactory.ts	factory/nodeFactory.ts	503	Generic arrow	"""const f=<T extends U>(x:T)=>x"""	line 1, column 9: unexpected '<'	resolved
+src/compiler/moduleSpecifiers.ts	moduleSpecifiers.ts	870	Arrow return type on a destructured parameter	"""const f=([x]): T => x"""	line 1, column 14: unexpected ':'	resolved
+src/compiler/parser.ts	parser.ts	6935	Definite assignment in a variable declaration	"""let x!: T"""	line 1, column 6: unexpected '!'	resolved
+src/compiler/performanceCore.ts	performanceCore.ts	35	Type query with an import type	"""type F=typeof import(\""m\"")"""	line 1, column 15: unexpected 'import'	resolved
+src/compiler/program.ts	program.ts	535	Arrow return type after an annotated parameter	"""const f=(x:T): T => x"""	line 1, column 14: unexpected ':'	resolved
+src/compiler/resolutionCache.ts	resolutionCache.ts	559	Parenthesized type assertion as an assignment target	"""(x as T)=y"""	line 1, column 9: unexpected parenthesized destructuring pattern	resolved
+src/compiler/scanner.ts	scanner.ts	827	Definite assignment in a variable declaration	"""let x!: T"""	line 1, column 6: unexpected '!'	resolved
+src/compiler/semver.ts	semver.ts	47	Static and readonly class modifiers	"""class C{static readonly n:T=x}"""	line 1, column 25: unexpected 'n'	resolved
+src/compiler/sys.ts	sys.ts	1470	Type query with an import type	"""type F=typeof import(\""m\"")"""	line 1, column 15: unexpected 'import'	resolved
+src/compiler/tracing.ts	tracing.ts	40	Type query with an import type	"""type F=typeof import(\""m\"")"""	line 1, column 15: unexpected 'import'	resolved
+src/compiler/transformer.ts	transformer.ts	325	Arrow return type after an annotated parameter	"""const f=(x:T): T => x"""	line 1, column 14: unexpected ':'	resolved
+src/compiler/transformers/classFields.ts	transformers/classFields.ts	853	Arrow with a type predicate return	"""const f=(x): x is T => true"""	line 1, column 12: unexpected ':'	resolved
+src/compiler/transformers/declarations/diagnostics.ts	transformers/declarations/diagnostics.ts	714	Arrow with a type predicate return	"""const f=(x): x is T => true"""	line 1, column 12: unexpected ':'	resolved
+src/compiler/transformers/jsx.ts	transformers/jsx.ts	103	Definite assignment in a variable declaration	"""let x!: T"""	line 1, column 6: unexpected '!'	resolved
+src/compiler/transformers/ts.ts	transformers/ts.ts	1054	Arrow with a type predicate return	"""const f=(x): x is T => true"""	line 1, column 12: unexpected ':'	resolved
+src/compiler/transformers/utilities.ts	transformers/utilities.ts	806	Variance modifiers on a type parameter	"""interface F<in out T>{}"""	line 1, column 13: unexpected 'in'	resolved
+src/compiler/types.ts	types.ts	3878	Negative numeric literal type	"""type T=-1"""	line 1, column 8: unexpected '-'	resolved
+src/compiler/utilities.ts	utilities.ts	14	Type modifier on an individual named import	"""import {type T} from \""m\"""""	line 1, column 14: unexpected 'T'	resolved
+src/compiler/utilitiesPublic.ts	utilitiesPublic.ts	1038	Arrow with a type predicate return	"""const f=(x): x is T => true"""	line 1, column 12: unexpected ':'	resolved
+src/compiler/watch.ts	watch.ts	669	Arrow return type on an empty parameter list	"""const f=(): T => x"""	line 1, column 9: unexpected invalid parenthesized expression	resolved
+tests/cases/conformance/jsx/tsxTypeArgumentResolution.tsx	file.tsx	30	Empty JSX type argument list; checker diagnostic TS1099	"""const e=<C<> />;"""	line 1, column 12: unexpected '>'	checker-phase difference

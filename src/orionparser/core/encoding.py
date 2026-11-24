@@ -5,14 +5,20 @@ from __future__ import annotations
 from pathlib import Path
 
 
-def read_file(path: Path) -> str:
+def read_file(path: Path, *, prefer_utf8: bool = False) -> str:
     """Read a file with automatic encoding detection.
 
-    Uses chardet to detect encoding, falling back to utf-8.
+    Compiler output can request strict UTF-8 first. Other encodings use chardet.
     """
     raw = path.read_bytes()
     if not raw:
         return ""
+
+    if prefer_utf8:
+        try:
+            return raw.decode("utf-8-sig")
+        except UnicodeDecodeError:
+            pass
 
     try:
         import chardet

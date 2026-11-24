@@ -1,0 +1,16 @@
+template<class T, class U> constexpr bool converts = __is_nothrow_convertible(T, U);
+template<class T, class U> constexpr bool binds_temporary = __reference_converts_from_temporary(T, U);
+template<class T> using WithoutReference = __remove_reference(T);
+static_assert(converts<int, long>);
+static_assert(!binds_temporary<int &, int &>);
+template<class A, class B> constexpr bool layout = __is_layout_compatible(A, B);
+template<class A, class B> constexpr bool base_of = __is_pointer_interconvertible_base_of(A, B);
+static_assert(layout<int, int>);
+using ExtendedFloat = __float80;
+template<class A, class B> constexpr bool constructs = __reference_constructs_from_temporary(A, B);
+static_assert(!constructs<int &, int &>);
+using Binary32 = _Float32;
+using Binary64 = _Float64;
+using Binary128 = _Float128;
+using Extended32 = _Float32x;
+using Extended64 = _Float64x;

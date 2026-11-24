@@ -1,0 +1,4 @@
+struct EmptyMember {
+    ;
+    int value;
+};

@@ -1,0 +1,25 @@
+file	sha256	clang_first_error	orion_first_error	clang_reason
+argument_scope.c	fa92fcf986c085999f0049b715c8d3473f58ee583138a1783b2de31428d4fc59	accept	accept	
+control-scope.c	88fba21d3fdb787bb29a5ab4720af1e90299d95cc4cc4e5b0354e56a4253798e	accept	accept	
+if-scope-c99.c	671ed848d20a64f52ebfa6ac00888afb4c64730cb448aee63fbdb461a1bbc8b4	7:11	accept	use of undeclared identifier 'b'
+c11-noreturn.c	e41efb194dcc35cf78f31faa831b6dcf407fece33ef00aee43f04c0bde6f0ca9	6:5	6:7	
+c1x-alignas.c	e713605557a7c027a5cfe54e6a8821c5104edbc2d0ae44eee4a375b995cc773a	8:8	8:9	
+c1x-generic-selection.c	75008ebdf5f418d61f5012bd7eb8589fc840faf738933c91d30bef4542f40c54	4:11	4:11	
+declarators.c	175394a079f14bae0dd759f934e9174ff4ad327a9118251b58be22747dc0387f	9:9	7:20	
+argument_qualified.c	05f846e57514a801061db0083048585eb99e9d5efd11d2bb219da99764538e9b	accept	accept	
+compound_literal.c	9830f8100609d884daf70f25a6278d4d4dfb792766dd31894aa8227754d6c76c	accept	accept	
+namelookup-bug-1.c	f266256d639f5b62c39425885bc98c9c012552d1b5037688c102f8b16a19a5c9	accept	accept	
+namelookup-bug-2.c	ca3bf062f7d1a5995b16c0439d1f633c8e64af4d7669e64188582950da8ee39c	accept	accept	
+parmvardecl_conversion.c	c77ba1119e149efffdc1e09dc9c1fe20b465a9f42b84917d7084ff893c4bafef	accept	accept	
+promote_types_in_proto.c	6c654ea5c37eefe1b752847f1901a6399ab0fcc302ffab89816a5a6f69d7bf82	accept	accept	
+struct-recursion.c	1771aa0c0399d7b3d3f9baac5fc82624bfe5f032ebc02161c0643b8ec09a99ae	accept	accept	
+types.c	034c8697f4f5cbcf963a1784a178beded0a5f75e8711fc53bdba650d154fb234	accept	accept	
+CompoundStmtScope.c	4d8feb3efa9cea33347b57759307f0b902c088760be8f09d7b085ef1b9093a64	7:3	7:5	use of undeclared identifier 'X'
+atomic.c	f6a74bc08630c67fabdecac657770e131e4aa56b504490d6f67f250086b60fb4	15:15	38:35	_Atomic cannot be applied to atomic type
+bad-control.c	2bada42bcaded3ad1b56ac88ba4d96ffca79a35133e0cd4673ccce520f8649da	4:3	4:3	break
+check_cast.c	31e4f5ba2a1e9f2948a7e1189072494d15cdce41eb99f6f2107866c2e33640b6	10:9	accept	where arithmetic or pointer type is required
+designator.c	21a3e2074785ad949f2f9b3affb969732b6e8a70080d6b53978f46d23b41d8d6	4:6	4:6	missing =
+function-decls.c	aeadf8d43825f61b7cac88fcee2d3e0a448c172fc0019672c0c47456d38a3ff5	8:7	accept	invalid application of 'sizeof' to a function type
+goto.c	964182d8c22c152c2cda4acf14fca26d3485e57a2d3ec0e67214dc303bfc96dc	5:8	5:8	expected identifier
+statements.c	fbf0c234043cf7b07e53ff9a9360e1c905e0de39e0b36ede4dbcfad92eb501b1	53:5	53:5	expected expression
+traditional_arg_scope.c	9b6fc0397cf8e11bae7780b4cd49a33b60a9532c87ff3ec536c5c7ec81de1ef1	4:25	accept	use of undeclared identifier 'a'

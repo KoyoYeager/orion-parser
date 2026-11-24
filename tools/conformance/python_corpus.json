@@ -1,0 +1,500 @@
+{
+  "archives": {
+    "flask": {
+      "repository": "pallets/flask",
+      "revision": "7ef2946fb5151b745df30201b8c27790cac53875",
+      "tree_sha256": "5806f4d4c2aa951843605419f0e2c77de360454c03afd8099b2deefd7d845429"
+    },
+    "algorithms": {
+      "repository": "TheAlgorithms/Python",
+      "revision": "840ca00ad389a947205a4a928171499f2228cbb7",
+      "tree_sha256": "2c7a471c94f78e747859409573b64545db7028ff697090a12e79f7b127a2ec33"
+    }
+  },
+  "repositories": {
+    "django/django": {
+      "revision": "856c915326768962806705ca7733e4abbb8f794f",
+      "files": {
+        "django/core/management/__init__.py": "f28795803973bc8c491ccb2ced1f8000b2e61196f6374bd4051c5f6b3ea4fc2b",
+        "django/utils/functional.py": "2a0d3a34bf2a002d21c13a5c98f1f269b08e6faaf0285ae5bb923bbd11ad1f5b",
+        "django/db/models/query.py": "9c4c610ad55a98a6e06df5f11f1141ebcf0f7f14580abe30d311c964a4eaead2",
+        "django/db/models/fields/__init__.py": "6566545f2bcedbf429d343398c8dca5ed0f138a6e368be97645f286625eeb9c1",
+        "django/http/request.py": "65c4e3c01cf0063db03823989faccabae45211b0e5d644dc360902bc5f536ed1",
+        "django/template/base.py": "67557e0ebadd1eed2d4f18ec3a0e3cdd9d5cd6ff2855681125f14c5f1c1e9fcd",
+        "django/forms/fields.py": "694f7b40906b8fd795f46bd6eb00f551899cbe30de49abb39aa675a3b072b844",
+        "django/views/generic/base.py": "8d63a611d0801a70ac687a8ffc716845a0908e36d6ba96d9cf1e310097b42532"
+      }
+    },
+    "pallets/flask": {
+      "revision": "7ef2946fb5151b745df30201b8c27790cac53875",
+      "files": {
+        "src/flask/app.py": "09a3a1a7b3d1f174a4d274da2c329f9377745bbf6f138b17c3187352f7466a15",
+        "src/flask/blueprints.py": "a79404da5635f0622d6ddaff44a46967c0e8d7b8343ef4062206644940e15f69",
+        "src/flask/config.py": "3e2a85d033da9ba1d6d051f8087d61a574c17b7d0d4b38cf10ec2bcf56fa92dd",
+        "src/flask/ctx.py": "fdff186ec6f47fa5a15fe5947c843bbd2ee20ab0be34036ea8dedaaa89c58f9f",
+        "src/flask/helpers.py": "b2a8f7abae90fbb0c586f59e0a4bc1614741c3373565ff96325d5e8167d9fbce",
+        "src/flask/sessions.py": "7b2c11aa6cad4e66275ff102efcf980462684dce570ff951a61406e4b6cdd5dd"
+      }
+    },
+    "fastapi/fastapi": {
+      "revision": "1f442c454f2f74c7419f83c203e6333955399528",
+      "files": {
+        "fastapi/applications.py": "939049e3b8d76f9eee6bebe4ca41eb9882f0c245f1db56f137a653dba6f112b4",
+        "fastapi/routing.py": "7acf416b51358c7521f44d24d7cb6b9a3fb26b52247cba53afdeaa6a010fd901",
+        "fastapi/params.py": "38dcb14ef9c5355ac9fe60807aafd6458a2a2298f7edacfcc601b07233b53bd1",
+        "fastapi/dependencies/utils.py": "e5b483c365afdea21b737a4ea96c647e60d2a026bda2b1931e16bd422068d8b3",
+        "fastapi/security/oauth2.py": "b12a96e2d6efa07696365778e9361ab6d6b9ae015f8e87782e1c6679d5f3908f"
+      }
+    },
+    "encode/starlette": {
+      "revision": "edcc79eb6df0319c25aeeae77378a0220facf181",
+      "files": {
+        "starlette/applications.py": "1f847b26fb7cb56c488fb428451b7cfe01158f6c6b6271b601f03a77ed9e9fd2",
+        "starlette/routing.py": "24818ae5483a5cf0b8c88a9bb8dc8dd45ac47c0324b0ae7fd7dc2eb1393460a0",
+        "starlette/requests.py": "9b772b248b3ec6d97284e6bfa57bbe061bd080b65147885c5dbcc496ef42280c",
+        "starlette/responses.py": "57b06c2790748e01e397f1befceca17e14d2a55690d3c93431b01dc39e4d4349",
+        "starlette/websockets.py": "9bae16d45e0974bc3eed3446547a92aa0ade6a69476d525239e210d7b11d1f28"
+      }
+    },
+    "tornadoweb/tornado": {
+      "revision": "0ca3c5f8279d402b245718d16522bc18a8f5d958",
+      "files": {
+        "tornado/web.py": "98520f2cf30e800c4cdfb9a2ebf195db390b5bf0a88fea6c1ee07534e7c0df6b",
+        "tornado/ioloop.py": "21b8c898aa4214cb3375ead78d32e27bbd4a9aa8d150fafb6e9a10e96285e4a9",
+        "tornado/httputil.py": "4cbeb1026157921bdad932d3adfe20a60093235fef37ea700441dc943e34ce87",
+        "tornado/gen.py": "8f328547d935d17c04d068272474c475b3361b68acf11d4f87ecccdf3a3b0edc",
+        "tornado/template.py": "a75614b50c7e9aebcfce660a9912afb10f9ba2ef7a77d15c10d70d89033cbab4"
+      }
+    },
+    "aio-libs/aiohttp": {
+      "revision": "83a85fa69d82966bbdbd6bb79d24fa74ede6bbd6",
+      "files": {
+        "aiohttp/web_app.py": "94653f68030dfa1df0cbe2d34c78ba49e287f3276dd46e75057702b29803e590",
+        "aiohttp/client.py": "2641c6aeb26ad69488ed0109c348d92b1e532cbcccf3ba1ff18c7eeb69b8c7a8",
+        "aiohttp/web_request.py": "c4d0abb14412a9307ae06d7ff50882f717d099d82427062419f3c1c277c8610a",
+        "aiohttp/web_response.py": "0e87ce3ce5386defeea62aa8b968f17e130bcae6ed445bce1a72596c86a61fab",
+        "aiohttp/connector.py": "d00155300c7b3709086e8bd0d2a79c43724ed9ba44669c4c1bf3a7199ded3f71"
+      }
+    },
+    "sanic-org/sanic": {
+      "revision": "785d77f8fe208576a48d339bd81d866021154092",
+      "files": {
+        "sanic/app.py": "8ab9ff02eff585a86728e4a9698aa8fe5c11bd2b0ffca2349e705475a03d4ae4",
+        "sanic/router.py": "0ca7108aff580e0243f71ebe10aa4e7a7f80db9e69168b905cfcd9ce64729210"
+      },
+      "unavailable": [
+        "sanic/request.py",
+        "sanic/response.py"
+      ]
+    },
+    "pandas-dev/pandas": {
+      "revision": "e3ae055ab220f9ca9836b3229374cafc46397c18",
+      "files": {
+        "pandas/core/frame.py": "65b0931cecf62dc485e9e4fce01f6753bf7d35107b619c7df97d1dc86c047658",
+        "pandas/core/series.py": "9879efa792275e80d6e5d9001d7b415fe611c548a820e0dd9af4337fe19d841d",
+        "pandas/core/groupby/groupby.py": "b93ab06629ffec22a7834c627145e567a043a669f89cb4e6250e8724fad7ab64",
+        "pandas/io/parsers/readers.py": "df47a628cb8f54246f8c1660a91044038a4cce62237467165d24da11418a8827",
+        "pandas/core/indexes/base.py": "7669ab1d816144daa25ae0d33dfaa696b259bd5a1c824e041e92b011b488e86a"
+      }
+    },
+    "numpy/numpy": {
+      "revision": "bb16d6c195dcaaacf6cc943aa6212cd42ba885e9",
+      "files": {
+        "numpy/core/numeric.py": "0ad93f42293207698cd31234941781f184d47d3c104977d576920c46dba76cca",
+        "numpy/core/fromnumeric.py": "e536a89c956e0b5d74aafddfddca93b668dac935f4066a89020a00267e47dd92",
+        "numpy/ma/core.py": "2a0521f904496a3224da679b67160b1a57f94841c291d300d60eaea85af479c3"
+      },
+      "unavailable": [
+        "numpy/lib/function_base.py"
+      ]
+    },
+    "scikit-learn/scikit-learn": {
+      "revision": "70b05c98024aa3996ef82437932df1124251029f",
+      "files": {
+        "sklearn/base.py": "9ca05482d03da611bf93d4e4986e1cffd08004054552f42692e485fd1ed38d8f",
+        "sklearn/utils/validation.py": "be83a94f92e752615935eade60bc5ed41d65947ba6f21dcbccb0ca02693b8342",
+        "sklearn/model_selection/_split.py": "21f24193d8376b9bf33d4f9e7f4e4cc263a824246de5fe1822e4bba9689fc839",
+        "sklearn/pipeline.py": "95a7f8b2ab13f1c967548c96a12ce50ad61fd83fb077be63185a4d0560a6c36c",
+        "sklearn/tree/_classes.py": "81daa570987529c91b574064fe1d923c8f1a16982a9a0e18b6415dc49fef757a"
+      }
+    },
+    "pytorch/pytorch": {
+      "revision": "d386e0bc6997651befa71c0143e57072ea28a446",
+      "files": {
+        "torch/nn/modules/module.py": "56a1fa39f332238e3bad87f431903a875965abef92547afee6356c1390f2b713",
+        "torch/optim/optimizer.py": "468b160802e5b975c587035a6090bd797ced05491ffb7c6ce314dd81faf7783f",
+        "torch/autograd/__init__.py": "d69df2d67646b01ce4aa68f768bef1a128b8ad684a05e2629b624c4f5b68bf77",
+        "torch/utils/data/dataloader.py": "9d5c80a04c72faa7ecfc77c3e83007af619db654ee29abadb02822feefb05a4d"
+      }
+    },
+    "huggingface/transformers": {
+      "revision": "f38d6639fa6b82a401f4e2ea7fef1a3eb550c1a6",
+      "files": {
+        "src/transformers/modeling_utils.py": "05b9889212e810e30945fc5132660aec5dc7b95569a342b96361e66c799b07b1",
+        "src/transformers/configuration_utils.py": "0829c75902ffc1759502fe5b20ce64e53ddb93622384a3392f86f2ca44dc6583",
+        "src/transformers/tokenization_utils_base.py": "0aec7f150d12808c9f6af0811ef577463f5e8a0a0a01f950d3e90e002e1d6965",
+        "src/transformers/trainer.py": "17e212935057f58b52efe79c3f952bf044bbada8afd4f13c8e905142b1d2ef0a"
+      }
+    },
+    "keras-team/keras": {
+      "revision": "9708582efe976040ec0ca322fdae88924c5afe81",
+      "files": {
+        "keras/src/layers/layer.py": "2f2c99be1944261d4d3cea6142be335f73ec1cf94680a0936aafeb6988879c08",
+        "keras/src/models/model.py": "b33b1e33bb237cd91d386cad176e678a386311106effae963d261a27bd7d5416",
+        "keras/src/optimizers/optimizer.py": "719b59c2ee36a654868d906aa12e8a4e1c09bd68c470fcfd83dee76424abc0e0"
+      }
+    },
+    "psf/requests": {
+      "revision": "cbce031327be4f1b4b5fd041ff4dcaa8efa2ce53",
+      "files": {
+        "src/requests/api.py": "fd96fd39aeedcd5222cd32b016b3e30c463d7a3b66fce9d2444467003c46b10b",
+        "src/requests/sessions.py": "81b9a5b0d4a2f7ab088a0d26aed1f3640653fdf388593a1ef989d6eefe69b4a2",
+        "src/requests/models.py": "24733d202d7636316123a24a838d51d5d664326798dfc840695876eb2989fadc",
+        "src/requests/adapters.py": "f64950f522f0f5a56627b957064093c462dcbd6cf7e33116848238db01b53e61",
+        "src/requests/auth.py": "2875df9db347d857b8add1892b7ada2f83b79f1917c9494b8b324904482e8527"
+      }
+    },
+    "urllib3/urllib3": {
+      "revision": "166f66faa5ef23e255f654e8c6b66ad8590fe630",
+      "files": {
+        "src/urllib3/connectionpool.py": "d6038dd7f70330603e30ee14eb9e79965bea931c0cfe57380f99f6989965d50e",
+        "src/urllib3/response.py": "3385ea0bad0cc16c7dbbbdc12f02f5b49f763a84d9ceb82428753199b8b7cf5a",
+        "src/urllib3/_collections.py": "52f57b52ab464d229dbf0f0dfcbc56b848a464b9b9801d7315f4d9607f4a8409"
+      }
+    },
+    "httpie/cli": {
+      "revision": "5b604c37c6c67e18e7c3e9aee6c88a8c22b98345",
+      "files": {
+        "httpie/cli/definition.py": "c5efca2df0b6f4018a50623bfc1bf170826c790d1340e2e9c47fd1e0e66e2fc1",
+        "httpie/output/formatters/colors.py": "818b82191db085acab172220755c19abecf8135432350407a2b9c18f7d49e13e"
+      }
+    },
+    "encode/httpx": {
+      "revision": "b5addb64f0161ff6bfe94c124ef76f6a1fba5254",
+      "files": {
+        "httpx/_client.py": "ed717b3ac00debb48d089daeb4dd7fbaf47cb5642ebc4a6e76f3a2fc6cfc0f70",
+        "httpx/_models.py": "af118b075a5bcece608acbc989b221703935cbea128a4a98ca21a23ff3e860ac",
+        "httpx/_transports/default.py": "bfb106716ce33f4c29583cc1e43803109a9dba532613ec4f6fe2cd09e7c022e3"
+      }
+    },
+    "pallets/click": {
+      "revision": "a1a5e8e2b86ceaf9a0dba56c26978a6c4fdb111f",
+      "files": {
+        "src/click/core.py": "edd6fdaabff0a976d0ae20c7083736e8e2b432c68b092b78cabcf5e0a9fb0044",
+        "src/click/decorators.py": "e4feda6e126d010629fca1e08d4be132fe3ae044703b3aefd9e9cd9279701f24",
+        "src/click/types.py": "7a4e7804d485c0f2acaad7d3ee3b2a71ce161ee8bc00815530a338a156485e17"
+      }
+    },
+    "tqdm/tqdm": {
+      "revision": "b557cb03b6fd573a98e433fcf80b016c7e48702f",
+      "files": {
+        "tqdm/std.py": "0447f94d4fee11f4f813831ccced5a0d8ad92d591c714004ba39ce9501544bea",
+        "tqdm/auto.py": "9c365f963ea9db32a48c108d068babae14bcd7361f672d7f750bdb724add5bca"
+      }
+    },
+    "willmcgugan/rich": {
+      "revision": "9ac7e797cc731429603cdebd21c1746e5984c7b6",
+      "files": {
+        "rich/console.py": "76828d8b804b48a642b7a45afba0178902be15a5802feedf0a51b664ee70eee4",
+        "rich/table.py": "eb2bfbc0c2d76603ac1a0cc40e9297a5e71740ec1c2c11cd3a7f8c61c6e8d599",
+        "rich/text.py": "b7627c88caaec11d015148209be715369df45b1c3933c7c817fa748e2a18455d",
+        "rich/panel.py": "f6c425d3484f22a1f91b68002d0a3835ea45c293f493dc13facfe03a6b39a487",
+        "rich/progress.py": "67a633ea960edba2c55f1db87172af9366c45fa1648cad99e5ed9fcb406defcb"
+      }
+    },
+    "Textualize/textual": {
+      "revision": "04b03c8db64266a6a7811cc161bae9986e53b1a1",
+      "files": {
+        "src/textual/app.py": "60228e7b1853338c9b8165fc3a04f41293c202226387add5db3cf65d3f561ced",
+        "src/textual/widget.py": "9b0d2d38332aec3c846f8ddd9a03697121009162b003c2d8e7212e48ecb8b7b0",
+        "src/textual/screen.py": "d0f9fef2a06a2ecf8aef5c4c2f0a36cd1f784061321b19b8d3d017fa0a6d7e75"
+      }
+    },
+    "python-poetry/poetry": {
+      "revision": "e6f1ded9902d1fa17fc74e6562cb423e84fa7752",
+      "files": {
+        "src/poetry/console/application.py": "c8e18de822ef9e18223f7a84d7086ef5cd6330e0ff248c8d9c3d8eca51c078d1",
+        "src/poetry/packages/locker.py": "8b361bc3cf4198d06ea41a4df1f1f072b4920642ade84686d51eea2ce475c45b",
+        "src/poetry/installation/installer.py": "bdc1683dfebf365d3f418c06f3d62c989e7742f87e027c9ce87ac557505b886f"
+      }
+    },
+    "pytest-dev/pytest": {
+      "revision": "f93656d611f3c9cd22f346dfeda52cddb778c589",
+      "files": {
+        "src/_pytest/config/__init__.py": "3932adff19b5a9d7818e138d1b9acb48a9b0e29baca2255aa8aee291004cb04f",
+        "src/_pytest/fixtures.py": "89c24480de4d8b2f29f4187fa655ed651d2dd8ec0d5b01994ba4969ec6aaa9ae",
+        "src/_pytest/python.py": "681834bbe974bc115c6c2b603167f989a369523eb5b03054c9064b2b23fb9acb",
+        "src/_pytest/runner.py": "4b427abf08231d04d41dc5d88e9e35188d07bc4f67e76e4a7320ed816c5ae316",
+        "src/_pytest/assertion/rewrite.py": "376adab93672026552858ffaca009cbef553f082f2e4dee87ace75e7966d4b10"
+      }
+    },
+    "HypothesisWorks/hypothesis": {
+      "revision": "dd619a862bc4e8765bb5f5ca6e9528c138537a51",
+      "files": {
+        "hypothesis-python/src/hypothesis/core.py": "7acd8987e4b1dedb10a62c0bc6551b0f6e3eaf5aae76621d486e7bbead879f81"
+      }
+    },
+    "ansible/ansible": {
+      "revision": "64d74c975479df6d0d1b67acf7b8686ece97f787",
+      "files": {
+        "lib/ansible/executor/task_executor.py": "a9dfcd4ddbf09510ad24f6cc034688c33ca6f99d1d30bd1b19179094659c9321",
+        "lib/ansible/plugins/action/__init__.py": "07a17f9097463ba7e2164afd4842b936868ae311c3958b023910a07543224550",
+        "lib/ansible/parsing/yaml/dumper.py": "fc6c8d895124fa2bf062d97daa43ded75ffa14903eb591a5b7a8ceab07504299"
+      }
+    },
+    "saltstack/salt": {
+      "revision": "5693d42decfeaac47e32e0a73dc9e7ff62657372",
+      "files": {
+        "salt/client/__init__.py": "df02adaa68ee6431c8bedeae2a4bdb213be382ec16c924b79974815816ffd51f",
+        "salt/modules/cmdmod.py": "09fbfceea3d484ccf142c6311dfbf77d150bacbd98e74c46a3ed7ed896e0ce49"
+      }
+    },
+    "docker/docker-py": {
+      "revision": "41fea2f8923036621c209afebf32c912d5c637e4",
+      "files": {
+        "docker/api/client.py": "1542d486504238d251a6fd668bb84eb8a56f3f7f2e3d15fbba2ee403a8bcb550",
+        "docker/models/containers.py": "b1910efffb490ddfcba03fb52ef2aa0e06c42f51a7e7ebf83a0301a794b73b04"
+      }
+    },
+    "sqlalchemy/sqlalchemy": {
+      "revision": "6a54490c9d4dece8dffdd35feb9bf96486661ac0",
+      "files": {
+        "lib/sqlalchemy/orm/session.py": "5cfc94341b898742c7db04f3f2c0d4003d775b715fb18155a3fbf9e421527170",
+        "lib/sqlalchemy/engine/base.py": "d6364eff5da6293ba4db9cb60c08533674d61afb251370cc3049ba09b43ba5ed",
+        "lib/sqlalchemy/sql/elements.py": "312bb5b44e39384e4359d5284f29f5399a5938d63421048495b2fa246df737b3",
+        "lib/sqlalchemy/orm/query.py": "6180bf96c07691890ba5311cb15555f77ef4020fe5d2e4fda3ce6285d8c6fc65"
+      }
+    },
+    "tortoise/tortoise-orm": {
+      "revision": "2df46d00fd3c987d12cdf7485b5254df97a66581",
+      "files": {
+        "tortoise/models.py": "f7f99059ff744b4a14020f22b4ae682c2781015f6920c94bc9e909f4ceae789d",
+        "tortoise/queryset.py": "6339ce780181b1e5e39de6293e8874ee8fe43a0aa39aab53ccd03a772bd65216"
+      }
+    },
+    "python-trio/trio": {
+      "revision": "94d7159ae36e0938e0156420ac8dae46b0294b52",
+      "files": {
+        "src/trio/_core/_run.py": "133d36535fbb2b55cd70bd8b30bd81591ac8b098b529f578a4f670513549dfc8",
+        "src/trio/_highlevel_generic.py": "a2fe27a7da4fd2efc15016608818175444a91d2f2e133ec68f03f83f8e9513e0"
+      }
+    },
+    "agronholm/anyio": {
+      "revision": "7581a7778b62457fd7ba569433994395fd38e312",
+      "files": {
+        "src/anyio/_backends/_asyncio.py": "92eaa5836b0152c15d818f34c520c0c3ad06c7fe1634297d8922f95e563a9425"
+      }
+    },
+    "python/mypy": {
+      "revision": "232697e1a9b80766187c620a42a802e3d334b8f4",
+      "files": {
+        "mypy/checker.py": "4b77e1b6ee82889fee6e8903c2f63bdb89da17a6118acd76d189354b250226b5",
+        "mypy/build.py": "dbe46a9cd65c09cbbf43264b323606e8d949802b3a0456c5e5493b8322ccb7fa",
+        "mypy/semanal.py": "86e64d5b48ca4c5988a1f3dfd9dfeacc9c766f266a9ed7e7c8e18a6a1722cc95",
+        "mypy/types.py": "8fc631dee3c7aa3751d42c4f651bad4d095d879d56c58b0ba303928e0807cc4d"
+      }
+    },
+    "astral-sh/ruff": {
+      "revision": "a53044934c4d06c23c77223a781815f3e78c2ad9",
+      "files": {
+        "scripts/check_docs_formatted.py": "0e22afdb8f9c46a25f6451b1cf34e346d586f971f04a024ea7f1a0e2399443c8"
+      }
+    },
+    "pydantic/pydantic": {
+      "revision": "5582178e0bf776e747cda652045a670285614aeb",
+      "files": {
+        "pydantic/main.py": "0287bb571b8d5b44dfdff193fd4a7c8635d879bb65d6fe02c76da9ef115957b5",
+        "pydantic/fields.py": "3cf61506b14aa37218f5dc5f1c6b72f03d58d5742d9be92102096f9b74c75a1a"
+      }
+    },
+    "marshmallow-code/marshmallow": {
+      "revision": "4acb783c73130f762aa5b0df6b65ff7685d5ff2c",
+      "files": {
+        "src/marshmallow/schema.py": "c48482bb7c6e69ac24c2b7631bf7f692991ffe519abc4f46a684c32c3e0f09f8",
+        "src/marshmallow/fields.py": "b0ca13f533742e1bdfd3aeade20681fff0f97739a6e08646b1697a7eb3f3785e"
+      }
+    },
+    "pallets/jinja": {
+      "revision": "5ef70112a1ff19c05324ff889dd30405b1002044",
+      "files": {
+        "src/jinja2/environment.py": "31b30f0d9bf368eff55fe1a908f57d1a52f27ddf94ac9d37ade0351abc2f2b53",
+        "src/jinja2/compiler.py": "cc09c15d1d9b981b226a1074c5b4ff49afb79ae459614178efcfb899adb1c8aa",
+        "src/jinja2/lexer.py": "36cedcead16de1c53cd16c1b65aba2861599318fb36d9b99df791c98bb186017"
+      }
+    },
+    "pallets/werkzeug": {
+      "revision": "65eb6398231fe94f32fbc765a74980ca61fe5d2b",
+      "files": {
+        "src/werkzeug/serving.py": "99c73d55f9f574c5f3be6f3b3c4e6152dc98e9d401d1ef7c95cc6a0e4a568b3f",
+        "src/werkzeug/routing/map.py": "6bb3d244010bc8dca83c53ffba1c8d0c0b263e311badcc9ec0f9c464897ed192"
+      }
+    },
+    "celery/celery": {
+      "revision": "7135768008f982f96cb11e6061d3b309be374583",
+      "files": {
+        "celery/app/base.py": "5087b3640dddd7c0490f8bf4d23c926640a186b1e703938f008e8950c6790277"
+      }
+    },
+    "rq/rq": {
+      "revision": "000aa2a957f538c77a236a75d2ad3a8ebe001ffc",
+      "files": {
+        "rq/job.py": "47afde5d2eb75f8f11e5b67289fecf0a0d6041890f7f3a97544cabe54592af04"
+      },
+      "unavailable": [
+        "rq/worker.py"
+      ]
+    },
+    "scrapy/scrapy": {
+      "revision": "ed31dcbb100ef4d2b79f29a9a677266a79481a4e",
+      "files": {
+        "scrapy/spiders/__init__.py": "3fee20db8f58479f9c3858bc9953465edfe0c87f5bfe6abdff3d05fdabebb11c",
+        "scrapy/http/request/__init__.py": "9b1e11f82b2005811a5ad672f95ea3a3f65f6abb5f69cb247d0ca76b5441756b",
+        "scrapy/core/engine.py": "d984ccdf0f54fa0192c6b4d155a26f61cddba962bd6a5f661b3c2affb6bb09f3"
+      }
+    },
+    "psf/black": {
+      "revision": "e079b7e100d1e181d4ee860ee4512bf3326f32c3",
+      "files": {
+        "src/black/__init__.py": "8929b180f64e9c0bbdd435e067c5bdd917bc038bd89048ba005be9c45eb9c7c9",
+        "src/black/linegen.py": "b89ecf70a2a6a271a0733284ad665d2c28c5d42bcf33b79cb2d4f28314a4b9bf",
+        "src/black/parsing.py": "21be4889e2950fa88adc04c9a5a0b51e34187b96dabb2e4ce7b84a48ae5db55f"
+      }
+    },
+    "boto/boto3": {
+      "revision": "56ae489b4b4c8e7ebec45fa85b4f5cc81576e739",
+      "files": {
+        "boto3/session.py": "c113623eabf46a1438af30940513cdd54b94ede6d7b6894743d5f7e1d18b9a78",
+        "boto3/resources/base.py": "73476a2bc3fef47de71d22169ad8fa791481be295701d4f80f43e8b360115fe0"
+      }
+    },
+    "ytdl-org/youtube-dl": {
+      "revision": "956b8c585591b401a543e409accb163eeaaa1193",
+      "files": {
+        "youtube_dl/extractor/common.py": "fda9c4b051701aa4375090f576c1d8771c58cc4624fb2741adbec5b2acde0a6b",
+        "youtube_dl/utils.py": "02840ba44b81fa6ce35f2e4875b3ad03ebd989dca34259e94f78558f677e1d6e"
+      }
+    },
+    "Rapptz/discord.py": {
+      "revision": "5d74ed3e0ce5178cf454825bd5a71f0248738f54",
+      "files": {
+        "discord/client.py": "8e3f139b8cc50704344f34d4cc8adf8781da8bf7139d66ae9ee2978e4227f16b",
+        "discord/message.py": "6ece36fb524793a99d8eb4e26c999809f34de4dc2d632d126d0780c611f755bb",
+        "discord/guild.py": "035ebea7077d0881b0bb254cc269c7748b49ccef9fdcbd996119202d43b36d80"
+      }
+    },
+    "pyca/cryptography": {
+      "revision": "b3a8db49b991982c86d6446697053008e138a0cd",
+      "files": {
+        "src/cryptography/x509/base.py": "f37db61b8a292756b68ee5d4d78422db2f86d55f9c4076ae768ee00056d33e53"
+      }
+    },
+    "python-attrs/attrs": {
+      "revision": "20734d9cc6e4673c40e4a33bfa2bfaef946533d8",
+      "files": {
+        "src/attr/_make.py": "1fb387d9e592e429c1ccb5233451355b299f3eb985d6bf1fbf644f76df4cb980",
+        "src/attr/validators.py": "9b7411cd94c036be1fd82e1e55d528160d753605d66a4f166ade2a4131a1bdcb"
+      }
+    },
+    "omry/omegaconf": {
+      "revision": "a438a5bcd35575ab33824f69982714d088bad495",
+      "files": {
+        "omegaconf/basecontainer.py": "70afa78d597189af00ebb2e53818e0661e9f1959df49f50f2f85c86f59bd6bd0"
+      },
+      "unavailable": [
+        "omegaconf/OmegaConf.py"
+      ]
+    },
+    "home-assistant/core": {
+      "revision": "375bd55ae6ea27814de1eaaf7c66846c4e767dc5",
+      "files": {
+        "homeassistant/core.py": "266a4ffa5aa3ddbbd22ef501516903e5d16e99c26ba33cace254302e10e352ba",
+        "homeassistant/config.py": "94400e9942bb1022013bb91d9b5fbc332b725103106b5ea767a57ab1f9048f4c"
+      }
+    },
+    "apache/airflow": {
+      "revision": "f391942b90f2347272c321bcdd092c7b109cdc9e",
+      "files": {},
+      "unavailable": [
+        "airflow/models/dag.py",
+        "airflow/operators/python.py"
+      ]
+    },
+    "tiangolo/typer": {
+      "revision": "63f0353af50f3e2e5d88791d08dbe3ad089cc997",
+      "files": {
+        "typer/main.py": "6f674876e1fe389bd9edee3a6c8d558fce79f7c0a431d46a5bcd09c5818c71bc",
+        "typer/core.py": "37be001301b1d0f6d837abf38a65b1a896ddf8ee6e809e7f1578c18519e05d0a"
+      }
+    },
+    "python-pillow/Pillow": {
+      "revision": "abb1d2bf6ebaf459c274f4c957ed8001c92453bc",
+      "files": {
+        "src/PIL/Image.py": "1a3d2ef3dbcbd056fbb4de3415302873348c60e90129a9a107b8829395ea47ea",
+        "src/PIL/ImageDraw.py": "c81e11b035f9c89048b31847a61b9f829c2185c9e8dc7bbd44766b24623369e9"
+      }
+    },
+    "sympy/sympy": {
+      "revision": "083487395f0185c949b1b7651ea5899dd767b5da",
+      "files": {
+        "sympy/core/basic.py": "36cf1ffdfbbd0fe8cd88b1b012e28285af52842125d8c305a48ac19a563cfbcd",
+        "sympy/core/expr.py": "e92a1ea03abfbc5d384ce4c5c7c157d5fab2b6845a31411bf52486ca526578cd"
+      }
+    },
+    "networkx/networkx": {
+      "revision": "6628a781503211153d16f2a2ef184e75daba69e5",
+      "files": {
+        "networkx/classes/graph.py": "460c9b586a7d12d0d769cb4e4c23dbd83e9075e9b012b42bc82c41016c1a3715",
+        "networkx/algorithms/shortest_paths/generic.py": "fbbc08aaa0d6792732f1bad816476debc9eec644a05d5b35897730196a016405"
+      }
+    },
+    "matplotlib/matplotlib": {
+      "revision": "0b4e7875ea463d698ddcc87c5baa11869147829b",
+      "files": {
+        "lib/matplotlib/pyplot.py": "e28a7f3894829ae47bf449b843c805543aab0f1364c3a2b05951c44b96cb1a2c"
+      }
+    },
+    "sphinx-doc/sphinx": {
+      "revision": "cc7c6f435ad37bb12264f8118c8461b230e6830c",
+      "files": {
+        "sphinx/application.py": "7b45746c74cbdfb5d3905e36a18b3b00a68e93d5c20eff91e253cec88fe3db24",
+        "sphinx/builders/__init__.py": "2d85df3f8afc10a3304762aab5b3be64e230198d1d5c6d987c6c351e6136de30"
+      }
+    },
+    "paramiko/paramiko": {
+      "revision": "f3864b69346c853be6709f9b3f5f6a71c61e2e1a",
+      "files": {
+        "paramiko/transport.py": "ef8b178b71d4bbd6f93373b334e040cfdab21404d1cbce621c71ae57cf567136",
+        "paramiko/channel.py": "3173be0b9762a72f10d12861f5c791f823cf88107eb2c4fff68220c3306143fa"
+      }
+    },
+    "fabric/fabric": {
+      "revision": "2e5dffbc35e30f5d34500ae7ccd419005dc6b760",
+      "files": {
+        "fabric/connection.py": "d511cb5f9d28ac265ec3301a75a44f9dd58fd95112974a7560cee1c8a14fe56b",
+        "fabric/runners.py": "59cb18603f244bcb9d59e68dbf11789a303ceb8a7557dfb020eaa9bf1c88c513"
+      }
+    },
+    "ray-project/ray": {
+      "revision": "4d1b7b9bb44cb4fbc2c4138dba2c3488f077c09a",
+      "files": {
+        "python/ray/actor.py": "c7af32157f768ed104dd80311b1ae67a275183bb32836b19c987561e7cc0562a",
+        "python/ray/remote_function.py": "58b364491d4394c35cb1a6c772f573caf86058a76d3bb8c087c6a1ff6df00580"
+      }
+    },
+    "dask/dask": {
+      "revision": "5843716457cc9fe6ea3ecbcc90d7143b4174be33",
+      "files": {
+        "dask/dataframe/core.py": "53e439621f58b3198d15ce1c1ceaf8ab972ab29b532680f5f10832eb45814075",
+        "dask/base.py": "d6b62444bcf0a12b8ea387bcc5a76b004fdfa617663c1a08a2859cbda9904a02"
+      }
+    },
+    "python/cpython": {
+      "revision": "617f4cc1c2605b86b4833450253c3599b61d6638",
+      "files": {
+        "Lib/pathlib/__init__.py": "0390d28804df34094332ccf73eb1ec8b2d239c7da03e63ca6713a3b3d2915ab7",
+        "Lib/typing.py": "5b1ef98e09378b1cb658e70e7d854cdf8b9555f4ac248b6a7dc8b0545ae17002",
+        "Lib/collections/__init__.py": "e25dff190c39132d1ef796595bca8aed479a1311d596ab12684340817f573e7b"
+      }
+    }
+  }
+}

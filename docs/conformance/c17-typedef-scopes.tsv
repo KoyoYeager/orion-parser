@@ -1,0 +1,20 @@
+case	role	source
+array bound within new declarator	type	typedef char T; int f(void){int T[sizeof(T)];return 0;}
+initializer after new declarator	value	typedef char T; int f(void){int T=sizeof(T);return T;}
+first comma initializer before shadowing	type	typedef char T; int f(void){int a=sizeof(T),T=1;return a+T;}
+later comma initializer after shadowing	value	typedef char T; int f(void){int T=1,a=sizeof(T);return a;}
+enumerator within its initializer	type	typedef char T; int f(void){enum {T=sizeof(T)};return T;}
+later enumerator initializer	value	typedef char T; int f(void){enum {T=1,N=sizeof(T)};return N;}
+within own parameter declarator	type	typedef char T; int f(int T[sizeof(T)]);
+later parameter bound	value	typedef char T; int f(int T,int a[sizeof(T)]);
+after callback prototype	type	typedef char T; int f(int (*g)(int T),int a[sizeof(T)]);
+inside callback prototype	value	typedef char T; int f(int (*g)(int T,int a[sizeof(T)]));
+parameter enum in definition body	value	typedef char T; int f(enum {T=2} a){return sizeof(T);}
+after parameter enum in prototype	type	typedef char T; int f(enum {T=2} a); int b[sizeof(T)];
+struct member in separate namespace	type	typedef char T; struct S{int T; int a[sizeof(T)];};
+tag in separate namespace	type	typedef char T; struct T{int a[sizeof(T)];};
+label in separate namespace	type	typedef char T; int f(void){T:return sizeof(T);}
+for initializer scope in controlled statement	value	typedef char T; int f(void){for(int T=0;T<1;++T)return sizeof(T);return 0;}
+after for initializer scope	type	typedef char T; int f(void){for(int T=0;T<1;++T){}return sizeof(T);}
+outer enumerator in inner typedef declaration	value	enum {T=2}; int f(void){typedef int T[sizeof(T)];return 0;}
+nested block restores outer variable	value	int f(int T){{typedef char T;}return sizeof(T);}

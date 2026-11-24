@@ -1,0 +1,6 @@
+#ifndef ORION_SCALE_FACTOR_HEADER
+#define ORION_SCALE_FACTOR_HEADER
+#ifndef SCALE_FACTOR
+#define SCALE_FACTOR 2
+#endif
+#endif

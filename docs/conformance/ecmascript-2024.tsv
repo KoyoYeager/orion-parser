@@ -1,0 +1,1147 @@
+rule	parameters	alternative	source	rhs	section
+SourceCharacter		1	ecmascript-language-source-code.html#prod-SourceCharacter	any Unicode code point	sec-lexical-grammar
+InputElementDiv		1	ecmascript-language-lexical-grammar.html#prod-InputElementDiv	WhiteSpace	sec-lexical-grammar
+InputElementDiv		2	ecmascript-language-lexical-grammar.html#prod-InputElementDiv	LineTerminator	sec-lexical-grammar
+InputElementDiv		3	ecmascript-language-lexical-grammar.html#prod-InputElementDiv	Comment	sec-lexical-grammar
+InputElementDiv		4	ecmascript-language-lexical-grammar.html#prod-InputElementDiv	CommonToken	sec-lexical-grammar
+InputElementDiv		5	ecmascript-language-lexical-grammar.html#prod-InputElementDiv	DivPunctuator	sec-lexical-grammar
+InputElementDiv		6	ecmascript-language-lexical-grammar.html#prod-InputElementDiv	RightBracePunctuator	sec-lexical-grammar
+InputElementRegExp		1	ecmascript-language-lexical-grammar.html#prod-InputElementRegExp	WhiteSpace	sec-lexical-grammar
+InputElementRegExp		2	ecmascript-language-lexical-grammar.html#prod-InputElementRegExp	LineTerminator	sec-lexical-grammar
+InputElementRegExp		3	ecmascript-language-lexical-grammar.html#prod-InputElementRegExp	Comment	sec-lexical-grammar
+InputElementRegExp		4	ecmascript-language-lexical-grammar.html#prod-InputElementRegExp	CommonToken	sec-lexical-grammar
+InputElementRegExp		5	ecmascript-language-lexical-grammar.html#prod-InputElementRegExp	RightBracePunctuator	sec-lexical-grammar
+InputElementRegExp		6	ecmascript-language-lexical-grammar.html#prod-InputElementRegExp	RegularExpressionLiteral	sec-lexical-grammar
+InputElementRegExpOrTemplateTail		1	ecmascript-language-lexical-grammar.html#prod-InputElementRegExpOrTemplateTail	WhiteSpace	sec-lexical-grammar
+InputElementRegExpOrTemplateTail		2	ecmascript-language-lexical-grammar.html#prod-InputElementRegExpOrTemplateTail	LineTerminator	sec-lexical-grammar
+InputElementRegExpOrTemplateTail		3	ecmascript-language-lexical-grammar.html#prod-InputElementRegExpOrTemplateTail	Comment	sec-lexical-grammar
+InputElementRegExpOrTemplateTail		4	ecmascript-language-lexical-grammar.html#prod-InputElementRegExpOrTemplateTail	CommonToken	sec-lexical-grammar
+InputElementRegExpOrTemplateTail		5	ecmascript-language-lexical-grammar.html#prod-InputElementRegExpOrTemplateTail	RegularExpressionLiteral	sec-lexical-grammar
+InputElementRegExpOrTemplateTail		6	ecmascript-language-lexical-grammar.html#prod-InputElementRegExpOrTemplateTail	TemplateSubstitutionTail	sec-lexical-grammar
+InputElementTemplateTail		1	ecmascript-language-lexical-grammar.html#prod-InputElementTemplateTail	WhiteSpace	sec-lexical-grammar
+InputElementTemplateTail		2	ecmascript-language-lexical-grammar.html#prod-InputElementTemplateTail	LineTerminator	sec-lexical-grammar
+InputElementTemplateTail		3	ecmascript-language-lexical-grammar.html#prod-InputElementTemplateTail	Comment	sec-lexical-grammar
+InputElementTemplateTail		4	ecmascript-language-lexical-grammar.html#prod-InputElementTemplateTail	CommonToken	sec-lexical-grammar
+InputElementTemplateTail		5	ecmascript-language-lexical-grammar.html#prod-InputElementTemplateTail	DivPunctuator	sec-lexical-grammar
+InputElementTemplateTail		6	ecmascript-language-lexical-grammar.html#prod-InputElementTemplateTail	TemplateSubstitutionTail	sec-lexical-grammar
+InputElementHashbangOrRegExp		1	ecmascript-language-lexical-grammar.html#prod-InputElementHashbangOrRegExp	WhiteSpace	sec-lexical-grammar
+InputElementHashbangOrRegExp		2	ecmascript-language-lexical-grammar.html#prod-InputElementHashbangOrRegExp	LineTerminator	sec-lexical-grammar
+InputElementHashbangOrRegExp		3	ecmascript-language-lexical-grammar.html#prod-InputElementHashbangOrRegExp	Comment	sec-lexical-grammar
+InputElementHashbangOrRegExp		4	ecmascript-language-lexical-grammar.html#prod-InputElementHashbangOrRegExp	CommonToken	sec-lexical-grammar
+InputElementHashbangOrRegExp		5	ecmascript-language-lexical-grammar.html#prod-InputElementHashbangOrRegExp	HashbangComment	sec-lexical-grammar
+InputElementHashbangOrRegExp		6	ecmascript-language-lexical-grammar.html#prod-InputElementHashbangOrRegExp	RegularExpressionLiteral	sec-lexical-grammar
+WhiteSpace		1	ecmascript-language-lexical-grammar.html#prod-WhiteSpace	<TAB>	sec-lexical-grammar
+WhiteSpace		2	ecmascript-language-lexical-grammar.html#prod-WhiteSpace	<VT>	sec-lexical-grammar
+WhiteSpace		3	ecmascript-language-lexical-grammar.html#prod-WhiteSpace	<FF>	sec-lexical-grammar
+WhiteSpace		4	ecmascript-language-lexical-grammar.html#prod-WhiteSpace	<ZWNBSP>	sec-lexical-grammar
+WhiteSpace		5	ecmascript-language-lexical-grammar.html#prod-WhiteSpace	<USP>	sec-lexical-grammar
+LineTerminator		1	ecmascript-language-lexical-grammar.html#prod-LineTerminator	<LF>	sec-lexical-grammar
+LineTerminator		2	ecmascript-language-lexical-grammar.html#prod-LineTerminator	<CR>	sec-lexical-grammar
+LineTerminator		3	ecmascript-language-lexical-grammar.html#prod-LineTerminator	<LS>	sec-lexical-grammar
+LineTerminator		4	ecmascript-language-lexical-grammar.html#prod-LineTerminator	<PS>	sec-lexical-grammar
+LineTerminatorSequence		1	ecmascript-language-lexical-grammar.html#prod-LineTerminatorSequence	<LF>	sec-lexical-grammar
+LineTerminatorSequence		2	ecmascript-language-lexical-grammar.html#prod-LineTerminatorSequence	<CR> [lookahead ≠ <LF> ]	sec-lexical-grammar
+LineTerminatorSequence		3	ecmascript-language-lexical-grammar.html#prod-LineTerminatorSequence	<LS>	sec-lexical-grammar
+LineTerminatorSequence		4	ecmascript-language-lexical-grammar.html#prod-LineTerminatorSequence	<PS>	sec-lexical-grammar
+LineTerminatorSequence		5	ecmascript-language-lexical-grammar.html#prod-LineTerminatorSequence	<CR> <LF>	sec-lexical-grammar
+Comment		1	ecmascript-language-lexical-grammar.html#prod-Comment	MultiLineComment	sec-lexical-grammar
+Comment		2	ecmascript-language-lexical-grammar.html#prod-Comment	SingleLineComment	sec-lexical-grammar
+MultiLineComment		1	ecmascript-language-lexical-grammar.html#prod-MultiLineComment	/* MultiLineCommentChars opt */	sec-lexical-grammar
+MultiLineCommentChars		1	ecmascript-language-lexical-grammar.html#prod-MultiLineCommentChars	MultiLineNotAsteriskChar MultiLineCommentChars opt	sec-lexical-grammar
+MultiLineCommentChars		2	ecmascript-language-lexical-grammar.html#prod-MultiLineCommentChars	* PostAsteriskCommentChars opt	sec-lexical-grammar
+PostAsteriskCommentChars		1	ecmascript-language-lexical-grammar.html#prod-PostAsteriskCommentChars	MultiLineNotForwardSlashOrAsteriskChar MultiLineCommentChars opt	sec-lexical-grammar
+PostAsteriskCommentChars		2	ecmascript-language-lexical-grammar.html#prod-PostAsteriskCommentChars	* PostAsteriskCommentChars opt	sec-lexical-grammar
+MultiLineNotAsteriskChar		1	ecmascript-language-lexical-grammar.html#prod-MultiLineNotAsteriskChar	SourceCharacter but not *	sec-lexical-grammar
+MultiLineNotForwardSlashOrAsteriskChar		1	ecmascript-language-lexical-grammar.html#prod-MultiLineNotForwardSlashOrAsteriskChar	SourceCharacter but not one of / or *	sec-lexical-grammar
+SingleLineComment		1	ecmascript-language-lexical-grammar.html#prod-SingleLineComment	// SingleLineCommentChars opt	sec-lexical-grammar
+SingleLineCommentChars		1	ecmascript-language-lexical-grammar.html#prod-SingleLineCommentChars	SingleLineCommentChar SingleLineCommentChars opt	sec-lexical-grammar
+SingleLineCommentChar		1	ecmascript-language-lexical-grammar.html#prod-SingleLineCommentChar	SourceCharacter but not LineTerminator	sec-lexical-grammar
+HashbangComment		1	ecmascript-language-lexical-grammar.html#prod-HashbangComment	#! SingleLineCommentChars opt	sec-lexical-grammar
+CommonToken		1	ecmascript-language-lexical-grammar.html#prod-CommonToken	IdentifierName	sec-lexical-grammar
+CommonToken		2	ecmascript-language-lexical-grammar.html#prod-CommonToken	PrivateIdentifier	sec-lexical-grammar
+CommonToken		3	ecmascript-language-lexical-grammar.html#prod-CommonToken	Punctuator	sec-lexical-grammar
+CommonToken		4	ecmascript-language-lexical-grammar.html#prod-CommonToken	NumericLiteral	sec-lexical-grammar
+CommonToken		5	ecmascript-language-lexical-grammar.html#prod-CommonToken	StringLiteral	sec-lexical-grammar
+CommonToken		6	ecmascript-language-lexical-grammar.html#prod-CommonToken	Template	sec-lexical-grammar
+PrivateIdentifier		1	ecmascript-language-lexical-grammar.html#prod-PrivateIdentifier	# IdentifierName	sec-lexical-grammar
+IdentifierName		1	ecmascript-language-lexical-grammar.html#prod-IdentifierName	IdentifierStart	sec-lexical-grammar
+IdentifierName		2	ecmascript-language-lexical-grammar.html#prod-IdentifierName	IdentifierName IdentifierPart	sec-lexical-grammar
+IdentifierStart		1	ecmascript-language-lexical-grammar.html#prod-IdentifierStart	IdentifierStartChar	sec-lexical-grammar
+IdentifierStart		2	ecmascript-language-lexical-grammar.html#prod-IdentifierStart	\ UnicodeEscapeSequence	sec-lexical-grammar
+IdentifierPart		1	ecmascript-language-lexical-grammar.html#prod-IdentifierPart	IdentifierPartChar	sec-lexical-grammar
+IdentifierPart		2	ecmascript-language-lexical-grammar.html#prod-IdentifierPart	\ UnicodeEscapeSequence	sec-lexical-grammar
+IdentifierStartChar		1	ecmascript-language-lexical-grammar.html#prod-IdentifierStartChar	UnicodeIDStart	sec-lexical-grammar
+IdentifierStartChar		2	ecmascript-language-lexical-grammar.html#prod-IdentifierStartChar	$	sec-lexical-grammar
+IdentifierStartChar		3	ecmascript-language-lexical-grammar.html#prod-IdentifierStartChar	_	sec-lexical-grammar
+IdentifierPartChar		1	ecmascript-language-lexical-grammar.html#prod-IdentifierPartChar	UnicodeIDContinue	sec-lexical-grammar
+IdentifierPartChar		2	ecmascript-language-lexical-grammar.html#prod-IdentifierPartChar	$	sec-lexical-grammar
+IdentifierPartChar		3	ecmascript-language-lexical-grammar.html#prod-IdentifierPartChar	<ZWNJ>	sec-lexical-grammar
+IdentifierPartChar		4	ecmascript-language-lexical-grammar.html#prod-IdentifierPartChar	<ZWJ>	sec-lexical-grammar
+AsciiLetter		1	ecmascript-language-lexical-grammar.html#prod-AsciiLetter	a	sec-lexical-grammar
+AsciiLetter		2	ecmascript-language-lexical-grammar.html#prod-AsciiLetter	b	sec-lexical-grammar
+AsciiLetter		3	ecmascript-language-lexical-grammar.html#prod-AsciiLetter	c	sec-lexical-grammar
+AsciiLetter		4	ecmascript-language-lexical-grammar.html#prod-AsciiLetter	d	sec-lexical-grammar
+AsciiLetter		5	ecmascript-language-lexical-grammar.html#prod-AsciiLetter	e	sec-lexical-grammar
+AsciiLetter		6	ecmascript-language-lexical-grammar.html#prod-AsciiLetter	f	sec-lexical-grammar
+AsciiLetter		7	ecmascript-language-lexical-grammar.html#prod-AsciiLetter	g	sec-lexical-grammar
+AsciiLetter		8	ecmascript-language-lexical-grammar.html#prod-AsciiLetter	h	sec-lexical-grammar
+AsciiLetter		9	ecmascript-language-lexical-grammar.html#prod-AsciiLetter	i	sec-lexical-grammar
+AsciiLetter		10	ecmascript-language-lexical-grammar.html#prod-AsciiLetter	j	sec-lexical-grammar
+AsciiLetter		11	ecmascript-language-lexical-grammar.html#prod-AsciiLetter	k	sec-lexical-grammar
+AsciiLetter		12	ecmascript-language-lexical-grammar.html#prod-AsciiLetter	l	sec-lexical-grammar
+AsciiLetter		13	ecmascript-language-lexical-grammar.html#prod-AsciiLetter	m	sec-lexical-grammar
+AsciiLetter		14	ecmascript-language-lexical-grammar.html#prod-AsciiLetter	n	sec-lexical-grammar
+AsciiLetter		15	ecmascript-language-lexical-grammar.html#prod-AsciiLetter	o	sec-lexical-grammar
+AsciiLetter		16	ecmascript-language-lexical-grammar.html#prod-AsciiLetter	p	sec-lexical-grammar
+AsciiLetter		17	ecmascript-language-lexical-grammar.html#prod-AsciiLetter	q	sec-lexical-grammar
+AsciiLetter		18	ecmascript-language-lexical-grammar.html#prod-AsciiLetter	r	sec-lexical-grammar
+AsciiLetter		19	ecmascript-language-lexical-grammar.html#prod-AsciiLetter	s	sec-lexical-grammar
+AsciiLetter		20	ecmascript-language-lexical-grammar.html#prod-AsciiLetter	t	sec-lexical-grammar
+AsciiLetter		21	ecmascript-language-lexical-grammar.html#prod-AsciiLetter	u	sec-lexical-grammar
+AsciiLetter		22	ecmascript-language-lexical-grammar.html#prod-AsciiLetter	v	sec-lexical-grammar
+AsciiLetter		23	ecmascript-language-lexical-grammar.html#prod-AsciiLetter	w	sec-lexical-grammar
+AsciiLetter		24	ecmascript-language-lexical-grammar.html#prod-AsciiLetter	x	sec-lexical-grammar
+AsciiLetter		25	ecmascript-language-lexical-grammar.html#prod-AsciiLetter	y	sec-lexical-grammar
+AsciiLetter		26	ecmascript-language-lexical-grammar.html#prod-AsciiLetter	z	sec-lexical-grammar
+AsciiLetter		27	ecmascript-language-lexical-grammar.html#prod-AsciiLetter	A	sec-lexical-grammar
+AsciiLetter		28	ecmascript-language-lexical-grammar.html#prod-AsciiLetter	B	sec-lexical-grammar
+AsciiLetter		29	ecmascript-language-lexical-grammar.html#prod-AsciiLetter	C	sec-lexical-grammar
+AsciiLetter		30	ecmascript-language-lexical-grammar.html#prod-AsciiLetter	D	sec-lexical-grammar
+AsciiLetter		31	ecmascript-language-lexical-grammar.html#prod-AsciiLetter	E	sec-lexical-grammar
+AsciiLetter		32	ecmascript-language-lexical-grammar.html#prod-AsciiLetter	F	sec-lexical-grammar
+AsciiLetter		33	ecmascript-language-lexical-grammar.html#prod-AsciiLetter	G	sec-lexical-grammar
+AsciiLetter		34	ecmascript-language-lexical-grammar.html#prod-AsciiLetter	H	sec-lexical-grammar
+AsciiLetter		35	ecmascript-language-lexical-grammar.html#prod-AsciiLetter	I	sec-lexical-grammar
+AsciiLetter		36	ecmascript-language-lexical-grammar.html#prod-AsciiLetter	J	sec-lexical-grammar
+AsciiLetter		37	ecmascript-language-lexical-grammar.html#prod-AsciiLetter	K	sec-lexical-grammar
+AsciiLetter		38	ecmascript-language-lexical-grammar.html#prod-AsciiLetter	L	sec-lexical-grammar
+AsciiLetter		39	ecmascript-language-lexical-grammar.html#prod-AsciiLetter	M	sec-lexical-grammar
+AsciiLetter		40	ecmascript-language-lexical-grammar.html#prod-AsciiLetter	N	sec-lexical-grammar
+AsciiLetter		41	ecmascript-language-lexical-grammar.html#prod-AsciiLetter	O	sec-lexical-grammar
+AsciiLetter		42	ecmascript-language-lexical-grammar.html#prod-AsciiLetter	P	sec-lexical-grammar
+AsciiLetter		43	ecmascript-language-lexical-grammar.html#prod-AsciiLetter	Q	sec-lexical-grammar
+AsciiLetter		44	ecmascript-language-lexical-grammar.html#prod-AsciiLetter	R	sec-lexical-grammar
+AsciiLetter		45	ecmascript-language-lexical-grammar.html#prod-AsciiLetter	S	sec-lexical-grammar
+AsciiLetter		46	ecmascript-language-lexical-grammar.html#prod-AsciiLetter	T	sec-lexical-grammar
+AsciiLetter		47	ecmascript-language-lexical-grammar.html#prod-AsciiLetter	U	sec-lexical-grammar
+AsciiLetter		48	ecmascript-language-lexical-grammar.html#prod-AsciiLetter	V	sec-lexical-grammar
+AsciiLetter		49	ecmascript-language-lexical-grammar.html#prod-AsciiLetter	W	sec-lexical-grammar
+AsciiLetter		50	ecmascript-language-lexical-grammar.html#prod-AsciiLetter	X	sec-lexical-grammar
+AsciiLetter		51	ecmascript-language-lexical-grammar.html#prod-AsciiLetter	Y	sec-lexical-grammar
+AsciiLetter		52	ecmascript-language-lexical-grammar.html#prod-AsciiLetter	Z	sec-lexical-grammar
+UnicodeIDStart		1	ecmascript-language-lexical-grammar.html#prod-UnicodeIDStart	any Unicode code point with the Unicode property “ID_Start”	sec-lexical-grammar
+UnicodeIDContinue		1	ecmascript-language-lexical-grammar.html#prod-UnicodeIDContinue	any Unicode code point with the Unicode property “ID_Continue”	sec-lexical-grammar
+ReservedWord		1	ecmascript-language-lexical-grammar.html#prod-ReservedWord	await	sec-lexical-grammar
+ReservedWord		2	ecmascript-language-lexical-grammar.html#prod-ReservedWord	break	sec-lexical-grammar
+ReservedWord		3	ecmascript-language-lexical-grammar.html#prod-ReservedWord	case	sec-lexical-grammar
+ReservedWord		4	ecmascript-language-lexical-grammar.html#prod-ReservedWord	catch	sec-lexical-grammar
+ReservedWord		5	ecmascript-language-lexical-grammar.html#prod-ReservedWord	class	sec-lexical-grammar
+ReservedWord		6	ecmascript-language-lexical-grammar.html#prod-ReservedWord	const	sec-lexical-grammar
+ReservedWord		7	ecmascript-language-lexical-grammar.html#prod-ReservedWord	continue	sec-lexical-grammar
+ReservedWord		8	ecmascript-language-lexical-grammar.html#prod-ReservedWord	debugger	sec-lexical-grammar
+ReservedWord		9	ecmascript-language-lexical-grammar.html#prod-ReservedWord	default	sec-lexical-grammar
+ReservedWord		10	ecmascript-language-lexical-grammar.html#prod-ReservedWord	delete	sec-lexical-grammar
+ReservedWord		11	ecmascript-language-lexical-grammar.html#prod-ReservedWord	do	sec-lexical-grammar
+ReservedWord		12	ecmascript-language-lexical-grammar.html#prod-ReservedWord	else	sec-lexical-grammar
+ReservedWord		13	ecmascript-language-lexical-grammar.html#prod-ReservedWord	enum	sec-lexical-grammar
+ReservedWord		14	ecmascript-language-lexical-grammar.html#prod-ReservedWord	export	sec-lexical-grammar
+ReservedWord		15	ecmascript-language-lexical-grammar.html#prod-ReservedWord	extends	sec-lexical-grammar
+ReservedWord		16	ecmascript-language-lexical-grammar.html#prod-ReservedWord	false	sec-lexical-grammar
+ReservedWord		17	ecmascript-language-lexical-grammar.html#prod-ReservedWord	finally	sec-lexical-grammar
+ReservedWord		18	ecmascript-language-lexical-grammar.html#prod-ReservedWord	for	sec-lexical-grammar
+ReservedWord		19	ecmascript-language-lexical-grammar.html#prod-ReservedWord	function	sec-lexical-grammar
+ReservedWord		20	ecmascript-language-lexical-grammar.html#prod-ReservedWord	if	sec-lexical-grammar
+ReservedWord		21	ecmascript-language-lexical-grammar.html#prod-ReservedWord	import	sec-lexical-grammar
+ReservedWord		22	ecmascript-language-lexical-grammar.html#prod-ReservedWord	in	sec-lexical-grammar
+ReservedWord		23	ecmascript-language-lexical-grammar.html#prod-ReservedWord	instanceof	sec-lexical-grammar
+ReservedWord		24	ecmascript-language-lexical-grammar.html#prod-ReservedWord	new	sec-lexical-grammar
+ReservedWord		25	ecmascript-language-lexical-grammar.html#prod-ReservedWord	null	sec-lexical-grammar
+ReservedWord		26	ecmascript-language-lexical-grammar.html#prod-ReservedWord	return	sec-lexical-grammar
+ReservedWord		27	ecmascript-language-lexical-grammar.html#prod-ReservedWord	super	sec-lexical-grammar
+ReservedWord		28	ecmascript-language-lexical-grammar.html#prod-ReservedWord	switch	sec-lexical-grammar
+ReservedWord		29	ecmascript-language-lexical-grammar.html#prod-ReservedWord	this	sec-lexical-grammar
+ReservedWord		30	ecmascript-language-lexical-grammar.html#prod-ReservedWord	throw	sec-lexical-grammar
+ReservedWord		31	ecmascript-language-lexical-grammar.html#prod-ReservedWord	true	sec-lexical-grammar
+ReservedWord		32	ecmascript-language-lexical-grammar.html#prod-ReservedWord	try	sec-lexical-grammar
+ReservedWord		33	ecmascript-language-lexical-grammar.html#prod-ReservedWord	typeof	sec-lexical-grammar
+ReservedWord		34	ecmascript-language-lexical-grammar.html#prod-ReservedWord	var	sec-lexical-grammar
+ReservedWord		35	ecmascript-language-lexical-grammar.html#prod-ReservedWord	void	sec-lexical-grammar
+ReservedWord		36	ecmascript-language-lexical-grammar.html#prod-ReservedWord	while	sec-lexical-grammar
+ReservedWord		37	ecmascript-language-lexical-grammar.html#prod-ReservedWord	with	sec-lexical-grammar
+ReservedWord		38	ecmascript-language-lexical-grammar.html#prod-ReservedWord	yield	sec-lexical-grammar
+Punctuator		1	ecmascript-language-lexical-grammar.html#prod-Punctuator	OptionalChainingPunctuator	sec-lexical-grammar
+Punctuator		2	ecmascript-language-lexical-grammar.html#prod-Punctuator	OtherPunctuator	sec-lexical-grammar
+OptionalChainingPunctuator		1	ecmascript-language-lexical-grammar.html#prod-OptionalChainingPunctuator	?. [lookahead ∉ DecimalDigit ]	sec-lexical-grammar
+OtherPunctuator		1	ecmascript-language-lexical-grammar.html#prod-OtherPunctuator	{	sec-lexical-grammar
+OtherPunctuator		2	ecmascript-language-lexical-grammar.html#prod-OtherPunctuator	(	sec-lexical-grammar
+OtherPunctuator		3	ecmascript-language-lexical-grammar.html#prod-OtherPunctuator	)	sec-lexical-grammar
+OtherPunctuator		4	ecmascript-language-lexical-grammar.html#prod-OtherPunctuator	[	sec-lexical-grammar
+OtherPunctuator		5	ecmascript-language-lexical-grammar.html#prod-OtherPunctuator	]	sec-lexical-grammar
+OtherPunctuator		6	ecmascript-language-lexical-grammar.html#prod-OtherPunctuator	.	sec-lexical-grammar
+OtherPunctuator		7	ecmascript-language-lexical-grammar.html#prod-OtherPunctuator	...	sec-lexical-grammar
+OtherPunctuator		8	ecmascript-language-lexical-grammar.html#prod-OtherPunctuator	;	sec-lexical-grammar
+OtherPunctuator		9	ecmascript-language-lexical-grammar.html#prod-OtherPunctuator	,	sec-lexical-grammar
+OtherPunctuator		10	ecmascript-language-lexical-grammar.html#prod-OtherPunctuator	<	sec-lexical-grammar
+OtherPunctuator		11	ecmascript-language-lexical-grammar.html#prod-OtherPunctuator	>	sec-lexical-grammar
+OtherPunctuator		12	ecmascript-language-lexical-grammar.html#prod-OtherPunctuator	<=	sec-lexical-grammar
+OtherPunctuator		13	ecmascript-language-lexical-grammar.html#prod-OtherPunctuator	>=	sec-lexical-grammar
+OtherPunctuator		14	ecmascript-language-lexical-grammar.html#prod-OtherPunctuator	==	sec-lexical-grammar
+OtherPunctuator		15	ecmascript-language-lexical-grammar.html#prod-OtherPunctuator	!=	sec-lexical-grammar
+OtherPunctuator		16	ecmascript-language-lexical-grammar.html#prod-OtherPunctuator	===	sec-lexical-grammar
+OtherPunctuator		17	ecmascript-language-lexical-grammar.html#prod-OtherPunctuator	!==	sec-lexical-grammar
+OtherPunctuator		18	ecmascript-language-lexical-grammar.html#prod-OtherPunctuator	+	sec-lexical-grammar
+OtherPunctuator		19	ecmascript-language-lexical-grammar.html#prod-OtherPunctuator	-	sec-lexical-grammar
+OtherPunctuator		20	ecmascript-language-lexical-grammar.html#prod-OtherPunctuator	*	sec-lexical-grammar
+OtherPunctuator		21	ecmascript-language-lexical-grammar.html#prod-OtherPunctuator	%	sec-lexical-grammar
+OtherPunctuator		22	ecmascript-language-lexical-grammar.html#prod-OtherPunctuator	**	sec-lexical-grammar
+OtherPunctuator		23	ecmascript-language-lexical-grammar.html#prod-OtherPunctuator	++	sec-lexical-grammar
+OtherPunctuator		24	ecmascript-language-lexical-grammar.html#prod-OtherPunctuator	--	sec-lexical-grammar
+OtherPunctuator		25	ecmascript-language-lexical-grammar.html#prod-OtherPunctuator	<<	sec-lexical-grammar
+OtherPunctuator		26	ecmascript-language-lexical-grammar.html#prod-OtherPunctuator	>>	sec-lexical-grammar
+OtherPunctuator		27	ecmascript-language-lexical-grammar.html#prod-OtherPunctuator	>>>	sec-lexical-grammar
+OtherPunctuator		28	ecmascript-language-lexical-grammar.html#prod-OtherPunctuator	&	sec-lexical-grammar
+OtherPunctuator		29	ecmascript-language-lexical-grammar.html#prod-OtherPunctuator	|	sec-lexical-grammar
+OtherPunctuator		30	ecmascript-language-lexical-grammar.html#prod-OtherPunctuator	^	sec-lexical-grammar
+OtherPunctuator		31	ecmascript-language-lexical-grammar.html#prod-OtherPunctuator	!	sec-lexical-grammar
+OtherPunctuator		32	ecmascript-language-lexical-grammar.html#prod-OtherPunctuator	~	sec-lexical-grammar
+OtherPunctuator		33	ecmascript-language-lexical-grammar.html#prod-OtherPunctuator	&&	sec-lexical-grammar
+OtherPunctuator		34	ecmascript-language-lexical-grammar.html#prod-OtherPunctuator	||	sec-lexical-grammar
+OtherPunctuator		35	ecmascript-language-lexical-grammar.html#prod-OtherPunctuator	??	sec-lexical-grammar
+OtherPunctuator		36	ecmascript-language-lexical-grammar.html#prod-OtherPunctuator	?	sec-lexical-grammar
+OtherPunctuator		37	ecmascript-language-lexical-grammar.html#prod-OtherPunctuator	:	sec-lexical-grammar
+OtherPunctuator		38	ecmascript-language-lexical-grammar.html#prod-OtherPunctuator	=	sec-lexical-grammar
+OtherPunctuator		39	ecmascript-language-lexical-grammar.html#prod-OtherPunctuator	+=	sec-lexical-grammar
+OtherPunctuator		40	ecmascript-language-lexical-grammar.html#prod-OtherPunctuator	-=	sec-lexical-grammar
+OtherPunctuator		41	ecmascript-language-lexical-grammar.html#prod-OtherPunctuator	*=	sec-lexical-grammar
+OtherPunctuator		42	ecmascript-language-lexical-grammar.html#prod-OtherPunctuator	%=	sec-lexical-grammar
+OtherPunctuator		43	ecmascript-language-lexical-grammar.html#prod-OtherPunctuator	**=	sec-lexical-grammar
+OtherPunctuator		44	ecmascript-language-lexical-grammar.html#prod-OtherPunctuator	<<=	sec-lexical-grammar
+OtherPunctuator		45	ecmascript-language-lexical-grammar.html#prod-OtherPunctuator	>>=	sec-lexical-grammar
+OtherPunctuator		46	ecmascript-language-lexical-grammar.html#prod-OtherPunctuator	>>>=	sec-lexical-grammar
+OtherPunctuator		47	ecmascript-language-lexical-grammar.html#prod-OtherPunctuator	&=	sec-lexical-grammar
+OtherPunctuator		48	ecmascript-language-lexical-grammar.html#prod-OtherPunctuator	|=	sec-lexical-grammar
+OtherPunctuator		49	ecmascript-language-lexical-grammar.html#prod-OtherPunctuator	^=	sec-lexical-grammar
+OtherPunctuator		50	ecmascript-language-lexical-grammar.html#prod-OtherPunctuator	&&=	sec-lexical-grammar
+OtherPunctuator		51	ecmascript-language-lexical-grammar.html#prod-OtherPunctuator	||=	sec-lexical-grammar
+OtherPunctuator		52	ecmascript-language-lexical-grammar.html#prod-OtherPunctuator	??=	sec-lexical-grammar
+OtherPunctuator		53	ecmascript-language-lexical-grammar.html#prod-OtherPunctuator	=>	sec-lexical-grammar
+DivPunctuator		1	ecmascript-language-lexical-grammar.html#prod-DivPunctuator	/	sec-lexical-grammar
+DivPunctuator		2	ecmascript-language-lexical-grammar.html#prod-DivPunctuator	/=	sec-lexical-grammar
+RightBracePunctuator		1	ecmascript-language-lexical-grammar.html#prod-RightBracePunctuator	}	sec-lexical-grammar
+NullLiteral		1	ecmascript-language-lexical-grammar.html#prod-NullLiteral	null	sec-lexical-grammar
+BooleanLiteral		1	ecmascript-language-lexical-grammar.html#prod-BooleanLiteral	true	sec-lexical-grammar
+BooleanLiteral		2	ecmascript-language-lexical-grammar.html#prod-BooleanLiteral	false	sec-lexical-grammar
+NumericLiteralSeparator		1	ecmascript-language-lexical-grammar.html#prod-NumericLiteralSeparator	_	sec-lexical-grammar
+NumericLiteral		1	ecmascript-language-lexical-grammar.html#prod-NumericLiteral	DecimalLiteral	sec-lexical-grammar
+NumericLiteral		2	ecmascript-language-lexical-grammar.html#prod-NumericLiteral	DecimalBigIntegerLiteral	sec-lexical-grammar
+NumericLiteral		3	ecmascript-language-lexical-grammar.html#prod-NumericLiteral	NonDecimalIntegerLiteral [+Sep]	sec-lexical-grammar
+NumericLiteral		4	ecmascript-language-lexical-grammar.html#prod-NumericLiteral	NonDecimalIntegerLiteral [+Sep] BigIntLiteralSuffix	sec-lexical-grammar
+NumericLiteral		5	ecmascript-language-lexical-grammar.html#prod-NumericLiteral	LegacyOctalIntegerLiteral	sec-lexical-grammar
+DecimalBigIntegerLiteral		1	ecmascript-language-lexical-grammar.html#prod-DecimalBigIntegerLiteral	0 BigIntLiteralSuffix	sec-lexical-grammar
+DecimalBigIntegerLiteral		2	ecmascript-language-lexical-grammar.html#prod-DecimalBigIntegerLiteral	NonZeroDigit DecimalDigits [+Sep] opt BigIntLiteralSuffix	sec-lexical-grammar
+DecimalBigIntegerLiteral		3	ecmascript-language-lexical-grammar.html#prod-DecimalBigIntegerLiteral	NonZeroDigit NumericLiteralSeparator DecimalDigits [+Sep] BigIntLiteralSuffix	sec-lexical-grammar
+NonDecimalIntegerLiteral	Sep	1	ecmascript-language-lexical-grammar.html#prod-NonDecimalIntegerLiteral	BinaryIntegerLiteral [?Sep]	sec-lexical-grammar
+NonDecimalIntegerLiteral	Sep	2	ecmascript-language-lexical-grammar.html#prod-NonDecimalIntegerLiteral	OctalIntegerLiteral [?Sep]	sec-lexical-grammar
+NonDecimalIntegerLiteral	Sep	3	ecmascript-language-lexical-grammar.html#prod-NonDecimalIntegerLiteral	HexIntegerLiteral [?Sep]	sec-lexical-grammar
+BigIntLiteralSuffix		1	ecmascript-language-lexical-grammar.html#prod-BigIntLiteralSuffix	n	sec-lexical-grammar
+DecimalLiteral		1	ecmascript-language-lexical-grammar.html#prod-DecimalLiteral	DecimalIntegerLiteral . DecimalDigits [+Sep] opt ExponentPart [+Sep] opt	sec-lexical-grammar
+DecimalLiteral		2	ecmascript-language-lexical-grammar.html#prod-DecimalLiteral	. DecimalDigits [+Sep] ExponentPart [+Sep] opt	sec-lexical-grammar
+DecimalLiteral		3	ecmascript-language-lexical-grammar.html#prod-DecimalLiteral	DecimalIntegerLiteral ExponentPart [+Sep] opt	sec-lexical-grammar
+DecimalIntegerLiteral		1	ecmascript-language-lexical-grammar.html#prod-DecimalIntegerLiteral	0	sec-lexical-grammar
+DecimalIntegerLiteral		2	ecmascript-language-lexical-grammar.html#prod-DecimalIntegerLiteral	NonZeroDigit	sec-lexical-grammar
+DecimalIntegerLiteral		3	ecmascript-language-lexical-grammar.html#prod-DecimalIntegerLiteral	NonZeroDigit NumericLiteralSeparator opt DecimalDigits [+Sep]	sec-lexical-grammar
+DecimalIntegerLiteral		4	ecmascript-language-lexical-grammar.html#prod-DecimalIntegerLiteral	NonOctalDecimalIntegerLiteral	sec-lexical-grammar
+DecimalDigits	Sep	1	ecmascript-language-lexical-grammar.html#prod-DecimalDigits	DecimalDigit	sec-lexical-grammar
+DecimalDigits	Sep	2	ecmascript-language-lexical-grammar.html#prod-DecimalDigits	DecimalDigits [?Sep] DecimalDigit	sec-lexical-grammar
+DecimalDigits	Sep	3	ecmascript-language-lexical-grammar.html#prod-DecimalDigits	[+Sep] DecimalDigits [+Sep] NumericLiteralSeparator DecimalDigit	sec-lexical-grammar
+DecimalDigit		1	ecmascript-language-lexical-grammar.html#prod-DecimalDigit	0	sec-lexical-grammar
+DecimalDigit		2	ecmascript-language-lexical-grammar.html#prod-DecimalDigit	1	sec-lexical-grammar
+DecimalDigit		3	ecmascript-language-lexical-grammar.html#prod-DecimalDigit	2	sec-lexical-grammar
+DecimalDigit		4	ecmascript-language-lexical-grammar.html#prod-DecimalDigit	3	sec-lexical-grammar
+DecimalDigit		5	ecmascript-language-lexical-grammar.html#prod-DecimalDigit	4	sec-lexical-grammar
+DecimalDigit		6	ecmascript-language-lexical-grammar.html#prod-DecimalDigit	5	sec-lexical-grammar
+DecimalDigit		7	ecmascript-language-lexical-grammar.html#prod-DecimalDigit	6	sec-lexical-grammar
+DecimalDigit		8	ecmascript-language-lexical-grammar.html#prod-DecimalDigit	7	sec-lexical-grammar
+DecimalDigit		9	ecmascript-language-lexical-grammar.html#prod-DecimalDigit	8	sec-lexical-grammar
+DecimalDigit		10	ecmascript-language-lexical-grammar.html#prod-DecimalDigit	9	sec-lexical-grammar
+NonZeroDigit		1	ecmascript-language-lexical-grammar.html#prod-NonZeroDigit	1	sec-lexical-grammar
+NonZeroDigit		2	ecmascript-language-lexical-grammar.html#prod-NonZeroDigit	2	sec-lexical-grammar
+NonZeroDigit		3	ecmascript-language-lexical-grammar.html#prod-NonZeroDigit	3	sec-lexical-grammar
+NonZeroDigit		4	ecmascript-language-lexical-grammar.html#prod-NonZeroDigit	4	sec-lexical-grammar
+NonZeroDigit		5	ecmascript-language-lexical-grammar.html#prod-NonZeroDigit	5	sec-lexical-grammar
+NonZeroDigit		6	ecmascript-language-lexical-grammar.html#prod-NonZeroDigit	6	sec-lexical-grammar
+NonZeroDigit		7	ecmascript-language-lexical-grammar.html#prod-NonZeroDigit	7	sec-lexical-grammar
+NonZeroDigit		8	ecmascript-language-lexical-grammar.html#prod-NonZeroDigit	8	sec-lexical-grammar
+NonZeroDigit		9	ecmascript-language-lexical-grammar.html#prod-NonZeroDigit	9	sec-lexical-grammar
+ExponentPart	Sep	1	ecmascript-language-lexical-grammar.html#prod-ExponentPart	ExponentIndicator SignedInteger [?Sep]	sec-lexical-grammar
+ExponentIndicator		1	ecmascript-language-lexical-grammar.html#prod-ExponentIndicator	e	sec-lexical-grammar
+ExponentIndicator		2	ecmascript-language-lexical-grammar.html#prod-ExponentIndicator	E	sec-lexical-grammar
+SignedInteger	Sep	1	ecmascript-language-lexical-grammar.html#prod-SignedInteger	DecimalDigits [?Sep]	sec-lexical-grammar
+SignedInteger	Sep	2	ecmascript-language-lexical-grammar.html#prod-SignedInteger	+ DecimalDigits [?Sep]	sec-lexical-grammar
+SignedInteger	Sep	3	ecmascript-language-lexical-grammar.html#prod-SignedInteger	- DecimalDigits [?Sep]	sec-lexical-grammar
+BinaryIntegerLiteral	Sep	1	ecmascript-language-lexical-grammar.html#prod-BinaryIntegerLiteral	0b BinaryDigits [?Sep]	sec-lexical-grammar
+BinaryIntegerLiteral	Sep	2	ecmascript-language-lexical-grammar.html#prod-BinaryIntegerLiteral	0B BinaryDigits [?Sep]	sec-lexical-grammar
+BinaryDigits	Sep	1	ecmascript-language-lexical-grammar.html#prod-BinaryDigits	BinaryDigit	sec-lexical-grammar
+BinaryDigits	Sep	2	ecmascript-language-lexical-grammar.html#prod-BinaryDigits	BinaryDigits [?Sep] BinaryDigit	sec-lexical-grammar
+BinaryDigits	Sep	3	ecmascript-language-lexical-grammar.html#prod-BinaryDigits	[+Sep] BinaryDigits [+Sep] NumericLiteralSeparator BinaryDigit	sec-lexical-grammar
+BinaryDigit		1	ecmascript-language-lexical-grammar.html#prod-BinaryDigit	0	sec-lexical-grammar
+BinaryDigit		2	ecmascript-language-lexical-grammar.html#prod-BinaryDigit	1	sec-lexical-grammar
+OctalIntegerLiteral	Sep	1	ecmascript-language-lexical-grammar.html#prod-OctalIntegerLiteral	0o OctalDigits [?Sep]	sec-lexical-grammar
+OctalIntegerLiteral	Sep	2	ecmascript-language-lexical-grammar.html#prod-OctalIntegerLiteral	0O OctalDigits [?Sep]	sec-lexical-grammar
+OctalDigits	Sep	1	ecmascript-language-lexical-grammar.html#prod-OctalDigits	OctalDigit	sec-lexical-grammar
+OctalDigits	Sep	2	ecmascript-language-lexical-grammar.html#prod-OctalDigits	OctalDigits [?Sep] OctalDigit	sec-lexical-grammar
+OctalDigits	Sep	3	ecmascript-language-lexical-grammar.html#prod-OctalDigits	[+Sep] OctalDigits [+Sep] NumericLiteralSeparator OctalDigit	sec-lexical-grammar
+LegacyOctalIntegerLiteral		1	ecmascript-language-lexical-grammar.html#prod-LegacyOctalIntegerLiteral	0 OctalDigit	sec-lexical-grammar
+LegacyOctalIntegerLiteral		2	ecmascript-language-lexical-grammar.html#prod-LegacyOctalIntegerLiteral	LegacyOctalIntegerLiteral OctalDigit	sec-lexical-grammar
+NonOctalDecimalIntegerLiteral		1	ecmascript-language-lexical-grammar.html#prod-NonOctalDecimalIntegerLiteral	0 NonOctalDigit	sec-lexical-grammar
+NonOctalDecimalIntegerLiteral		2	ecmascript-language-lexical-grammar.html#prod-NonOctalDecimalIntegerLiteral	LegacyOctalLikeDecimalIntegerLiteral NonOctalDigit	sec-lexical-grammar
+NonOctalDecimalIntegerLiteral		3	ecmascript-language-lexical-grammar.html#prod-NonOctalDecimalIntegerLiteral	NonOctalDecimalIntegerLiteral DecimalDigit	sec-lexical-grammar
+LegacyOctalLikeDecimalIntegerLiteral		1	ecmascript-language-lexical-grammar.html#prod-LegacyOctalLikeDecimalIntegerLiteral	0 OctalDigit	sec-lexical-grammar
+LegacyOctalLikeDecimalIntegerLiteral		2	ecmascript-language-lexical-grammar.html#prod-LegacyOctalLikeDecimalIntegerLiteral	LegacyOctalLikeDecimalIntegerLiteral OctalDigit	sec-lexical-grammar
+OctalDigit		1	ecmascript-language-lexical-grammar.html#prod-OctalDigit	0	sec-lexical-grammar
+OctalDigit		2	ecmascript-language-lexical-grammar.html#prod-OctalDigit	1	sec-lexical-grammar
+OctalDigit		3	ecmascript-language-lexical-grammar.html#prod-OctalDigit	2	sec-lexical-grammar
+OctalDigit		4	ecmascript-language-lexical-grammar.html#prod-OctalDigit	3	sec-lexical-grammar
+OctalDigit		5	ecmascript-language-lexical-grammar.html#prod-OctalDigit	4	sec-lexical-grammar
+OctalDigit		6	ecmascript-language-lexical-grammar.html#prod-OctalDigit	5	sec-lexical-grammar
+OctalDigit		7	ecmascript-language-lexical-grammar.html#prod-OctalDigit	6	sec-lexical-grammar
+OctalDigit		8	ecmascript-language-lexical-grammar.html#prod-OctalDigit	7	sec-lexical-grammar
+NonOctalDigit		1	ecmascript-language-lexical-grammar.html#prod-NonOctalDigit	8	sec-lexical-grammar
+NonOctalDigit		2	ecmascript-language-lexical-grammar.html#prod-NonOctalDigit	9	sec-lexical-grammar
+HexIntegerLiteral	Sep	1	ecmascript-language-lexical-grammar.html#prod-HexIntegerLiteral	0x HexDigits [?Sep]	sec-lexical-grammar
+HexIntegerLiteral	Sep	2	ecmascript-language-lexical-grammar.html#prod-HexIntegerLiteral	0X HexDigits [?Sep]	sec-lexical-grammar
+HexDigits	Sep	1	ecmascript-language-lexical-grammar.html#prod-HexDigits	HexDigit	sec-lexical-grammar
+HexDigits	Sep	2	ecmascript-language-lexical-grammar.html#prod-HexDigits	HexDigits [?Sep] HexDigit	sec-lexical-grammar
+HexDigits	Sep	3	ecmascript-language-lexical-grammar.html#prod-HexDigits	[+Sep] HexDigits [+Sep] NumericLiteralSeparator HexDigit	sec-lexical-grammar
+HexDigit		1	ecmascript-language-lexical-grammar.html#prod-HexDigit	0	sec-lexical-grammar
+HexDigit		2	ecmascript-language-lexical-grammar.html#prod-HexDigit	1	sec-lexical-grammar
+HexDigit		3	ecmascript-language-lexical-grammar.html#prod-HexDigit	2	sec-lexical-grammar
+HexDigit		4	ecmascript-language-lexical-grammar.html#prod-HexDigit	3	sec-lexical-grammar
+HexDigit		5	ecmascript-language-lexical-grammar.html#prod-HexDigit	4	sec-lexical-grammar
+HexDigit		6	ecmascript-language-lexical-grammar.html#prod-HexDigit	5	sec-lexical-grammar
+HexDigit		7	ecmascript-language-lexical-grammar.html#prod-HexDigit	6	sec-lexical-grammar
+HexDigit		8	ecmascript-language-lexical-grammar.html#prod-HexDigit	7	sec-lexical-grammar
+HexDigit		9	ecmascript-language-lexical-grammar.html#prod-HexDigit	8	sec-lexical-grammar
+HexDigit		10	ecmascript-language-lexical-grammar.html#prod-HexDigit	9	sec-lexical-grammar
+HexDigit		11	ecmascript-language-lexical-grammar.html#prod-HexDigit	a	sec-lexical-grammar
+HexDigit		12	ecmascript-language-lexical-grammar.html#prod-HexDigit	b	sec-lexical-grammar
+HexDigit		13	ecmascript-language-lexical-grammar.html#prod-HexDigit	c	sec-lexical-grammar
+HexDigit		14	ecmascript-language-lexical-grammar.html#prod-HexDigit	d	sec-lexical-grammar
+HexDigit		15	ecmascript-language-lexical-grammar.html#prod-HexDigit	e	sec-lexical-grammar
+HexDigit		16	ecmascript-language-lexical-grammar.html#prod-HexDigit	f	sec-lexical-grammar
+HexDigit		17	ecmascript-language-lexical-grammar.html#prod-HexDigit	A	sec-lexical-grammar
+HexDigit		18	ecmascript-language-lexical-grammar.html#prod-HexDigit	B	sec-lexical-grammar
+HexDigit		19	ecmascript-language-lexical-grammar.html#prod-HexDigit	C	sec-lexical-grammar
+HexDigit		20	ecmascript-language-lexical-grammar.html#prod-HexDigit	D	sec-lexical-grammar
+HexDigit		21	ecmascript-language-lexical-grammar.html#prod-HexDigit	E	sec-lexical-grammar
+HexDigit		22	ecmascript-language-lexical-grammar.html#prod-HexDigit	F	sec-lexical-grammar
+StringLiteral		1	ecmascript-language-lexical-grammar.html#prod-StringLiteral	""" DoubleStringCharacters opt """	sec-lexical-grammar
+StringLiteral		2	ecmascript-language-lexical-grammar.html#prod-StringLiteral	' SingleStringCharacters opt '	sec-lexical-grammar
+DoubleStringCharacters		1	ecmascript-language-lexical-grammar.html#prod-DoubleStringCharacters	DoubleStringCharacter DoubleStringCharacters opt	sec-lexical-grammar
+SingleStringCharacters		1	ecmascript-language-lexical-grammar.html#prod-SingleStringCharacters	SingleStringCharacter SingleStringCharacters opt	sec-lexical-grammar
+DoubleStringCharacter		1	ecmascript-language-lexical-grammar.html#prod-DoubleStringCharacter	"SourceCharacter but not one of "" or \ or LineTerminator"	sec-lexical-grammar
+DoubleStringCharacter		2	ecmascript-language-lexical-grammar.html#prod-DoubleStringCharacter	<LS>	sec-lexical-grammar
+DoubleStringCharacter		3	ecmascript-language-lexical-grammar.html#prod-DoubleStringCharacter	<PS>	sec-lexical-grammar
+DoubleStringCharacter		4	ecmascript-language-lexical-grammar.html#prod-DoubleStringCharacter	\ EscapeSequence	sec-lexical-grammar
+DoubleStringCharacter		5	ecmascript-language-lexical-grammar.html#prod-DoubleStringCharacter	LineContinuation	sec-lexical-grammar
+SingleStringCharacter		1	ecmascript-language-lexical-grammar.html#prod-SingleStringCharacter	SourceCharacter but not one of ' or \ or LineTerminator	sec-lexical-grammar
+SingleStringCharacter		2	ecmascript-language-lexical-grammar.html#prod-SingleStringCharacter	<LS>	sec-lexical-grammar
+SingleStringCharacter		3	ecmascript-language-lexical-grammar.html#prod-SingleStringCharacter	<PS>	sec-lexical-grammar
+SingleStringCharacter		4	ecmascript-language-lexical-grammar.html#prod-SingleStringCharacter	\ EscapeSequence	sec-lexical-grammar
+SingleStringCharacter		5	ecmascript-language-lexical-grammar.html#prod-SingleStringCharacter	LineContinuation	sec-lexical-grammar
+LineContinuation		1	ecmascript-language-lexical-grammar.html#prod-LineContinuation	\ LineTerminatorSequence	sec-lexical-grammar
+EscapeSequence		1	ecmascript-language-lexical-grammar.html#prod-EscapeSequence	CharacterEscapeSequence	sec-lexical-grammar
+EscapeSequence		2	ecmascript-language-lexical-grammar.html#prod-EscapeSequence	0 [lookahead ∉ DecimalDigit ]	sec-lexical-grammar
+EscapeSequence		3	ecmascript-language-lexical-grammar.html#prod-EscapeSequence	LegacyOctalEscapeSequence	sec-lexical-grammar
+EscapeSequence		4	ecmascript-language-lexical-grammar.html#prod-EscapeSequence	NonOctalDecimalEscapeSequence	sec-lexical-grammar
+EscapeSequence		5	ecmascript-language-lexical-grammar.html#prod-EscapeSequence	HexEscapeSequence	sec-lexical-grammar
+EscapeSequence		6	ecmascript-language-lexical-grammar.html#prod-EscapeSequence	UnicodeEscapeSequence	sec-lexical-grammar
+CharacterEscapeSequence		1	ecmascript-language-lexical-grammar.html#prod-CharacterEscapeSequence	SingleEscapeCharacter	sec-lexical-grammar
+CharacterEscapeSequence		2	ecmascript-language-lexical-grammar.html#prod-CharacterEscapeSequence	NonEscapeCharacter	sec-lexical-grammar
+SingleEscapeCharacter		1	ecmascript-language-lexical-grammar.html#prod-SingleEscapeCharacter	'	sec-lexical-grammar
+SingleEscapeCharacter		2	ecmascript-language-lexical-grammar.html#prod-SingleEscapeCharacter	""""	sec-lexical-grammar
+SingleEscapeCharacter		3	ecmascript-language-lexical-grammar.html#prod-SingleEscapeCharacter	\	sec-lexical-grammar
+SingleEscapeCharacter		4	ecmascript-language-lexical-grammar.html#prod-SingleEscapeCharacter	b	sec-lexical-grammar
+SingleEscapeCharacter		5	ecmascript-language-lexical-grammar.html#prod-SingleEscapeCharacter	f	sec-lexical-grammar
+SingleEscapeCharacter		6	ecmascript-language-lexical-grammar.html#prod-SingleEscapeCharacter	n	sec-lexical-grammar
+SingleEscapeCharacter		7	ecmascript-language-lexical-grammar.html#prod-SingleEscapeCharacter	r	sec-lexical-grammar
+SingleEscapeCharacter		8	ecmascript-language-lexical-grammar.html#prod-SingleEscapeCharacter	t	sec-lexical-grammar
+SingleEscapeCharacter		9	ecmascript-language-lexical-grammar.html#prod-SingleEscapeCharacter	v	sec-lexical-grammar
+NonEscapeCharacter		1	ecmascript-language-lexical-grammar.html#prod-NonEscapeCharacter	SourceCharacter but not one of EscapeCharacter or LineTerminator	sec-lexical-grammar
+EscapeCharacter		1	ecmascript-language-lexical-grammar.html#prod-EscapeCharacter	SingleEscapeCharacter	sec-lexical-grammar
+EscapeCharacter		2	ecmascript-language-lexical-grammar.html#prod-EscapeCharacter	DecimalDigit	sec-lexical-grammar
+EscapeCharacter		3	ecmascript-language-lexical-grammar.html#prod-EscapeCharacter	x	sec-lexical-grammar
+EscapeCharacter		4	ecmascript-language-lexical-grammar.html#prod-EscapeCharacter	u	sec-lexical-grammar
+LegacyOctalEscapeSequence		1	ecmascript-language-lexical-grammar.html#prod-LegacyOctalEscapeSequence	0 [lookahead ∈ { 8 , 9 }]	sec-lexical-grammar
+LegacyOctalEscapeSequence		2	ecmascript-language-lexical-grammar.html#prod-LegacyOctalEscapeSequence	NonZeroOctalDigit [lookahead ∉ OctalDigit ]	sec-lexical-grammar
+LegacyOctalEscapeSequence		3	ecmascript-language-lexical-grammar.html#prod-LegacyOctalEscapeSequence	ZeroToThree OctalDigit [lookahead ∉ OctalDigit ]	sec-lexical-grammar
+LegacyOctalEscapeSequence		4	ecmascript-language-lexical-grammar.html#prod-LegacyOctalEscapeSequence	FourToSeven OctalDigit	sec-lexical-grammar
+LegacyOctalEscapeSequence		5	ecmascript-language-lexical-grammar.html#prod-LegacyOctalEscapeSequence	ZeroToThree OctalDigit OctalDigit	sec-lexical-grammar
+NonZeroOctalDigit		1	ecmascript-language-lexical-grammar.html#prod-NonZeroOctalDigit	OctalDigit but not 0	sec-lexical-grammar
+ZeroToThree		1	ecmascript-language-lexical-grammar.html#prod-ZeroToThree	0	sec-lexical-grammar
+ZeroToThree		2	ecmascript-language-lexical-grammar.html#prod-ZeroToThree	1	sec-lexical-grammar
+ZeroToThree		3	ecmascript-language-lexical-grammar.html#prod-ZeroToThree	2	sec-lexical-grammar
+ZeroToThree		4	ecmascript-language-lexical-grammar.html#prod-ZeroToThree	3	sec-lexical-grammar
+FourToSeven		1	ecmascript-language-lexical-grammar.html#prod-FourToSeven	4	sec-lexical-grammar
+FourToSeven		2	ecmascript-language-lexical-grammar.html#prod-FourToSeven	5	sec-lexical-grammar
+FourToSeven		3	ecmascript-language-lexical-grammar.html#prod-FourToSeven	6	sec-lexical-grammar
+FourToSeven		4	ecmascript-language-lexical-grammar.html#prod-FourToSeven	7	sec-lexical-grammar
+NonOctalDecimalEscapeSequence		1	ecmascript-language-lexical-grammar.html#prod-NonOctalDecimalEscapeSequence	8	sec-lexical-grammar
+NonOctalDecimalEscapeSequence		2	ecmascript-language-lexical-grammar.html#prod-NonOctalDecimalEscapeSequence	9	sec-lexical-grammar
+HexEscapeSequence		1	ecmascript-language-lexical-grammar.html#prod-HexEscapeSequence	x HexDigit HexDigit	sec-lexical-grammar
+UnicodeEscapeSequence		1	ecmascript-language-lexical-grammar.html#prod-UnicodeEscapeSequence	u Hex4Digits	sec-lexical-grammar
+UnicodeEscapeSequence		2	ecmascript-language-lexical-grammar.html#prod-UnicodeEscapeSequence	u{ CodePoint }	sec-lexical-grammar
+Hex4Digits		1	ecmascript-language-lexical-grammar.html#prod-Hex4Digits	HexDigit HexDigit HexDigit HexDigit	sec-lexical-grammar
+RegularExpressionLiteral		1	ecmascript-language-lexical-grammar.html#prod-RegularExpressionLiteral	/ RegularExpressionBody / RegularExpressionFlags	sec-lexical-grammar
+RegularExpressionBody		1	ecmascript-language-lexical-grammar.html#prod-RegularExpressionBody	RegularExpressionFirstChar RegularExpressionChars	sec-lexical-grammar
+RegularExpressionChars		1	ecmascript-language-lexical-grammar.html#prod-RegularExpressionChars	[empty]	sec-lexical-grammar
+RegularExpressionChars		2	ecmascript-language-lexical-grammar.html#prod-RegularExpressionChars	RegularExpressionChars RegularExpressionChar	sec-lexical-grammar
+RegularExpressionFirstChar		1	ecmascript-language-lexical-grammar.html#prod-RegularExpressionFirstChar	RegularExpressionNonTerminator but not one of * or \ or / or [	sec-lexical-grammar
+RegularExpressionFirstChar		2	ecmascript-language-lexical-grammar.html#prod-RegularExpressionFirstChar	RegularExpressionBackslashSequence	sec-lexical-grammar
+RegularExpressionFirstChar		3	ecmascript-language-lexical-grammar.html#prod-RegularExpressionFirstChar	RegularExpressionClass	sec-lexical-grammar
+RegularExpressionChar		1	ecmascript-language-lexical-grammar.html#prod-RegularExpressionChar	RegularExpressionNonTerminator but not one of \ or / or [	sec-lexical-grammar
+RegularExpressionChar		2	ecmascript-language-lexical-grammar.html#prod-RegularExpressionChar	RegularExpressionBackslashSequence	sec-lexical-grammar
+RegularExpressionChar		3	ecmascript-language-lexical-grammar.html#prod-RegularExpressionChar	RegularExpressionClass	sec-lexical-grammar
+RegularExpressionBackslashSequence		1	ecmascript-language-lexical-grammar.html#prod-RegularExpressionBackslashSequence	\ RegularExpressionNonTerminator	sec-lexical-grammar
+RegularExpressionNonTerminator		1	ecmascript-language-lexical-grammar.html#prod-RegularExpressionNonTerminator	SourceCharacter but not LineTerminator	sec-lexical-grammar
+RegularExpressionClass		1	ecmascript-language-lexical-grammar.html#prod-RegularExpressionClass	[ RegularExpressionClassChars ]	sec-lexical-grammar
+RegularExpressionClassChars		1	ecmascript-language-lexical-grammar.html#prod-RegularExpressionClassChars	[empty]	sec-lexical-grammar
+RegularExpressionClassChars		2	ecmascript-language-lexical-grammar.html#prod-RegularExpressionClassChars	RegularExpressionClassChars RegularExpressionClassChar	sec-lexical-grammar
+RegularExpressionClassChar		1	ecmascript-language-lexical-grammar.html#prod-RegularExpressionClassChar	RegularExpressionNonTerminator but not one of ] or \	sec-lexical-grammar
+RegularExpressionClassChar		2	ecmascript-language-lexical-grammar.html#prod-RegularExpressionClassChar	RegularExpressionBackslashSequence	sec-lexical-grammar
+RegularExpressionFlags		1	ecmascript-language-lexical-grammar.html#prod-RegularExpressionFlags	[empty]	sec-lexical-grammar
+RegularExpressionFlags		2	ecmascript-language-lexical-grammar.html#prod-RegularExpressionFlags	RegularExpressionFlags IdentifierPartChar	sec-lexical-grammar
+Template		1	ecmascript-language-lexical-grammar.html#prod-Template	NoSubstitutionTemplate	sec-lexical-grammar
+Template		2	ecmascript-language-lexical-grammar.html#prod-Template	TemplateHead	sec-lexical-grammar
+NoSubstitutionTemplate		1	ecmascript-language-lexical-grammar.html#prod-NoSubstitutionTemplate	` TemplateCharacters opt `	sec-lexical-grammar
+TemplateHead		1	ecmascript-language-lexical-grammar.html#prod-TemplateHead	` TemplateCharacters opt ${	sec-lexical-grammar
+TemplateSubstitutionTail		1	ecmascript-language-lexical-grammar.html#prod-TemplateSubstitutionTail	TemplateMiddle	sec-lexical-grammar
+TemplateSubstitutionTail		2	ecmascript-language-lexical-grammar.html#prod-TemplateSubstitutionTail	TemplateTail	sec-lexical-grammar
+TemplateMiddle		1	ecmascript-language-lexical-grammar.html#prod-TemplateMiddle	} TemplateCharacters opt ${	sec-lexical-grammar
+TemplateTail		1	ecmascript-language-lexical-grammar.html#prod-TemplateTail	} TemplateCharacters opt `	sec-lexical-grammar
+TemplateCharacters		1	ecmascript-language-lexical-grammar.html#prod-TemplateCharacters	TemplateCharacter TemplateCharacters opt	sec-lexical-grammar
+TemplateCharacter		1	ecmascript-language-lexical-grammar.html#prod-TemplateCharacter	$ [lookahead ≠ { ]	sec-lexical-grammar
+TemplateCharacter		2	ecmascript-language-lexical-grammar.html#prod-TemplateCharacter	\ TemplateEscapeSequence	sec-lexical-grammar
+TemplateCharacter		3	ecmascript-language-lexical-grammar.html#prod-TemplateCharacter	\ NotEscapeSequence	sec-lexical-grammar
+TemplateCharacter		4	ecmascript-language-lexical-grammar.html#prod-TemplateCharacter	LineContinuation	sec-lexical-grammar
+TemplateCharacter		5	ecmascript-language-lexical-grammar.html#prod-TemplateCharacter	LineTerminatorSequence	sec-lexical-grammar
+TemplateCharacter		6	ecmascript-language-lexical-grammar.html#prod-TemplateCharacter	SourceCharacter but not one of ` or \ or $ or LineTerminator	sec-lexical-grammar
+TemplateEscapeSequence		1	ecmascript-language-lexical-grammar.html#prod-TemplateEscapeSequence	CharacterEscapeSequence	sec-lexical-grammar
+TemplateEscapeSequence		2	ecmascript-language-lexical-grammar.html#prod-TemplateEscapeSequence	0 [lookahead ∉ DecimalDigit ]	sec-lexical-grammar
+TemplateEscapeSequence		3	ecmascript-language-lexical-grammar.html#prod-TemplateEscapeSequence	HexEscapeSequence	sec-lexical-grammar
+TemplateEscapeSequence		4	ecmascript-language-lexical-grammar.html#prod-TemplateEscapeSequence	UnicodeEscapeSequence	sec-lexical-grammar
+NotEscapeSequence		1	ecmascript-language-lexical-grammar.html#prod-NotEscapeSequence	0 DecimalDigit	sec-lexical-grammar
+NotEscapeSequence		2	ecmascript-language-lexical-grammar.html#prod-NotEscapeSequence	DecimalDigit but not 0	sec-lexical-grammar
+NotEscapeSequence		3	ecmascript-language-lexical-grammar.html#prod-NotEscapeSequence	x [lookahead ∉ HexDigit ]	sec-lexical-grammar
+NotEscapeSequence		4	ecmascript-language-lexical-grammar.html#prod-NotEscapeSequence	x HexDigit [lookahead ∉ HexDigit ]	sec-lexical-grammar
+NotEscapeSequence		5	ecmascript-language-lexical-grammar.html#prod-NotEscapeSequence	u [lookahead ∉ HexDigit ] [lookahead ≠ { ]	sec-lexical-grammar
+NotEscapeSequence		6	ecmascript-language-lexical-grammar.html#prod-NotEscapeSequence	u HexDigit [lookahead ∉ HexDigit ]	sec-lexical-grammar
+NotEscapeSequence		7	ecmascript-language-lexical-grammar.html#prod-NotEscapeSequence	u HexDigit HexDigit [lookahead ∉ HexDigit ]	sec-lexical-grammar
+NotEscapeSequence		8	ecmascript-language-lexical-grammar.html#prod-NotEscapeSequence	u HexDigit HexDigit HexDigit [lookahead ∉ HexDigit ]	sec-lexical-grammar
+NotEscapeSequence		9	ecmascript-language-lexical-grammar.html#prod-NotEscapeSequence	u { [lookahead ∉ HexDigit ]	sec-lexical-grammar
+NotEscapeSequence		10	ecmascript-language-lexical-grammar.html#prod-NotEscapeSequence	u { NotCodePoint [lookahead ∉ HexDigit ]	sec-lexical-grammar
+NotEscapeSequence		11	ecmascript-language-lexical-grammar.html#prod-NotEscapeSequence	u { CodePoint [lookahead ∉ HexDigit ] [lookahead ≠ } ]	sec-lexical-grammar
+NotCodePoint		1	ecmascript-language-lexical-grammar.html#prod-NotCodePoint	HexDigits [~Sep] but only if MV of HexDigits > 0x10FFFF	sec-lexical-grammar
+CodePoint		1	ecmascript-language-lexical-grammar.html#prod-CodePoint	HexDigits [~Sep] but only if MV of HexDigits ≤ 0x10FFFF	sec-lexical-grammar
+IdentifierReference	Yield, Await	1	ecmascript-language-expressions.html#prod-IdentifierReference	Identifier	sec-expressions
+IdentifierReference	Yield, Await	2	ecmascript-language-expressions.html#prod-IdentifierReference	[~Yield] yield	sec-expressions
+IdentifierReference	Yield, Await	3	ecmascript-language-expressions.html#prod-IdentifierReference	[~Await] await	sec-expressions
+BindingIdentifier	Yield, Await	1	ecmascript-language-expressions.html#prod-BindingIdentifier	Identifier	sec-expressions
+BindingIdentifier	Yield, Await	2	ecmascript-language-expressions.html#prod-BindingIdentifier	yield	sec-expressions
+BindingIdentifier	Yield, Await	3	ecmascript-language-expressions.html#prod-BindingIdentifier	await	sec-expressions
+LabelIdentifier	Yield, Await	1	ecmascript-language-expressions.html#prod-LabelIdentifier	Identifier	sec-expressions
+LabelIdentifier	Yield, Await	2	ecmascript-language-expressions.html#prod-LabelIdentifier	[~Yield] yield	sec-expressions
+LabelIdentifier	Yield, Await	3	ecmascript-language-expressions.html#prod-LabelIdentifier	[~Await] await	sec-expressions
+Identifier		1	ecmascript-language-expressions.html#prod-Identifier	IdentifierName but not ReservedWord	sec-expressions
+PrimaryExpression	Yield, Await	1	ecmascript-language-expressions.html#prod-PrimaryExpression	this	sec-expressions
+PrimaryExpression	Yield, Await	2	ecmascript-language-expressions.html#prod-PrimaryExpression	IdentifierReference [?Yield, ?Await]	sec-expressions
+PrimaryExpression	Yield, Await	3	ecmascript-language-expressions.html#prod-PrimaryExpression	Literal	sec-expressions
+PrimaryExpression	Yield, Await	4	ecmascript-language-expressions.html#prod-PrimaryExpression	ArrayLiteral [?Yield, ?Await]	sec-expressions
+PrimaryExpression	Yield, Await	5	ecmascript-language-expressions.html#prod-PrimaryExpression	ObjectLiteral [?Yield, ?Await]	sec-expressions
+PrimaryExpression	Yield, Await	6	ecmascript-language-expressions.html#prod-PrimaryExpression	FunctionExpression	sec-expressions
+PrimaryExpression	Yield, Await	7	ecmascript-language-expressions.html#prod-PrimaryExpression	ClassExpression [?Yield, ?Await]	sec-expressions
+PrimaryExpression	Yield, Await	8	ecmascript-language-expressions.html#prod-PrimaryExpression	GeneratorExpression	sec-expressions
+PrimaryExpression	Yield, Await	9	ecmascript-language-expressions.html#prod-PrimaryExpression	AsyncFunctionExpression	sec-expressions
+PrimaryExpression	Yield, Await	10	ecmascript-language-expressions.html#prod-PrimaryExpression	AsyncGeneratorExpression	sec-expressions
+PrimaryExpression	Yield, Await	11	ecmascript-language-expressions.html#prod-PrimaryExpression	RegularExpressionLiteral	sec-expressions
+PrimaryExpression	Yield, Await	12	ecmascript-language-expressions.html#prod-PrimaryExpression	TemplateLiteral [?Yield, ?Await, ~Tagged]	sec-expressions
+PrimaryExpression	Yield, Await	13	ecmascript-language-expressions.html#prod-PrimaryExpression	CoverParenthesizedExpressionAndArrowParameterList [?Yield, ?Await]	sec-expressions
+CoverParenthesizedExpressionAndArrowParameterList	Yield, Await	1	ecmascript-language-expressions.html#prod-CoverParenthesizedExpressionAndArrowParameterList	( Expression [+In, ?Yield, ?Await] )	sec-expressions
+CoverParenthesizedExpressionAndArrowParameterList	Yield, Await	2	ecmascript-language-expressions.html#prod-CoverParenthesizedExpressionAndArrowParameterList	( Expression [+In, ?Yield, ?Await] , )	sec-expressions
+CoverParenthesizedExpressionAndArrowParameterList	Yield, Await	3	ecmascript-language-expressions.html#prod-CoverParenthesizedExpressionAndArrowParameterList	( )	sec-expressions
+CoverParenthesizedExpressionAndArrowParameterList	Yield, Await	4	ecmascript-language-expressions.html#prod-CoverParenthesizedExpressionAndArrowParameterList	( ... BindingIdentifier [?Yield, ?Await] )	sec-expressions
+CoverParenthesizedExpressionAndArrowParameterList	Yield, Await	5	ecmascript-language-expressions.html#prod-CoverParenthesizedExpressionAndArrowParameterList	( ... BindingPattern [?Yield, ?Await] )	sec-expressions
+CoverParenthesizedExpressionAndArrowParameterList	Yield, Await	6	ecmascript-language-expressions.html#prod-CoverParenthesizedExpressionAndArrowParameterList	( Expression [+In, ?Yield, ?Await] , ... BindingIdentifier [?Yield, ?Await] )	sec-expressions
+CoverParenthesizedExpressionAndArrowParameterList	Yield, Await	7	ecmascript-language-expressions.html#prod-CoverParenthesizedExpressionAndArrowParameterList	( Expression [+In, ?Yield, ?Await] , ... BindingPattern [?Yield, ?Await] )	sec-expressions
+ParenthesizedExpression	Yield, Await	1	ecmascript-language-expressions.html#prod-ParenthesizedExpression	( Expression [+In, ?Yield, ?Await] )	sec-expressions
+Literal		1	ecmascript-language-expressions.html#prod-Literal	NullLiteral	sec-expressions
+Literal		2	ecmascript-language-expressions.html#prod-Literal	BooleanLiteral	sec-expressions
+Literal		3	ecmascript-language-expressions.html#prod-Literal	NumericLiteral	sec-expressions
+Literal		4	ecmascript-language-expressions.html#prod-Literal	StringLiteral	sec-expressions
+ArrayLiteral	Yield, Await	1	ecmascript-language-expressions.html#prod-ArrayLiteral	[ Elision opt ]	sec-expressions
+ArrayLiteral	Yield, Await	2	ecmascript-language-expressions.html#prod-ArrayLiteral	[ ElementList [?Yield, ?Await] ]	sec-expressions
+ArrayLiteral	Yield, Await	3	ecmascript-language-expressions.html#prod-ArrayLiteral	[ ElementList [?Yield, ?Await] , Elision opt ]	sec-expressions
+ElementList	Yield, Await	1	ecmascript-language-expressions.html#prod-ElementList	Elision opt AssignmentExpression [+In, ?Yield, ?Await]	sec-expressions
+ElementList	Yield, Await	2	ecmascript-language-expressions.html#prod-ElementList	Elision opt SpreadElement [?Yield, ?Await]	sec-expressions
+ElementList	Yield, Await	3	ecmascript-language-expressions.html#prod-ElementList	ElementList [?Yield, ?Await] , Elision opt AssignmentExpression [+In, ?Yield, ?Await]	sec-expressions
+ElementList	Yield, Await	4	ecmascript-language-expressions.html#prod-ElementList	ElementList [?Yield, ?Await] , Elision opt SpreadElement [?Yield, ?Await]	sec-expressions
+Elision		1	ecmascript-language-expressions.html#prod-Elision	,	sec-expressions
+Elision		2	ecmascript-language-expressions.html#prod-Elision	Elision ,	sec-expressions
+SpreadElement	Yield, Await	1	ecmascript-language-expressions.html#prod-SpreadElement	... AssignmentExpression [+In, ?Yield, ?Await]	sec-expressions
+ObjectLiteral	Yield, Await	1	ecmascript-language-expressions.html#prod-ObjectLiteral	{ }	sec-expressions
+ObjectLiteral	Yield, Await	2	ecmascript-language-expressions.html#prod-ObjectLiteral	{ PropertyDefinitionList [?Yield, ?Await] }	sec-expressions
+ObjectLiteral	Yield, Await	3	ecmascript-language-expressions.html#prod-ObjectLiteral	{ PropertyDefinitionList [?Yield, ?Await] , }	sec-expressions
+PropertyDefinitionList	Yield, Await	1	ecmascript-language-expressions.html#prod-PropertyDefinitionList	PropertyDefinition [?Yield, ?Await]	sec-expressions
+PropertyDefinitionList	Yield, Await	2	ecmascript-language-expressions.html#prod-PropertyDefinitionList	PropertyDefinitionList [?Yield, ?Await] , PropertyDefinition [?Yield, ?Await]	sec-expressions
+PropertyDefinition	Yield, Await	1	ecmascript-language-expressions.html#prod-PropertyDefinition	IdentifierReference [?Yield, ?Await]	sec-expressions
+PropertyDefinition	Yield, Await	2	ecmascript-language-expressions.html#prod-PropertyDefinition	CoverInitializedName [?Yield, ?Await]	sec-expressions
+PropertyDefinition	Yield, Await	3	ecmascript-language-expressions.html#prod-PropertyDefinition	PropertyName [?Yield, ?Await] : AssignmentExpression [+In, ?Yield, ?Await]	sec-expressions
+PropertyDefinition	Yield, Await	4	ecmascript-language-expressions.html#prod-PropertyDefinition	MethodDefinition [?Yield, ?Await]	sec-expressions
+PropertyDefinition	Yield, Await	5	ecmascript-language-expressions.html#prod-PropertyDefinition	... AssignmentExpression [+In, ?Yield, ?Await]	sec-expressions
+PropertyName	Yield, Await	1	ecmascript-language-expressions.html#prod-PropertyName	LiteralPropertyName	sec-expressions
+PropertyName	Yield, Await	2	ecmascript-language-expressions.html#prod-PropertyName	ComputedPropertyName [?Yield, ?Await]	sec-expressions
+LiteralPropertyName		1	ecmascript-language-expressions.html#prod-LiteralPropertyName	IdentifierName	sec-expressions
+LiteralPropertyName		2	ecmascript-language-expressions.html#prod-LiteralPropertyName	StringLiteral	sec-expressions
+LiteralPropertyName		3	ecmascript-language-expressions.html#prod-LiteralPropertyName	NumericLiteral	sec-expressions
+ComputedPropertyName	Yield, Await	1	ecmascript-language-expressions.html#prod-ComputedPropertyName	[ AssignmentExpression [+In, ?Yield, ?Await] ]	sec-expressions
+CoverInitializedName	Yield, Await	1	ecmascript-language-expressions.html#prod-CoverInitializedName	IdentifierReference [?Yield, ?Await] Initializer [+In, ?Yield, ?Await]	sec-expressions
+Initializer	In, Yield, Await	1	ecmascript-language-expressions.html#prod-Initializer	= AssignmentExpression [?In, ?Yield, ?Await]	sec-expressions
+TemplateLiteral	Yield, Await, Tagged	1	ecmascript-language-expressions.html#prod-TemplateLiteral	NoSubstitutionTemplate	sec-expressions
+TemplateLiteral	Yield, Await, Tagged	2	ecmascript-language-expressions.html#prod-TemplateLiteral	SubstitutionTemplate [?Yield, ?Await, ?Tagged]	sec-expressions
+SubstitutionTemplate	Yield, Await, Tagged	1	ecmascript-language-expressions.html#prod-SubstitutionTemplate	TemplateHead Expression [+In, ?Yield, ?Await] TemplateSpans [?Yield, ?Await, ?Tagged]	sec-expressions
+TemplateSpans	Yield, Await, Tagged	1	ecmascript-language-expressions.html#prod-TemplateSpans	TemplateTail	sec-expressions
+TemplateSpans	Yield, Await, Tagged	2	ecmascript-language-expressions.html#prod-TemplateSpans	TemplateMiddleList [?Yield, ?Await, ?Tagged] TemplateTail	sec-expressions
+TemplateMiddleList	Yield, Await, Tagged	1	ecmascript-language-expressions.html#prod-TemplateMiddleList	TemplateMiddle Expression [+In, ?Yield, ?Await]	sec-expressions
+TemplateMiddleList	Yield, Await, Tagged	2	ecmascript-language-expressions.html#prod-TemplateMiddleList	TemplateMiddleList [?Yield, ?Await, ?Tagged] TemplateMiddle Expression [+In, ?Yield, ?Await]	sec-expressions
+MemberExpression	Yield, Await	1	ecmascript-language-expressions.html#prod-MemberExpression	PrimaryExpression [?Yield, ?Await]	sec-expressions
+MemberExpression	Yield, Await	2	ecmascript-language-expressions.html#prod-MemberExpression	MemberExpression [?Yield, ?Await] [ Expression [+In, ?Yield, ?Await] ]	sec-expressions
+MemberExpression	Yield, Await	3	ecmascript-language-expressions.html#prod-MemberExpression	MemberExpression [?Yield, ?Await] . IdentifierName	sec-expressions
+MemberExpression	Yield, Await	4	ecmascript-language-expressions.html#prod-MemberExpression	MemberExpression [?Yield, ?Await] TemplateLiteral [?Yield, ?Await, +Tagged]	sec-expressions
+MemberExpression	Yield, Await	5	ecmascript-language-expressions.html#prod-MemberExpression	SuperProperty [?Yield, ?Await]	sec-expressions
+MemberExpression	Yield, Await	6	ecmascript-language-expressions.html#prod-MemberExpression	MetaProperty	sec-expressions
+MemberExpression	Yield, Await	7	ecmascript-language-expressions.html#prod-MemberExpression	new MemberExpression [?Yield, ?Await] Arguments [?Yield, ?Await]	sec-expressions
+MemberExpression	Yield, Await	8	ecmascript-language-expressions.html#prod-MemberExpression	MemberExpression [?Yield, ?Await] . PrivateIdentifier	sec-expressions
+SuperProperty	Yield, Await	1	ecmascript-language-expressions.html#prod-SuperProperty	super [ Expression [+In, ?Yield, ?Await] ]	sec-expressions
+SuperProperty	Yield, Await	2	ecmascript-language-expressions.html#prod-SuperProperty	super . IdentifierName	sec-expressions
+MetaProperty		1	ecmascript-language-expressions.html#prod-MetaProperty	NewTarget	sec-expressions
+MetaProperty		2	ecmascript-language-expressions.html#prod-MetaProperty	ImportMeta	sec-expressions
+NewTarget		1	ecmascript-language-expressions.html#prod-NewTarget	new . target	sec-expressions
+ImportMeta		1	ecmascript-language-expressions.html#prod-ImportMeta	import . meta	sec-expressions
+NewExpression	Yield, Await	1	ecmascript-language-expressions.html#prod-NewExpression	MemberExpression [?Yield, ?Await]	sec-expressions
+NewExpression	Yield, Await	2	ecmascript-language-expressions.html#prod-NewExpression	new NewExpression [?Yield, ?Await]	sec-expressions
+CallExpression	Yield, Await	1	ecmascript-language-expressions.html#prod-CallExpression	CoverCallExpressionAndAsyncArrowHead [?Yield, ?Await]	sec-expressions
+CallExpression	Yield, Await	2	ecmascript-language-expressions.html#prod-CallExpression	SuperCall [?Yield, ?Await]	sec-expressions
+CallExpression	Yield, Await	3	ecmascript-language-expressions.html#prod-CallExpression	ImportCall [?Yield, ?Await]	sec-expressions
+CallExpression	Yield, Await	4	ecmascript-language-expressions.html#prod-CallExpression	CallExpression [?Yield, ?Await] Arguments [?Yield, ?Await]	sec-expressions
+CallExpression	Yield, Await	5	ecmascript-language-expressions.html#prod-CallExpression	CallExpression [?Yield, ?Await] [ Expression [+In, ?Yield, ?Await] ]	sec-expressions
+CallExpression	Yield, Await	6	ecmascript-language-expressions.html#prod-CallExpression	CallExpression [?Yield, ?Await] . IdentifierName	sec-expressions
+CallExpression	Yield, Await	7	ecmascript-language-expressions.html#prod-CallExpression	CallExpression [?Yield, ?Await] TemplateLiteral [?Yield, ?Await, +Tagged]	sec-expressions
+CallExpression	Yield, Await	8	ecmascript-language-expressions.html#prod-CallExpression	CallExpression [?Yield, ?Await] . PrivateIdentifier	sec-expressions
+CallMemberExpression	Yield, Await	1	ecmascript-language-expressions.html#prod-CallMemberExpression	MemberExpression [?Yield, ?Await] Arguments [?Yield, ?Await]	sec-expressions
+SuperCall	Yield, Await	1	ecmascript-language-expressions.html#prod-SuperCall	super Arguments [?Yield, ?Await]	sec-expressions
+ImportCall	Yield, Await	1	ecmascript-language-expressions.html#prod-ImportCall	import ( AssignmentExpression [+In, ?Yield, ?Await] )	sec-expressions
+Arguments	Yield, Await	1	ecmascript-language-expressions.html#prod-Arguments	( )	sec-expressions
+Arguments	Yield, Await	2	ecmascript-language-expressions.html#prod-Arguments	( ArgumentList [?Yield, ?Await] )	sec-expressions
+Arguments	Yield, Await	3	ecmascript-language-expressions.html#prod-Arguments	( ArgumentList [?Yield, ?Await] , )	sec-expressions
+ArgumentList	Yield, Await	1	ecmascript-language-expressions.html#prod-ArgumentList	AssignmentExpression [+In, ?Yield, ?Await]	sec-expressions
+ArgumentList	Yield, Await	2	ecmascript-language-expressions.html#prod-ArgumentList	... AssignmentExpression [+In, ?Yield, ?Await]	sec-expressions
+ArgumentList	Yield, Await	3	ecmascript-language-expressions.html#prod-ArgumentList	ArgumentList [?Yield, ?Await] , AssignmentExpression [+In, ?Yield, ?Await]	sec-expressions
+ArgumentList	Yield, Await	4	ecmascript-language-expressions.html#prod-ArgumentList	ArgumentList [?Yield, ?Await] , ... AssignmentExpression [+In, ?Yield, ?Await]	sec-expressions
+OptionalExpression	Yield, Await	1	ecmascript-language-expressions.html#prod-OptionalExpression	MemberExpression [?Yield, ?Await] OptionalChain [?Yield, ?Await]	sec-expressions
+OptionalExpression	Yield, Await	2	ecmascript-language-expressions.html#prod-OptionalExpression	CallExpression [?Yield, ?Await] OptionalChain [?Yield, ?Await]	sec-expressions
+OptionalExpression	Yield, Await	3	ecmascript-language-expressions.html#prod-OptionalExpression	OptionalExpression [?Yield, ?Await] OptionalChain [?Yield, ?Await]	sec-expressions
+OptionalChain	Yield, Await	1	ecmascript-language-expressions.html#prod-OptionalChain	?. Arguments [?Yield, ?Await]	sec-expressions
+OptionalChain	Yield, Await	2	ecmascript-language-expressions.html#prod-OptionalChain	?. [ Expression [+In, ?Yield, ?Await] ]	sec-expressions
+OptionalChain	Yield, Await	3	ecmascript-language-expressions.html#prod-OptionalChain	?. IdentifierName	sec-expressions
+OptionalChain	Yield, Await	4	ecmascript-language-expressions.html#prod-OptionalChain	?. TemplateLiteral [?Yield, ?Await, +Tagged]	sec-expressions
+OptionalChain	Yield, Await	5	ecmascript-language-expressions.html#prod-OptionalChain	?. PrivateIdentifier	sec-expressions
+OptionalChain	Yield, Await	6	ecmascript-language-expressions.html#prod-OptionalChain	OptionalChain [?Yield, ?Await] Arguments [?Yield, ?Await]	sec-expressions
+OptionalChain	Yield, Await	7	ecmascript-language-expressions.html#prod-OptionalChain	OptionalChain [?Yield, ?Await] [ Expression [+In, ?Yield, ?Await] ]	sec-expressions
+OptionalChain	Yield, Await	8	ecmascript-language-expressions.html#prod-OptionalChain	OptionalChain [?Yield, ?Await] . IdentifierName	sec-expressions
+OptionalChain	Yield, Await	9	ecmascript-language-expressions.html#prod-OptionalChain	OptionalChain [?Yield, ?Await] TemplateLiteral [?Yield, ?Await, +Tagged]	sec-expressions
+OptionalChain	Yield, Await	10	ecmascript-language-expressions.html#prod-OptionalChain	OptionalChain [?Yield, ?Await] . PrivateIdentifier	sec-expressions
+LeftHandSideExpression	Yield, Await	1	ecmascript-language-expressions.html#prod-LeftHandSideExpression	NewExpression [?Yield, ?Await]	sec-expressions
+LeftHandSideExpression	Yield, Await	2	ecmascript-language-expressions.html#prod-LeftHandSideExpression	CallExpression [?Yield, ?Await]	sec-expressions
+LeftHandSideExpression	Yield, Await	3	ecmascript-language-expressions.html#prod-LeftHandSideExpression	OptionalExpression [?Yield, ?Await]	sec-expressions
+UpdateExpression	Yield, Await	1	ecmascript-language-expressions.html#prod-UpdateExpression	LeftHandSideExpression [?Yield, ?Await]	sec-expressions
+UpdateExpression	Yield, Await	2	ecmascript-language-expressions.html#prod-UpdateExpression	LeftHandSideExpression [?Yield, ?Await] [no LineTerminator here] ++	sec-expressions
+UpdateExpression	Yield, Await	3	ecmascript-language-expressions.html#prod-UpdateExpression	LeftHandSideExpression [?Yield, ?Await] [no LineTerminator here] --	sec-expressions
+UpdateExpression	Yield, Await	4	ecmascript-language-expressions.html#prod-UpdateExpression	++ UnaryExpression [?Yield, ?Await]	sec-expressions
+UpdateExpression	Yield, Await	5	ecmascript-language-expressions.html#prod-UpdateExpression	-- UnaryExpression [?Yield, ?Await]	sec-expressions
+UnaryExpression	Yield, Await	1	ecmascript-language-expressions.html#prod-UnaryExpression	UpdateExpression [?Yield, ?Await]	sec-expressions
+UnaryExpression	Yield, Await	2	ecmascript-language-expressions.html#prod-UnaryExpression	delete UnaryExpression [?Yield, ?Await]	sec-expressions
+UnaryExpression	Yield, Await	3	ecmascript-language-expressions.html#prod-UnaryExpression	void UnaryExpression [?Yield, ?Await]	sec-expressions
+UnaryExpression	Yield, Await	4	ecmascript-language-expressions.html#prod-UnaryExpression	typeof UnaryExpression [?Yield, ?Await]	sec-expressions
+UnaryExpression	Yield, Await	5	ecmascript-language-expressions.html#prod-UnaryExpression	+ UnaryExpression [?Yield, ?Await]	sec-expressions
+UnaryExpression	Yield, Await	6	ecmascript-language-expressions.html#prod-UnaryExpression	- UnaryExpression [?Yield, ?Await]	sec-expressions
+UnaryExpression	Yield, Await	7	ecmascript-language-expressions.html#prod-UnaryExpression	~ UnaryExpression [?Yield, ?Await]	sec-expressions
+UnaryExpression	Yield, Await	8	ecmascript-language-expressions.html#prod-UnaryExpression	! UnaryExpression [?Yield, ?Await]	sec-expressions
+UnaryExpression	Yield, Await	9	ecmascript-language-expressions.html#prod-UnaryExpression	[+Await] AwaitExpression [?Yield]	sec-expressions
+ExponentiationExpression	Yield, Await	1	ecmascript-language-expressions.html#prod-ExponentiationExpression	UnaryExpression [?Yield, ?Await]	sec-expressions
+ExponentiationExpression	Yield, Await	2	ecmascript-language-expressions.html#prod-ExponentiationExpression	UpdateExpression [?Yield, ?Await] ** ExponentiationExpression [?Yield, ?Await]	sec-expressions
+MultiplicativeExpression	Yield, Await	1	ecmascript-language-expressions.html#prod-MultiplicativeExpression	ExponentiationExpression [?Yield, ?Await]	sec-expressions
+MultiplicativeExpression	Yield, Await	2	ecmascript-language-expressions.html#prod-MultiplicativeExpression	MultiplicativeExpression [?Yield, ?Await] MultiplicativeOperator ExponentiationExpression [?Yield, ?Await]	sec-expressions
+MultiplicativeOperator		1	ecmascript-language-expressions.html#prod-MultiplicativeOperator	*	sec-expressions
+MultiplicativeOperator		2	ecmascript-language-expressions.html#prod-MultiplicativeOperator	/	sec-expressions
+MultiplicativeOperator		3	ecmascript-language-expressions.html#prod-MultiplicativeOperator	%	sec-expressions
+AdditiveExpression	Yield, Await	1	ecmascript-language-expressions.html#prod-AdditiveExpression	MultiplicativeExpression [?Yield, ?Await]	sec-expressions
+AdditiveExpression	Yield, Await	2	ecmascript-language-expressions.html#prod-AdditiveExpression	AdditiveExpression [?Yield, ?Await] + MultiplicativeExpression [?Yield, ?Await]	sec-expressions
+AdditiveExpression	Yield, Await	3	ecmascript-language-expressions.html#prod-AdditiveExpression	AdditiveExpression [?Yield, ?Await] - MultiplicativeExpression [?Yield, ?Await]	sec-expressions
+ShiftExpression	Yield, Await	1	ecmascript-language-expressions.html#prod-ShiftExpression	AdditiveExpression [?Yield, ?Await]	sec-expressions
+ShiftExpression	Yield, Await	2	ecmascript-language-expressions.html#prod-ShiftExpression	ShiftExpression [?Yield, ?Await] << AdditiveExpression [?Yield, ?Await]	sec-expressions
+ShiftExpression	Yield, Await	3	ecmascript-language-expressions.html#prod-ShiftExpression	ShiftExpression [?Yield, ?Await] >> AdditiveExpression [?Yield, ?Await]	sec-expressions
+ShiftExpression	Yield, Await	4	ecmascript-language-expressions.html#prod-ShiftExpression	ShiftExpression [?Yield, ?Await] >>> AdditiveExpression [?Yield, ?Await]	sec-expressions
+RelationalExpression	In, Yield, Await	1	ecmascript-language-expressions.html#prod-RelationalExpression	ShiftExpression [?Yield, ?Await]	sec-expressions
+RelationalExpression	In, Yield, Await	2	ecmascript-language-expressions.html#prod-RelationalExpression	RelationalExpression [?In, ?Yield, ?Await] < ShiftExpression [?Yield, ?Await]	sec-expressions
+RelationalExpression	In, Yield, Await	3	ecmascript-language-expressions.html#prod-RelationalExpression	RelationalExpression [?In, ?Yield, ?Await] > ShiftExpression [?Yield, ?Await]	sec-expressions
+RelationalExpression	In, Yield, Await	4	ecmascript-language-expressions.html#prod-RelationalExpression	RelationalExpression [?In, ?Yield, ?Await] <= ShiftExpression [?Yield, ?Await]	sec-expressions
+RelationalExpression	In, Yield, Await	5	ecmascript-language-expressions.html#prod-RelationalExpression	RelationalExpression [?In, ?Yield, ?Await] >= ShiftExpression [?Yield, ?Await]	sec-expressions
+RelationalExpression	In, Yield, Await	6	ecmascript-language-expressions.html#prod-RelationalExpression	RelationalExpression [?In, ?Yield, ?Await] instanceof ShiftExpression [?Yield, ?Await]	sec-expressions
+RelationalExpression	In, Yield, Await	7	ecmascript-language-expressions.html#prod-RelationalExpression	[+In] RelationalExpression [+In, ?Yield, ?Await] in ShiftExpression [?Yield, ?Await]	sec-expressions
+RelationalExpression	In, Yield, Await	8	ecmascript-language-expressions.html#prod-RelationalExpression	[+In] PrivateIdentifier in ShiftExpression [?Yield, ?Await]	sec-expressions
+EqualityExpression	In, Yield, Await	1	ecmascript-language-expressions.html#prod-EqualityExpression	RelationalExpression [?In, ?Yield, ?Await]	sec-expressions
+EqualityExpression	In, Yield, Await	2	ecmascript-language-expressions.html#prod-EqualityExpression	EqualityExpression [?In, ?Yield, ?Await] == RelationalExpression [?In, ?Yield, ?Await]	sec-expressions
+EqualityExpression	In, Yield, Await	3	ecmascript-language-expressions.html#prod-EqualityExpression	EqualityExpression [?In, ?Yield, ?Await] != RelationalExpression [?In, ?Yield, ?Await]	sec-expressions
+EqualityExpression	In, Yield, Await	4	ecmascript-language-expressions.html#prod-EqualityExpression	EqualityExpression [?In, ?Yield, ?Await] === RelationalExpression [?In, ?Yield, ?Await]	sec-expressions
+EqualityExpression	In, Yield, Await	5	ecmascript-language-expressions.html#prod-EqualityExpression	EqualityExpression [?In, ?Yield, ?Await] !== RelationalExpression [?In, ?Yield, ?Await]	sec-expressions
+BitwiseANDExpression	In, Yield, Await	1	ecmascript-language-expressions.html#prod-BitwiseANDExpression	EqualityExpression [?In, ?Yield, ?Await]	sec-expressions
+BitwiseANDExpression	In, Yield, Await	2	ecmascript-language-expressions.html#prod-BitwiseANDExpression	BitwiseANDExpression [?In, ?Yield, ?Await] & EqualityExpression [?In, ?Yield, ?Await]	sec-expressions
+BitwiseXORExpression	In, Yield, Await	1	ecmascript-language-expressions.html#prod-BitwiseXORExpression	BitwiseANDExpression [?In, ?Yield, ?Await]	sec-expressions
+BitwiseXORExpression	In, Yield, Await	2	ecmascript-language-expressions.html#prod-BitwiseXORExpression	BitwiseXORExpression [?In, ?Yield, ?Await] ^ BitwiseANDExpression [?In, ?Yield, ?Await]	sec-expressions
+BitwiseORExpression	In, Yield, Await	1	ecmascript-language-expressions.html#prod-BitwiseORExpression	BitwiseXORExpression [?In, ?Yield, ?Await]	sec-expressions
+BitwiseORExpression	In, Yield, Await	2	ecmascript-language-expressions.html#prod-BitwiseORExpression	BitwiseORExpression [?In, ?Yield, ?Await] | BitwiseXORExpression [?In, ?Yield, ?Await]	sec-expressions
+LogicalANDExpression	In, Yield, Await	1	ecmascript-language-expressions.html#prod-LogicalANDExpression	BitwiseORExpression [?In, ?Yield, ?Await]	sec-expressions
+LogicalANDExpression	In, Yield, Await	2	ecmascript-language-expressions.html#prod-LogicalANDExpression	LogicalANDExpression [?In, ?Yield, ?Await] && BitwiseORExpression [?In, ?Yield, ?Await]	sec-expressions
+LogicalORExpression	In, Yield, Await	1	ecmascript-language-expressions.html#prod-LogicalORExpression	LogicalANDExpression [?In, ?Yield, ?Await]	sec-expressions
+LogicalORExpression	In, Yield, Await	2	ecmascript-language-expressions.html#prod-LogicalORExpression	LogicalORExpression [?In, ?Yield, ?Await] || LogicalANDExpression [?In, ?Yield, ?Await]	sec-expressions
+CoalesceExpression	In, Yield, Await	1	ecmascript-language-expressions.html#prod-CoalesceExpression	CoalesceExpressionHead [?In, ?Yield, ?Await] ?? BitwiseORExpression [?In, ?Yield, ?Await]	sec-expressions
+CoalesceExpressionHead	In, Yield, Await	1	ecmascript-language-expressions.html#prod-CoalesceExpressionHead	CoalesceExpression [?In, ?Yield, ?Await]	sec-expressions
+CoalesceExpressionHead	In, Yield, Await	2	ecmascript-language-expressions.html#prod-CoalesceExpressionHead	BitwiseORExpression [?In, ?Yield, ?Await]	sec-expressions
+ShortCircuitExpression	In, Yield, Await	1	ecmascript-language-expressions.html#prod-ShortCircuitExpression	LogicalORExpression [?In, ?Yield, ?Await]	sec-expressions
+ShortCircuitExpression	In, Yield, Await	2	ecmascript-language-expressions.html#prod-ShortCircuitExpression	CoalesceExpression [?In, ?Yield, ?Await]	sec-expressions
+ConditionalExpression	In, Yield, Await	1	ecmascript-language-expressions.html#prod-ConditionalExpression	ShortCircuitExpression [?In, ?Yield, ?Await]	sec-expressions
+ConditionalExpression	In, Yield, Await	2	ecmascript-language-expressions.html#prod-ConditionalExpression	ShortCircuitExpression [?In, ?Yield, ?Await] ? AssignmentExpression [+In, ?Yield, ?Await] : AssignmentExpression [?In, ?Yield, ?Await]	sec-expressions
+AssignmentExpression	In, Yield, Await	1	ecmascript-language-expressions.html#prod-AssignmentExpression	ConditionalExpression [?In, ?Yield, ?Await]	sec-expressions
+AssignmentExpression	In, Yield, Await	2	ecmascript-language-expressions.html#prod-AssignmentExpression	[+Yield] YieldExpression [?In, ?Await]	sec-expressions
+AssignmentExpression	In, Yield, Await	3	ecmascript-language-expressions.html#prod-AssignmentExpression	ArrowFunction [?In, ?Yield, ?Await]	sec-expressions
+AssignmentExpression	In, Yield, Await	4	ecmascript-language-expressions.html#prod-AssignmentExpression	AsyncArrowFunction [?In, ?Yield, ?Await]	sec-expressions
+AssignmentExpression	In, Yield, Await	5	ecmascript-language-expressions.html#prod-AssignmentExpression	LeftHandSideExpression [?Yield, ?Await] = AssignmentExpression [?In, ?Yield, ?Await]	sec-expressions
+AssignmentExpression	In, Yield, Await	6	ecmascript-language-expressions.html#prod-AssignmentExpression	LeftHandSideExpression [?Yield, ?Await] AssignmentOperator AssignmentExpression [?In, ?Yield, ?Await]	sec-expressions
+AssignmentExpression	In, Yield, Await	7	ecmascript-language-expressions.html#prod-AssignmentExpression	LeftHandSideExpression [?Yield, ?Await] &&= AssignmentExpression [?In, ?Yield, ?Await]	sec-expressions
+AssignmentExpression	In, Yield, Await	8	ecmascript-language-expressions.html#prod-AssignmentExpression	LeftHandSideExpression [?Yield, ?Await] ||= AssignmentExpression [?In, ?Yield, ?Await]	sec-expressions
+AssignmentExpression	In, Yield, Await	9	ecmascript-language-expressions.html#prod-AssignmentExpression	LeftHandSideExpression [?Yield, ?Await] ??= AssignmentExpression [?In, ?Yield, ?Await]	sec-expressions
+AssignmentOperator		1	ecmascript-language-expressions.html#prod-AssignmentOperator	*=	sec-expressions
+AssignmentOperator		2	ecmascript-language-expressions.html#prod-AssignmentOperator	/=	sec-expressions
+AssignmentOperator		3	ecmascript-language-expressions.html#prod-AssignmentOperator	%=	sec-expressions
+AssignmentOperator		4	ecmascript-language-expressions.html#prod-AssignmentOperator	+=	sec-expressions
+AssignmentOperator		5	ecmascript-language-expressions.html#prod-AssignmentOperator	-=	sec-expressions
+AssignmentOperator		6	ecmascript-language-expressions.html#prod-AssignmentOperator	<<=	sec-expressions
+AssignmentOperator		7	ecmascript-language-expressions.html#prod-AssignmentOperator	>>=	sec-expressions
+AssignmentOperator		8	ecmascript-language-expressions.html#prod-AssignmentOperator	>>>=	sec-expressions
+AssignmentOperator		9	ecmascript-language-expressions.html#prod-AssignmentOperator	&=	sec-expressions
+AssignmentOperator		10	ecmascript-language-expressions.html#prod-AssignmentOperator	^=	sec-expressions
+AssignmentOperator		11	ecmascript-language-expressions.html#prod-AssignmentOperator	|=	sec-expressions
+AssignmentOperator		12	ecmascript-language-expressions.html#prod-AssignmentOperator	**=	sec-expressions
+AssignmentPattern	Yield, Await	1	ecmascript-language-expressions.html#prod-AssignmentPattern	ObjectAssignmentPattern [?Yield, ?Await]	sec-expressions
+AssignmentPattern	Yield, Await	2	ecmascript-language-expressions.html#prod-AssignmentPattern	ArrayAssignmentPattern [?Yield, ?Await]	sec-expressions
+ObjectAssignmentPattern	Yield, Await	1	ecmascript-language-expressions.html#prod-ObjectAssignmentPattern	{ }	sec-expressions
+ObjectAssignmentPattern	Yield, Await	2	ecmascript-language-expressions.html#prod-ObjectAssignmentPattern	{ AssignmentRestProperty [?Yield, ?Await] }	sec-expressions
+ObjectAssignmentPattern	Yield, Await	3	ecmascript-language-expressions.html#prod-ObjectAssignmentPattern	{ AssignmentPropertyList [?Yield, ?Await] }	sec-expressions
+ObjectAssignmentPattern	Yield, Await	4	ecmascript-language-expressions.html#prod-ObjectAssignmentPattern	{ AssignmentPropertyList [?Yield, ?Await] , AssignmentRestProperty [?Yield, ?Await] opt }	sec-expressions
+ArrayAssignmentPattern	Yield, Await	1	ecmascript-language-expressions.html#prod-ArrayAssignmentPattern	[ Elision opt AssignmentRestElement [?Yield, ?Await] opt ]	sec-expressions
+ArrayAssignmentPattern	Yield, Await	2	ecmascript-language-expressions.html#prod-ArrayAssignmentPattern	[ AssignmentElementList [?Yield, ?Await] ]	sec-expressions
+ArrayAssignmentPattern	Yield, Await	3	ecmascript-language-expressions.html#prod-ArrayAssignmentPattern	[ AssignmentElementList [?Yield, ?Await] , Elision opt AssignmentRestElement [?Yield, ?Await] opt ]	sec-expressions
+AssignmentRestProperty	Yield, Await	1	ecmascript-language-expressions.html#prod-AssignmentRestProperty	... DestructuringAssignmentTarget [?Yield, ?Await]	sec-expressions
+AssignmentPropertyList	Yield, Await	1	ecmascript-language-expressions.html#prod-AssignmentPropertyList	AssignmentProperty [?Yield, ?Await]	sec-expressions
+AssignmentPropertyList	Yield, Await	2	ecmascript-language-expressions.html#prod-AssignmentPropertyList	AssignmentPropertyList [?Yield, ?Await] , AssignmentProperty [?Yield, ?Await]	sec-expressions
+AssignmentElementList	Yield, Await	1	ecmascript-language-expressions.html#prod-AssignmentElementList	AssignmentElisionElement [?Yield, ?Await]	sec-expressions
+AssignmentElementList	Yield, Await	2	ecmascript-language-expressions.html#prod-AssignmentElementList	AssignmentElementList [?Yield, ?Await] , AssignmentElisionElement [?Yield, ?Await]	sec-expressions
+AssignmentElisionElement	Yield, Await	1	ecmascript-language-expressions.html#prod-AssignmentElisionElement	Elision opt AssignmentElement [?Yield, ?Await]	sec-expressions
+AssignmentProperty	Yield, Await	1	ecmascript-language-expressions.html#prod-AssignmentProperty	IdentifierReference [?Yield, ?Await] Initializer [+In, ?Yield, ?Await] opt	sec-expressions
+AssignmentProperty	Yield, Await	2	ecmascript-language-expressions.html#prod-AssignmentProperty	PropertyName [?Yield, ?Await] : AssignmentElement [?Yield, ?Await]	sec-expressions
+AssignmentElement	Yield, Await	1	ecmascript-language-expressions.html#prod-AssignmentElement	DestructuringAssignmentTarget [?Yield, ?Await] Initializer [+In, ?Yield, ?Await] opt	sec-expressions
+AssignmentRestElement	Yield, Await	1	ecmascript-language-expressions.html#prod-AssignmentRestElement	... DestructuringAssignmentTarget [?Yield, ?Await]	sec-expressions
+DestructuringAssignmentTarget	Yield, Await	1	ecmascript-language-expressions.html#prod-DestructuringAssignmentTarget	LeftHandSideExpression [?Yield, ?Await]	sec-expressions
+Expression	In, Yield, Await	1	ecmascript-language-expressions.html#prod-Expression	AssignmentExpression [?In, ?Yield, ?Await]	sec-expressions
+Expression	In, Yield, Await	2	ecmascript-language-expressions.html#prod-Expression	Expression [?In, ?Yield, ?Await] , AssignmentExpression [?In, ?Yield, ?Await]	sec-expressions
+Statement	Yield, Await, Return	1	ecmascript-language-statements-and-declarations.html#prod-Statement	BlockStatement [?Yield, ?Await, ?Return]	sec-statements
+Statement	Yield, Await, Return	2	ecmascript-language-statements-and-declarations.html#prod-Statement	VariableStatement [?Yield, ?Await]	sec-statements
+Statement	Yield, Await, Return	3	ecmascript-language-statements-and-declarations.html#prod-Statement	EmptyStatement	sec-statements
+Statement	Yield, Await, Return	4	ecmascript-language-statements-and-declarations.html#prod-Statement	ExpressionStatement [?Yield, ?Await]	sec-statements
+Statement	Yield, Await, Return	5	ecmascript-language-statements-and-declarations.html#prod-Statement	IfStatement [?Yield, ?Await, ?Return]	sec-statements
+Statement	Yield, Await, Return	6	ecmascript-language-statements-and-declarations.html#prod-Statement	BreakableStatement [?Yield, ?Await, ?Return]	sec-statements
+Statement	Yield, Await, Return	7	ecmascript-language-statements-and-declarations.html#prod-Statement	ContinueStatement [?Yield, ?Await]	sec-statements
+Statement	Yield, Await, Return	8	ecmascript-language-statements-and-declarations.html#prod-Statement	BreakStatement [?Yield, ?Await]	sec-statements
+Statement	Yield, Await, Return	9	ecmascript-language-statements-and-declarations.html#prod-Statement	[+Return] ReturnStatement [?Yield, ?Await]	sec-statements
+Statement	Yield, Await, Return	10	ecmascript-language-statements-and-declarations.html#prod-Statement	WithStatement [?Yield, ?Await, ?Return]	sec-statements
+Statement	Yield, Await, Return	11	ecmascript-language-statements-and-declarations.html#prod-Statement	LabelledStatement [?Yield, ?Await, ?Return]	sec-statements
+Statement	Yield, Await, Return	12	ecmascript-language-statements-and-declarations.html#prod-Statement	ThrowStatement [?Yield, ?Await]	sec-statements
+Statement	Yield, Await, Return	13	ecmascript-language-statements-and-declarations.html#prod-Statement	TryStatement [?Yield, ?Await, ?Return]	sec-statements
+Statement	Yield, Await, Return	14	ecmascript-language-statements-and-declarations.html#prod-Statement	DebuggerStatement	sec-statements
+Declaration	Yield, Await	1	ecmascript-language-statements-and-declarations.html#prod-Declaration	HoistableDeclaration [?Yield, ?Await, ~Default]	sec-statements
+Declaration	Yield, Await	2	ecmascript-language-statements-and-declarations.html#prod-Declaration	ClassDeclaration [?Yield, ?Await, ~Default]	sec-statements
+Declaration	Yield, Await	3	ecmascript-language-statements-and-declarations.html#prod-Declaration	LexicalDeclaration [+In, ?Yield, ?Await]	sec-statements
+HoistableDeclaration	Yield, Await, Default	1	ecmascript-language-statements-and-declarations.html#prod-HoistableDeclaration	FunctionDeclaration [?Yield, ?Await, ?Default]	sec-statements
+HoistableDeclaration	Yield, Await, Default	2	ecmascript-language-statements-and-declarations.html#prod-HoistableDeclaration	GeneratorDeclaration [?Yield, ?Await, ?Default]	sec-statements
+HoistableDeclaration	Yield, Await, Default	3	ecmascript-language-statements-and-declarations.html#prod-HoistableDeclaration	AsyncFunctionDeclaration [?Yield, ?Await, ?Default]	sec-statements
+HoistableDeclaration	Yield, Await, Default	4	ecmascript-language-statements-and-declarations.html#prod-HoistableDeclaration	AsyncGeneratorDeclaration [?Yield, ?Await, ?Default]	sec-statements
+BreakableStatement	Yield, Await, Return	1	ecmascript-language-statements-and-declarations.html#prod-BreakableStatement	IterationStatement [?Yield, ?Await, ?Return]	sec-statements
+BreakableStatement	Yield, Await, Return	2	ecmascript-language-statements-and-declarations.html#prod-BreakableStatement	SwitchStatement [?Yield, ?Await, ?Return]	sec-statements
+BlockStatement	Yield, Await, Return	1	ecmascript-language-statements-and-declarations.html#prod-BlockStatement	Block [?Yield, ?Await, ?Return]	sec-statements
+Block	Yield, Await, Return	1	ecmascript-language-statements-and-declarations.html#prod-Block	{ StatementList [?Yield, ?Await, ?Return] opt }	sec-statements
+StatementList	Yield, Await, Return	1	ecmascript-language-statements-and-declarations.html#prod-StatementList	StatementListItem [?Yield, ?Await, ?Return]	sec-statements
+StatementList	Yield, Await, Return	2	ecmascript-language-statements-and-declarations.html#prod-StatementList	StatementList [?Yield, ?Await, ?Return] StatementListItem [?Yield, ?Await, ?Return]	sec-statements
+StatementListItem	Yield, Await, Return	1	ecmascript-language-statements-and-declarations.html#prod-StatementListItem	Statement [?Yield, ?Await, ?Return]	sec-statements
+StatementListItem	Yield, Await, Return	2	ecmascript-language-statements-and-declarations.html#prod-StatementListItem	Declaration [?Yield, ?Await]	sec-statements
+LexicalDeclaration	In, Yield, Await	1	ecmascript-language-statements-and-declarations.html#prod-LexicalDeclaration	LetOrConst BindingList [?In, ?Yield, ?Await] ;	sec-statements
+LetOrConst		1	ecmascript-language-statements-and-declarations.html#prod-LetOrConst	let	sec-statements
+LetOrConst		2	ecmascript-language-statements-and-declarations.html#prod-LetOrConst	const	sec-statements
+BindingList	In, Yield, Await	1	ecmascript-language-statements-and-declarations.html#prod-BindingList	LexicalBinding [?In, ?Yield, ?Await]	sec-statements
+BindingList	In, Yield, Await	2	ecmascript-language-statements-and-declarations.html#prod-BindingList	BindingList [?In, ?Yield, ?Await] , LexicalBinding [?In, ?Yield, ?Await]	sec-statements
+LexicalBinding	In, Yield, Await	1	ecmascript-language-statements-and-declarations.html#prod-LexicalBinding	BindingIdentifier [?Yield, ?Await] Initializer [?In, ?Yield, ?Await] opt	sec-statements
+LexicalBinding	In, Yield, Await	2	ecmascript-language-statements-and-declarations.html#prod-LexicalBinding	BindingPattern [?Yield, ?Await] Initializer [?In, ?Yield, ?Await]	sec-statements
+VariableStatement	Yield, Await	1	ecmascript-language-statements-and-declarations.html#prod-VariableStatement	var VariableDeclarationList [+In, ?Yield, ?Await] ;	sec-statements
+VariableDeclarationList	In, Yield, Await	1	ecmascript-language-statements-and-declarations.html#prod-VariableDeclarationList	VariableDeclaration [?In, ?Yield, ?Await]	sec-statements
+VariableDeclarationList	In, Yield, Await	2	ecmascript-language-statements-and-declarations.html#prod-VariableDeclarationList	VariableDeclarationList [?In, ?Yield, ?Await] , VariableDeclaration [?In, ?Yield, ?Await]	sec-statements
+VariableDeclaration	In, Yield, Await	1	ecmascript-language-statements-and-declarations.html#prod-VariableDeclaration	BindingIdentifier [?Yield, ?Await] Initializer [?In, ?Yield, ?Await] opt	sec-statements
+VariableDeclaration	In, Yield, Await	2	ecmascript-language-statements-and-declarations.html#prod-VariableDeclaration	BindingPattern [?Yield, ?Await] Initializer [?In, ?Yield, ?Await]	sec-statements
+BindingPattern	Yield, Await	1	ecmascript-language-statements-and-declarations.html#prod-BindingPattern	ObjectBindingPattern [?Yield, ?Await]	sec-statements
+BindingPattern	Yield, Await	2	ecmascript-language-statements-and-declarations.html#prod-BindingPattern	ArrayBindingPattern [?Yield, ?Await]	sec-statements
+ObjectBindingPattern	Yield, Await	1	ecmascript-language-statements-and-declarations.html#prod-ObjectBindingPattern	{ }	sec-statements
+ObjectBindingPattern	Yield, Await	2	ecmascript-language-statements-and-declarations.html#prod-ObjectBindingPattern	{ BindingRestProperty [?Yield, ?Await] }	sec-statements
+ObjectBindingPattern	Yield, Await	3	ecmascript-language-statements-and-declarations.html#prod-ObjectBindingPattern	{ BindingPropertyList [?Yield, ?Await] }	sec-statements
+ObjectBindingPattern	Yield, Await	4	ecmascript-language-statements-and-declarations.html#prod-ObjectBindingPattern	{ BindingPropertyList [?Yield, ?Await] , BindingRestProperty [?Yield, ?Await] opt }	sec-statements
+ArrayBindingPattern	Yield, Await	1	ecmascript-language-statements-and-declarations.html#prod-ArrayBindingPattern	[ Elision opt BindingRestElement [?Yield, ?Await] opt ]	sec-statements
+ArrayBindingPattern	Yield, Await	2	ecmascript-language-statements-and-declarations.html#prod-ArrayBindingPattern	[ BindingElementList [?Yield, ?Await] ]	sec-statements
+ArrayBindingPattern	Yield, Await	3	ecmascript-language-statements-and-declarations.html#prod-ArrayBindingPattern	[ BindingElementList [?Yield, ?Await] , Elision opt BindingRestElement [?Yield, ?Await] opt ]	sec-statements
+BindingRestProperty	Yield, Await	1	ecmascript-language-statements-and-declarations.html#prod-BindingRestProperty	... BindingIdentifier [?Yield, ?Await]	sec-statements
+BindingPropertyList	Yield, Await	1	ecmascript-language-statements-and-declarations.html#prod-BindingPropertyList	BindingProperty [?Yield, ?Await]	sec-statements
+BindingPropertyList	Yield, Await	2	ecmascript-language-statements-and-declarations.html#prod-BindingPropertyList	BindingPropertyList [?Yield, ?Await] , BindingProperty [?Yield, ?Await]	sec-statements
+BindingElementList	Yield, Await	1	ecmascript-language-statements-and-declarations.html#prod-BindingElementList	BindingElisionElement [?Yield, ?Await]	sec-statements
+BindingElementList	Yield, Await	2	ecmascript-language-statements-and-declarations.html#prod-BindingElementList	BindingElementList [?Yield, ?Await] , BindingElisionElement [?Yield, ?Await]	sec-statements
+BindingElisionElement	Yield, Await	1	ecmascript-language-statements-and-declarations.html#prod-BindingElisionElement	Elision opt BindingElement [?Yield, ?Await]	sec-statements
+BindingProperty	Yield, Await	1	ecmascript-language-statements-and-declarations.html#prod-BindingProperty	SingleNameBinding [?Yield, ?Await]	sec-statements
+BindingProperty	Yield, Await	2	ecmascript-language-statements-and-declarations.html#prod-BindingProperty	PropertyName [?Yield, ?Await] : BindingElement [?Yield, ?Await]	sec-statements
+BindingElement	Yield, Await	1	ecmascript-language-statements-and-declarations.html#prod-BindingElement	SingleNameBinding [?Yield, ?Await]	sec-statements
+BindingElement	Yield, Await	2	ecmascript-language-statements-and-declarations.html#prod-BindingElement	BindingPattern [?Yield, ?Await] Initializer [+In, ?Yield, ?Await] opt	sec-statements
+SingleNameBinding	Yield, Await	1	ecmascript-language-statements-and-declarations.html#prod-SingleNameBinding	BindingIdentifier [?Yield, ?Await] Initializer [+In, ?Yield, ?Await] opt	sec-statements
+BindingRestElement	Yield, Await	1	ecmascript-language-statements-and-declarations.html#prod-BindingRestElement	... BindingIdentifier [?Yield, ?Await]	sec-statements
+BindingRestElement	Yield, Await	2	ecmascript-language-statements-and-declarations.html#prod-BindingRestElement	... BindingPattern [?Yield, ?Await]	sec-statements
+EmptyStatement		1	ecmascript-language-statements-and-declarations.html#prod-EmptyStatement	;	sec-statements
+ExpressionStatement	Yield, Await	1	ecmascript-language-statements-and-declarations.html#prod-ExpressionStatement	[lookahead ∉ { { , function , async [no LineTerminator here] function , class , let [ }] Expression [+In, ?Yield, ?Await] ;	sec-statements
+IfStatement	Yield, Await, Return	1	ecmascript-language-statements-and-declarations.html#prod-IfStatement	if ( Expression [+In, ?Yield, ?Await] ) Statement [?Yield, ?Await, ?Return] else Statement [?Yield, ?Await, ?Return]	sec-statements
+IfStatement	Yield, Await, Return	2	ecmascript-language-statements-and-declarations.html#prod-IfStatement	if ( Expression [+In, ?Yield, ?Await] ) Statement [?Yield, ?Await, ?Return] [lookahead ≠ else ]	sec-statements
+IterationStatement	Yield, Await, Return	1	ecmascript-language-statements-and-declarations.html#prod-IterationStatement	DoWhileStatement [?Yield, ?Await, ?Return]	sec-statements
+IterationStatement	Yield, Await, Return	2	ecmascript-language-statements-and-declarations.html#prod-IterationStatement	WhileStatement [?Yield, ?Await, ?Return]	sec-statements
+IterationStatement	Yield, Await, Return	3	ecmascript-language-statements-and-declarations.html#prod-IterationStatement	ForStatement [?Yield, ?Await, ?Return]	sec-statements
+IterationStatement	Yield, Await, Return	4	ecmascript-language-statements-and-declarations.html#prod-IterationStatement	ForInOfStatement [?Yield, ?Await, ?Return]	sec-statements
+DoWhileStatement	Yield, Await, Return	1	ecmascript-language-statements-and-declarations.html#prod-DoWhileStatement	do Statement [?Yield, ?Await, ?Return] while ( Expression [+In, ?Yield, ?Await] ) ;	sec-statements
+WhileStatement	Yield, Await, Return	1	ecmascript-language-statements-and-declarations.html#prod-WhileStatement	while ( Expression [+In, ?Yield, ?Await] ) Statement [?Yield, ?Await, ?Return]	sec-statements
+ForStatement	Yield, Await, Return	1	ecmascript-language-statements-and-declarations.html#prod-ForStatement	for ( [lookahead ≠ let [ ] Expression [~In, ?Yield, ?Await] opt ; Expression [+In, ?Yield, ?Await] opt ; Expression [+In, ?Yield, ?Await] opt ) Statement [?Yield, ?Await, ?Return]	sec-statements
+ForStatement	Yield, Await, Return	2	ecmascript-language-statements-and-declarations.html#prod-ForStatement	for ( var VariableDeclarationList [~In, ?Yield, ?Await] ; Expression [+In, ?Yield, ?Await] opt ; Expression [+In, ?Yield, ?Await] opt ) Statement [?Yield, ?Await, ?Return]	sec-statements
+ForStatement	Yield, Await, Return	3	ecmascript-language-statements-and-declarations.html#prod-ForStatement	for ( LexicalDeclaration [~In, ?Yield, ?Await] Expression [+In, ?Yield, ?Await] opt ; Expression [+In, ?Yield, ?Await] opt ) Statement [?Yield, ?Await, ?Return]	sec-statements
+ForInOfStatement	Yield, Await, Return	1	ecmascript-language-statements-and-declarations.html#prod-ForInOfStatement	for ( [lookahead ≠ let [ ] LeftHandSideExpression [?Yield, ?Await] in Expression [+In, ?Yield, ?Await] ) Statement [?Yield, ?Await, ?Return]	sec-statements
+ForInOfStatement	Yield, Await, Return	2	ecmascript-language-statements-and-declarations.html#prod-ForInOfStatement	for ( var ForBinding [?Yield, ?Await] in Expression [+In, ?Yield, ?Await] ) Statement [?Yield, ?Await, ?Return]	sec-statements
+ForInOfStatement	Yield, Await, Return	3	ecmascript-language-statements-and-declarations.html#prod-ForInOfStatement	for ( ForDeclaration [?Yield, ?Await] in Expression [+In, ?Yield, ?Await] ) Statement [?Yield, ?Await, ?Return]	sec-statements
+ForInOfStatement	Yield, Await, Return	4	ecmascript-language-statements-and-declarations.html#prod-ForInOfStatement	for ( [lookahead ∉ { let , async of }] LeftHandSideExpression [?Yield, ?Await] of AssignmentExpression [+In, ?Yield, ?Await] ) Statement [?Yield, ?Await, ?Return]	sec-statements
+ForInOfStatement	Yield, Await, Return	5	ecmascript-language-statements-and-declarations.html#prod-ForInOfStatement	for ( var ForBinding [?Yield, ?Await] of AssignmentExpression [+In, ?Yield, ?Await] ) Statement [?Yield, ?Await, ?Return]	sec-statements
+ForInOfStatement	Yield, Await, Return	6	ecmascript-language-statements-and-declarations.html#prod-ForInOfStatement	for ( ForDeclaration [?Yield, ?Await] of AssignmentExpression [+In, ?Yield, ?Await] ) Statement [?Yield, ?Await, ?Return]	sec-statements
+ForInOfStatement	Yield, Await, Return	7	ecmascript-language-statements-and-declarations.html#prod-ForInOfStatement	[+Await] for await ( [lookahead ≠ let ] LeftHandSideExpression [?Yield, ?Await] of AssignmentExpression [+In, ?Yield, ?Await] ) Statement [?Yield, ?Await, ?Return]	sec-statements
+ForInOfStatement	Yield, Await, Return	8	ecmascript-language-statements-and-declarations.html#prod-ForInOfStatement	[+Await] for await ( var ForBinding [?Yield, ?Await] of AssignmentExpression [+In, ?Yield, ?Await] ) Statement [?Yield, ?Await, ?Return]	sec-statements
+ForInOfStatement	Yield, Await, Return	9	ecmascript-language-statements-and-declarations.html#prod-ForInOfStatement	[+Await] for await ( ForDeclaration [?Yield, ?Await] of AssignmentExpression [+In, ?Yield, ?Await] ) Statement [?Yield, ?Await, ?Return]	sec-statements
+ForDeclaration	Yield, Await	1	ecmascript-language-statements-and-declarations.html#prod-ForDeclaration	LetOrConst ForBinding [?Yield, ?Await]	sec-statements
+ForBinding	Yield, Await	1	ecmascript-language-statements-and-declarations.html#prod-ForBinding	BindingIdentifier [?Yield, ?Await]	sec-statements
+ForBinding	Yield, Await	2	ecmascript-language-statements-and-declarations.html#prod-ForBinding	BindingPattern [?Yield, ?Await]	sec-statements
+ContinueStatement	Yield, Await	1	ecmascript-language-statements-and-declarations.html#prod-ContinueStatement	continue ;	sec-statements
+ContinueStatement	Yield, Await	2	ecmascript-language-statements-and-declarations.html#prod-ContinueStatement	continue [no LineTerminator here] LabelIdentifier [?Yield, ?Await] ;	sec-statements
+BreakStatement	Yield, Await	1	ecmascript-language-statements-and-declarations.html#prod-BreakStatement	break ;	sec-statements
+BreakStatement	Yield, Await	2	ecmascript-language-statements-and-declarations.html#prod-BreakStatement	break [no LineTerminator here] LabelIdentifier [?Yield, ?Await] ;	sec-statements
+ReturnStatement	Yield, Await	1	ecmascript-language-statements-and-declarations.html#prod-ReturnStatement	return ;	sec-statements
+ReturnStatement	Yield, Await	2	ecmascript-language-statements-and-declarations.html#prod-ReturnStatement	return [no LineTerminator here] Expression [+In, ?Yield, ?Await] ;	sec-statements
+WithStatement	Yield, Await, Return	1	ecmascript-language-statements-and-declarations.html#prod-WithStatement	with ( Expression [+In, ?Yield, ?Await] ) Statement [?Yield, ?Await, ?Return]	sec-statements
+SwitchStatement	Yield, Await, Return	1	ecmascript-language-statements-and-declarations.html#prod-SwitchStatement	switch ( Expression [+In, ?Yield, ?Await] ) CaseBlock [?Yield, ?Await, ?Return]	sec-statements
+CaseBlock	Yield, Await, Return	1	ecmascript-language-statements-and-declarations.html#prod-CaseBlock	{ CaseClauses [?Yield, ?Await, ?Return] opt }	sec-statements
+CaseBlock	Yield, Await, Return	2	ecmascript-language-statements-and-declarations.html#prod-CaseBlock	{ CaseClauses [?Yield, ?Await, ?Return] opt DefaultClause [?Yield, ?Await, ?Return] CaseClauses [?Yield, ?Await, ?Return] opt }	sec-statements
+CaseClauses	Yield, Await, Return	1	ecmascript-language-statements-and-declarations.html#prod-CaseClauses	CaseClause [?Yield, ?Await, ?Return]	sec-statements
+CaseClauses	Yield, Await, Return	2	ecmascript-language-statements-and-declarations.html#prod-CaseClauses	CaseClauses [?Yield, ?Await, ?Return] CaseClause [?Yield, ?Await, ?Return]	sec-statements
+CaseClause	Yield, Await, Return	1	ecmascript-language-statements-and-declarations.html#prod-CaseClause	case Expression [+In, ?Yield, ?Await] : StatementList [?Yield, ?Await, ?Return] opt	sec-statements
+DefaultClause	Yield, Await, Return	1	ecmascript-language-statements-and-declarations.html#prod-DefaultClause	default : StatementList [?Yield, ?Await, ?Return] opt	sec-statements
+LabelledStatement	Yield, Await, Return	1	ecmascript-language-statements-and-declarations.html#prod-LabelledStatement	LabelIdentifier [?Yield, ?Await] : LabelledItem [?Yield, ?Await, ?Return]	sec-statements
+LabelledItem	Yield, Await, Return	1	ecmascript-language-statements-and-declarations.html#prod-LabelledItem	Statement [?Yield, ?Await, ?Return]	sec-statements
+LabelledItem	Yield, Await, Return	2	ecmascript-language-statements-and-declarations.html#prod-LabelledItem	FunctionDeclaration [?Yield, ?Await, ~Default]	sec-statements
+ThrowStatement	Yield, Await	1	ecmascript-language-statements-and-declarations.html#prod-ThrowStatement	throw [no LineTerminator here] Expression [+In, ?Yield, ?Await] ;	sec-statements
+TryStatement	Yield, Await, Return	1	ecmascript-language-statements-and-declarations.html#prod-TryStatement	try Block [?Yield, ?Await, ?Return] Catch [?Yield, ?Await, ?Return]	sec-statements
+TryStatement	Yield, Await, Return	2	ecmascript-language-statements-and-declarations.html#prod-TryStatement	try Block [?Yield, ?Await, ?Return] Finally [?Yield, ?Await, ?Return]	sec-statements
+TryStatement	Yield, Await, Return	3	ecmascript-language-statements-and-declarations.html#prod-TryStatement	try Block [?Yield, ?Await, ?Return] Catch [?Yield, ?Await, ?Return] Finally [?Yield, ?Await, ?Return]	sec-statements
+Catch	Yield, Await, Return	1	ecmascript-language-statements-and-declarations.html#prod-Catch	catch ( CatchParameter [?Yield, ?Await] ) Block [?Yield, ?Await, ?Return]	sec-statements
+Catch	Yield, Await, Return	2	ecmascript-language-statements-and-declarations.html#prod-Catch	catch Block [?Yield, ?Await, ?Return]	sec-statements
+Finally	Yield, Await, Return	1	ecmascript-language-statements-and-declarations.html#prod-Finally	finally Block [?Yield, ?Await, ?Return]	sec-statements
+CatchParameter	Yield, Await	1	ecmascript-language-statements-and-declarations.html#prod-CatchParameter	BindingIdentifier [?Yield, ?Await]	sec-statements
+CatchParameter	Yield, Await	2	ecmascript-language-statements-and-declarations.html#prod-CatchParameter	BindingPattern [?Yield, ?Await]	sec-statements
+DebuggerStatement		1	ecmascript-language-statements-and-declarations.html#prod-DebuggerStatement	debugger ;	sec-statements
+UniqueFormalParameters	Yield, Await	1	ecmascript-language-functions-and-classes.html#prod-UniqueFormalParameters	FormalParameters [?Yield, ?Await]	sec-functions-and-classes
+FormalParameters	Yield, Await	1	ecmascript-language-functions-and-classes.html#prod-FormalParameters	[empty]	sec-functions-and-classes
+FormalParameters	Yield, Await	2	ecmascript-language-functions-and-classes.html#prod-FormalParameters	FunctionRestParameter [?Yield, ?Await]	sec-functions-and-classes
+FormalParameters	Yield, Await	3	ecmascript-language-functions-and-classes.html#prod-FormalParameters	FormalParameterList [?Yield, ?Await]	sec-functions-and-classes
+FormalParameters	Yield, Await	4	ecmascript-language-functions-and-classes.html#prod-FormalParameters	FormalParameterList [?Yield, ?Await] ,	sec-functions-and-classes
+FormalParameters	Yield, Await	5	ecmascript-language-functions-and-classes.html#prod-FormalParameters	FormalParameterList [?Yield, ?Await] , FunctionRestParameter [?Yield, ?Await]	sec-functions-and-classes
+FormalParameterList	Yield, Await	1	ecmascript-language-functions-and-classes.html#prod-FormalParameterList	FormalParameter [?Yield, ?Await]	sec-functions-and-classes
+FormalParameterList	Yield, Await	2	ecmascript-language-functions-and-classes.html#prod-FormalParameterList	FormalParameterList [?Yield, ?Await] , FormalParameter [?Yield, ?Await]	sec-functions-and-classes
+FunctionRestParameter	Yield, Await	1	ecmascript-language-functions-and-classes.html#prod-FunctionRestParameter	BindingRestElement [?Yield, ?Await]	sec-functions-and-classes
+FormalParameter	Yield, Await	1	ecmascript-language-functions-and-classes.html#prod-FormalParameter	BindingElement [?Yield, ?Await]	sec-functions-and-classes
+FunctionDeclaration	Yield, Await, Default	1	ecmascript-language-functions-and-classes.html#prod-FunctionDeclaration	function BindingIdentifier [?Yield, ?Await] ( FormalParameters [~Yield, ~Await] ) { FunctionBody [~Yield, ~Await] }	sec-functions-and-classes
+FunctionDeclaration	Yield, Await, Default	2	ecmascript-language-functions-and-classes.html#prod-FunctionDeclaration	[+Default] function ( FormalParameters [~Yield, ~Await] ) { FunctionBody [~Yield, ~Await] }	sec-functions-and-classes
+FunctionExpression		1	ecmascript-language-functions-and-classes.html#prod-FunctionExpression	function BindingIdentifier [~Yield, ~Await] opt ( FormalParameters [~Yield, ~Await] ) { FunctionBody [~Yield, ~Await] }	sec-functions-and-classes
+FunctionBody	Yield, Await	1	ecmascript-language-functions-and-classes.html#prod-FunctionBody	FunctionStatementList [?Yield, ?Await]	sec-functions-and-classes
+FunctionStatementList	Yield, Await	1	ecmascript-language-functions-and-classes.html#prod-FunctionStatementList	StatementList [?Yield, ?Await, +Return] opt	sec-functions-and-classes
+ArrowFunction	In, Yield, Await	1	ecmascript-language-functions-and-classes.html#prod-ArrowFunction	ArrowParameters [?Yield, ?Await] [no LineTerminator here] => ConciseBody [?In]	sec-functions-and-classes
+ArrowParameters	Yield, Await	1	ecmascript-language-functions-and-classes.html#prod-ArrowParameters	BindingIdentifier [?Yield, ?Await]	sec-functions-and-classes
+ArrowParameters	Yield, Await	2	ecmascript-language-functions-and-classes.html#prod-ArrowParameters	CoverParenthesizedExpressionAndArrowParameterList [?Yield, ?Await]	sec-functions-and-classes
+ConciseBody	In	1	ecmascript-language-functions-and-classes.html#prod-ConciseBody	[lookahead ≠ { ] ExpressionBody [?In, ~Await]	sec-functions-and-classes
+ConciseBody	In	2	ecmascript-language-functions-and-classes.html#prod-ConciseBody	{ FunctionBody [~Yield, ~Await] }	sec-functions-and-classes
+ExpressionBody	In, Await	1	ecmascript-language-functions-and-classes.html#prod-ExpressionBody	AssignmentExpression [?In, ~Yield, ?Await]	sec-functions-and-classes
+ArrowFormalParameters	Yield, Await	1	ecmascript-language-functions-and-classes.html#prod-ArrowFormalParameters	( UniqueFormalParameters [?Yield, ?Await] )	sec-functions-and-classes
+AsyncArrowFunction	In, Yield, Await	1	ecmascript-language-functions-and-classes.html#prod-AsyncArrowFunction	async [no LineTerminator here] AsyncArrowBindingIdentifier [?Yield] [no LineTerminator here] => AsyncConciseBody [?In]	sec-functions-and-classes
+AsyncArrowFunction	In, Yield, Await	2	ecmascript-language-functions-and-classes.html#prod-AsyncArrowFunction	CoverCallExpressionAndAsyncArrowHead [?Yield, ?Await] [no LineTerminator here] => AsyncConciseBody [?In]	sec-functions-and-classes
+AsyncConciseBody	In	1	ecmascript-language-functions-and-classes.html#prod-AsyncConciseBody	[lookahead ≠ { ] ExpressionBody [?In, +Await]	sec-functions-and-classes
+AsyncConciseBody	In	2	ecmascript-language-functions-and-classes.html#prod-AsyncConciseBody	{ AsyncFunctionBody }	sec-functions-and-classes
+AsyncArrowBindingIdentifier	Yield	1	ecmascript-language-functions-and-classes.html#prod-AsyncArrowBindingIdentifier	BindingIdentifier [?Yield, +Await]	sec-functions-and-classes
+CoverCallExpressionAndAsyncArrowHead	Yield, Await	1	ecmascript-language-functions-and-classes.html#prod-CoverCallExpressionAndAsyncArrowHead	MemberExpression [?Yield, ?Await] Arguments [?Yield, ?Await]	sec-functions-and-classes
+AsyncArrowHead		1	ecmascript-language-functions-and-classes.html#prod-AsyncArrowHead	async [no LineTerminator here] ArrowFormalParameters [~Yield, +Await]	sec-functions-and-classes
+MethodDefinition	Yield, Await	1	ecmascript-language-functions-and-classes.html#prod-MethodDefinition	ClassElementName [?Yield, ?Await] ( UniqueFormalParameters [~Yield, ~Await] ) { FunctionBody [~Yield, ~Await] }	sec-functions-and-classes
+MethodDefinition	Yield, Await	2	ecmascript-language-functions-and-classes.html#prod-MethodDefinition	GeneratorMethod [?Yield, ?Await]	sec-functions-and-classes
+MethodDefinition	Yield, Await	3	ecmascript-language-functions-and-classes.html#prod-MethodDefinition	AsyncMethod [?Yield, ?Await]	sec-functions-and-classes
+MethodDefinition	Yield, Await	4	ecmascript-language-functions-and-classes.html#prod-MethodDefinition	AsyncGeneratorMethod [?Yield, ?Await]	sec-functions-and-classes
+MethodDefinition	Yield, Await	5	ecmascript-language-functions-and-classes.html#prod-MethodDefinition	get ClassElementName [?Yield, ?Await] ( ) { FunctionBody [~Yield, ~Await] }	sec-functions-and-classes
+MethodDefinition	Yield, Await	6	ecmascript-language-functions-and-classes.html#prod-MethodDefinition	set ClassElementName [?Yield, ?Await] ( PropertySetParameterList ) { FunctionBody [~Yield, ~Await] }	sec-functions-and-classes
+PropertySetParameterList		1	ecmascript-language-functions-and-classes.html#prod-PropertySetParameterList	FormalParameter [~Yield, ~Await]	sec-functions-and-classes
+GeneratorDeclaration	Yield, Await, Default	1	ecmascript-language-functions-and-classes.html#prod-GeneratorDeclaration	function * BindingIdentifier [?Yield, ?Await] ( FormalParameters [+Yield, ~Await] ) { GeneratorBody }	sec-functions-and-classes
+GeneratorDeclaration	Yield, Await, Default	2	ecmascript-language-functions-and-classes.html#prod-GeneratorDeclaration	[+Default] function * ( FormalParameters [+Yield, ~Await] ) { GeneratorBody }	sec-functions-and-classes
+GeneratorExpression		1	ecmascript-language-functions-and-classes.html#prod-GeneratorExpression	function * BindingIdentifier [+Yield, ~Await] opt ( FormalParameters [+Yield, ~Await] ) { GeneratorBody }	sec-functions-and-classes
+GeneratorMethod	Yield, Await	1	ecmascript-language-functions-and-classes.html#prod-GeneratorMethod	* ClassElementName [?Yield, ?Await] ( UniqueFormalParameters [+Yield, ~Await] ) { GeneratorBody }	sec-functions-and-classes
+GeneratorBody		1	ecmascript-language-functions-and-classes.html#prod-GeneratorBody	FunctionBody [+Yield, ~Await]	sec-functions-and-classes
+YieldExpression	In, Await	1	ecmascript-language-functions-and-classes.html#prod-YieldExpression	yield	sec-functions-and-classes
+YieldExpression	In, Await	2	ecmascript-language-functions-and-classes.html#prod-YieldExpression	yield [no LineTerminator here] AssignmentExpression [?In, +Yield, ?Await]	sec-functions-and-classes
+YieldExpression	In, Await	3	ecmascript-language-functions-and-classes.html#prod-YieldExpression	yield [no LineTerminator here] * AssignmentExpression [?In, +Yield, ?Await]	sec-functions-and-classes
+AsyncGeneratorDeclaration	Yield, Await, Default	1	ecmascript-language-functions-and-classes.html#prod-AsyncGeneratorDeclaration	async [no LineTerminator here] function * BindingIdentifier [?Yield, ?Await] ( FormalParameters [+Yield, +Await] ) { AsyncGeneratorBody }	sec-functions-and-classes
+AsyncGeneratorDeclaration	Yield, Await, Default	2	ecmascript-language-functions-and-classes.html#prod-AsyncGeneratorDeclaration	[+Default] async [no LineTerminator here] function * ( FormalParameters [+Yield, +Await] ) { AsyncGeneratorBody }	sec-functions-and-classes
+AsyncGeneratorExpression		1	ecmascript-language-functions-and-classes.html#prod-AsyncGeneratorExpression	async [no LineTerminator here] function * BindingIdentifier [+Yield, +Await] opt ( FormalParameters [+Yield, +Await] ) { AsyncGeneratorBody }	sec-functions-and-classes
+AsyncGeneratorMethod	Yield, Await	1	ecmascript-language-functions-and-classes.html#prod-AsyncGeneratorMethod	async [no LineTerminator here] * ClassElementName [?Yield, ?Await] ( UniqueFormalParameters [+Yield, +Await] ) { AsyncGeneratorBody }	sec-functions-and-classes
+AsyncGeneratorBody		1	ecmascript-language-functions-and-classes.html#prod-AsyncGeneratorBody	FunctionBody [+Yield, +Await]	sec-functions-and-classes
+AsyncFunctionDeclaration	Yield, Await, Default	1	ecmascript-language-functions-and-classes.html#prod-AsyncFunctionDeclaration	async [no LineTerminator here] function BindingIdentifier [?Yield, ?Await] ( FormalParameters [~Yield, +Await] ) { AsyncFunctionBody }	sec-functions-and-classes
+AsyncFunctionDeclaration	Yield, Await, Default	2	ecmascript-language-functions-and-classes.html#prod-AsyncFunctionDeclaration	[+Default] async [no LineTerminator here] function ( FormalParameters [~Yield, +Await] ) { AsyncFunctionBody }	sec-functions-and-classes
+AsyncFunctionExpression		1	ecmascript-language-functions-and-classes.html#prod-AsyncFunctionExpression	async [no LineTerminator here] function BindingIdentifier [~Yield, +Await] opt ( FormalParameters [~Yield, +Await] ) { AsyncFunctionBody }	sec-functions-and-classes
+AsyncMethod	Yield, Await	1	ecmascript-language-functions-and-classes.html#prod-AsyncMethod	async [no LineTerminator here] ClassElementName [?Yield, ?Await] ( UniqueFormalParameters [~Yield, +Await] ) { AsyncFunctionBody }	sec-functions-and-classes
+AsyncFunctionBody		1	ecmascript-language-functions-and-classes.html#prod-AsyncFunctionBody	FunctionBody [~Yield, +Await]	sec-functions-and-classes
+AwaitExpression	Yield	1	ecmascript-language-functions-and-classes.html#prod-AwaitExpression	await UnaryExpression [?Yield, +Await]	sec-functions-and-classes
+ClassDeclaration	Yield, Await, Default	1	ecmascript-language-functions-and-classes.html#prod-ClassDeclaration	class BindingIdentifier [?Yield, ?Await] ClassTail [?Yield, ?Await]	sec-functions-and-classes
+ClassDeclaration	Yield, Await, Default	2	ecmascript-language-functions-and-classes.html#prod-ClassDeclaration	[+Default] class ClassTail [?Yield, ?Await]	sec-functions-and-classes
+ClassExpression	Yield, Await	1	ecmascript-language-functions-and-classes.html#prod-ClassExpression	class BindingIdentifier [?Yield, ?Await] opt ClassTail [?Yield, ?Await]	sec-functions-and-classes
+ClassTail	Yield, Await	1	ecmascript-language-functions-and-classes.html#prod-ClassTail	ClassHeritage [?Yield, ?Await] opt { ClassBody [?Yield, ?Await] opt }	sec-functions-and-classes
+ClassHeritage	Yield, Await	1	ecmascript-language-functions-and-classes.html#prod-ClassHeritage	extends LeftHandSideExpression [?Yield, ?Await]	sec-functions-and-classes
+ClassBody	Yield, Await	1	ecmascript-language-functions-and-classes.html#prod-ClassBody	ClassElementList [?Yield, ?Await]	sec-functions-and-classes
+ClassElementList	Yield, Await	1	ecmascript-language-functions-and-classes.html#prod-ClassElementList	ClassElement [?Yield, ?Await]	sec-functions-and-classes
+ClassElementList	Yield, Await	2	ecmascript-language-functions-and-classes.html#prod-ClassElementList	ClassElementList [?Yield, ?Await] ClassElement [?Yield, ?Await]	sec-functions-and-classes
+ClassElement	Yield, Await	1	ecmascript-language-functions-and-classes.html#prod-ClassElement	MethodDefinition [?Yield, ?Await]	sec-functions-and-classes
+ClassElement	Yield, Await	2	ecmascript-language-functions-and-classes.html#prod-ClassElement	static MethodDefinition [?Yield, ?Await]	sec-functions-and-classes
+ClassElement	Yield, Await	3	ecmascript-language-functions-and-classes.html#prod-ClassElement	FieldDefinition [?Yield, ?Await] ;	sec-functions-and-classes
+ClassElement	Yield, Await	4	ecmascript-language-functions-and-classes.html#prod-ClassElement	static FieldDefinition [?Yield, ?Await] ;	sec-functions-and-classes
+ClassElement	Yield, Await	5	ecmascript-language-functions-and-classes.html#prod-ClassElement	ClassStaticBlock	sec-functions-and-classes
+ClassElement	Yield, Await	6	ecmascript-language-functions-and-classes.html#prod-ClassElement	;	sec-functions-and-classes
+FieldDefinition	Yield, Await	1	ecmascript-language-functions-and-classes.html#prod-FieldDefinition	ClassElementName [?Yield, ?Await] Initializer [+In, ?Yield, ?Await] opt	sec-functions-and-classes
+ClassElementName	Yield, Await	1	ecmascript-language-functions-and-classes.html#prod-ClassElementName	PropertyName [?Yield, ?Await]	sec-functions-and-classes
+ClassElementName	Yield, Await	2	ecmascript-language-functions-and-classes.html#prod-ClassElementName	PrivateIdentifier	sec-functions-and-classes
+ClassStaticBlock		1	ecmascript-language-functions-and-classes.html#prod-ClassStaticBlock	static { ClassStaticBlockBody }	sec-functions-and-classes
+ClassStaticBlockBody		1	ecmascript-language-functions-and-classes.html#prod-ClassStaticBlockBody	ClassStaticBlockStatementList	sec-functions-and-classes
+ClassStaticBlockStatementList		1	ecmascript-language-functions-and-classes.html#prod-ClassStaticBlockStatementList	StatementList [~Yield, +Await, ~Return] opt	sec-functions-and-classes
+Script		1	ecmascript-language-scripts-and-modules.html#prod-Script	ScriptBody opt	sec-scripts-and-modules
+ScriptBody		1	ecmascript-language-scripts-and-modules.html#prod-ScriptBody	StatementList [~Yield, ~Await, ~Return]	sec-scripts-and-modules
+Module		1	ecmascript-language-scripts-and-modules.html#prod-Module	ModuleBody opt	sec-scripts-and-modules
+ModuleBody		1	ecmascript-language-scripts-and-modules.html#prod-ModuleBody	ModuleItemList	sec-scripts-and-modules
+ModuleItemList		1	ecmascript-language-scripts-and-modules.html#prod-ModuleItemList	ModuleItem	sec-scripts-and-modules
+ModuleItemList		2	ecmascript-language-scripts-and-modules.html#prod-ModuleItemList	ModuleItemList ModuleItem	sec-scripts-and-modules
+ModuleItem		1	ecmascript-language-scripts-and-modules.html#prod-ModuleItem	ImportDeclaration	sec-scripts-and-modules
+ModuleItem		2	ecmascript-language-scripts-and-modules.html#prod-ModuleItem	ExportDeclaration	sec-scripts-and-modules
+ModuleItem		3	ecmascript-language-scripts-and-modules.html#prod-ModuleItem	StatementListItem [~Yield, +Await, ~Return]	sec-scripts-and-modules
+ModuleExportName		1	ecmascript-language-scripts-and-modules.html#prod-ModuleExportName	IdentifierName	sec-scripts-and-modules
+ModuleExportName		2	ecmascript-language-scripts-and-modules.html#prod-ModuleExportName	StringLiteral	sec-scripts-and-modules
+ImportDeclaration		1	ecmascript-language-scripts-and-modules.html#prod-ImportDeclaration	import ImportClause FromClause ;	sec-scripts-and-modules
+ImportDeclaration		2	ecmascript-language-scripts-and-modules.html#prod-ImportDeclaration	import ModuleSpecifier ;	sec-scripts-and-modules
+ImportClause		1	ecmascript-language-scripts-and-modules.html#prod-ImportClause	ImportedDefaultBinding	sec-scripts-and-modules
+ImportClause		2	ecmascript-language-scripts-and-modules.html#prod-ImportClause	NameSpaceImport	sec-scripts-and-modules
+ImportClause		3	ecmascript-language-scripts-and-modules.html#prod-ImportClause	NamedImports	sec-scripts-and-modules
+ImportClause		4	ecmascript-language-scripts-and-modules.html#prod-ImportClause	ImportedDefaultBinding , NameSpaceImport	sec-scripts-and-modules
+ImportClause		5	ecmascript-language-scripts-and-modules.html#prod-ImportClause	ImportedDefaultBinding , NamedImports	sec-scripts-and-modules
+ImportedDefaultBinding		1	ecmascript-language-scripts-and-modules.html#prod-ImportedDefaultBinding	ImportedBinding	sec-scripts-and-modules
+NameSpaceImport		1	ecmascript-language-scripts-and-modules.html#prod-NameSpaceImport	* as ImportedBinding	sec-scripts-and-modules
+NamedImports		1	ecmascript-language-scripts-and-modules.html#prod-NamedImports	{ }	sec-scripts-and-modules
+NamedImports		2	ecmascript-language-scripts-and-modules.html#prod-NamedImports	{ ImportsList }	sec-scripts-and-modules
+NamedImports		3	ecmascript-language-scripts-and-modules.html#prod-NamedImports	{ ImportsList , }	sec-scripts-and-modules
+FromClause		1	ecmascript-language-scripts-and-modules.html#prod-FromClause	from ModuleSpecifier	sec-scripts-and-modules
+ImportsList		1	ecmascript-language-scripts-and-modules.html#prod-ImportsList	ImportSpecifier	sec-scripts-and-modules
+ImportsList		2	ecmascript-language-scripts-and-modules.html#prod-ImportsList	ImportsList , ImportSpecifier	sec-scripts-and-modules
+ImportSpecifier		1	ecmascript-language-scripts-and-modules.html#prod-ImportSpecifier	ImportedBinding	sec-scripts-and-modules
+ImportSpecifier		2	ecmascript-language-scripts-and-modules.html#prod-ImportSpecifier	ModuleExportName as ImportedBinding	sec-scripts-and-modules
+ModuleSpecifier		1	ecmascript-language-scripts-and-modules.html#prod-ModuleSpecifier	StringLiteral	sec-scripts-and-modules
+ImportedBinding		1	ecmascript-language-scripts-and-modules.html#prod-ImportedBinding	BindingIdentifier [~Yield, +Await]	sec-scripts-and-modules
+ExportDeclaration		1	ecmascript-language-scripts-and-modules.html#prod-ExportDeclaration	export ExportFromClause FromClause ;	sec-scripts-and-modules
+ExportDeclaration		2	ecmascript-language-scripts-and-modules.html#prod-ExportDeclaration	export NamedExports ;	sec-scripts-and-modules
+ExportDeclaration		3	ecmascript-language-scripts-and-modules.html#prod-ExportDeclaration	export VariableStatement [~Yield, +Await]	sec-scripts-and-modules
+ExportDeclaration		4	ecmascript-language-scripts-and-modules.html#prod-ExportDeclaration	export Declaration [~Yield, +Await]	sec-scripts-and-modules
+ExportDeclaration		5	ecmascript-language-scripts-and-modules.html#prod-ExportDeclaration	export default HoistableDeclaration [~Yield, +Await, +Default]	sec-scripts-and-modules
+ExportDeclaration		6	ecmascript-language-scripts-and-modules.html#prod-ExportDeclaration	export default ClassDeclaration [~Yield, +Await, +Default]	sec-scripts-and-modules
+ExportDeclaration		7	ecmascript-language-scripts-and-modules.html#prod-ExportDeclaration	export default [lookahead ∉ { function , async [no LineTerminator here] function , class }] AssignmentExpression [+In, ~Yield, +Await] ;	sec-scripts-and-modules
+ExportFromClause		1	ecmascript-language-scripts-and-modules.html#prod-ExportFromClause	*	sec-scripts-and-modules
+ExportFromClause		2	ecmascript-language-scripts-and-modules.html#prod-ExportFromClause	* as ModuleExportName	sec-scripts-and-modules
+ExportFromClause		3	ecmascript-language-scripts-and-modules.html#prod-ExportFromClause	NamedExports	sec-scripts-and-modules
+NamedExports		1	ecmascript-language-scripts-and-modules.html#prod-NamedExports	{ }	sec-scripts-and-modules
+NamedExports		2	ecmascript-language-scripts-and-modules.html#prod-NamedExports	{ ExportsList }	sec-scripts-and-modules
+NamedExports		3	ecmascript-language-scripts-and-modules.html#prod-NamedExports	{ ExportsList , }	sec-scripts-and-modules
+ExportsList		1	ecmascript-language-scripts-and-modules.html#prod-ExportsList	ExportSpecifier	sec-scripts-and-modules
+ExportsList		2	ecmascript-language-scripts-and-modules.html#prod-ExportsList	ExportsList , ExportSpecifier	sec-scripts-and-modules
+ExportSpecifier		1	ecmascript-language-scripts-and-modules.html#prod-ExportSpecifier	ModuleExportName	sec-scripts-and-modules
+ExportSpecifier		2	ecmascript-language-scripts-and-modules.html#prod-ExportSpecifier	ModuleExportName as ModuleExportName	sec-scripts-and-modules
+StringNumericLiteral		1	abstract-operations.html#prod-StringNumericLiteral	StrWhiteSpace opt	sec-number-conversions
+StringNumericLiteral		2	abstract-operations.html#prod-StringNumericLiteral	StrWhiteSpace opt StrNumericLiteral StrWhiteSpace opt	sec-number-conversions
+StrWhiteSpace		1	abstract-operations.html#prod-StrWhiteSpace	StrWhiteSpaceChar StrWhiteSpace opt	sec-number-conversions
+StrWhiteSpaceChar		1	abstract-operations.html#prod-StrWhiteSpaceChar	WhiteSpace	sec-number-conversions
+StrWhiteSpaceChar		2	abstract-operations.html#prod-StrWhiteSpaceChar	LineTerminator	sec-number-conversions
+StrNumericLiteral		1	abstract-operations.html#prod-StrNumericLiteral	StrDecimalLiteral	sec-number-conversions
+StrNumericLiteral		2	abstract-operations.html#prod-StrNumericLiteral	NonDecimalIntegerLiteral [~Sep]	sec-number-conversions
+StrDecimalLiteral		1	abstract-operations.html#prod-StrDecimalLiteral	StrUnsignedDecimalLiteral	sec-number-conversions
+StrDecimalLiteral		2	abstract-operations.html#prod-StrDecimalLiteral	+ StrUnsignedDecimalLiteral	sec-number-conversions
+StrDecimalLiteral		3	abstract-operations.html#prod-StrDecimalLiteral	- StrUnsignedDecimalLiteral	sec-number-conversions
+StrUnsignedDecimalLiteral		1	abstract-operations.html#prod-StrUnsignedDecimalLiteral	Infinity	sec-number-conversions
+StrUnsignedDecimalLiteral		2	abstract-operations.html#prod-StrUnsignedDecimalLiteral	DecimalDigits [~Sep] . DecimalDigits [~Sep] opt ExponentPart [~Sep] opt	sec-number-conversions
+StrUnsignedDecimalLiteral		3	abstract-operations.html#prod-StrUnsignedDecimalLiteral	. DecimalDigits [~Sep] ExponentPart [~Sep] opt	sec-number-conversions
+StrUnsignedDecimalLiteral		4	abstract-operations.html#prod-StrUnsignedDecimalLiteral	DecimalDigits [~Sep] ExponentPart [~Sep] opt	sec-number-conversions
+StringIntegerLiteral		1	abstract-operations.html#prod-StringIntegerLiteral	StrWhiteSpace opt	sec-number-conversions
+StringIntegerLiteral		2	abstract-operations.html#prod-StringIntegerLiteral	StrWhiteSpace opt StrIntegerLiteral StrWhiteSpace opt	sec-number-conversions
+StrIntegerLiteral		1	abstract-operations.html#prod-StrIntegerLiteral	SignedInteger [~Sep]	sec-number-conversions
+StrIntegerLiteral		2	abstract-operations.html#prod-StrIntegerLiteral	NonDecimalIntegerLiteral [~Sep]	sec-number-conversions
+UTCOffset		1	numbers-and-dates.html#prod-UTCOffset	TemporalSign Hour	sec-time-zone-offset-string-format
+UTCOffset		2	numbers-and-dates.html#prod-UTCOffset	TemporalSign Hour HourSubcomponents [+Extended]	sec-time-zone-offset-string-format
+UTCOffset		3	numbers-and-dates.html#prod-UTCOffset	TemporalSign Hour HourSubcomponents [~Extended]	sec-time-zone-offset-string-format
+TemporalSign		1	numbers-and-dates.html#prod-TemporalSign	ASCIISign	sec-time-zone-offset-string-format
+TemporalSign		2	numbers-and-dates.html#prod-TemporalSign	<MINUS>	sec-time-zone-offset-string-format
+ASCIISign		1	numbers-and-dates.html#prod-ASCIISign	+	sec-time-zone-offset-string-format
+ASCIISign		2	numbers-and-dates.html#prod-ASCIISign	-	sec-time-zone-offset-string-format
+Hour		1	numbers-and-dates.html#prod-Hour	0 DecimalDigit	sec-time-zone-offset-string-format
+Hour		2	numbers-and-dates.html#prod-Hour	1 DecimalDigit	sec-time-zone-offset-string-format
+Hour		3	numbers-and-dates.html#prod-Hour	20	sec-time-zone-offset-string-format
+Hour		4	numbers-and-dates.html#prod-Hour	21	sec-time-zone-offset-string-format
+Hour		5	numbers-and-dates.html#prod-Hour	22	sec-time-zone-offset-string-format
+Hour		6	numbers-and-dates.html#prod-Hour	23	sec-time-zone-offset-string-format
+HourSubcomponents	Extended	1	numbers-and-dates.html#prod-HourSubcomponents	TimeSeparator [?Extended] MinuteSecond	sec-time-zone-offset-string-format
+HourSubcomponents	Extended	2	numbers-and-dates.html#prod-HourSubcomponents	TimeSeparator [?Extended] MinuteSecond TimeSeparator [?Extended] MinuteSecond TemporalDecimalFraction opt	sec-time-zone-offset-string-format
+TimeSeparator	Extended	1	numbers-and-dates.html#prod-TimeSeparator	[+Extended] :	sec-time-zone-offset-string-format
+TimeSeparator	Extended	2	numbers-and-dates.html#prod-TimeSeparator	[~Extended] [empty]	sec-time-zone-offset-string-format
+MinuteSecond		1	numbers-and-dates.html#prod-MinuteSecond	0 DecimalDigit	sec-time-zone-offset-string-format
+MinuteSecond		2	numbers-and-dates.html#prod-MinuteSecond	1 DecimalDigit	sec-time-zone-offset-string-format
+MinuteSecond		3	numbers-and-dates.html#prod-MinuteSecond	2 DecimalDigit	sec-time-zone-offset-string-format
+MinuteSecond		4	numbers-and-dates.html#prod-MinuteSecond	3 DecimalDigit	sec-time-zone-offset-string-format
+MinuteSecond		5	numbers-and-dates.html#prod-MinuteSecond	4 DecimalDigit	sec-time-zone-offset-string-format
+MinuteSecond		6	numbers-and-dates.html#prod-MinuteSecond	5 DecimalDigit	sec-time-zone-offset-string-format
+TemporalDecimalFraction		1	numbers-and-dates.html#prod-TemporalDecimalFraction	TemporalDecimalSeparator DecimalDigit	sec-time-zone-offset-string-format
+TemporalDecimalFraction		2	numbers-and-dates.html#prod-TemporalDecimalFraction	TemporalDecimalSeparator DecimalDigit DecimalDigit	sec-time-zone-offset-string-format
+TemporalDecimalFraction		3	numbers-and-dates.html#prod-TemporalDecimalFraction	TemporalDecimalSeparator DecimalDigit DecimalDigit DecimalDigit	sec-time-zone-offset-string-format
+TemporalDecimalFraction		4	numbers-and-dates.html#prod-TemporalDecimalFraction	TemporalDecimalSeparator DecimalDigit DecimalDigit DecimalDigit DecimalDigit	sec-time-zone-offset-string-format
+TemporalDecimalFraction		5	numbers-and-dates.html#prod-TemporalDecimalFraction	TemporalDecimalSeparator DecimalDigit DecimalDigit DecimalDigit DecimalDigit DecimalDigit	sec-time-zone-offset-string-format
+TemporalDecimalFraction		6	numbers-and-dates.html#prod-TemporalDecimalFraction	TemporalDecimalSeparator DecimalDigit DecimalDigit DecimalDigit DecimalDigit DecimalDigit DecimalDigit	sec-time-zone-offset-string-format
+TemporalDecimalFraction		7	numbers-and-dates.html#prod-TemporalDecimalFraction	TemporalDecimalSeparator DecimalDigit DecimalDigit DecimalDigit DecimalDigit DecimalDigit DecimalDigit DecimalDigit	sec-time-zone-offset-string-format
+TemporalDecimalFraction		8	numbers-and-dates.html#prod-TemporalDecimalFraction	TemporalDecimalSeparator DecimalDigit DecimalDigit DecimalDigit DecimalDigit DecimalDigit DecimalDigit DecimalDigit DecimalDigit	sec-time-zone-offset-string-format
+TemporalDecimalFraction		9	numbers-and-dates.html#prod-TemporalDecimalFraction	TemporalDecimalSeparator DecimalDigit DecimalDigit DecimalDigit DecimalDigit DecimalDigit DecimalDigit DecimalDigit DecimalDigit DecimalDigit	sec-time-zone-offset-string-format
+TemporalDecimalSeparator		1	numbers-and-dates.html#prod-TemporalDecimalSeparator	.	sec-time-zone-offset-string-format
+TemporalDecimalSeparator		2	numbers-and-dates.html#prod-TemporalDecimalSeparator	,	sec-time-zone-offset-string-format
+Pattern	UnicodeMode, UnicodeSetsMode, NamedCaptureGroups	1	text-processing.html#prod-Pattern	Disjunction [?UnicodeMode, ?UnicodeSetsMode, ?NamedCaptureGroups]	sec-regular-expressions
+Disjunction	UnicodeMode, UnicodeSetsMode, NamedCaptureGroups	1	text-processing.html#prod-Disjunction	Alternative [?UnicodeMode, ?UnicodeSetsMode, ?NamedCaptureGroups]	sec-regular-expressions
+Disjunction	UnicodeMode, UnicodeSetsMode, NamedCaptureGroups	2	text-processing.html#prod-Disjunction	Alternative [?UnicodeMode, ?UnicodeSetsMode, ?NamedCaptureGroups] | Disjunction [?UnicodeMode, ?UnicodeSetsMode, ?NamedCaptureGroups]	sec-regular-expressions
+Alternative	UnicodeMode, UnicodeSetsMode, NamedCaptureGroups	1	text-processing.html#prod-Alternative	[empty]	sec-regular-expressions
+Alternative	UnicodeMode, UnicodeSetsMode, NamedCaptureGroups	2	text-processing.html#prod-Alternative	Alternative [?UnicodeMode, ?UnicodeSetsMode, ?NamedCaptureGroups] Term [?UnicodeMode, ?UnicodeSetsMode, ?NamedCaptureGroups]	sec-regular-expressions
+Term	UnicodeMode, UnicodeSetsMode, NamedCaptureGroups	1	text-processing.html#prod-Term	Assertion [?UnicodeMode, ?UnicodeSetsMode, ?NamedCaptureGroups]	sec-regular-expressions
+Term	UnicodeMode, UnicodeSetsMode, NamedCaptureGroups	2	text-processing.html#prod-Term	Atom [?UnicodeMode, ?UnicodeSetsMode, ?NamedCaptureGroups]	sec-regular-expressions
+Term	UnicodeMode, UnicodeSetsMode, NamedCaptureGroups	3	text-processing.html#prod-Term	Atom [?UnicodeMode, ?UnicodeSetsMode, ?NamedCaptureGroups] Quantifier	sec-regular-expressions
+Assertion	UnicodeMode, UnicodeSetsMode, NamedCaptureGroups	1	text-processing.html#prod-Assertion	^	sec-regular-expressions
+Assertion	UnicodeMode, UnicodeSetsMode, NamedCaptureGroups	2	text-processing.html#prod-Assertion	$	sec-regular-expressions
+Assertion	UnicodeMode, UnicodeSetsMode, NamedCaptureGroups	3	text-processing.html#prod-Assertion	\b	sec-regular-expressions
+Assertion	UnicodeMode, UnicodeSetsMode, NamedCaptureGroups	4	text-processing.html#prod-Assertion	\B	sec-regular-expressions
+Assertion	UnicodeMode, UnicodeSetsMode, NamedCaptureGroups	5	text-processing.html#prod-Assertion	(?= Disjunction [?UnicodeMode, ?UnicodeSetsMode, ?NamedCaptureGroups] )	sec-regular-expressions
+Assertion	UnicodeMode, UnicodeSetsMode, NamedCaptureGroups	6	text-processing.html#prod-Assertion	(?! Disjunction [?UnicodeMode, ?UnicodeSetsMode, ?NamedCaptureGroups] )	sec-regular-expressions
+Assertion	UnicodeMode, UnicodeSetsMode, NamedCaptureGroups	7	text-processing.html#prod-Assertion	(?<= Disjunction [?UnicodeMode, ?UnicodeSetsMode, ?NamedCaptureGroups] )	sec-regular-expressions
+Assertion	UnicodeMode, UnicodeSetsMode, NamedCaptureGroups	8	text-processing.html#prod-Assertion	(?<! Disjunction [?UnicodeMode, ?UnicodeSetsMode, ?NamedCaptureGroups] )	sec-regular-expressions
+Quantifier		1	text-processing.html#prod-Quantifier	QuantifierPrefix	sec-regular-expressions
+Quantifier		2	text-processing.html#prod-Quantifier	QuantifierPrefix ?	sec-regular-expressions
+QuantifierPrefix		1	text-processing.html#prod-QuantifierPrefix	*	sec-regular-expressions
+QuantifierPrefix		2	text-processing.html#prod-QuantifierPrefix	+	sec-regular-expressions
+QuantifierPrefix		3	text-processing.html#prod-QuantifierPrefix	?	sec-regular-expressions
+QuantifierPrefix		4	text-processing.html#prod-QuantifierPrefix	{ DecimalDigits [~Sep] }	sec-regular-expressions
+QuantifierPrefix		5	text-processing.html#prod-QuantifierPrefix	{ DecimalDigits [~Sep] ,}	sec-regular-expressions
+QuantifierPrefix		6	text-processing.html#prod-QuantifierPrefix	{ DecimalDigits [~Sep] , DecimalDigits [~Sep] }	sec-regular-expressions
+Atom	UnicodeMode, UnicodeSetsMode, NamedCaptureGroups	1	text-processing.html#prod-Atom	PatternCharacter	sec-regular-expressions
+Atom	UnicodeMode, UnicodeSetsMode, NamedCaptureGroups	2	text-processing.html#prod-Atom	.	sec-regular-expressions
+Atom	UnicodeMode, UnicodeSetsMode, NamedCaptureGroups	3	text-processing.html#prod-Atom	\ AtomEscape [?UnicodeMode, ?NamedCaptureGroups]	sec-regular-expressions
+Atom	UnicodeMode, UnicodeSetsMode, NamedCaptureGroups	4	text-processing.html#prod-Atom	CharacterClass [?UnicodeMode, ?UnicodeSetsMode]	sec-regular-expressions
+Atom	UnicodeMode, UnicodeSetsMode, NamedCaptureGroups	5	text-processing.html#prod-Atom	( GroupSpecifier [?UnicodeMode] opt Disjunction [?UnicodeMode, ?UnicodeSetsMode, ?NamedCaptureGroups] )	sec-regular-expressions
+Atom	UnicodeMode, UnicodeSetsMode, NamedCaptureGroups	6	text-processing.html#prod-Atom	(?: Disjunction [?UnicodeMode, ?UnicodeSetsMode, ?NamedCaptureGroups] )	sec-regular-expressions
+SyntaxCharacter		1	text-processing.html#prod-SyntaxCharacter	^	sec-regular-expressions
+SyntaxCharacter		2	text-processing.html#prod-SyntaxCharacter	$	sec-regular-expressions
+SyntaxCharacter		3	text-processing.html#prod-SyntaxCharacter	\	sec-regular-expressions
+SyntaxCharacter		4	text-processing.html#prod-SyntaxCharacter	.	sec-regular-expressions
+SyntaxCharacter		5	text-processing.html#prod-SyntaxCharacter	*	sec-regular-expressions
+SyntaxCharacter		6	text-processing.html#prod-SyntaxCharacter	+	sec-regular-expressions
+SyntaxCharacter		7	text-processing.html#prod-SyntaxCharacter	?	sec-regular-expressions
+SyntaxCharacter		8	text-processing.html#prod-SyntaxCharacter	(	sec-regular-expressions
+SyntaxCharacter		9	text-processing.html#prod-SyntaxCharacter	)	sec-regular-expressions
+SyntaxCharacter		10	text-processing.html#prod-SyntaxCharacter	[	sec-regular-expressions
+SyntaxCharacter		11	text-processing.html#prod-SyntaxCharacter	]	sec-regular-expressions
+SyntaxCharacter		12	text-processing.html#prod-SyntaxCharacter	{	sec-regular-expressions
+SyntaxCharacter		13	text-processing.html#prod-SyntaxCharacter	}	sec-regular-expressions
+SyntaxCharacter		14	text-processing.html#prod-SyntaxCharacter	|	sec-regular-expressions
+PatternCharacter		1	text-processing.html#prod-PatternCharacter	SourceCharacter but not SyntaxCharacter	sec-regular-expressions
+AtomEscape	UnicodeMode, NamedCaptureGroups	1	text-processing.html#prod-AtomEscape	DecimalEscape	sec-regular-expressions
+AtomEscape	UnicodeMode, NamedCaptureGroups	2	text-processing.html#prod-AtomEscape	CharacterClassEscape [?UnicodeMode]	sec-regular-expressions
+AtomEscape	UnicodeMode, NamedCaptureGroups	3	text-processing.html#prod-AtomEscape	CharacterEscape [?UnicodeMode]	sec-regular-expressions
+AtomEscape	UnicodeMode, NamedCaptureGroups	4	text-processing.html#prod-AtomEscape	[+NamedCaptureGroups] k GroupName [?UnicodeMode]	sec-regular-expressions
+CharacterEscape	UnicodeMode	1	text-processing.html#prod-CharacterEscape	ControlEscape	sec-regular-expressions
+CharacterEscape	UnicodeMode	2	text-processing.html#prod-CharacterEscape	c AsciiLetter	sec-regular-expressions
+CharacterEscape	UnicodeMode	3	text-processing.html#prod-CharacterEscape	0 [lookahead ∉ DecimalDigit ]	sec-regular-expressions
+CharacterEscape	UnicodeMode	4	text-processing.html#prod-CharacterEscape	HexEscapeSequence	sec-regular-expressions
+CharacterEscape	UnicodeMode	5	text-processing.html#prod-CharacterEscape	RegExpUnicodeEscapeSequence [?UnicodeMode]	sec-regular-expressions
+CharacterEscape	UnicodeMode	6	text-processing.html#prod-CharacterEscape	IdentityEscape [?UnicodeMode]	sec-regular-expressions
+ControlEscape		1	text-processing.html#prod-ControlEscape	f	sec-regular-expressions
+ControlEscape		2	text-processing.html#prod-ControlEscape	n	sec-regular-expressions
+ControlEscape		3	text-processing.html#prod-ControlEscape	r	sec-regular-expressions
+ControlEscape		4	text-processing.html#prod-ControlEscape	t	sec-regular-expressions
+ControlEscape		5	text-processing.html#prod-ControlEscape	v	sec-regular-expressions
+GroupSpecifier	UnicodeMode	1	text-processing.html#prod-GroupSpecifier	? GroupName [?UnicodeMode]	sec-regular-expressions
+GroupName	UnicodeMode	1	text-processing.html#prod-GroupName	< RegExpIdentifierName [?UnicodeMode] >	sec-regular-expressions
+RegExpIdentifierName	UnicodeMode	1	text-processing.html#prod-RegExpIdentifierName	RegExpIdentifierStart [?UnicodeMode]	sec-regular-expressions
+RegExpIdentifierName	UnicodeMode	2	text-processing.html#prod-RegExpIdentifierName	RegExpIdentifierName [?UnicodeMode] RegExpIdentifierPart [?UnicodeMode]	sec-regular-expressions
+RegExpIdentifierStart	UnicodeMode	1	text-processing.html#prod-RegExpIdentifierStart	IdentifierStartChar	sec-regular-expressions
+RegExpIdentifierStart	UnicodeMode	2	text-processing.html#prod-RegExpIdentifierStart	\ RegExpUnicodeEscapeSequence [+UnicodeMode]	sec-regular-expressions
+RegExpIdentifierStart	UnicodeMode	3	text-processing.html#prod-RegExpIdentifierStart	[~UnicodeMode] UnicodeLeadSurrogate UnicodeTrailSurrogate	sec-regular-expressions
+RegExpIdentifierPart	UnicodeMode	1	text-processing.html#prod-RegExpIdentifierPart	IdentifierPartChar	sec-regular-expressions
+RegExpIdentifierPart	UnicodeMode	2	text-processing.html#prod-RegExpIdentifierPart	\ RegExpUnicodeEscapeSequence [+UnicodeMode]	sec-regular-expressions
+RegExpIdentifierPart	UnicodeMode	3	text-processing.html#prod-RegExpIdentifierPart	[~UnicodeMode] UnicodeLeadSurrogate UnicodeTrailSurrogate	sec-regular-expressions
+RegExpUnicodeEscapeSequence	UnicodeMode	1	text-processing.html#prod-RegExpUnicodeEscapeSequence	[+UnicodeMode] u HexLeadSurrogate \u HexTrailSurrogate	sec-regular-expressions
+RegExpUnicodeEscapeSequence	UnicodeMode	2	text-processing.html#prod-RegExpUnicodeEscapeSequence	[+UnicodeMode] u HexLeadSurrogate	sec-regular-expressions
+RegExpUnicodeEscapeSequence	UnicodeMode	3	text-processing.html#prod-RegExpUnicodeEscapeSequence	[+UnicodeMode] u HexTrailSurrogate	sec-regular-expressions
+RegExpUnicodeEscapeSequence	UnicodeMode	4	text-processing.html#prod-RegExpUnicodeEscapeSequence	[+UnicodeMode] u HexNonSurrogate	sec-regular-expressions
+RegExpUnicodeEscapeSequence	UnicodeMode	5	text-processing.html#prod-RegExpUnicodeEscapeSequence	[~UnicodeMode] u Hex4Digits	sec-regular-expressions
+RegExpUnicodeEscapeSequence	UnicodeMode	6	text-processing.html#prod-RegExpUnicodeEscapeSequence	[+UnicodeMode] u{ CodePoint }	sec-regular-expressions
+UnicodeLeadSurrogate		1	text-processing.html#prod-UnicodeLeadSurrogate	any Unicode code point in the inclusive interval from U+D800 to U+DBFF	sec-regular-expressions
+UnicodeTrailSurrogate		1	text-processing.html#prod-UnicodeTrailSurrogate	any Unicode code point in the inclusive interval from U+DC00 to U+DFFF	sec-regular-expressions
+HexLeadSurrogate		1	text-processing.html#prod-HexLeadSurrogate	Hex4Digits but only if the MV of Hex4Digits is in the inclusive interval from 0xD800 to 0xDBFF	sec-regular-expressions
+HexTrailSurrogate		1	text-processing.html#prod-HexTrailSurrogate	Hex4Digits but only if the MV of Hex4Digits is in the inclusive interval from 0xDC00 to 0xDFFF	sec-regular-expressions
+HexNonSurrogate		1	text-processing.html#prod-HexNonSurrogate	Hex4Digits but only if the MV of Hex4Digits is not in the inclusive interval from 0xD800 to 0xDFFF	sec-regular-expressions
+IdentityEscape	UnicodeMode	1	text-processing.html#prod-IdentityEscape	[+UnicodeMode] SyntaxCharacter	sec-regular-expressions
+IdentityEscape	UnicodeMode	2	text-processing.html#prod-IdentityEscape	[+UnicodeMode] /	sec-regular-expressions
+IdentityEscape	UnicodeMode	3	text-processing.html#prod-IdentityEscape	[~UnicodeMode] SourceCharacter but not UnicodeIDContinue	sec-regular-expressions
+DecimalEscape		1	text-processing.html#prod-DecimalEscape	NonZeroDigit DecimalDigits [~Sep] opt [lookahead ∉ DecimalDigit ]	sec-regular-expressions
+CharacterClassEscape	UnicodeMode	1	text-processing.html#prod-CharacterClassEscape	d	sec-regular-expressions
+CharacterClassEscape	UnicodeMode	2	text-processing.html#prod-CharacterClassEscape	D	sec-regular-expressions
+CharacterClassEscape	UnicodeMode	3	text-processing.html#prod-CharacterClassEscape	s	sec-regular-expressions
+CharacterClassEscape	UnicodeMode	4	text-processing.html#prod-CharacterClassEscape	S	sec-regular-expressions
+CharacterClassEscape	UnicodeMode	5	text-processing.html#prod-CharacterClassEscape	w	sec-regular-expressions
+CharacterClassEscape	UnicodeMode	6	text-processing.html#prod-CharacterClassEscape	W	sec-regular-expressions
+CharacterClassEscape	UnicodeMode	7	text-processing.html#prod-CharacterClassEscape	[+UnicodeMode] p{ UnicodePropertyValueExpression }	sec-regular-expressions
+CharacterClassEscape	UnicodeMode	8	text-processing.html#prod-CharacterClassEscape	[+UnicodeMode] P{ UnicodePropertyValueExpression }	sec-regular-expressions
+UnicodePropertyValueExpression		1	text-processing.html#prod-UnicodePropertyValueExpression	UnicodePropertyName = UnicodePropertyValue	sec-regular-expressions
+UnicodePropertyValueExpression		2	text-processing.html#prod-UnicodePropertyValueExpression	LoneUnicodePropertyNameOrValue	sec-regular-expressions
+UnicodePropertyName		1	text-processing.html#prod-UnicodePropertyName	UnicodePropertyNameCharacters	sec-regular-expressions
+UnicodePropertyNameCharacters		1	text-processing.html#prod-UnicodePropertyNameCharacters	UnicodePropertyNameCharacter UnicodePropertyNameCharacters opt	sec-regular-expressions
+UnicodePropertyValue		1	text-processing.html#prod-UnicodePropertyValue	UnicodePropertyValueCharacters	sec-regular-expressions
+LoneUnicodePropertyNameOrValue		1	text-processing.html#prod-LoneUnicodePropertyNameOrValue	UnicodePropertyValueCharacters	sec-regular-expressions
+UnicodePropertyValueCharacters		1	text-processing.html#prod-UnicodePropertyValueCharacters	UnicodePropertyValueCharacter UnicodePropertyValueCharacters opt	sec-regular-expressions
+UnicodePropertyValueCharacter		1	text-processing.html#prod-UnicodePropertyValueCharacter	UnicodePropertyNameCharacter	sec-regular-expressions
+UnicodePropertyValueCharacter		2	text-processing.html#prod-UnicodePropertyValueCharacter	DecimalDigit	sec-regular-expressions
+UnicodePropertyNameCharacter		1	text-processing.html#prod-UnicodePropertyNameCharacter	AsciiLetter	sec-regular-expressions
+UnicodePropertyNameCharacter		2	text-processing.html#prod-UnicodePropertyNameCharacter	_	sec-regular-expressions
+CharacterClass	UnicodeMode, UnicodeSetsMode	1	text-processing.html#prod-CharacterClass	[ [lookahead ≠ ^ ] ClassContents [?UnicodeMode, ?UnicodeSetsMode] ]	sec-regular-expressions
+CharacterClass	UnicodeMode, UnicodeSetsMode	2	text-processing.html#prod-CharacterClass	[^ ClassContents [?UnicodeMode, ?UnicodeSetsMode] ]	sec-regular-expressions
+ClassContents	UnicodeMode, UnicodeSetsMode	1	text-processing.html#prod-ClassContents	[empty]	sec-regular-expressions
+ClassContents	UnicodeMode, UnicodeSetsMode	2	text-processing.html#prod-ClassContents	[~UnicodeSetsMode] NonemptyClassRanges [?UnicodeMode]	sec-regular-expressions
+ClassContents	UnicodeMode, UnicodeSetsMode	3	text-processing.html#prod-ClassContents	[+UnicodeSetsMode] ClassSetExpression	sec-regular-expressions
+NonemptyClassRanges	UnicodeMode	1	text-processing.html#prod-NonemptyClassRanges	ClassAtom [?UnicodeMode]	sec-regular-expressions
+NonemptyClassRanges	UnicodeMode	2	text-processing.html#prod-NonemptyClassRanges	ClassAtom [?UnicodeMode] NonemptyClassRangesNoDash [?UnicodeMode]	sec-regular-expressions
+NonemptyClassRanges	UnicodeMode	3	text-processing.html#prod-NonemptyClassRanges	ClassAtom [?UnicodeMode] - ClassAtom [?UnicodeMode] ClassContents [?UnicodeMode, ~UnicodeSetsMode]	sec-regular-expressions
+NonemptyClassRangesNoDash	UnicodeMode	1	text-processing.html#prod-NonemptyClassRangesNoDash	ClassAtom [?UnicodeMode]	sec-regular-expressions
+NonemptyClassRangesNoDash	UnicodeMode	2	text-processing.html#prod-NonemptyClassRangesNoDash	ClassAtomNoDash [?UnicodeMode] NonemptyClassRangesNoDash [?UnicodeMode]	sec-regular-expressions
+NonemptyClassRangesNoDash	UnicodeMode	3	text-processing.html#prod-NonemptyClassRangesNoDash	ClassAtomNoDash [?UnicodeMode] - ClassAtom [?UnicodeMode] ClassContents [?UnicodeMode, ~UnicodeSetsMode]	sec-regular-expressions
+ClassAtom	UnicodeMode	1	text-processing.html#prod-ClassAtom	-	sec-regular-expressions
+ClassAtom	UnicodeMode	2	text-processing.html#prod-ClassAtom	ClassAtomNoDash [?UnicodeMode]	sec-regular-expressions
+ClassAtomNoDash	UnicodeMode	1	text-processing.html#prod-ClassAtomNoDash	SourceCharacter but not one of \ or ] or -	sec-regular-expressions
+ClassAtomNoDash	UnicodeMode	2	text-processing.html#prod-ClassAtomNoDash	\ ClassEscape [?UnicodeMode]	sec-regular-expressions
+ClassEscape	UnicodeMode	1	text-processing.html#prod-ClassEscape	b	sec-regular-expressions
+ClassEscape	UnicodeMode	2	text-processing.html#prod-ClassEscape	[+UnicodeMode] -	sec-regular-expressions
+ClassEscape	UnicodeMode	3	text-processing.html#prod-ClassEscape	CharacterClassEscape [?UnicodeMode]	sec-regular-expressions
+ClassEscape	UnicodeMode	4	text-processing.html#prod-ClassEscape	CharacterEscape [?UnicodeMode]	sec-regular-expressions
+ClassSetExpression		1	text-processing.html#prod-ClassSetExpression	ClassUnion	sec-regular-expressions
+ClassSetExpression		2	text-processing.html#prod-ClassSetExpression	ClassIntersection	sec-regular-expressions
+ClassSetExpression		3	text-processing.html#prod-ClassSetExpression	ClassSubtraction	sec-regular-expressions
+ClassUnion		1	text-processing.html#prod-ClassUnion	ClassSetRange ClassUnion opt	sec-regular-expressions
+ClassUnion		2	text-processing.html#prod-ClassUnion	ClassSetOperand ClassUnion opt	sec-regular-expressions
+ClassIntersection		1	text-processing.html#prod-ClassIntersection	ClassSetOperand && [lookahead ≠ & ] ClassSetOperand	sec-regular-expressions
+ClassIntersection		2	text-processing.html#prod-ClassIntersection	ClassIntersection && [lookahead ≠ & ] ClassSetOperand	sec-regular-expressions
+ClassSubtraction		1	text-processing.html#prod-ClassSubtraction	ClassSetOperand -- ClassSetOperand	sec-regular-expressions
+ClassSubtraction		2	text-processing.html#prod-ClassSubtraction	ClassSubtraction -- ClassSetOperand	sec-regular-expressions
+ClassSetRange		1	text-processing.html#prod-ClassSetRange	ClassSetCharacter - ClassSetCharacter	sec-regular-expressions
+ClassSetOperand		1	text-processing.html#prod-ClassSetOperand	NestedClass	sec-regular-expressions
+ClassSetOperand		2	text-processing.html#prod-ClassSetOperand	ClassStringDisjunction	sec-regular-expressions
+ClassSetOperand		3	text-processing.html#prod-ClassSetOperand	ClassSetCharacter	sec-regular-expressions
+NestedClass		1	text-processing.html#prod-NestedClass	[ [lookahead ≠ ^ ] ClassContents [+UnicodeMode, +UnicodeSetsMode] ]	sec-regular-expressions
+NestedClass		2	text-processing.html#prod-NestedClass	[^ ClassContents [+UnicodeMode, +UnicodeSetsMode] ]	sec-regular-expressions
+NestedClass		3	text-processing.html#prod-NestedClass	\ CharacterClassEscape [+UnicodeMode]	sec-regular-expressions
+ClassStringDisjunction		1	text-processing.html#prod-ClassStringDisjunction	\q{ ClassStringDisjunctionContents }	sec-regular-expressions
+ClassStringDisjunctionContents		1	text-processing.html#prod-ClassStringDisjunctionContents	ClassString	sec-regular-expressions
+ClassStringDisjunctionContents		2	text-processing.html#prod-ClassStringDisjunctionContents	ClassString | ClassStringDisjunctionContents	sec-regular-expressions
+ClassString		1	text-processing.html#prod-ClassString	[empty]	sec-regular-expressions
+ClassString		2	text-processing.html#prod-ClassString	NonEmptyClassString	sec-regular-expressions
+NonEmptyClassString		1	text-processing.html#prod-NonEmptyClassString	ClassSetCharacter NonEmptyClassString opt	sec-regular-expressions
+ClassSetCharacter		1	text-processing.html#prod-ClassSetCharacter	[lookahead ∉ ClassSetReservedDoublePunctuator ] SourceCharacter but not ClassSetSyntaxCharacter	sec-regular-expressions
+ClassSetCharacter		2	text-processing.html#prod-ClassSetCharacter	\ CharacterEscape [+UnicodeMode]	sec-regular-expressions
+ClassSetCharacter		3	text-processing.html#prod-ClassSetCharacter	\ ClassSetReservedPunctuator	sec-regular-expressions
+ClassSetCharacter		4	text-processing.html#prod-ClassSetCharacter	\b	sec-regular-expressions
+ClassSetReservedDoublePunctuator		1	text-processing.html#prod-ClassSetReservedDoublePunctuator	&&	sec-regular-expressions
+ClassSetReservedDoublePunctuator		2	text-processing.html#prod-ClassSetReservedDoublePunctuator	!!	sec-regular-expressions
+ClassSetReservedDoublePunctuator		3	text-processing.html#prod-ClassSetReservedDoublePunctuator	##	sec-regular-expressions
+ClassSetReservedDoublePunctuator		4	text-processing.html#prod-ClassSetReservedDoublePunctuator	$$	sec-regular-expressions
+ClassSetReservedDoublePunctuator		5	text-processing.html#prod-ClassSetReservedDoublePunctuator	%%	sec-regular-expressions
+ClassSetReservedDoublePunctuator		6	text-processing.html#prod-ClassSetReservedDoublePunctuator	**	sec-regular-expressions
+ClassSetReservedDoublePunctuator		7	text-processing.html#prod-ClassSetReservedDoublePunctuator	++	sec-regular-expressions
+ClassSetReservedDoublePunctuator		8	text-processing.html#prod-ClassSetReservedDoublePunctuator	,,	sec-regular-expressions
+ClassSetReservedDoublePunctuator		9	text-processing.html#prod-ClassSetReservedDoublePunctuator	..	sec-regular-expressions
+ClassSetReservedDoublePunctuator		10	text-processing.html#prod-ClassSetReservedDoublePunctuator	::	sec-regular-expressions
+ClassSetReservedDoublePunctuator		11	text-processing.html#prod-ClassSetReservedDoublePunctuator	;;	sec-regular-expressions
+ClassSetReservedDoublePunctuator		12	text-processing.html#prod-ClassSetReservedDoublePunctuator	<<	sec-regular-expressions
+ClassSetReservedDoublePunctuator		13	text-processing.html#prod-ClassSetReservedDoublePunctuator	==	sec-regular-expressions
+ClassSetReservedDoublePunctuator		14	text-processing.html#prod-ClassSetReservedDoublePunctuator	>>	sec-regular-expressions
+ClassSetReservedDoublePunctuator		15	text-processing.html#prod-ClassSetReservedDoublePunctuator	??	sec-regular-expressions
+ClassSetReservedDoublePunctuator		16	text-processing.html#prod-ClassSetReservedDoublePunctuator	@@	sec-regular-expressions
+ClassSetReservedDoublePunctuator		17	text-processing.html#prod-ClassSetReservedDoublePunctuator	^^	sec-regular-expressions
+ClassSetReservedDoublePunctuator		18	text-processing.html#prod-ClassSetReservedDoublePunctuator	``	sec-regular-expressions
+ClassSetReservedDoublePunctuator		19	text-processing.html#prod-ClassSetReservedDoublePunctuator	~~	sec-regular-expressions
+ClassSetSyntaxCharacter		1	text-processing.html#prod-ClassSetSyntaxCharacter	(	sec-regular-expressions
+ClassSetSyntaxCharacter		2	text-processing.html#prod-ClassSetSyntaxCharacter	)	sec-regular-expressions
+ClassSetSyntaxCharacter		3	text-processing.html#prod-ClassSetSyntaxCharacter	[	sec-regular-expressions
+ClassSetSyntaxCharacter		4	text-processing.html#prod-ClassSetSyntaxCharacter	]	sec-regular-expressions
+ClassSetSyntaxCharacter		5	text-processing.html#prod-ClassSetSyntaxCharacter	{	sec-regular-expressions
+ClassSetSyntaxCharacter		6	text-processing.html#prod-ClassSetSyntaxCharacter	}	sec-regular-expressions
+ClassSetSyntaxCharacter		7	text-processing.html#prod-ClassSetSyntaxCharacter	/	sec-regular-expressions
+ClassSetSyntaxCharacter		8	text-processing.html#prod-ClassSetSyntaxCharacter	-	sec-regular-expressions
+ClassSetSyntaxCharacter		9	text-processing.html#prod-ClassSetSyntaxCharacter	\	sec-regular-expressions
+ClassSetSyntaxCharacter		10	text-processing.html#prod-ClassSetSyntaxCharacter	|	sec-regular-expressions
+ClassSetReservedPunctuator		1	text-processing.html#prod-ClassSetReservedPunctuator	&	sec-regular-expressions
+ClassSetReservedPunctuator		2	text-processing.html#prod-ClassSetReservedPunctuator	-	sec-regular-expressions
+ClassSetReservedPunctuator		3	text-processing.html#prod-ClassSetReservedPunctuator	!	sec-regular-expressions
+ClassSetReservedPunctuator		4	text-processing.html#prod-ClassSetReservedPunctuator	#	sec-regular-expressions
+ClassSetReservedPunctuator		5	text-processing.html#prod-ClassSetReservedPunctuator	%	sec-regular-expressions
+ClassSetReservedPunctuator		6	text-processing.html#prod-ClassSetReservedPunctuator	,	sec-regular-expressions
+ClassSetReservedPunctuator		7	text-processing.html#prod-ClassSetReservedPunctuator	:	sec-regular-expressions
+ClassSetReservedPunctuator		8	text-processing.html#prod-ClassSetReservedPunctuator	;	sec-regular-expressions
+ClassSetReservedPunctuator		9	text-processing.html#prod-ClassSetReservedPunctuator	<	sec-regular-expressions
+ClassSetReservedPunctuator		10	text-processing.html#prod-ClassSetReservedPunctuator	=	sec-regular-expressions
+ClassSetReservedPunctuator		11	text-processing.html#prod-ClassSetReservedPunctuator	>	sec-regular-expressions
+ClassSetReservedPunctuator		12	text-processing.html#prod-ClassSetReservedPunctuator	@	sec-regular-expressions
+ClassSetReservedPunctuator		13	text-processing.html#prod-ClassSetReservedPunctuator	`	sec-regular-expressions
+ClassSetReservedPunctuator		14	text-processing.html#prod-ClassSetReservedPunctuator	~	sec-regular-expressions

@@ -1,0 +1,12 @@
+constexpr auto last = "\x100" u"";
+constexpr auto first = U"" "\x10000";
+constexpr auto middle = "\400" u"" "\xFFFF";
+constexpr auto byte = u8"\xFF\377";
+constexpr auto word = U"\x00000000FFFFFFFF";
+constexpr auto surrogate = u"\xD800";
+constexpr auto untouched = R"tag(\x100000000\400)tag";
+constexpr auto separate = "\x1" "FF";
+constexpr auto wide = "\x10000" L"";
+constexpr auto punct = R"!#%&'*+,-./:;<=>(x)!#%&'*+,-./:;<=>";
+constexpr auto quote_delimiter = R""(text)"";
+constexpr auto boundary = R"0123456789abcdef(first)0123456789abcde"second)0123456789abcdef";

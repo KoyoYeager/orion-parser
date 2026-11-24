@@ -1,0 +1,16 @@
+template<class... T> void named_arrays(T ...values[2]);
+template<class... T> void unnamed_arrays(T ...[2]);
+template<class... T> void named_functions(T ...callbacks(int));
+template<class... T> void unnamed_functions(T ...(int));
+template<class... T> void nested_arrays(T ...[2][3]);
+template<class... T> void pointer_arrays(T *...[2]);
+template<int ...Values[2]> struct ArrayArgs {};
+template<int ...(int)> struct FunctionArgs {};
+template<class> struct Box {};
+template<class... T> void pointers(T *...);
+template<class... T> void refs(const T &...);
+template<class... T> void boxes(Box<T>...);
+template<class... T> void comma(T *..., int ...);
+void varargs(int *...);
+template<class...> struct List {};
+template<class... T> void already_expanded(List<T...>...);

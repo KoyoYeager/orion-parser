@@ -1,0 +1,6 @@
+clause	clang_diagnostic	ast_path	expected	source
+6.8.4.2	duplicate case value '4294967295'	0.body.items.1.test.type	CastExpression	int f(unsigned x){switch(x){case -1:; case (unsigned)-1:;}return 0;}
+6.8.6.1	cannot jump from this goto statement to its label	2.label	inside	int f(int n){goto inside; int a[n]; inside:return sizeof a;}
+6.5.1.1	compatible with previously specified type	0.expression.associations.1.target.specifiers.0	int	int f(int n){return _Generic(n, signed int:1,int:2);}
+6.5.3.2	cannot take the address of an rvalue	0.expression.left.operand.operator	+	int f(int x){return &(x+1)!=0;}
+6.5.2.3	is not a structure or union	0.expression.member	member	int f(int x){return x.member;}

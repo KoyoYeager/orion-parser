@@ -1,0 +1,6 @@
+classification	cases	sha256	representative_sources
+decorators	38	cdcd6eb4c048d082bfde20ba49c0e2a6b511b210c336ad911462f8b44bae2d31	@dec class C {}  /  class C { accessor x; }
+import-assertions	140	ae42786ec8e875925f8b4eb616a3e5bde345b8d91e5f25f4e43afc7e350f0511	import x from 'm' assert {type:'json'}  /  import('m', {})
+import-attributes	143	8646c683ec558c4db20d4db229eb99d5e00808f31415cd8e3d6fe61afeab9fbf	import x from 'm' with {type:'json'}  /  import('m', {})
+node-call-assignment	4	0ca9be84e7bcc68ee7246f081d8d7f494532518b62342b66fb86a3039bee6bdd	f() = 1;  /  (f()) = 1;
+source-phase-imports	178	fbf8cb8ddb68c4b256893b1f41964ab7a5d2fe83e7e7495d4a7f797398805707	import.source('m')  /  import source x from 'm'

@@ -1,0 +1,10 @@
+fixture	category	clang_reason	orion_accepts
+00095.c	type conversion	void pointer and function pointer	yes
+00143.c	source final newline	no newline at end of file	yes
+00144.c	type qualifier conversion	discards qualifiers	yes
+00170.c	incomplete enum tag	forward references to 'enum' types	yes
+00209.c	incomplete enum tag	forward references to 'enum' types	yes
+00210.c	GNU attributes and pointer conversion	void pointer and function pointer	no
+00213.c	GNU statement expression	GNU statement expression extension	no
+00214.c	GNU statement expression	GNU statement expression extension	no
+00216.c	GNU empty struct	empty struct is a GNU extension	no
